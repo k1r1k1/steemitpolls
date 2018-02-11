@@ -41,7 +41,7 @@
     <article>
         <main role="main" class="container">
             <form>
-               <br>
+                <br>
                 <div class="form-group">
                     <h5>Enter the title of your poll</h5>
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Poll header">
@@ -60,22 +60,22 @@
                     <input type="text" class="form-control" placeholder="add ariant 2" aria-label="Username" aria-describedby="basic-addon1" disabled>
                     <br>
                 </div>
-                   <br>
-                    <h5>Get your link</h5>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="https://golospolls.com/poll/b72hgjb3434bmn" aria-label="Get a link of your poll" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button">Copy to clipboard</button>
-                        </div>
+                <br>
+                <h5>Get your link</h5>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="https://golospolls.com/poll/b72hgjb3434bmn" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="cpint">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="cpbtn">Copy to clipboard</button>
                     </div>
-                    <h5>Get your code</h5>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="<a href='#'>Poll</a>" aria-label="Get a html-code of your poll" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button">Copy to clipboard</button>
-                        </div>
+                </div>
+                <h5>Get your code</h5>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="<a href='#'>Poll</a>" aria-label="Get a html-code of your poll" aria-describedby="basic-addon2" id="cpint">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="cpbtn">Copy to clipboard</button>
                     </div>
-                    
+                </div>
+
             </form>
         </main>
     </article>
@@ -87,5 +87,21 @@
         </div>
     </footer>
 </body>
+<script>
+    var $copyTextareaBtn = document.querySelector('#cpbtn');
+    var functionCopyToClipboard = function(event) {
+        var copyTextarea = document.querySelector('#cpint');
+        copyTextarea.select();
+
+        try {
+            var successful = document.execCommand('copy');
+            var msg = successful ? 'successful' : 'unsuccessful';
+            console.log('Copying text command was ' + msg);
+        } catch (err) {
+            console.log('Oops, unable to copy');
+        }
+    }
+    $copyTextareaBtn.addEventListener('click', functionCopyToClipboard, false);
+</script>
 
 </html>
