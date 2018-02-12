@@ -91,12 +91,12 @@
         copyLink.select();
         document.execCommand('copy');
     }
+    $copyLinkBtn.addEventListener('click', functionCopyLinkToClipboard, false);
     var functionCopyCodeToClipboard = function(event) {
         var copyCode = document.querySelector('#cpcdint');
         copyCode.select();
         document.execCommand('copy');
     }
-    $copyLinkBtn.addEventListener('click', functionCopyLinkToClipboard, false);
     $copyCodeBtn.addEventListener('click', functionCopyCodeToClipboard, false);
 </script>
 
