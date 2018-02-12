@@ -41,19 +41,27 @@
                     <h5>Enter the title of your poll</h5>
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Poll header">
                 </div>
-                <div class="input-group mb-3">
+                <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">1</span>
+                        <div class="input-group-text">
+                            <input type="checkbox" aria-label="Radio button for following text input" checked>
+                        </div>
                     </div>
-                    <input type="text" class="form-control" placeholder="variant 1" aria-label="Username" aria-describedby="basic-addon1">
-                    <br>
+                    <input type="text" class="form-control" aria-label="Text input with radio button">
                 </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1" disabled>2</span>
-                    </div>
-                    <input type="text" class="form-control" placeholder="add ariant 2" aria-label="Username" aria-describedby="basic-addon1" disabled>
                     <br>
+                <style>
+                    #pOption2 {
+                        opacity: 0.4
+                    }
+                </style>
+                <div class="input-group" id="pOption2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" aria-label="Radio button for following text input" id="inputOption2">
+                        </div>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Text input with radio button">
                 </div>
                 <br>
                 <h5>Get your link</h5>
@@ -84,4 +92,5 @@
 </body>
 <!-- Optional JavaScript -->
 <script src="script.js"></script>
+
 </html>
