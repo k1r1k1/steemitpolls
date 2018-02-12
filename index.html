@@ -12,11 +12,6 @@
 </head>
 
 <body>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <header class="mainimage">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">Golospolls</a>
@@ -63,16 +58,16 @@
                 <br>
                 <h5>Get your link</h5>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="https://golospolls.com/poll/b72hgjb3434bmn" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="cpint">
+                    <input type="text" class="form-control" placeholder="https://golospolls.com/poll/b72hgjb3434bmn" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="cplkint">
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button" id="cpbtn">Copy to clipboard</button>
+                        <button class="btn btn-outline-secondary" type="button" id="cplkbtn">Copy to clipboard</button>
                     </div>
                 </div>
                 <h5>Get your code</h5>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="<a href='#'>Poll</a>" aria-label="Get a html-code of your poll" aria-describedby="basic-addon2" id="cpint">
+                    <input type="text" class="form-control" placeholder="<a href='#'>Poll</a>" aria-label="Get a html-code of your poll" aria-describedby="basic-addon2" id="cpcdint">
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button" id="cpbtn">Copy to clipboard</button>
+                        <button class="btn btn-outline-secondary" type="button" id="cpcdbtn">Copy to clipboard</button>
                     </div>
                 </div>
 
@@ -87,21 +82,22 @@
         </div>
     </footer>
 </body>
+<!-- Optional JavaScript -->
 <script>
-    var $copyTextareaBtn = document.querySelector('#cpbtn');
-    var functionCopyToClipboard = function(event) {
-        var copyTextarea = document.querySelector('#cpint');
-        copyTextarea.select();
-
-        try {
-            var successful = document.execCommand('copy');
-            var msg = successful ? 'successful' : 'unsuccessful';
-            console.log('Copying text command was ' + msg);
-        } catch (err) {
-            console.log('Oops, unable to copy');
-        }
+    var $copyLinkBtn = document.querySelector('#cplkbtn'),
+        $copyCodeBtn = document.querySelector('#cpcdbtn');
+    var functionCopyLinkToClipboard = function(event) {
+        var copyLink = document.querySelector('#cplkint');
+        copyLink.select();
+        document.execCommand('copy');
     }
-    $copyTextareaBtn.addEventListener('click', functionCopyToClipboard, false);
+    var functionCopyCodeToClipboard = function(event) {
+        var copyCode = document.querySelector('#cpcdint');
+        copyCode.select();
+        document.execCommand('copy');
+    }
+    $copyLinkBtn.addEventListener('click', functionCopyLinkToClipboard, false);
+    $copyCodeBtn.addEventListener('click', functionCopyCodeToClipboard, false);
 </script>
 
 </html>
