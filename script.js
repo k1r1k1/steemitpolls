@@ -24,10 +24,11 @@ function doInputActive() {
     document.getElementById('pOptionButt' + inputsC).removeAttribute('disabled');
     document.getElementById('pOption' + inputsC).style.opacity = '1';
     document.getElementById('inputOption' + inputsC).setAttribute('placeholder', 'Type your text here');
+    document.querySelector('#inputOption' + inputsC).removeEventListener('mousedown', doInputActive, false);
     addInputPoll();
 }
 
-function doInputInctive() {
+function doInputInactive() {
     console.log('remInput');
     document.getElementById('pOption' + inputsC).style.opacity = '0.4';
     document.getElementById('pOptionButt' + inputsC).setAttribute('disabled', 'disabled');
@@ -49,13 +50,11 @@ function addInputPoll() {
                 </div>`;
     document.getElementById('PollForm').appendChild($div);
     document.querySelector('#inputOption' + inputsC).addEventListener('mousedown', doInputActive, false);
-    document.getElementById('pOptionButt' + inputsC).addEventListener('click', doInputInctive, false);
+    document.getElementById('pOptionButt' + inputsC).addEventListener('click', doInputInactive, false);
 }
 
 function delInputPoll() {
     console.log('delInputPoll');
-    /*inputsC--;
-    document.getElementById('pOption' + inputsC).remove();*/
     document.getElementById('PollForm').addEventListener('click', function (e) {
         for (var target = e.target; target && target != this; target = target.parentNode.parentNode) {
             if (target.matches('div')) {
@@ -69,4 +68,4 @@ function delInputPoll() {
 }
 
 document.querySelector('#inputOption2').addEventListener('mousedown', doInputActive, false);
-document.getElementById('pOptionButt2').addEventListener('click', doInputInctive, false);
+document.getElementById('pOptionButt2').addEventListener('click', doInputInactive, false);
