@@ -57,7 +57,7 @@ function delInputPoll() {
     /*inputsC--;
     document.getElementById('pOption' + inputsC).remove();*/
     document.getElementById('PollForm').addEventListener('click', function (e) {
-        for (var target = e.target; target && target != this; target = target.parentNode) {
+        for (var target = e.target; target && target != this; target = target.parentNode.parentNode) {
             if (target.matches('div')) {
                 target.remove();
                 //
