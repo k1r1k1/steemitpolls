@@ -35,48 +35,42 @@
     </header>
     <article>
         <main role="main" class="container">
-            <form>
+            <form id="PollForm">
                 <br>
                 <div class="form-group">
                     <h5>Enter the title of your poll</h5>
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Poll header">
                 </div>
 
-                <div class="input-group mb-3">
+                <div class="input-group mb-3" id="pOption1" style="opacity: 1;">
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button" id="cplkbtn">Remove</button>
                     </div>
                     <input type="text" class="form-control" placeholder="Type your text here" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="cplkint">
                 </div>
-                <style>
-                    #pOption2 {
-                        opacity: 0.4
-                    }
-                </style>
-                <div class="input-group mb-3" id="pOption2">
+                <div class="input-group mb-3" id="pOption2" style="opacity: 0.4;">
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button" id="pOptionButt2" disabled>Remove</button>
                     </div>
                     <input type="text" class="form-control" placeholder="Click here to a add new one" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="inputOption2">
                 </div>
-
-                <br>
-                <h5>Get your link</h5>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="https://golospolls.com/poll/b72hgjb3434bmn" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="cplkint">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button" id="cplkbtn">Copy to clipboard</button>
-                    </div>
-                </div>
-                <h5>Get your code</h5>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="<a href='#'>Poll</a>" aria-label="Get a html-code of your poll" aria-describedby="basic-addon2" id="cpcdint">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button" id="cpcdbtn">Copy to clipboard</button>
-                    </div>
-                </div>
-
             </form>
+            <h5>Get your link</h5>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="https://golospolls.com/poll/b72hgjb3434bmn" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="cplkint">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="cplkbtn">Copy to clipboard</button>
+                </div>
+            </div>
+            <h5>Get your code</h5>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="<a href='#'>Poll</a>" aria-label="Get a html-code of your poll" aria-describedby="basic-addon2" id="cpcdint">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="cpcdbtn">Copy to clipboard</button>
+                </div>
+            </div>
+
+
         </main>
     </article>
     <footer class="fixed-bottom">

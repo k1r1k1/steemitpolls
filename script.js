@@ -2,6 +2,7 @@
 
 var $copyLinkBtn = document.querySelector('#cplkbtn'),
     $copyCodeBtn = document.querySelector('#cpcdbtn'),
+    inputsC = 2,
     functionCopyLinkToClipboard = function (event) {
         var copyLink = document.querySelector('#cplkint');
         copyLink.select();
@@ -20,30 +21,52 @@ $copyCodeBtn.addEventListener('click', functionCopyCodeToClipboard, false);
 
 function doInputActive() {
     console.log('doInputActive');
-    document.getElementById('pOptionButt2').removeAttribute('disabled');
-    document.getElementById('pOption2').style.opacity = '1';
-    document.getElementById('inputOption2').setAttribute('placeholder', 'Type your text here');
+    document.getElementById('pOptionButt' + inputsC).removeAttribute('disabled');
+    document.getElementById('pOption' + inputsC).style.opacity = '1';
+    document.getElementById('inputOption' + inputsC).setAttribute('placeholder', 'Type your text here');
+    addInputPoll();
 }
 
-function remInput() {
+function doInputInctive() {
     console.log('remInput');
-    document.getElementById('pOption2').style.opacity = '0.4';
-    document.getElementById('pOptionButt2').setAttribute('disabled', 'disabled');
-    document.getElementById('inputOption2').setAttribute('placeholder', 'Click here to add new one');
+    document.getElementById('pOption' + inputsC).style.opacity = '0.4';
+    document.getElementById('pOptionButt' + inputsC).setAttribute('disabled', 'disabled');
+    document.getElementById('inputOption' + inputsC).setAttribute('placeholder', 'Click here to add a new one');
+    delInputPoll();
 }
 
 function addInputPoll() {
     console.log('addInputForPoll');
-    var $div = document.createElement('div'),
-        $oRight = document.getElementsByClassName('oRight')[0],
-        $html = chrome.extension.getURL('enrichment.html'),
-        $bRelatedListfirstDiv = document.querySelector('.bRelatedList.first');
-        $div.className = 'bRelatedList.first';
-        $div.innerHTML = `<div`
+    inputsC++;
+    var $div = document.createElement('div');
+    $div.className = 'input-group mb-3';
+    $div.id = 'pOption' + inputsC;
+    $div.style = 'opacity: 0.4;';
+    $div.innerHTML = `<div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="pOptionButt` + inputsC + `" disabled>Remove</button>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Click here to add a new one" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="inputOption` + inputsC + `">
+                </div>`;
+    document.getElementById('PollForm').appendChild($div);
+    document.querySelector('#inputOption' + inputsC).addEventListener('mousedown', doInputActive, false);
+    document.getElementById('pOptionButt' + inputsC).addEventListener('click', doInputInctive, false);
 }
 
+function delInputPoll() {
+    console.log('delInputPoll');
+    /*inputsC--;
+    document.getElementById('pOption' + inputsC).remove();*/
+    document.getElementById('PollForm').addEventListener('click', function (e) {
+        for (var target = e.target; target && target != this; target = target.parentNode) {
+            if (target.matches('div')) {
+                target.remove();
+                //
+                e.preventDefault();
+                break;
+            }
+        }
+    }, false);
+}
 
-var $pClickedOption = document.querySelector('#pOption2'),
-    $inputOption2 = document.querySelector('#inputOption2');
-$inputOption2.addEventListener('mousedown', doInputActive, false);
-document.getElementById('pOptionButt2').addEventListener('click', remInput, false);
+document.querySelector('#inputOption2').addEventListener('mousedown', doInputActive, false);
+document.getElementById('pOptionButt2').addEventListener('click', doInputInctive, false);
