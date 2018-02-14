@@ -67,5 +67,14 @@ function delInputPoll() {
     }, false);
 }
 
+function completeForm() {
+    document.getElementById('complete-form').style.display = 'block';
+    document.getElementById('Links').style.display = 'block';
+    document.getElementById('complete-form').scrollIntoView();
+}
+
+/*buttons ivents*/
+
 document.querySelector('#inputOption2').addEventListener('mousedown', doInputActive, false);
 document.getElementById('pOptionButt2').addEventListener('click', doInputInactive, false);
+document.getElementById('complete').addEventListener('click', completeForm, false);

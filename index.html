@@ -60,9 +60,9 @@
                 </div>
             </div>
             <br>
-            <button type="button" class="btn btn-secondary btn-lg btn-block">Complete</button>
+            <button type="button" class="btn btn-secondary btn-lg btn-block" id="complete">Complete</button>
             <br><br>
-            <div class="card border-success mb-3">
+            <div class="card border-primary mb-3" id="complete-form" style="display: none;">
                 <div class="card-header">Share your poll</div>
                 <div class="card-body text-dark">
                     <h5 class="card-title">Poll header</h5>
@@ -85,24 +85,25 @@
                     <br>
                 </div>
             </div>
-
-            <h5>Get link</h5>
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="https://golospolls.com/poll/b72hgjb3434bmn" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="cplkint">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" id="cplkbtn">Copy to clipboard</button>
+            <div id="Links" style="display: none;">
+                <h5>Get link</h5>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="https://golospolls.com/poll/b72hgjb3434bmn" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="cplkint">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="cplkbtn">Copy to clipboard</button>
+                    </div>
                 </div>
-            </div>
-            <h5>Get code</h5>
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="<a href='#'>Poll</a>" aria-label="Get a html-code of your poll" aria-describedby="basic-addon2" id="cpcdint">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" id="cpcdbtn">Copy to clipboard</button>
+                <h5>Get code</h5>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="<a href='#'>Poll</a>" aria-label="Get a html-code of your poll" aria-describedby="basic-addon2" id="cpcdint">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="cpcdbtn">Copy to clipboard</button>
+                    </div>
                 </div>
             </div>
         </main>
     </article>
-    <br><br>
+    <br><br><!-- temporary сrutch -->
     <footer class="fixed-bottom">
         <div class="card text-center">
             <div class="card-footer text-muted">
