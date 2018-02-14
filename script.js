@@ -59,7 +59,6 @@ function delInputPoll() {
         for (var target = e.target; target && target != this; target = target.parentNode.parentNode) {
             if (target.matches('div')) {
                 target.remove();
-                //
                 e.preventDefault();
                 break;
             }
@@ -68,12 +67,29 @@ function delInputPoll() {
 }
 
 function completeForm() {
+    var $pollInputs = document.getElementById('PollForm').getElementsByClassName('form-control');
+    for (var cnt = 0; $pollInputs.length - 1 > cnt; cnt++) {
+        console.log(cnt + ' input: ' + $pollInputs[cnt].value);
+        var $div = document.createElement('div');
+        $div.className = 'progress-block';
+        $div.innerHTML = `<p class="card-text">` + $pollInputs[cnt].value + `</p>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>`;
+        document.querySelector('.card-body.text-dark').appendChild($div);
+
+    }
+    /*$pollInputs.forEach(function(entry) {
+    console.log(entry);});*/
+
+    /* visual */
+
     document.getElementById('complete-form').style.display = 'block';
     document.getElementById('Links').style.display = 'block';
     document.getElementById('complete-form').scrollIntoView();
 }
 
-/*buttons ivents*/
+/* buttons ivents */
 
 document.querySelector('#inputOption2').addEventListener('mousedown', doInputActive, false);
 document.getElementById('pOptionButt2').addEventListener('click', doInputInactive, false);

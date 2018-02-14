@@ -38,24 +38,26 @@
             <br>
             <div class="card border-secondary mb-3">
                 <div class="card-header">Here you can create your own form for polls</div>
-                <div class="card-body text-secondary" id="PollForm">
+                <div class="card-body text-secondary">
                     <div class="form-group">
                         <p>Enter the title</p>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Poll header">
+                        <input type="text" class="form-control title" aria-describedby="emailHelp" placeholder="Poll header">
                     </div>
                     <br>
-                    <p>Fill in the following fields</p>
-                    <div class="input-group mb-3" id="pOption1" style="opacity: 1;">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button" id="cplkbtn">Remove</button>
+                    <div id="PollForm">
+                        <p>Fill in the following fields</p>
+                        <div class="input-group mb-3" id="pOption1" style="opacity: 1;">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="cplkbtn">Remove</button>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Type your text here" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="cplkint">
                         </div>
-                        <input type="text" class="form-control" placeholder="Type your text here" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="cplkint">
-                    </div>
-                    <div class="input-group mb-3" id="pOption2" style="opacity: 0.4;">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button" id="pOptionButt2" disabled>Remove</button>
+                        <div class="input-group mb-3" id="pOption2" style="opacity: 0.4;">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="pOptionButt2" disabled>Remove</button>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Click here to a add new one" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="inputOption2">
                         </div>
-                        <input type="text" class="form-control" placeholder="Click here to a add new one" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="inputOption2">
                     </div>
                 </div>
             </div>
@@ -66,22 +68,10 @@
                 <div class="card-header">Share your poll</div>
                 <div class="card-body text-dark">
                     <h5 class="card-title">Poll header</h5>
-                    <p class="card-text">Option 1</p>
+                    <!--<p class="card-text">Option 1</p>
                     <div class="progress">
                         <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-                    </div>
-                    <p class="card-text">Option 2</p>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-                    </div>
-                    <p class="card-text">Option 3</p>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-                    </div>
-                    <p class="card-text">Option 4</p>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-                    </div>
+                    </div>-->
                     <br>
                 </div>
             </div>
@@ -103,7 +93,8 @@
             </div>
         </main>
     </article>
-    <br><br><!-- temporary сrutch -->
+    <br><br>
+    <!-- temporary сrutch -->
     <footer class="fixed-bottom">
         <div class="card text-center">
             <div class="card-footer text-muted">
