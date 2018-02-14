@@ -42,7 +42,7 @@ function addInputPoll() {
     var $div = document.createElement('div');
     $div.className = 'input-group mb-3';
     $div.id = 'pOption' + inputsC;
-    $div.style = 'opacity: 0.4;';
+    $div.style = 'opacity: 0.4; transition: .5s;';
     $div.innerHTML = `<div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button" id="pOptionButt` + inputsC + `" disabled>Remove</button>
                     </div>
