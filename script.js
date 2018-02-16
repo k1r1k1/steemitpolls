@@ -1,26 +1,28 @@
 /* Copy To Clipboard */
 
-var     inputsC = 2;
+var inputsC = 2;
 
 function CopyLinkToClipboard() {
-        document.querySelector('#cplkint').select();
-        document.execCommand('copy');
-    swal(
-        'Success!',
-        'Link has been copied',
-        'success'
-    );
-    }
+    document.querySelector('#cplkint').select();
+    document.execCommand('copy');
+    swal({
+        type: 'success',
+        title: 'Link has been copied to clipboard',
+        showConfirmButton: false,
+        timer: 2000
+    })
+}
 document.querySelector('#cplkbtn').addEventListener('click', CopyLinkToClipboard, false);
 
 function CopyCodeToClipboard() {
     document.querySelector('#cpcdint').select();
     document.execCommand('copy');
-    swal(
-        'Success!',
-        'Code has been copied',
-        'success'
-    );
+    swal({
+        type: 'success',
+        title: 'Code has been copied to clipboard',
+        showConfirmButton: false,
+        timer: 2000
+    })
 }
 document.querySelector('#cpcdbtn').addEventListener('click', CopyCodeToClipboard, false);
 
