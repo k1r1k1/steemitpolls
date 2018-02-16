@@ -72,7 +72,7 @@ function delInputPoll() {
 }
 
 function completeForm() {
-    console.log('completeForm');
+
     /* inserting header in poll */
 
     var $div = document.createElement('h5');
@@ -125,11 +125,13 @@ document.getElementById('complete').addEventListener('click', function () {
   confirmButtonText: 'Yes, just do it!'
 }).then((result) => {
   if (result.value) {
-    swal(
-      'Done!',
-      'Your polling form has been compiled',
-      'success'
-    )
+    swal({
+        type: 'success',
+        title: 'Your polling form has been compiled',
+        text: "Don`t forget to share it!",
+        showConfirmButton: false,
+        timer: 2500
+    })
     completeForm();
   }
 })    
