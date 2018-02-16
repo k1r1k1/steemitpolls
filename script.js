@@ -1,21 +1,28 @@
 /* Copy To Clipboard */
 
-var $copyLinkBtn = document.querySelector('#cplkbtn'),
-    $copyCodeBtn = document.querySelector('#cpcdbtn'),
-    inputsC = 2,
-    functionCopyLinkToClipboard = function (event) {
-        var copyLink = document.querySelector('#cplkint');
-        copyLink.select();
-        document.execCommand('copy');
-    }
-$copyLinkBtn.addEventListener('click', functionCopyLinkToClipboard, false);
+var     inputsC = 2;
 
-var functionCopyCodeToClipboard = function (event) {
-    var copyCode = document.querySelector('#cpcdint');
-    copyCode.select();
+function CopyLinkToClipboard() {
+        document.querySelector('#cplkint').select();
+        document.execCommand('copy');
+    swal(
+        'Success!',
+        'Link has been copied',
+        'success'
+    );
+    }
+document.querySelector('#cplkbtn').addEventListener('click', CopyLinkToClipboard, false);
+
+function CopyCodeToClipboard() {
+    document.querySelector('#cpcdint').select();
     document.execCommand('copy');
+    swal(
+        'Success!',
+        'Code has been copied',
+        'success'
+    );
 }
-$copyCodeBtn.addEventListener('click', functionCopyCodeToClipboard, false);
+document.querySelector('#cpcdbtn').addEventListener('click', CopyCodeToClipboard, false);
 
 /* adding a response option */
 
@@ -96,7 +103,7 @@ function completeForm() {
 
 }
 
- function progress_click() {
+function progress_click() {
     alert('Вы только что выбрали вариант № ' + this.id);
 }
 
