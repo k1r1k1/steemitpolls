@@ -7,7 +7,7 @@ function CopyLinkToClipboard() {
     document.execCommand('copy');
     swal({
         type: 'success',
-        title: 'Link has been copied to clipboard',
+        title: 'Link has been copied',
         showConfirmButton: false,
         timer: 2000
     })
@@ -19,7 +19,7 @@ function CopyCodeToClipboard() {
     document.execCommand('copy');
     swal({
         type: 'success',
-        title: 'Code has been copied to clipboard',
+        title: 'Code has been copied',
         showConfirmButton: false,
         timer: 2000
     })
@@ -100,7 +100,8 @@ function completeForm() {
 
 
     document.getElementById('complete-form').style.display = 'block';
-    document.getElementById('Links').style.display = 'block';
+    document.getElementById('PollConstructor').style.display = 'none';
+
     document.getElementById('complete-form').scrollIntoView();
 
 }
@@ -109,8 +110,27 @@ function progress_click() {
     alert('Вы только что выбрали вариант № ' + this.id);
 }
 
-/* buttons ivents */
+/* buttons events */
 
 document.querySelector('#inputOption2').addEventListener('mousedown', doInputActive, false);
 document.getElementById('pOptionButt2').addEventListener('click', doInputInactive, false);
-document.getElementById('complete').addEventListener('click', completeForm, false);
+document.getElementById('complete').addEventListener('click', function () {
+    swal({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  type: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, just do it!'
+}).then((result) => {
+  if (result.value) {
+    swal(
+      'Done!',
+      'Your polling form has been compiled',
+      'success'
+    )
+    completeForm();
+  }
+})    
+    }, false);
