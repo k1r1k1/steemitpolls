@@ -9,7 +9,7 @@ function CopyLinkToClipboard() {
         type: 'success',
         title: 'Link has been copied',
         showConfirmButton: false,
-        timer: 2000
+        timer: 1800
     })
 }
 document.querySelector('#cplkbtn').addEventListener('click', CopyLinkToClipboard, false);
@@ -21,7 +21,7 @@ function CopyCodeToClipboard() {
         type: 'success',
         title: 'Code has been copied',
         showConfirmButton: false,
-        timer: 2000
+        timer: 1800
     })
 }
 document.querySelector('#cpcdbtn').addEventListener('click', CopyCodeToClipboard, false);
