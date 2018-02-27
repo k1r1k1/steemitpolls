@@ -1,4 +1,6 @@
-var inputsC = 2;
+var cyrillicToTranslit = module.exports; /* cyrillicToTranslit initializing */
+var inputsC = 2; /* inputs counter */
+var wif = ''; /* wif comes from console */
 
 function CopyLinkToClipboard() {
     document.querySelector('#cplkint').select();
@@ -81,6 +83,7 @@ function completeForm() {
     /* inserting new inputs in poll */
 
     var $pollInputs = document.getElementById('PollForm').getElementsByClassName('form-control');
+    var variants = [];
     for (var cnt = 0; $pollInputs.length - 1 > cnt; cnt++) {
         var $div = document.createElement('div');
         $div.className = 'progress-block';
@@ -89,13 +92,20 @@ function completeForm() {
                         <div class="progress-bar" role="progressbar" id="` + cnt + `" style="width: 100%; cursor: pointer;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div><br>`;
         document.querySelector('.card-body.text-dark').appendChild($div);
-        console.log('cnt = ' + cnt);
+        /* dummy for polling */
+        variants[cnt] = $pollInputs[cnt].value;
         document.getElementById(cnt).onclick = progress_click;
     }
+    /* collecting data for sending */
+    str = module.exports().transform(document.querySelector('.form-control.title').value, '-');
+    str.replace(/[^\w\d]/g, "_");
+    var titleP = document.querySelector('.form-control.title').value;
+    console.log('permlink : ' + str);
+    console.log('variants : ' + variants);
+    console.log('title : ' + titleP);
+    send_request(str, titleP, variants);
 
     /* visual */
-
-
 
     document.getElementById('complete-form').style.display = 'block';
     document.getElementById('PollConstructor').style.display = 'none';
@@ -108,21 +118,20 @@ function progress_click() {
     alert('Вы только что выбрали вариант № ' + this.id);
 }
 
-function send_request(permlink) {
+function send_request(permlink, title, jsonMetadata) {
     // переключение на тестнет
     golos.config.set('websocket', 'wss://ws.testnet3.golos.io');
     golos.config.set('address_prefix', 'GLS');
     golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
 
     // добавление поста
-    var wif = '5Ju4VDF4MXpLGnJVgyDbZjts1HUWmQG5st5eFLxhawfNhJ3K4os';
     var parentAuthor = '';
     var parentPermlink = 'test';
-    var author = 'test';
-    /*var permlink = 'qwertyhuinanana';*/
-    var title = 'test';
-    var body = 'test1';
-    var jsonMetadata = document.getElementById('complete-form');
+    var author = 'golos';
+    //var permlink = 'qwertyhuinanana';
+    //var title = 'test';
+    var body = 'At the moment, you are looking at the test page of a simple microservice, which is currently under development. And since it so happened that you look at it, here`s a random cat, good luck to you and all the best.<img src="https://tinygrainofrice.files.wordpress.com/2013/08/kitten-16219-1280x1024.jpg"></img>/';
+    //var jsonMetadata = 'J SON Met a data';
     golos.broadcast.comment(wif, parentAuthor, parentPermlink, author, permlink, title, body, jsonMetadata, function (err, result) {
         //console.log(err, result);
         if (!err) {
