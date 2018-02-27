@@ -1,4 +1,3 @@
-
 var inputsC = 2;
 
 function CopyLinkToClipboard() {
@@ -123,7 +122,7 @@ function send_request(permlink) {
     /*var permlink = 'qwertyhuinanana';*/
     var title = 'test';
     var body = 'test1';
-    var jsonMetadata = '{}';
+    var jsonMetadata = document.getElementById('complete-form');
     golos.broadcast.comment(wif, parentAuthor, parentPermlink, author, permlink, title, body, jsonMetadata, function (err, result) {
         //console.log(err, result);
         if (!err) {
@@ -136,7 +135,7 @@ addPollingInputs(); /* add 2nd active field in a polling form*/
 
 /* buttons events */
 
-document.querySelector('#inputOption2').addEventListener('mousedown', addPollingInputs, false);
+
 document.getElementById('pOptionButt2').addEventListener('click', doInputInactive, false);
 document.getElementById('complete').addEventListener('click', function () {
     swal({
