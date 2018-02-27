@@ -135,7 +135,7 @@ addPollingInputs(); /* add 2nd active field in a polling form*/
 
 /* buttons events */
 
-
+document.getElementById('pOptionButt1').addEventListener('click', doInputInactive, false);
 document.getElementById('pOptionButt2').addEventListener('click', doInputInactive, false);
 document.getElementById('complete').addEventListener('click', function () {
     swal({
