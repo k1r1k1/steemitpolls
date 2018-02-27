@@ -1,4 +1,3 @@
-/* Copy To Clipboard */
 
 var inputsC = 2;
 
@@ -28,12 +27,12 @@ document.querySelector('#cpcdbtn').addEventListener('click', CopyCodeToClipboard
 
 /* adding a response option */
 
-function doInputActive() {
+function addPollingInputs() {
     document.getElementById('pOptionButt' + inputsC).removeAttribute('disabled');
     document.getElementById('pOption' + inputsC).style.opacity = '1';
     document.getElementById('inputOption' + inputsC).setAttribute('placeholder', 'Type your text here');
-    document.querySelector('#inputOption' + inputsC).removeEventListener('mousedown', doInputActive, false);
-    addInputPoll();
+    document.querySelector('#inputOption' + inputsC).removeEventListener('mousedown', addPollingInputs, false);
+    addInactiveInput();
 }
 
 function doInputInactive() {
@@ -43,7 +42,7 @@ function doInputInactive() {
     delInputPoll();
 }
 
-function addInputPoll() {
+function addInactiveInput() {
     inputsC++;
     var $div = document.createElement('div');
     $div.className = 'input-group mb-3';
@@ -55,7 +54,7 @@ function addInputPoll() {
                     <input type="text" class="form-control" placeholder="Click here to add a new one" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="inputOption` + inputsC + `">
                 </div>`;
     document.getElementById('PollForm').appendChild($div);
-    document.querySelector('#inputOption' + inputsC).addEventListener('mousedown', doInputActive, false);
+    document.querySelector('#inputOption' + inputsC).addEventListener('mousedown', addPollingInputs, false);
     document.getElementById('pOptionButt' + inputsC).addEventListener('click', doInputInactive, false);
 }
 
@@ -110,29 +109,54 @@ function progress_click() {
     alert('Вы только что выбрали вариант № ' + this.id);
 }
 
+function send_request(permlink) {
+    // переключение на тестнет
+    golos.config.set('websocket', 'wss://ws.testnet3.golos.io');
+    golos.config.set('address_prefix', 'GLS');
+    golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
+
+    // добавление поста
+    var wif = '5Ju4VDF4MXpLGnJVgyDbZjts1HUWmQG5st5eFLxhawfNhJ3K4os';
+    var parentAuthor = '';
+    var parentPermlink = 'test';
+    var author = 'test';
+    /*var permlink = 'qwertyhuinanana';*/
+    var title = 'test';
+    var body = 'test1';
+    var jsonMetadata = '{}';
+    golos.broadcast.comment(wif, parentAuthor, parentPermlink, author, permlink, title, body, jsonMetadata, function (err, result) {
+        //console.log(err, result);
+        if (!err) {
+            console.log('comment', result);
+        } else console.error(err);
+    });
+}
+
+addPollingInputs(); /* add 2nd active field in a polling form*/
+
 /* buttons events */
 
-document.querySelector('#inputOption2').addEventListener('mousedown', doInputActive, false);
+document.querySelector('#inputOption2').addEventListener('mousedown', addPollingInputs, false);
 document.getElementById('pOptionButt2').addEventListener('click', doInputInactive, false);
 document.getElementById('complete').addEventListener('click', function () {
     swal({
-  title: 'Are you sure?',
-  text: "You won't be able to revert this!",
-  type: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, just do it!'
-}).then((result) => {
-  if (result.value) {
-    swal({
-        type: 'success',
-        title: 'Your polling form has been compiled',
-        text: "Don`t forget to share it!",
-        showConfirmButton: false,
-        timer: 2500
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, just do it!'
+    }).then((result) => {
+        if (result.value) {
+            swal({
+                type: 'success',
+                title: 'Your polling form has been compiled',
+                text: "Don`t forget to share it!",
+                showConfirmButton: false,
+                timer: 2500
+            })
+            completeForm();
+        }
     })
-    completeForm();
-  }
-})    
-    }, false);
+}, false);
