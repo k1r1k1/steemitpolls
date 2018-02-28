@@ -1,6 +1,5 @@
-var cyrillicToTranslit = module.exports; /* cyrillicToTranslit initializing */
-var inputsC = 2; /* inputs counter */
-var wif = ''; /* wif comes from console */
+var cyrillicToTranslit = module.exports; // cyrillicToTranslit initializing 
+var inputsC = 2; // inputs counter 
 
 function CopyLinkToClipboard() {
     document.querySelector('#cplkint').select();
@@ -83,7 +82,7 @@ function completeForm() {
     /* inserting new inputs in poll */
 
     var $pollInputs = document.getElementById('PollForm').getElementsByClassName('form-control');
-    var variants = [];
+    var answers = [];
     for (var cnt = 0; $pollInputs.length - 1 > cnt; cnt++) {
         var $div = document.createElement('div');
         $div.className = 'progress-block';
@@ -92,24 +91,33 @@ function completeForm() {
                         <div class="progress-bar" role="progressbar" id="` + cnt + `" style="width: 100%; cursor: pointer;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div><br>`;
         document.querySelector('.card-body.text-dark').appendChild($div);
+
         /* dummy for polling */
-        variants[cnt] = $pollInputs[cnt].value;
+
+        answers[cnt] = $pollInputs[cnt].value;
         document.getElementById(cnt).onclick = progress_click;
     }
+
     /* collecting data for sending */
+
     str = module.exports().transform(document.querySelector('.form-control.title').value, '-');
     str.replace(/[^\w\d]/g, "_");
-    var titleP = document.querySelector('.form-control.title').value;
+    var title = document.querySelector('.form-control.title').value;
     console.log('permlink : ' + str);
-    console.log('variants : ' + variants);
-    console.log('title : ' + titleP);
-    send_request(str, titleP, variants);
-
+    console.log('json var : ' + answers); // debug info
+    console.log('title : ' + title);
+    var jsonMetadata = {
+        poll_title: title,
+        poll_answers: answers,
+        poll_author: 'golos'
+    };
+    console.log(jsonMetadata);
+    //send_request(str, title, jsonMetadata);
+    
     /* visual */
 
     document.getElementById('complete-form').style.display = 'block';
     document.getElementById('PollConstructor').style.display = 'none';
-
     document.getElementById('complete-form').scrollIntoView();
 
 }
@@ -123,24 +131,23 @@ function send_request(permlink, title, jsonMetadata) {
     golos.config.set('websocket', 'wss://ws.testnet3.golos.io');
     golos.config.set('address_prefix', 'GLS');
     golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
-
-    // добавление поста
-    var parentAuthor = '';
-    var parentPermlink = 'test';
-    var author = 'golos';
-    //var permlink = 'qwertyhuinanana';
-    //var title = 'test';
-    var body = 'At the moment, you are looking at the test page of a simple microservice, which is currently under development. And since it so happened that you look at it, here`s a random cat, good luck to you and all the best.<img src="https://tinygrainofrice.files.wordpress.com/2013/08/kitten-16219-1280x1024.jpg"></img>/';
-    //var jsonMetadata = 'J SON Met a data';
+    var parentAuthor = ''; // для создания поста, поле пустое
+    var parentPermlink = 'test'; // главный тег
+    //var author = 'golos'; // автор поста
+    //var wif = ''; // приватный posting ключ
+    //var permlink = ''; // url-адрес поста
+    //var title = 'test'; // заголовок поста
+    //var jsonMetadata = {}; // jsonMetadata - мета-данные поста (изображения, и т.д.)
+    var body = 'At the moment, you are looking at the test page of a simple microservice, which is currently under development. And since it so happened that you look at it, here`s a random cat, good luck to you and all the best.<img src="https://tinygrainofrice.files.wordpress.com/2013/08/kitten-16219-1280x1024.jpg"></img>/'; // текст поста
     golos.broadcast.comment(wif, parentAuthor, parentPermlink, author, permlink, title, body, jsonMetadata, function (err, result) {
         //console.log(err, result);
         if (!err) {
             console.log('comment', result);
         } else console.error(err);
-    });
+    }); // добавить пост
 }
 
-addPollingInputs(); /* add 2nd active field in a polling form*/
+addPollingInputs(); // add 2nd active field in a polling form
 
 /* buttons events */
 
