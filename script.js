@@ -1,9 +1,9 @@
 var cyrillicToTranslit = module.exports; // cyrillicToTranslit initializing 
 var inputsC = 2; // inputs counter 
 var hash = location.hash.substring(1); // geting hash
-if (hash != '') {
-    console.log('hash : ' + hash);
-    }
+if (hash != '') getHash();
+
+
 
 function CopyLinkToClipboard() {
     document.querySelector('#cplkint').select();
@@ -149,6 +149,25 @@ function send_request(permlink, title, jsonMetadata) {
             console.log('comment', result);
         } else console.error(err);
     }); // add post
+}
+
+function getHash() {
+    console.log('hash : ' + hash);
+    var startTarget = '/@'; // search '/@'
+    var startPos = -1;
+    while ((startPos = hash.indexOf(startTarget, startPos + 1)) != -1) {
+        var Pos = startPos,
+            targetStart = startPos;
+        //console.log('target at ' + targetStart + ' position');
+    }
+    startTarget = '/'; // search '/' after '/@'
+    while ((Pos = hash.indexOf(startTarget, Pos + 1)) != -1) {
+        var slashPos = Pos;
+        //console.log('slash at ' + Pos + ' position');
+    }
+    console.log('author : ' + hash.substring(targetStart + 2, slashPos)); // '+ 2' removes the target symbols
+    console.log('permlink : ' + hash.substring(slashPos + 1)); // '+ 1' removes '/' 
+    /* The console displays the data required for the post */
 }
 
 addPollingInputs(); // add 2nd active field in a polling form
