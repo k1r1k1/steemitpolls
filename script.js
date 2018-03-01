@@ -165,9 +165,20 @@ function getHash() {
         var slashPos = Pos;
         //console.log('slash at ' + Pos + ' position');
     }
-    console.log('author : ' + hash.substring(targetStart + 2, slashPos)); // '+ 2' removes the target symbols
-    console.log('permlink : ' + hash.substring(slashPos + 1)); // '+ 1' removes '/' 
+    var author = hash.substring(targetStart + 2, slashPos); // '+ 2' removes the target symbols
+    var permlink = hash.substring(slashPos + 1); // '+ 1' removes '/' 
+    console.log('author : ' + author);
+    console.log('permlink : ' + permlink);
     /* The console displays the data required for the post */
+
+
+    golos.api.getContent(author, permlink, function (err, result) {
+        //console.log(err, result);
+        if (!err) {
+            console.log('getContent', result.title);
+        } else console.error(err);
+    });
+
 }
 
 addPollingInputs(); // add 2nd active field in a polling form
