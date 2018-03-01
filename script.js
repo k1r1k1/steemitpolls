@@ -1,5 +1,9 @@
 var cyrillicToTranslit = module.exports; // cyrillicToTranslit initializing 
 var inputsC = 2; // inputs counter 
+var hash = location.hash.substring(1); // geting hash
+if (hash != '') {
+    console.log('hash : ' + hash);
+    }
 
 function CopyLinkToClipboard() {
     document.querySelector('#cplkint').select();
@@ -113,7 +117,7 @@ function completeForm() {
     };
     console.log(jsonMetadata);
     //send_request(str, title, jsonMetadata);
-    
+
     /* visual */
 
     document.getElementById('complete-form').style.display = 'block';
@@ -127,24 +131,24 @@ function progress_click() {
 }
 
 function send_request(permlink, title, jsonMetadata) {
-    // переключение на тестнет
+    // switching to TESTNET
     golos.config.set('websocket', 'wss://ws.testnet3.golos.io');
     golos.config.set('address_prefix', 'GLS');
     golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
-    var parentAuthor = ''; // для создания поста, поле пустое
-    var parentPermlink = 'test'; // главный тег
-    //var author = 'golos'; // автор поста
-    //var wif = ''; // приватный posting ключ
-    //var permlink = ''; // url-адрес поста
-    //var title = 'test'; // заголовок поста
-    //var jsonMetadata = {}; // jsonMetadata - мета-данные поста (изображения, и т.д.)
-    var body = 'At the moment, you are looking at the test page of a simple microservice, which is currently under development. And since it so happened that you look at it, here`s a random cat, good luck to you and all the best.<img src="https://tinygrainofrice.files.wordpress.com/2013/08/kitten-16219-1280x1024.jpg"></img>/'; // текст поста
+    var parentAuthor = ''; // for post creating, empty field
+    var parentPermlink = 'test'; // main tag
+    //var author = 'golos'; // post author
+    //var wif = ''; // private posting key
+    //var permlink = ''; // post url-adress
+    //var title = 'test'; // post title
+    //var jsonMetadata = {}; // jsonMetadata - post metadata (pictures etc.)
+    var body = 'At the moment, you are looking at the test page of a simple microservice, which is currently under development. And since it so happened that you look at it, here`s a random cat, good luck to you and all the best.<img src="https://tinygrainofrice.files.wordpress.com/2013/08/kitten-16219-1280x1024.jpg"></img>/'; // post text
     golos.broadcast.comment(wif, parentAuthor, parentPermlink, author, permlink, title, body, jsonMetadata, function (err, result) {
         //console.log(err, result);
         if (!err) {
             console.log('comment', result);
         } else console.error(err);
-    }); // добавить пост
+    }); // add post
 }
 
 addPollingInputs(); // add 2nd active field in a polling form
