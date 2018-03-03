@@ -173,7 +173,7 @@ function getHash() {
 
 
     golos.api.getContent(author, permlink, function (err, result) {
-        //console.log(err, result);
+        console.log(err, result);
         if (!err) {
             console.log('getContent', result.title);
         } else console.error(err);
