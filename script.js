@@ -1,5 +1,16 @@
+//------------------------------/
+
+/* GolosPolls main script file */
+
+//-----------------------------/
+
+/* switching to testnet */
+golos.config.set('websocket', 'wss://ws.testnet3.golos.io');
+golos.config.set('address_prefix', 'GLS');
+golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
 var cyrillicToTranslit = module.exports; // cyrillicToTranslit initializing 
 var inputsC = 2; // inputs counter 
+var resultContent = ''; // global variable for content
 var hash = location.hash.substring(1); // geting hash
 if (hash != '') getHash();
 
@@ -38,6 +49,8 @@ function addPollingInputs() {
     document.querySelector('#inputOption' + inputsC).removeEventListener('mousedown', addPollingInputs, false);
     addInactiveInput();
 }
+
+addPollingInputs(); // add 2nd active field in a polling form
 
 function doInputInactive() {
     document.getElementById('pOption' + inputsC).style.opacity = '0.4';
@@ -107,19 +120,25 @@ function completeForm() {
     str = module.exports().transform(document.querySelector('.form-control.title').value, '-');
     str.replace(/[^\w\d]/g, "_");
     var title = document.querySelector('.form-control.title').value;
-    console.log('permlink : ' + str);
+    /*console.log('permlink : ' + str);
     console.log('json var : ' + answers); // debug info
-    console.log('title : ' + title);
+    console.log('title : ' + title);*/
     var jsonMetadata = {
         poll_title: title,
-        poll_answers: answers,
-        poll_author: 'golos'
+        poll_answers: answers
     };
     console.log(jsonMetadata);
-    //send_request(str, title, jsonMetadata);
+    send_request(str, title, jsonMetadata);
 
     /* visual */
 
+    swal({
+        type: 'success',
+        title: 'Your polling form has been compiled',
+        text: "Don`t forget to share it!",
+        showConfirmButton: false,
+        timer: 2500
+    })
     document.getElementById('complete-form').style.display = 'block';
     document.getElementById('PollConstructor').style.display = 'none';
     document.getElementById('complete-form').scrollIntoView();
@@ -131,18 +150,14 @@ function progress_click() {
 }
 
 function send_request(permlink, title, jsonMetadata) {
-    // switching to TESTNET
-    golos.config.set('websocket', 'wss://ws.testnet3.golos.io');
-    golos.config.set('address_prefix', 'GLS');
-    golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
     var parentAuthor = ''; // for post creating, empty field
     var parentPermlink = 'test'; // main tag
-    //var author = 'golos'; // post author
+    //var author = ''; // post author
     //var wif = ''; // private posting key
     //var permlink = ''; // post url-adress
     //var title = 'test'; // post title
     //var jsonMetadata = {}; // jsonMetadata - post metadata (pictures etc.)
-    var body = 'At the moment, you are looking at the test page of a simple microservice, which is currently under development. And since it so happened that you look at it, here`s a random cat, good luck to you and all the best.<img src="https://tinygrainofrice.files.wordpress.com/2013/08/kitten-16219-1280x1024.jpg"></img>/'; // post text
+    var body = 'At the moment, you are looking at the test page of a simple microservice, which is currently under development. And since it so happened that you look at it, here`s a random cat, good luck to you and all the best.<img src="https://tinygrainofrice.files.wordpress.com/2013/08/kitten-16219-1280x1024.jpg"></img>'; // post text
     golos.broadcast.comment(wif, parentAuthor, parentPermlink, author, permlink, title, body, jsonMetadata, function (err, result) {
         //console.log(err, result);
         if (!err) {
@@ -158,30 +173,63 @@ function getHash() {
     while ((startPos = hash.indexOf(startTarget, startPos + 1)) != -1) {
         var Pos = startPos,
             targetStart = startPos;
-        //console.log('target at ' + targetStart + ' position');
     }
     startTarget = '/'; // search '/' after '/@'
     while ((Pos = hash.indexOf(startTarget, Pos + 1)) != -1) {
         var slashPos = Pos;
-        //console.log('slash at ' + Pos + ' position');
     }
     var author = hash.substring(targetStart + 2, slashPos); // '+ 2' removes the target symbols
     var permlink = hash.substring(slashPos + 1); // '+ 1' removes '/' 
     console.log('author : ' + author);
     console.log('permlink : ' + permlink);
+    
     /* The console displays the data required for the post */
-
 
     golos.api.getContent(author, permlink, function (err, result) {
         console.log(err, result);
+        resultContent = result;
         if (!err) {
             console.log('getContent', result.title);
+            getPoll();
         } else console.error(err);
     });
-
 }
 
-addPollingInputs(); // add 2nd active field in a polling form
+function getPoll() {
+    
+    /* collecting data */
+
+    resultContent.json_metadata = JSON.parse(resultContent.json_metadata); //parse json to js
+    
+    /* inserting header in poll */
+
+    var $div = document.createElement('h5');
+    $div.className = 'card-title';
+    $div.innerHTML = resultContent.json_metadata.poll_title;
+    document.querySelector('.card-body.text-dark').appendChild($div);
+
+    /* inserting new inputs in poll resultContent.json_metadata.poll_answers[0];*/
+
+    for (var cnt = 0; resultContent.json_metadata.poll_answers.length - 1 > cnt; cnt++) {
+        var $div = document.createElement('div');
+        $div.className = 'progress-block';
+        $div.innerHTML = `<p class="card-text">` + resultContent.json_metadata.poll_answers[cnt] + `</p>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" id="` + cnt + `" style="width: 100%; cursor: pointer;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div><br>`;
+        document.querySelector('.card-body.text-dark').appendChild($div);
+
+        /* dummy for polling */
+
+        document.getElementById(cnt).onclick = progress_click;
+    }
+
+    /* visual */
+
+    document.getElementById('complete-form').style.display = 'block';
+    document.getElementById('PollConstructor').style.display = 'none';
+    document.getElementById('complete-form').scrollIntoView();
+}
 
 /* buttons events */
 
@@ -198,14 +246,11 @@ document.getElementById('complete').addEventListener('click', function () {
         confirmButtonText: 'Yes, just do it!'
     }).then((result) => {
         if (result.value) {
-            swal({
-                type: 'success',
-                title: 'Your polling form has been compiled',
-                text: "Don`t forget to share it!",
-                showConfirmButton: false,
-                timer: 2500
-            })
-            completeForm();
+            if (wif) {
+                completeForm();
+            } else {
+                auth();
+            }
         }
     })
 }, false);
