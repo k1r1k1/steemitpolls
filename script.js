@@ -9,12 +9,10 @@ golos.config.set('websocket', 'wss://ws.testnet3.golos.io');
 golos.config.set('address_prefix', 'GLS');
 golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
 var cyrillicToTranslit = module.exports; // cyrillicToTranslit initializing 
-var inputsC = 2; // inputs counter 
+var inputsC = 2; // inputs counter
 var resultContent = ''; // global variable for content
 var hash = location.hash.substring(1); // geting hash
 if (hash != '') getHash();
-
-
 
 function CopyLinkToClipboard() {
     document.querySelector('#cplkint').select();
@@ -104,8 +102,8 @@ function completeForm() {
         var $div = document.createElement('div');
         $div.className = 'progress-block';
         $div.innerHTML = `<p class="card-text">` + $pollInputs[cnt].value + `</p>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" id="` + cnt + `" style="width: 100%; cursor: pointer;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress" div class="progress" id="` + cnt + `" style="cursor: pointer;">
+                       <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                     </div><br>`;
         document.querySelector('.card-body.text-dark').appendChild($div);
 
@@ -131,7 +129,7 @@ function completeForm() {
     send_request(str, title, jsonMetadata);
 
     /* visual */
-
+    
     swal({
         type: 'success',
         title: 'Your polling form has been compiled',
@@ -142,6 +140,7 @@ function completeForm() {
     document.getElementById('complete-form').style.display = 'block';
     document.getElementById('PollConstructor').style.display = 'none';
     document.getElementById('complete-form').scrollIntoView();
+    document.querySelector('#cplkint').value = 'golospolls.com#' + username + '/' + str;
 
 }
 
@@ -152,13 +151,13 @@ function progress_click() {
 function send_request(permlink, title, jsonMetadata) {
     var parentAuthor = ''; // for post creating, empty field
     var parentPermlink = 'test'; // main tag
-    //var author = ''; // post author
+    //var username = ''; // post author
     //var wif = ''; // private posting key
     //var permlink = ''; // post url-adress
     //var title = 'test'; // post title
     //var jsonMetadata = {}; // jsonMetadata - post metadata (pictures etc.)
     var body = 'At the moment, you are looking at the test page of a simple microservice, which is currently under development. And since it so happened that you look at it, here`s a random cat, good luck to you and all the best.<img src="https://tinygrainofrice.files.wordpress.com/2013/08/kitten-16219-1280x1024.jpg"></img>'; // post text
-    golos.broadcast.comment(wif, parentAuthor, parentPermlink, author, permlink, title, body, jsonMetadata, function (err, result) {
+    golos.broadcast.comment(wif, parentAuthor, parentPermlink, username, permlink, title, body, jsonMetadata, function (err, result) {
         //console.log(err, result);
         if (!err) {
             console.log('comment', result);
@@ -168,7 +167,7 @@ function send_request(permlink, title, jsonMetadata) {
 
 function getHash() {
     console.log('hash : ' + hash);
-    var startTarget = '/@'; // search '/@'
+    var startTarget = '/@'; // search '/@' - FIX THIS BUG! WHY IT`S WORKING?
     var startPos = -1;
     while ((startPos = hash.indexOf(startTarget, startPos + 1)) != -1) {
         var Pos = startPos,
@@ -178,14 +177,14 @@ function getHash() {
     while ((Pos = hash.indexOf(startTarget, Pos + 1)) != -1) {
         var slashPos = Pos;
     }
-    var author = hash.substring(targetStart + 2, slashPos); // '+ 2' removes the target symbols
+    var username = hash.substring(targetStart + 2, slashPos); // '+ 2' removes the target symbols
     var permlink = hash.substring(slashPos + 1); // '+ 1' removes '/' 
-    console.log('author : ' + author);
+    console.log('username : ' + username);
     console.log('permlink : ' + permlink);
     
     /* The console displays the data required for the post */
 
-    golos.api.getContent(author, permlink, function (err, result) {
+    golos.api.getContent(username, permlink, function (err, result) {
         console.log(err, result);
         resultContent = result;
         if (!err) {
@@ -214,8 +213,8 @@ function getPoll() {
         var $div = document.createElement('div');
         $div.className = 'progress-block';
         $div.innerHTML = `<p class="card-text">` + resultContent.json_metadata.poll_answers[cnt] + `</p>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" id="` + cnt + `" style="width: 100%; cursor: pointer;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress" id="` + cnt + `" style="cursor: pointer;">
+                        <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div>
                     </div><br>`;
         document.querySelector('.card-body.text-dark').appendChild($div);
 
@@ -229,6 +228,7 @@ function getPoll() {
     document.getElementById('complete-form').style.display = 'block';
     document.getElementById('PollConstructor').style.display = 'none';
     document.getElementById('complete-form').scrollIntoView();
+    document.querySelector('#cplkint').value = 'golospolls.com#' + resultContent.author + '/' + resultContent.permlink;
 }
 
 /* buttons events */
