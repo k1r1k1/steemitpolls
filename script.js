@@ -289,8 +289,8 @@ function getVote(callback) {
                 }
             }
         } else console.error(err);
+        callback(pollData);
     });
-    callback(pollData);
 }
 
 /* buttons events */
