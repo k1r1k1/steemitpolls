@@ -9,9 +9,10 @@ golos.config.set('websocket', 'wss://ws.testnet3.golos.io');
 golos.config.set('address_prefix', 'GLS');
 golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
 var cyrillicToTranslit = module.exports; // cyrillicToTranslit initializing 
-var inputsC = 2; // inputs counter
-var resultContent = ''; // global variable for content
-var hash = location.hash.substring(1); // geting hash
+var inputsC = 2, // inputs counter
+    resultContent = '', // global variable for content
+    pollData = {}, // polling answers 
+    hash = location.hash.substring(1); // geting hash
 if (hash != '') getHash();
 
 function CopyLinkToClipboard() {
@@ -217,23 +218,23 @@ function getPoll() {
 
     /* inserting new inputs in poll */
 
-    getVote(function(data) {
+    getVote(function (data) {
         console.log(data);
-           for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) {
-        var $div = document.createElement('div');
-        $div.className = 'progress-block';
-        $div.innerHTML = `<p class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</p>
+        for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) {
+            var $div = document.createElement('div');
+            $div.className = 'progress-block';
+            $div.innerHTML = `<p class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</p>
                     <div class="progress" id="` + cnt + `" style="cursor: pointer;">
                         <div class="progress-bar" role="progressbar" style="width: ` + data[cnt].percnt + `%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">` + data[cnt].count + `</div>
                     </div><br>`;
-        document.querySelector('.card-body.text-dark').appendChild($div);
+            document.querySelector('.card-body.text-dark').appendChild($div);
 
-        /* dummy for polling */
+            /* dummy for polling */
 
-        document.getElementById(cnt).onclick = progress_click;
-    }
+            document.getElementById(cnt).onclick = progress_click;
+        }
     });
-    
+
     /* visual */
 
     document.getElementById('complete-form').style.display = 'block';
@@ -268,8 +269,7 @@ function sendVote(pollId) {
 /* getting poll data */
 
 function getVote(callback) {
-    var pollData = {},
-        cnt = 0;
+    var cnt = 0;
     golos.api.getContentReplies(resultContent.author, resultContent.permlink, function (err, result) {
         if (!err) {
             result.forEach(function (item) {
@@ -289,6 +289,15 @@ function getVote(callback) {
                 }
             }
         } else console.error(err);
+        if (cnt == 0) { // if no one voted, put zero values
+            for (index = 0; index < resultContent.json_metadata.data.poll_answers.length; index++) {
+                pollData[index] = {
+                    count: 0,
+                    percnt: 0
+                };
+            }
+        }
+        
         callback(pollData);
     });
 }
