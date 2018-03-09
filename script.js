@@ -177,7 +177,6 @@ function send_request(str, title, jsonMetadata) {
 }
 
 function getHash() {
-    console.log('hash : ' + hash);
     var startTarget = '/@'; // search '/@' - FIX THIS BUG! WHY IT`S WORKING?
     var startPos = -1;
     while ((startPos = hash.indexOf(startTarget, startPos + 1)) != -1) {
@@ -190,8 +189,6 @@ function getHash() {
     }
     var username = hash.substring(targetStart + 2, slashPos); // '+ 2' removes the target symbols
     var permlink = hash.substring(slashPos + 1); // '+ 1' removes '/' 
-    console.log('username : ' + username);
-    console.log('permlink : ' + permlink);
 
     /* The console displays the data required for the post */
 
@@ -220,12 +217,14 @@ function getPoll() {
 
     /* inserting new inputs in poll */
 
-    for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) {
+    getVote(function(data) {
+        console.log(data);
+           for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) {
         var $div = document.createElement('div');
         $div.className = 'progress-block';
         $div.innerHTML = `<p class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</p>
                     <div class="progress" id="` + cnt + `" style="cursor: pointer;">
-                        <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div>
+                        <div class="progress-bar" role="progressbar" style="width: ` + data[cnt].percnt + `%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">` + data[cnt].count + `</div>
                     </div><br>`;
         document.querySelector('.card-body.text-dark').appendChild($div);
 
@@ -233,7 +232,8 @@ function getPoll() {
 
         document.getElementById(cnt).onclick = progress_click;
     }
-
+    });
+    
     /* visual */
 
     document.getElementById('complete-form').style.display = 'block';
@@ -265,22 +265,32 @@ function sendVote(pollId) {
     });
 }
 
-function getVote() {
-    var pollData = {};
+/* getting poll data */
+
+function getVote(callback) {
+    var pollData = {},
+        cnt = 0;
     golos.api.getContentReplies(resultContent.author, resultContent.permlink, function (err, result) {
         if (!err) {
             result.forEach(function (item) {
                 item.json_metadata = JSON.parse(item.json_metadata);
-                
                 if (typeof item.json_metadata.data != 'undefined' && typeof item.json_metadata.data.poll_id != 'undefined') {
-                    console.log(item.json_metadata.data.poll_id);
-                    if ( ! pollData[item.json_metadata.data.poll_id]) pollData[item.json_metadata.data.poll_id] = {count: 0};
+                    cnt++;
+                    if (!pollData[item.json_metadata.data.poll_id]) pollData[item.json_metadata.data.poll_id] = {
+                        count: 0,
+                        percnt: 0
+                    };
                     pollData[item.json_metadata.data.poll_id].count++;
                 }
             });
-            console.log(pollData); //число повторений для каждого элемента массива
+            for (var index = 0; index < cnt; ++index) {
+                if (typeof pollData[index] != 'undefined') {
+                    pollData[index].percnt = Math.round((pollData[index].count * 100) / cnt);
+                }
+            }
         } else console.error(err);
     });
+    callback(pollData);
 }
 
 /* buttons events */
