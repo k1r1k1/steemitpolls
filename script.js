@@ -118,7 +118,6 @@ function completeForm() {
         showConfirmButton: false,
         timer: 2500
     })
-    document.querySelector('#cplkint').value = 'golospolls.com#' + username + '/' + str;
     getPoll();
 }
 
@@ -128,20 +127,20 @@ function getPoll() {
     $div.className = 'card-title';
     $div.innerHTML = resultContent.json_metadata.data.poll_title;
     document.querySelector('.card-body.text-dark').appendChild($div);
-    getVote(function (data) { // inserting progress 
+    getVote(function (data) {
         console.log(data);
-        for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) {
+        for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress 
             var $div = document.createElement('div');
             $div.className = 'progress-block';
             if (data[cnt]) {
-                $div.innerHTML = `<p class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + ` (` + data[cnt].percnt + `%)</p>
+                $div.innerHTML = `<p class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</p>
                     <div class="progress" id="` + cnt + `" style="cursor: pointer;">
-                        <div class="progress-bar" role="progressbar" style="width: ` + data[cnt].percnt + `%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">` + data[cnt].count + `</div>
+                        <div class="progress-bar" role="progressbar" style="width: ` + /* data[cnt].percnt */ +`0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">` + /* data[cnt].count + data[cnt].percnt*/ +`0</div>
                     </div><br>`;
                 document.querySelector('.card-body.text-dark').appendChild($div);
                 document.getElementById(cnt).onclick = progress_click; // dummy for polling 
             } else {
-                $div.innerHTML = `<p class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + ` (0%)</p>
+                $div.innerHTML = `<p class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</p>
                     <div class="progress" id="` + cnt + `" style="cursor: pointer;">
                         <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div>
                     </div><br>`;
@@ -153,6 +152,7 @@ function getPoll() {
     document.getElementById('complete-form').style.display = 'block';
     document.getElementById('PollConstructor').style.display = 'none';
     document.getElementById('complete-form').scrollIntoView();
+    document.querySelector('#cplkint').value = 'golospolls.com#' + resultContent.author + '/' + resultContent.permlink;
 }
 
 function progress_click() { // dummy for polling 
@@ -223,8 +223,9 @@ function sendVote(pollId) {
     });
 }
 
-function getVote(callback) { // getting poll data 
+function getVote(collback) { // getting poll data 
     var cnt = 0;
+    pollData = {};
     golos.api.getContentReplies(resultContent.author, resultContent.permlink, function (err, result) {
         if (!err) {
             result.forEach(function (item) {
@@ -236,16 +237,25 @@ function getVote(callback) { // getting poll data
                         percnt: 0
                     };
                     pollData[item.json_metadata.data.poll_id].count++;
-                    console.log('item.json_metadata.data.poll_id = ' + item.json_metadata.data.poll_id);
                 }
             });
             for (index = 0; index < resultContent.json_metadata.data.poll_answers.length; ++index) {
                 if (typeof pollData[index] != 'undefined') {
                     pollData[index].percnt = Math.round((pollData[index].count * 100) / cnt);
-                }
+                    if (document.querySelectorAll('.card-text')[index])
+                        document.querySelectorAll('.card-text')[index].innerHTML = resultContent.json_metadata.data.poll_answers[index] + ' (' + pollData[index].percnt + ')%';
+                } else {
+                    pollData[index] = {
+                        count: 0,
+                        percnt: 0
+                    };
+                    if (document.querySelectorAll('.card-text')[index])
+                    document.querySelectorAll('.card-text')[index].innerHTML = resultContent.json_metadata.data.poll_answers[index] + ' (' + pollData[index].percnt + ')%';
+                }   
             }
         } else console.error(err);
-        callback(pollData);
+        if (collback) collback(pollData);
+        console.log('<f>getVote ' + cnt);
     });
 }
 
