@@ -112,20 +112,20 @@ function completeForm() {
         }
     };
     //getPoll(function () {
-        send_request(str, title, jsonMetadata);
-        swal({ // visual 
-            type: 'success',
-            title: 'Your polling form has been compiled',
-            text: 'Don`t forget to share it!',
-            showConfirmButton: false,
-            timer: 2500
-        })
-   // })
+    send_request(str, title, jsonMetadata);
+    swal({ // visual 
+        type: 'success',
+        title: 'Your polling form has been compiled',
+        text: 'Don`t forget to share it!',
+        showConfirmButton: false,
+        timer: 2500
+    })
+    // })
     console.log('<f>completeForm');
 }
 
 function getPoll(callback) {
-    if ( ! resultContent.json_metadata) getHash();
+    if (!resultContent.json_metadata) getHash();
     resultContent.json_metadata = JSON.parse(resultContent.json_metadata); //parse json to js
     var $div = document.createElement('h5'); // inserting header in poll 
     $div.className = 'card-title';
@@ -206,7 +206,7 @@ function getHash() {
             getPoll();
         } else console.error(err);
     });
-console.log('<f>getHash');
+    console.log('<f>getHash');
 }
 
 function sendVote(pollId) {
@@ -268,9 +268,10 @@ function getVote(collback) { // getting poll data
                 }
             }
         } else console.error(err);
-        if (collback) {collback(pollData);
-        console.log('<f>getVote callback' + cnt);
-                      }
+        if (collback) {
+            collback(pollData);
+            console.log('<f>getVote callback' + cnt);
+        }
     });
 }
 
