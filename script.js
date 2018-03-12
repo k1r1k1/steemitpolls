@@ -16,8 +16,8 @@ var inputsC = 2, // inputs counter
 if (hash != '') getHash();
 window.onhashchange = function () {
     hash = location.hash.substring(1);
-    console.log('хеш в браузере имениося ', hash);
-    getHash();
+    console.log('hash has been changed: ', hash);
+if (hash != '') getHash();
 };
 
 function CopyLinkToClipboard() {
@@ -201,10 +201,10 @@ function getHash() {
     golos.api.getContent(username, permlink, function (err, result) { // The console displays the data required for the post 
         console.log(err, result);
         resultContent = result;
-        if (!err) {
+        if (!err && result.title != '') {
             console.log('getContent', result.title);
             getPoll();
-        } else console.error(err);
+        } else console.error('Failed to find post',err);
     });
     console.log('<f>getHash');
 }
