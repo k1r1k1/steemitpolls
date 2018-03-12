@@ -15,8 +15,9 @@ var inputsC = 2, // inputs counter
     hash = location.hash.substring(1); // geting hash
 if (hash != '') getHash();
 window.onhashchange = function () {
-    console.log('хеш в браузере имениося');
-    getPoll();
+    hash = location.hash.substring(1);
+    console.log('хеш в браузере имениося ', hash);
+    getHash();
 };
 
 function CopyLinkToClipboard() {
@@ -110,7 +111,7 @@ function completeForm() {
             poll_answers: answers
         }
     };
-    getPoll(function (data) {
+    //getPoll(function () {
         send_request(str, title, jsonMetadata);
         swal({ // visual 
             type: 'success',
@@ -119,10 +120,12 @@ function completeForm() {
             showConfirmButton: false,
             timer: 2500
         })
-    })
+   // })
+    console.log('<f>completeForm');
 }
 
 function getPoll(callback) {
+    if ( ! resultContent.json_metadata) getHash();
     resultContent.json_metadata = JSON.parse(resultContent.json_metadata); //parse json to js
     var $div = document.createElement('h5'); // inserting header in poll 
     $div.className = 'card-title';
@@ -155,7 +158,8 @@ function getPoll(callback) {
     document.getElementById('PollConstructor').style.display = 'none';
     document.getElementById('complete-form').scrollIntoView();
     document.querySelector('#cplkint').value = 'golospolls.com#' + resultContent.author + '/' + resultContent.permlink;
-    if (collback) collback();
+    if (callback) callback();
+    console.log('<f>getPoll');
 }
 
 function progress_click() { // dummy for polling 
@@ -175,9 +179,10 @@ function send_request(str, title, jsonMetadata) {
         //console.log(err, result);
         if (!err) {
             console.log('comment', result);
+            window.location.hash = username + '/' + str;
         } else console.error(err);
     }); // add post
-    window.location.hash = username + '/' + str;
+    console.log('<f>sendRequest');
 }
 
 function getHash() {
@@ -201,6 +206,7 @@ function getHash() {
             getPoll();
         } else console.error(err);
     });
+console.log('<f>getHash');
 }
 
 function sendVote(pollId) {
@@ -224,6 +230,7 @@ function sendVote(pollId) {
             console.log('comment', result);
         } else console.error(err);
     });
+    console.log('<f>sendVote');
 }
 
 function getVote(collback) { // getting poll data 
@@ -261,8 +268,9 @@ function getVote(collback) { // getting poll data
                 }
             }
         } else console.error(err);
-        if (collback) collback(pollData);
-        console.log('<f>getVote ' + cnt);
+        if (collback) {collback(pollData);
+        console.log('<f>getVote callback' + cnt);
+                      }
     });
 }
 
