@@ -110,18 +110,19 @@ function completeForm() {
             poll_answers: answers
         }
     };
-    send_request(str, title, jsonMetadata);
-    swal({ // visual 
-        type: 'success',
-        title: 'Your polling form has been compiled',
-        text: 'Don`t forget to share it!',
-        showConfirmButton: false,
-        timer: 2500
+    getPoll(function (data) {
+        send_request(str, title, jsonMetadata);
+        swal({ // visual 
+            type: 'success',
+            title: 'Your polling form has been compiled',
+            text: 'Don`t forget to share it!',
+            showConfirmButton: false,
+            timer: 2500
+        })
     })
-    getPoll();
 }
 
-function getPoll() {
+function getPoll(callback) {
     resultContent.json_metadata = JSON.parse(resultContent.json_metadata); //parse json to js
     var $div = document.createElement('h5'); // inserting header in poll 
     $div.className = 'card-title';
@@ -154,6 +155,7 @@ function getPoll() {
     document.getElementById('PollConstructor').style.display = 'none';
     document.getElementById('complete-form').scrollIntoView();
     document.querySelector('#cplkint').value = 'golospolls.com#' + resultContent.author + '/' + resultContent.permlink;
+    if (collback) collback();
 }
 
 function progress_click() { // dummy for polling 
@@ -268,21 +270,21 @@ function getVote(collback) { // getting poll data
 document.getElementById('pOptionButt1').addEventListener('click', doInputInactive, false);
 document.getElementById('pOptionButt2').addEventListener('click', doInputInactive, false);
 document.getElementById('complete').addEventListener('click', function () {
-    swal({
-        title: 'Are you sure?',
-        text: 'You won`t be able to revert this!',
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, just do it!'
-    }).then((result) => {
-        if (result.value) {
-            if (wif) {
+    if (wif) {
+        swal({
+            title: 'Are you sure?',
+            text: 'You won`t be able to revert this!',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, just do it!'
+        }).then((result) => {
+            if (result.value) {
                 completeForm();
-            } else {
-                auth();
             }
-        }
-    })
+        })
+    } else {
+        auth();
+    }
 }, false);
