@@ -17,7 +17,7 @@ if (hash != '') getHash();
 window.onhashchange = function () {
     hash = location.hash.substring(1);
     console.log('hash has been changed: ', hash);
-if (hash != '') getHash();
+    if (hash != '') getHash();
 };
 
 function CopyLinkToClipboard() {
@@ -66,10 +66,10 @@ function addInactiveInput() {
     $div.className = 'input-group mb-3';
     $div.id = 'pOption' + inputsC;
     $div.style = 'opacity: 0.4; transition: .5s;';
-    $div.innerHTML = `<div class="input-group-append">
+    $div.innerHTML = `<input type="text" class="form-control" placeholder="Click here to add a new one" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="inputOption` + inputsC + `">
+<div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button" id="pOptionButt` + inputsC + `" disabled>Remove</button>
                     </div>
-                    <input type="text" class="form-control" placeholder="Click here to add a new one" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="inputOption` + inputsC + `">
                 </div>`;
     document.getElementById('PollForm').appendChild($div);
     document.querySelector('#inputOption' + inputsC).addEventListener('mousedown', addPollingInputs, false);
@@ -181,7 +181,7 @@ function send_request(str, title, jsonMetadata) {
         if (!err) {
             console.log('comment', result);
             window.location.hash = username + '/' + str;
-            document.querySelector('.lding').style.display='none';
+            document.querySelector('.lding').style.display = 'none';
         } else console.error(err);
     }); // add post
     console.log('<f>sendRequest');
@@ -190,7 +190,7 @@ function send_request(str, title, jsonMetadata) {
 function getHash() {
     var startTarget = '/@'; // search '/@' - FIX THIS BUG! WHY IT`S WORKING?
     var startPos = -1;
-    document.querySelector('.lding').style.display='block';
+    document.querySelector('.lding').style.display = 'block';
     while ((startPos = hash.indexOf(startTarget, startPos + 1)) != -1) {
         var Pos = startPos,
             targetStart = startPos;
@@ -207,8 +207,8 @@ function getHash() {
         if (!err && result.title != '') {
             console.log('getContent', result.title);
             getPoll();
-        } else console.error('Failed to find post',err);
-    document.querySelector('.lding').style.display='none';
+        } else console.error('Failed to find post', err);
+        document.querySelector('.lding').style.display = 'none';
     });
     console.log('<f>getHash');
 }
@@ -329,7 +329,7 @@ document.getElementById('aboutGolosPollsBtn').addEventListener('click', () => {
 }, false);
 
 document.onreadystatechange = function () { // loading animation switch-off
-  if(document.readyState === "complete"){
-    document.querySelector('.lding').style.display='none';
-  }
+    if (document.readyState === "complete") {
+        document.querySelector('.lding').style.display = 'none';
+    }
 }
