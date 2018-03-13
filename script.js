@@ -133,7 +133,6 @@ function getPoll(callback) {
     document.querySelector('.card-body.text-dark').appendChild($div);
     getVote(function (data) {
         console.log(data); // debug info
-        setInterval(getVote, 4000); // get result with interval
         for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress 
             var $div = document.createElement('div');
             $div.className = 'progress-block';
@@ -153,6 +152,8 @@ function getPoll(callback) {
                 document.getElementById(cnt).onclick = progress_click; // dummy for polling     
             }
         }
+        getVote();
+        setInterval(getVote, 3000); // get result with interval
     });
     document.getElementById('complete-form').style.display = 'block';
     document.getElementById('PollConstructor').style.display = 'none';
@@ -180,6 +181,7 @@ function send_request(str, title, jsonMetadata) {
         if (!err) {
             console.log('comment', result);
             window.location.hash = username + '/' + str;
+            document.querySelector('.lding').style.display='none';
         } else console.error(err);
     }); // add post
     console.log('<f>sendRequest');
@@ -188,6 +190,7 @@ function send_request(str, title, jsonMetadata) {
 function getHash() {
     var startTarget = '/@'; // search '/@' - FIX THIS BUG! WHY IT`S WORKING?
     var startPos = -1;
+    document.querySelector('.lding').style.display='block';
     while ((startPos = hash.indexOf(startTarget, startPos + 1)) != -1) {
         var Pos = startPos,
             targetStart = startPos;
@@ -205,6 +208,7 @@ function getHash() {
             console.log('getContent', result.title);
             getPoll();
         } else console.error('Failed to find post',err);
+    document.querySelector('.lding').style.display='none';
     });
     console.log('<f>getHash');
 }
@@ -297,3 +301,8 @@ document.getElementById('complete').addEventListener('click', function () {
         auth();
     }
 }, false);
+document.onreadystatechange = function () {
+  if(document.readyState === "complete"){
+    document.querySelector('.lding').style.display='none';
+  }
+}
