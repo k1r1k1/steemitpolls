@@ -68,7 +68,7 @@ function addInactiveInput() {
     $div.style = 'opacity: 0.4; transition: .5s;';
     $div.innerHTML = `<input type="text" class="form-control" placeholder="Click here to add a new one" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="inputOption` + inputsC + `">
 <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button" id="pOptionButt` + inputsC + `" disabled>Remove</button>
+                        <button class="btn btn-danger" type="button" id="pOptionButt` + inputsC + `" disabled>Remove</button>
                     </div>
                 </div>`;
     document.getElementById('PollForm').appendChild($div);
@@ -287,7 +287,7 @@ document.getElementById('complete').addEventListener('click', function () {
         swal({
             title: 'Are you sure?',
             text: 'You won`t be able to revert this!',
-            type: 'warning',
+            type: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
