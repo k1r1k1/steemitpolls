@@ -36,6 +36,11 @@ html {
     z-index: 1;
 }
 
+.progress {
+    height: 2rem;
+    font-size: 12pt;
+}
+
 footer {
     position: absolute;
     bottom: 0;
