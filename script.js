@@ -262,11 +262,9 @@ function getVote(collback) { // getting poll data
             for (index = 0; index < resultContent.json_metadata.data.poll_answers.length; ++index) {
                 if (typeof pollData[index] != 'undefined') {
                     pollData[index].percnt = Math.round((pollData[index].count * 100) / cnt);
-                    if (document.querySelectorAll('.card-text')[index])
-                        document.querySelectorAll('.card-text')[index].innerHTML = resultContent.json_metadata.data.poll_answers[index] + ' (' + pollData[index].percnt + ')%';
                     if (document.querySelectorAll('.progress-bar')[index]) {
                         document.querySelectorAll('.progress-bar')[index].style = 'width: ' + pollData[index].percnt + '%;';
-                        document.querySelectorAll('.progress-bar')[index].innerHTML = pollData[index].count;
+                        document.querySelectorAll('.progress-bar')[index].innerHTML = pollData[index].percnt + '% (' + pollData[index].count + ')';
                     }
                 } else {
                     pollData[index] = {
