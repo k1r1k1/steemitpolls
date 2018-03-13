@@ -132,21 +132,22 @@ function getPoll(callback) {
     $div.innerHTML = resultContent.json_metadata.data.poll_title;
     document.querySelector('.card-body.text-dark').appendChild($div);
     getVote(function (data) {
-        console.log(data); // debug info
+        console.log('<f>getPoll: ' + data); // debug info
+        document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">voters: ' + resultContent.json_metadata.data.poll_answers.length + '</span><span class="badge badge-info">created: ' + moment(resultContent.created).format('lll') + '</span>';
         for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress 
             var $div = document.createElement('div');
             $div.className = 'progress-block';
             if (data[cnt]) {
                 $div.innerHTML = `<label class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</label>
                     <div class="progress" id="` + cnt + `" style="cursor: pointer;">
-                        <div class="progress-bar" role="progressbar" style="width: 0%; height: 2rem;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div>
+                        <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div>
                     </div><br>`;
                 document.querySelector('.card-body.text-dark').appendChild($div);
                 document.getElementById(cnt).onclick = progress_click; // dummy for polling 
             } else {
                 $div.innerHTML = `<label class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</label>
                     <div class="progress" id="` + cnt + `" style="cursor: pointer;">
-                        <div class="progress-bar" role="progressbar" style="width: 0%; height: 2rem;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div>
+                        <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div>
                     </div><br>`;
                 document.querySelector('.card-body.text-dark').appendChild($div);
                 document.getElementById(cnt).onclick = progress_click; // dummy for polling     
@@ -271,8 +272,6 @@ function getVote(collback) { // getting poll data
                         count: 0,
                         percnt: 0
                     };
-                    if (document.querySelectorAll('.card-text')[index])
-                        document.querySelectorAll('.card-text')[index].innerHTML = resultContent.json_metadata.data.poll_answers[index] + ' (' + pollData[index].percnt + ')%';
                 }
             }
         } else console.error(err);
