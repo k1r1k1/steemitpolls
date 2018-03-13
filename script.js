@@ -25,6 +25,7 @@ function CopyLinkToClipboard() {
     document.execCommand('copy');
     swal({
         type: 'success',
+        toast: true,
         title: 'Link has been copied',
         showConfirmButton: false,
         timer: 1800
@@ -37,6 +38,7 @@ function CopyCodeToClipboard() {
     document.execCommand('copy');
     swal({
         type: 'success',
+        toast: true,
         title: 'Code has been copied',
         showConfirmButton: false,
         timer: 1800
@@ -111,7 +113,6 @@ function completeForm() {
             poll_answers: answers
         }
     };
-    //getPoll(function () {
     send_request(str, title, jsonMetadata);
     swal({ // visual 
         type: 'success',
@@ -120,7 +121,6 @@ function completeForm() {
         showConfirmButton: false,
         timer: 2500
     })
-    // })
     console.log('<f>completeForm');
 }
 
@@ -165,7 +165,13 @@ function getPoll(callback) {
 
 function progress_click() { // dummy for polling 
     if (wif) {
-        alert('Вы только что выбрали вариант № ' + this.id);
+        swal({ // visual 
+            type: 'success',
+            title: 'Thanks for making your choice!',
+            toast: true,
+            showConfirmButton: false,
+            timer: 2500
+        })
         sendVote(this.id);
     } else {
         auth();
