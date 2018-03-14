@@ -9,7 +9,7 @@ golos.config.set('websocket', 'wss://ws.testnet3.golos.io');
 golos.config.set('address_prefix', 'GLS');
 golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
 var cyrillicToTranslit = module.exports; // cyrillicToTranslit initializing 
-var inputsC = 2, // inputs counter
+var inputsC = 0, // inputs counter
     resultContent = '', // global variable for content
     pollData = {}, // polling answers
     hash = location.hash.substring(1); // geting hash
@@ -19,6 +19,8 @@ window.onhashchange = function () {
     console.log('hash has been changed: ', hash);
     if (hash != '') getHash();
 };
+addInactiveInput();
+addPollingInputs();
 
 function CopyLinkToClipboard() {
     document.querySelector('#cplkint').select();
@@ -55,13 +57,6 @@ function addPollingInputs() { // adding a response option
 }
 addPollingInputs(); // add 2nd active field in a polling form
 
-function doInputInactive() {
-    document.getElementById('pOption' + inputsC).style.opacity = '0.4';
-    document.getElementById('pOptionButt' + inputsC).setAttribute('disabled', 'disabled');
-    document.getElementById('inputOption' + inputsC).setAttribute('placeholder', 'Click here to add a new one');
-    delInputPoll();
-}
-
 function addInactiveInput() {
     inputsC++;
     var $div = document.createElement('div');
@@ -70,24 +65,19 @@ function addInactiveInput() {
     $div.style = 'opacity: 0.4; transition: .5s;';
     $div.innerHTML = `<input type="text" class="form-control" placeholder="Click here to add a new one" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="inputOption` + inputsC + `">
 <div class="input-group-append">
-                        <button class="btn btn-danger" type="button" id="pOptionButt` + inputsC + `" disabled>Remove</button>
+                        <button class="btn btn-danger" type="button" id="pOptionButt` + inputsC + `" disabled><span class="icon-cross"></span></button>
                     </div>
                 </div>`;
-    document.getElementById('PollForm').appendChild($div);
-    document.querySelector('#inputOption' + inputsC).addEventListener('mousedown', addPollingInputs, false);
-    document.getElementById('pOptionButt' + inputsC).addEventListener('click', doInputInactive, false);
-}
-
-function delInputPoll() {
-    document.getElementById('PollForm').addEventListener('click', function (e) {
-        for (var target = e.target; target && target != this; target = target.parentNode.parentNode) {
-            if (target.matches('div')) {
-                target.remove();
-                e.preventDefault();
-                break;
+    $div.querySelector('#inputOption' + inputsC).addEventListener('mousedown', addPollingInputs, false);
+    $div.querySelector('button').addEventListener('click', function(e) {
+            console.log(e.target.tagName); 
+            if (e.target.tagName == 'BUTTON') {
+                e.target.parentNode.parentNode.remove();
+            } else if (e.target.tagName == 'SPAN') {
+                e.target.parentNode.parentNode.parentNode.remove();
             }
-        }
-    }, false);
+}, false);
+    document.getElementById('PollForm').appendChild($div);
 }
 
 function completeForm() {
@@ -283,8 +273,6 @@ function getVote(collback) { // getting poll data
 }
 
 // buttons events 
-document.getElementById('pOptionButt1').addEventListener('click', doInputInactive, false);
-document.getElementById('pOptionButt2').addEventListener('click', doInputInactive, false);
 document.getElementById('complete').addEventListener('click', function () {
     if (wif) {
         swal({
