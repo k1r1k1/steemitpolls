@@ -278,6 +278,7 @@ document.getElementById('my-polls').addEventListener('click', function () {
     location.hash = '';
     document.getElementById('complete-form').style.display = 'block';
     document.getElementById('PollConstructor').style.display = 'none';
+    var countofvotes = 0;
     if (wif) {
         var query = {
             select_authors: [username],
@@ -292,35 +293,34 @@ document.getElementById('my-polls').addEventListener('click', function () {
                     var parentPermlink = item.permlink;
                     golos.api.getContentReplies(parent, parentPermlink, function (err, result) {
                         if (!err)
-                            result.forEach(function (result) {
-                                result.json_metadata = JSON.parse(result.json_metadata);
-                                if (typeof result.json_metadata.data != 'undefined' && typeof result.json_metadata.data.poll_id != 'undefined') {
-                                    if (!votes[result.parent_permlink]) {
-                                        votes[result.parent_permlink] = {
-                                            [result.author]: result.json_metadata.data.poll_id
-                                        };
-                                    } else if (!votes[result.parent_permlink][result.author]) {
-                                        votes[result.parent_permlink][result.author] = result.json_metadata.data.poll_id;
-                                    }
-                                };
-                            });
-                    });
-                    item.json_metadata = JSON.parse(item.json_metadata); //parse json to js
-                    if (item.json_metadata.data) {
-                        var $div = document.createElement('tr');
-                        $div.innerHTML = `<td><a href="#` + item.author + `/` + item.permlink + `">` + item.json_metadata.data.poll_title + `</a></td>
+                            countofvotes = 0;
+                        item.json_metadata = JSON.parse(item.json_metadata); //parse json to js
+                        result.forEach(function (result) {
+                            result.json_metadata = JSON.parse(result.json_metadata);
+                            if (typeof result.json_metadata.data != 'undefined' && typeof result.json_metadata.data.poll_id != 'undefined') {
+                                countofvotes++;
+                            }
+
+                        });
+                        if (item.json_metadata.data) {
+                            var $div = document.createElement('tr');
+                            $div.innerHTML = `<td><a href="#` + item.author + `/` + item.permlink + `">` + item.json_metadata.data.poll_title + `</a></td>
                                       <td>` + moment(item.created).format('lll') + `</td>
                                       <td>` + item.json_metadata.data.poll_answers + `</td>
-                                      <td>` + votes[item.permlink] + `</td>
+                                      <td>` + countofvotes + `</td>
                                       <td>N/A` + `</td>
                                     </tr>`;
-                        console.log(item);
-                        document.querySelector('.myPollTab').appendChild($div);
-                        document.querySelector('.lding').style.display = 'none';
-                    }
+                            /*console.log('item  ==> ', item);
+                            console.log('result ==> ', result);*/
+                            document.querySelector('.myPollTab').appendChild($div);
+                            document.querySelector('.lding').style.display = 'none';
+                        }
+                        console.log(countofvotes);
+                    });
                 });
             } else console.error(err);
         });
+
         var $div = document.createElement('table');
         $div.className = 'table table-striped';
         $div.innerHTML = `<thead>
