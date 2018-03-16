@@ -18,7 +18,6 @@ if (hash != '') getHash();
 window.onhashchange = function () {
     hash = location.hash.substring(1);
     console.log('hash has been changed: ', hash);
-    document.querySelector('.card-body.text-dark').innerHTML = '';
     if (hash != '') getHash();
 };
 addInactiveInput();
@@ -116,6 +115,7 @@ function completeForm() {
 }
 
 function getPoll(callback) {
+    document.querySelector('.card-body.text-dark').innerHTML = '';
     if (!resultContent.json_metadata) getHash();
     resultContent.json_metadata = JSON.parse(resultContent.json_metadata); //parse json to js
     var $div = document.createElement('h5'); // inserting header in poll 
@@ -149,7 +149,7 @@ function getPoll(callback) {
     });
     document.getElementById('complete-form').style.display = 'block';
     document.getElementById('PollConstructor').style.display = 'none';
-    document.getElementById('complete-form').scrollIntoView();
+    //document.getElementById('complete-form').scrollIntoView();
     document.querySelector('#cplkint').value = 'https://golospolls.com#' + resultContent.author + '/' + resultContent.permlink;
     if (callback) callback();
     console.log('<f>getPoll');
@@ -274,6 +274,10 @@ function getVote(collback) { // getting poll data
 }
 
 document.getElementById('my-polls').addEventListener('click', function () {
+    document.querySelector('.lding').style.display = 'block';
+    location.hash = '';
+    document.getElementById('complete-form').style.display = 'block';
+    document.getElementById('PollConstructor').style.display = 'none';
     if (wif) {
         var query = {
             select_authors: [username],
@@ -307,16 +311,16 @@ document.getElementById('my-polls').addEventListener('click', function () {
                         $div.innerHTML = `<td><a href="#` + item.author + `/` + item.permlink + `">` + item.json_metadata.data.poll_title + `</a></td>
                                       <td>` + moment(item.created).format('lll') + `</td>
                                       <td>` + item.json_metadata.data.poll_answers + `</td>
-                                      <td>N/A` + `</td>
+                                      <td>` + votes[item.permlink] + `</td>
                                       <td>N/A` + `</td>
                                     </tr>`;
                         console.log(item);
                         document.querySelector('.myPollTab').appendChild($div);
+                        document.querySelector('.lding').style.display = 'none';
                     }
                 });
             } else console.error(err);
         });
-
         var $div = document.createElement('table');
         $div.className = 'table table-striped';
         $div.innerHTML = `<thead>
