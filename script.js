@@ -13,6 +13,7 @@ var inputsC = 0, // inputs counter
     resultContent = '', // global variable for content
     pollData = {}, // polling answers
     votes = {},
+    updProgressTimer,
     hash = location.hash.substring(1); // geting hash
 if (hash != '') getHash();
 window.onhashchange = function () {
@@ -49,7 +50,8 @@ function CopyCodeToClipboard() {
 }
 document.querySelector('#cpcdbtn').addEventListener('click', CopyCodeToClipboard, false);
 
-function addPollingInputs() { // adding a response option 
+function addPollingInputs() { // adding a response option
+    console.log('<f> addPollingInputs');
     document.getElementById('pOptionButt' + inputsC).removeAttribute('disabled');
     document.getElementById('pOption' + inputsC).style.opacity = '1';
     document.getElementById('inputOption' + inputsC).setAttribute('placeholder', 'Type your text here');
@@ -59,6 +61,7 @@ function addPollingInputs() { // adding a response option
 addPollingInputs(); // add 2nd active field in a polling form
 
 function addInactiveInput() {
+    console.log('<f> addInactiveInput');
     inputsC++;
     var $div = document.createElement('div');
     $div.className = 'input-group mb-3';
@@ -81,6 +84,7 @@ function addInactiveInput() {
 }
 
 function completeForm() {
+    console.log('<f> completeForm');
     // collecting data & sending 
     var $pollInputs = document.getElementById('PollForm').getElementsByClassName('form-control');
     var answers = [];
@@ -115,6 +119,7 @@ function completeForm() {
 }
 
 function getPoll(callback) {
+    console.log('<f> getPoll');
     document.querySelector('.card-body.text-dark').innerHTML = '';
     if (!resultContent.json_metadata) getHash();
     resultContent.json_metadata = JSON.parse(resultContent.json_metadata); //parse json to js
@@ -123,7 +128,6 @@ function getPoll(callback) {
     $div.innerHTML = resultContent.json_metadata.data.poll_title;
     document.querySelector('.card-body.text-dark').appendChild($div);
     getVote(function (data) {
-        console.log('<f>getPoll: ' + data); // debug info
         for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress 
             var $div = document.createElement('div');
             $div.className = 'progress-block';
@@ -144,17 +148,16 @@ function getPoll(callback) {
             }
         }
         getVote();
-        setInterval(getVote, 3000); // get result with interval
     });
     document.getElementById('complete-form').style.display = 'block';
     document.getElementById('PollConstructor').style.display = 'none';
     //document.getElementById('complete-form').scrollIntoView();
     document.querySelector('#cplkint').value = 'https://golospolls.com#' + resultContent.author + '/' + resultContent.permlink;
     if (callback) callback();
-    console.log('<f>getPoll');
 }
 
 function progress_click() { // dummy for polling 
+    console.log('<f> progress_click');
     if (wif) {
         swal({ // visual 
             type: 'success',
@@ -170,6 +173,7 @@ function progress_click() { // dummy for polling
 }
 
 function send_request(str, title, jsonMetadata) {
+    console.log('<f> send_request');
     var parentAuthor = ''; // for post creating, empty field
     var parentPermlink = 'test'; // main tag
     var body = 'At the moment, you are looking at the test page of a simple microservice, which is currently under development. And since it so happened that you look at it, here`s a random cat, good luck to you and all the best.<img src="https://tinygrainofrice.files.wordpress.com/2013/08/kitten-16219-1280x1024.jpg"></img>'; // post text
@@ -181,10 +185,12 @@ function send_request(str, title, jsonMetadata) {
             document.querySelector('.lding').style.display = 'none';
         } else console.error(err);
     }); // add post
-    console.log('<f>sendRequest');
 }
 
 function getHash() {
+    console.log('<f> getHash');
+    if (location.hash == '') clearUpdTimer();
+    startUpdProgTimer()
     var startTarget = '/@'; // search '/@' - FIX THIS BUG! WHY IT`S WORKING?
     var startPos = -1;
     document.querySelector('.lding').style.display = 'block';
@@ -204,13 +210,16 @@ function getHash() {
         if (!err && result.title != '') {
             console.log('getContent', result.title);
             getPoll();
-        } else console.error('Failed to find post', err);
+        } else {
+            console.error('Failed to find post', err);
+            clearUpdTimer();
+        }
         document.querySelector('.lding').style.display = 'none';
     });
-    console.log('<f>getHash');
 }
 
 function sendVote(pollId) {
+    console.log('<f> sendVote');
     var parentAuthor = resultContent.author;
     var parentPermlink = resultContent.permlink;
     var permlink = 're-' + parentAuthor + '-' + parentPermlink + '-' + Date.now(); // re-epexa-test-url-1517333064308
@@ -234,7 +243,8 @@ function sendVote(pollId) {
     console.log('<f>sendVote');
 }
 
-function getVote(collback) { // getting poll data 
+function getVote(collback) { // getting poll data
+    console.log('<f> getVote');
     var cnt = 0;
     pollData = {};
     golos.api.getContentReplies(resultContent.author, resultContent.permlink, function (err, result) {
@@ -266,7 +276,6 @@ function getVote(collback) { // getting poll data
             }
         } else console.error(err);
         document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">voters: ' + cnt + '</span><span class="badge badge-info">created: ' + moment(resultContent.created).format('lll') + '</span>';
-        console.log(cnt);
         if (collback) {
             collback(pollData);
             console.log('<f>getVote callback');
@@ -274,7 +283,21 @@ function getVote(collback) { // getting poll data
     });
 }
 
+function startUpdProgTimer() {
+    updProgressTimer = setInterval(getVote, 3000);
+    console.log('<f> updProgressTimer');
+}
+
+function clearUpdTimer() {
+    if (typeof updProgressTimer != 'undefined') {
+        clearTimeout(updProgressTimer);
+        console.log('<f> clearUpdTimeout');
+    }
+}
+
 document.getElementById('my-polls').addEventListener('click', function () {
+    console.log('<f>my-polls click');
+    clearUpdTimer();
     document.querySelector('.lding').style.display = 'block';
     location.hash = '';
     document.querySelector('.card-header-right p').innerHTML = '';
@@ -346,6 +369,7 @@ document.getElementById('my-polls').addEventListener('click', function () {
 // buttons events 
 
 document.getElementById('complete').addEventListener('click', function () {
+    console.log('<f> complete button');
     if (wif) {
         swal({
             title: 'Are you sure?',
@@ -366,6 +390,7 @@ document.getElementById('complete').addEventListener('click', function () {
 }, false);
 
 document.getElementById('aboutGolosPollsBtn').addEventListener('click', () => {
+    console.log('<f> about click');
     swal({
         title: 'About this project!',
         html: `<div>
@@ -392,6 +417,7 @@ document.getElementById('aboutGolosPollsBtn').addEventListener('click', () => {
 }, false);
 
 document.onreadystatechange = function () { // loading animation switch-off
+    console.log('<f> doc ready');
     if (document.readyState === "complete") {
         document.querySelector('.lding').style.display = 'none';
     }
