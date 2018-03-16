@@ -124,7 +124,6 @@ function getPoll(callback) {
     document.querySelector('.card-body.text-dark').appendChild($div);
     getVote(function (data) {
         console.log('<f>getPoll: ' + data); // debug info
-        document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">voters: ' + 0 + '</span><span class="badge badge-info">created: ' + moment(resultContent.created).format('lll') + '</span>';
         for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress 
             var $div = document.createElement('div');
             $div.className = 'progress-block';
@@ -266,6 +265,8 @@ function getVote(collback) { // getting poll data
                 }
             }
         } else console.error(err);
+        document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">voters: ' + cnt + '</span><span class="badge badge-info">created: ' + moment(resultContent.created).format('lll') + '</span>';
+        console.log(cnt);
         if (collback) {
             collback(pollData);
             console.log('<f>getVote callback');
@@ -276,6 +277,7 @@ function getVote(collback) { // getting poll data
 document.getElementById('my-polls').addEventListener('click', function () {
     document.querySelector('.lding').style.display = 'block';
     location.hash = '';
+    document.querySelector('.card-header-right p').innerHTML = '';
     document.getElementById('complete-form').style.display = 'block';
     document.getElementById('PollConstructor').style.display = 'none';
     var countofvotes = 0;
@@ -300,7 +302,6 @@ document.getElementById('my-polls').addEventListener('click', function () {
                             if (typeof result.json_metadata.data != 'undefined' && typeof result.json_metadata.data.poll_id != 'undefined') {
                                 countofvotes++;
                             }
-
                         });
                         if (item.json_metadata.data) {
                             var $div = document.createElement('tr');
@@ -315,7 +316,7 @@ document.getElementById('my-polls').addEventListener('click', function () {
                             document.querySelector('.myPollTab').appendChild($div);
                             document.querySelector('.lding').style.display = 'none';
                         }
-                        console.log(countofvotes);
+                        //console.log(countofvotes);
                     });
                 });
             } else console.error(err);
