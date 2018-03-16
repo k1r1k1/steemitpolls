@@ -12,11 +12,13 @@ var cyrillicToTranslit = module.exports; // cyrillicToTranslit initializing
 var inputsC = 0, // inputs counter
     resultContent = '', // global variable for content
     pollData = {}, // polling answers
+    votes = {},
     hash = location.hash.substring(1); // geting hash
 if (hash != '') getHash();
 window.onhashchange = function () {
     hash = location.hash.substring(1);
     console.log('hash has been changed: ', hash);
+    document.querySelector('.card-body.text-dark').innerHTML = '';
     if (hash != '') getHash();
 };
 addInactiveInput();
@@ -69,14 +71,13 @@ function addInactiveInput() {
                     </div>
                 </div>`;
     $div.querySelector('#inputOption' + inputsC).addEventListener('mousedown', addPollingInputs, false);
-    $div.querySelector('button').addEventListener('click', function(e) {
-            console.log(e.target.tagName); 
-            if (e.target.tagName == 'BUTTON') {
-                e.target.parentNode.parentNode.remove();
-            } else if (e.target.tagName == 'SPAN') {
-                e.target.parentNode.parentNode.parentNode.remove();
-            }
-}, false);
+    $div.querySelector('button').addEventListener('click', function (e) {
+        if (e.target.tagName == 'BUTTON') {
+            e.target.parentNode.parentNode.remove();
+        } else if (e.target.tagName == 'SPAN') {
+            e.target.parentNode.parentNode.parentNode.remove();
+        }
+    }, false);
     document.getElementById('PollForm').appendChild($div);
 }
 
@@ -123,7 +124,7 @@ function getPoll(callback) {
     document.querySelector('.card-body.text-dark').appendChild($div);
     getVote(function (data) {
         console.log('<f>getPoll: ' + data); // debug info
-        document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">voters: ' + resultContent.json_metadata.data.poll_answers.length + '</span><span class="badge badge-info">created: ' + moment(resultContent.created).format('lll') + '</span>';
+        document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">voters: ' + 0 + '</span><span class="badge badge-info">created: ' + moment(resultContent.created).format('lll') + '</span>';
         for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress 
             var $div = document.createElement('div');
             $div.className = 'progress-block';
@@ -267,12 +268,78 @@ function getVote(collback) { // getting poll data
         } else console.error(err);
         if (collback) {
             collback(pollData);
-            console.log('<f>getVote callback' + cnt);
+            console.log('<f>getVote callback');
         }
     });
 }
 
+document.getElementById('my-polls').addEventListener('click', function () {
+    if (wif) {
+        var query = {
+            select_authors: [username],
+            select_tags: ['test'],
+            limit: 100
+        };
+        golos.api.getDiscussionsByBlog(query, function (err, result) {
+            console.log('<f>getDiscussionsByBlog');
+            if (!err) {
+                result.forEach(function (item) {
+                    var parent = item.author;
+                    var parentPermlink = item.permlink;
+                    golos.api.getContentReplies(parent, parentPermlink, function (err, result) {
+                        if (!err)
+                            result.forEach(function (result) {
+                                result.json_metadata = JSON.parse(result.json_metadata);
+                                if (typeof result.json_metadata.data != 'undefined' && typeof result.json_metadata.data.poll_id != 'undefined') {
+                                    if (!votes[result.parent_permlink]) {
+                                        votes[result.parent_permlink] = {
+                                            [result.author]: result.json_metadata.data.poll_id
+                                        };
+                                    } else if (!votes[result.parent_permlink][result.author]) {
+                                        votes[result.parent_permlink][result.author] = result.json_metadata.data.poll_id;
+                                    }
+                                };
+                            });
+                    });
+                    item.json_metadata = JSON.parse(item.json_metadata); //parse json to js
+                    if (item.json_metadata.data) {
+                        var $div = document.createElement('tr');
+                        $div.innerHTML = `<td><a href="#` + item.author + `/` + item.permlink + `">` + item.json_metadata.data.poll_title + `</a></td>
+                                      <td>` + moment(item.created).format('lll') + `</td>
+                                      <td>` + item.json_metadata.data.poll_answers + `</td>
+                                      <td>N/A` + `</td>
+                                      <td>N/A` + `</td>
+                                    </tr>`;
+                        console.log(item);
+                        document.querySelector('.myPollTab').appendChild($div);
+                    }
+                });
+            } else console.error(err);
+        });
+
+        var $div = document.createElement('table');
+        $div.className = 'table table-striped';
+        $div.innerHTML = `<thead>
+                            <tr>
+                              <th scope="col">Poll title</th>
+                              <th scope="col">Created</th>
+                              <th scope="col">Variants</th>
+                              <th scope="col">Vouters</th>
+                              <th scope="col">Leading</th>
+                            </tr>
+                          </thead>
+                          <tbody class="myPollTab">
+                          </tbody>
+                        </table>`
+        document.querySelector('.card-body.text-dark').innerHTML = '';
+        document.querySelector('.card-body.text-dark').appendChild($div);
+    } else {
+        auth();
+    }
+}, false);
+
 // buttons events 
+
 document.getElementById('complete').addEventListener('click', function () {
     if (wif) {
         swal({
