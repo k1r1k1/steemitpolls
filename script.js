@@ -338,9 +338,9 @@ document.getElementById('my-polls').addEventListener('click', function () {
 									if (max < pollData[result.json_metadata.data.poll_id].count) {
 										max = pollData[result.json_metadata.data.poll_id].count;
 										winner = item.json_metadata.data.poll_answers[result.json_metadata.data.poll_id];
-									} else {
-										winner = 'no votes';
 									}
+									if (max == 0)
+										winner = 'no one voted';
 								}
 							});
 							if (item.json_metadata.data) {
