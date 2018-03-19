@@ -366,7 +366,7 @@ document.getElementById('my-polls').addEventListener('click', function () {
                               <th scope="col">Poll title</th>
                               <th scope="col">Created</th>
                               <th scope="col">Variants</th>
-                              <th scope="col">Vouters</th>
+                              <th scope="col">Voters</th>
                               <th scope="col">Leading</th>
                             </tr>
                           </thead>
