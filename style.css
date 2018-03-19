@@ -221,3 +221,36 @@ footer {
     -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
     transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
 }
+
+.github-corner {
+  position: fixed;
+  top: 0;
+  right: 0; }
+
+.github-corner:hover .octo-arm {
+  animation:octocat-wave 560ms ease-in-out
+}
+.octo-arm {
+  transform-origin: 40px;
+  position:absolute;
+}
+
+@keyframes octocat-wave{
+  0%,100%{
+      transform:rotate(0)
+  }
+  20%,60%{
+      transform:rotate(-1deg)
+  }
+  40%,80%{
+      transform:rotate(10deg)
+  }
+}
+@media (max-width:500px){
+  .github-corner:hover .octo-arm{
+      animation:none
+  }
+  .github-corner .octo-arm{
+      animation:octocat-wave 560ms ease-in-out
+  }
+}
