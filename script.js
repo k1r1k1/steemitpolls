@@ -296,6 +296,20 @@ function clearUpdTimer() {
 }
 
 document.getElementById('my-polls').addEventListener('click', function () {
+	if (wif) { // if already authorized
+		getMyPolls();
+	} else {
+		auth(() => {
+			getMyPolls();
+		});
+		if (err) {
+			swal(err)
+		} else
+			document.querySelector('.lding').style.display = 'none'; // loader off
+	}
+}, false);
+
+function getMyPolls() {
 	console.log('<f>my-polls click');
 	clearUpdTimer();
 	document.querySelector('.lding').style.display = 'block';
@@ -307,61 +321,60 @@ document.getElementById('my-polls').addEventListener('click', function () {
 		cnt = 0,
 		winner = 0,
 		max = 0;
-	if (wif) {
-		var query = {
-			select_authors: [username],
-			select_tags: ['test'],
-			limit: 100
-		};
-		golos.api.getDiscussionsByBlog(query, function (err, result) {
-			console.log('<f>getDiscussionsByBlog');
-			if (!err) {
-				result.forEach(function (item) {
-					var parent = item.author;
-					var parentPermlink = item.permlink;
-					golos.api.getContentReplies(parent, parentPermlink, function (err, result) {
-						if (!err) {
-							pollData = {};
-							countofvotes = 0;
-							max = 0;
-							winner = 0;
-							item.json_metadata = JSON.parse(item.json_metadata); //parse json to js
-							result.forEach(function (result) {
-								result.json_metadata = JSON.parse(result.json_metadata);
-								if (typeof result.json_metadata.data != 'undefined' && typeof result.json_metadata.data.poll_id != 'undefined') {
-									countofvotes++;
-									cnt++;
-									if (!pollData[result.json_metadata.data.poll_id]) pollData[result.json_metadata.data.poll_id] = {
-										count: 0,
-									};
-									pollData[result.json_metadata.data.poll_id].count++;
-									if (max < pollData[result.json_metadata.data.poll_id].count) {
-										max = pollData[result.json_metadata.data.poll_id].count;
-										winner = item.json_metadata.data.poll_answers[result.json_metadata.data.poll_id];
-									}
-									if (max == 0)
-										winner = 'no one voted';
+	var query = {
+		select_authors: [username],
+		select_tags: ['test'],
+		limit: 100
+	};
+	golos.api.getDiscussionsByBlog(query, function (err, result) {
+		console.log('<f>getDiscussionsByBlog');
+		if (!err) {
+			result.forEach(function (item) {
+				var parent = item.author;
+				var parentPermlink = item.permlink;
+				golos.api.getContentReplies(parent, parentPermlink, function (err, result) {
+					if (!err) {
+						pollData = {};
+						countofvotes = 0;
+						max = 0;
+						winner = 0;
+						item.json_metadata = JSON.parse(item.json_metadata); //parse json to js
+						result.forEach(function (result) {
+							result.json_metadata = JSON.parse(result.json_metadata);
+							if (typeof result.json_metadata.data != 'undefined' && typeof result.json_metadata.data.poll_id != 'undefined') {
+								countofvotes++;
+								cnt++;
+								if (!pollData[result.json_metadata.data.poll_id]) pollData[result.json_metadata.data.poll_id] = {
+									count: 0,
+								};
+								pollData[result.json_metadata.data.poll_id].count++;
+								if (max < pollData[result.json_metadata.data.poll_id].count) {
+									max = pollData[result.json_metadata.data.poll_id].count;
+									winner = item.json_metadata.data.poll_answers[result.json_metadata.data.poll_id];
 								}
-							});
-							if (item.json_metadata.data) {
-								var $div = document.createElement('tr');
-								$div.innerHTML = `<td><a href="#` + item.author + `/` + item.permlink + `">` + item.json_metadata.data.poll_title + `</a></td>
+								if (max == 0)
+									winner = 'no one voted';
+							}
+						});
+						if (item.json_metadata.data) {
+							var $div = document.createElement('tr');
+							$div.innerHTML = `<td><a href="#` + item.author + `/` + item.permlink + `">` + item.json_metadata.data.poll_title + `</a></td>
                                       <td>` + moment(item.created).format('lll') + `</td>
                                       <td>` + item.json_metadata.data.poll_answers + `</td>
                                       <td>` + countofvotes + `</td>
                                       <td>` + winner + `</td>
                                     </tr>`;
-								document.querySelector('.myPollTab').appendChild($div);
-								document.querySelector('.lding').style.display = 'none';
-							}
+							document.querySelector('.myPollTab').appendChild($div);
+							document.querySelector('.lding').style.display = 'none';
 						}
-					});
+					}
 				});
-			} else console.error(err);
-		});
-		var $div = document.createElement('table');
-		$div.className = 'table table-striped';
-		$div.innerHTML = `<thead>
+			});
+		} else console.error(err);
+	});
+	var $div = document.createElement('table');
+	$div.className = 'table table-striped';
+	$div.innerHTML = `<thead>
                             <tr>
                               <th scope="col">Poll title</th>
                               <th scope="col">Created</th>
@@ -373,12 +386,9 @@ document.getElementById('my-polls').addEventListener('click', function () {
                           <tbody class="myPollTab">
                           </tbody>
                         </table>`
-		document.querySelector('.card-body.text-dark').innerHTML = '';
-		document.querySelector('.card-body.text-dark').appendChild($div);
-	} else {
-		auth();
-	}
-}, false);
+	document.querySelector('.card-body.text-dark').innerHTML = '';
+	document.querySelector('.card-body.text-dark').appendChild($div);
+}
 
 // buttons events 
 
@@ -402,6 +412,39 @@ document.getElementById('complete').addEventListener('click', function () {
 		auth();
 	}
 }, false);
+
+
+
+
+function getUrls() {
+	if (wif == '') {
+		auth(() => {
+			swal({
+				type: 'success',
+				title: 'Success',
+				html: `Authorization was successful!`,
+				preConfirm: async () => {
+					golos.api.getContent(username, constPermlik, function (err, result) {
+						result.id == 0 ? swal({
+							html: document.getElementById('no-records-IPFS').innerHTML
+						}) : getPostJson(username, constPermlik, result);
+						if (err) swal(err);
+					});
+				}
+			});
+			logOutProcc();
+		});
+	} else {
+		golos.api.getContent(username, constPermlik, function (err, result) {
+			result.id == 0 ? swal({
+				html: document.getElementById('no-records-IPFS').innerHTML
+			}) : getPostJson(username, constPermlik, result);
+			if (err) swal(err);
+		});
+	}
+}
+
+
 
 document.getElementById('aboutGolosPollsBtn').addEventListener('click', () => {
 	console.log('<f> about click');
