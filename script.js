@@ -235,7 +235,6 @@ function sendVote(pollId) {
 	};
 	jsonMetadata = JSON.stringify(jsonMetadata);
 	golos.broadcast.comment(wif, parentAuthor, parentPermlink, username, permlink, title, body, jsonMetadata, function (err, result) {
-		//console.log(err, result);
 		if (!err) {
 			console.log('comment', result);
 		} else console.error(err);
@@ -294,20 +293,6 @@ function clearUpdTimer() {
 		console.log('<f> clearUpdTimeout');
 	}
 }
-
-document.getElementById('my-polls').addEventListener('click', function () {
-	if (wif) { // if already authorized
-		getMyPolls();
-	} else {
-		auth(() => {
-			getMyPolls();
-		});
-		if (err) {
-			swal(err)
-		} else
-			document.querySelector('.lding').style.display = 'none'; // loader off
-	}
-}, false);
 
 function getMyPolls() {
 	console.log('<f>my-polls click');
@@ -390,32 +375,6 @@ function getMyPolls() {
 	document.querySelector('.card-body.text-dark').appendChild($div);
 }
 
-// buttons events 
-
-document.getElementById('complete').addEventListener('click', function () {
-	console.log('<f> complete button');
-	if (wif) {
-		swal({
-			title: 'Are you sure?',
-			text: 'You won`t be able to revert this!',
-			type: 'question',
-			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
-			confirmButtonText: 'Yes, just do it!'
-		}).then((result) => {
-			if (result.value) {
-				completeForm();
-			}
-		})
-	} else {
-		auth();
-	}
-}, false);
-
-
-
-
 function getUrls() {
 	if (wif == '') {
 		auth(() => {
@@ -444,7 +403,68 @@ function getUrls() {
 	}
 }
 
+// buttons events 
 
+document.getElementById('complete').addEventListener('click', function () {
+	console.log('<f> complete button');
+	if (document.querySelector('.form-control.title').value == '') {
+		swal({
+			title: 'ERROR',
+			text: 'Please, enter the title & the polling fields',
+			type: 'error'
+		})
+	} else {
+		if (wif) { // if already authorized
+			swal({
+				title: 'Are you sure?',
+				text: 'You won`t be able to revert this!',
+				type: 'question',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Yes, just do it!'
+			}).then((result) => {
+				if (result.value) {
+					completeForm();
+				}
+			})
+		} else {
+			auth(() => {
+				swal({
+					title: 'Are you sure?',
+					text: 'You won`t be able to revert this!',
+					type: 'question',
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					cancelButtonColor: '#d33',
+					confirmButtonText: 'Yes, just do it!'
+				}).then((result) => {
+					if (result.value) {
+						completeForm();
+					}
+				})
+			});
+			if (err) {
+				swal(err)
+			} else
+				document.querySelector('.lding').style.display = 'none'; // loader off
+		}
+	}
+}, false);
+
+document.getElementById('my-polls').addEventListener('click', function () {
+	if (wif) { // if already authorized
+		getMyPolls();
+	} else {
+		auth(() => {
+			getMyPolls();
+		});
+		if (err) {
+			swal(err)
+		} else
+			document.querySelector('.lding').style.display = 'none'; // loader off
+	}
+}, false);
 
 document.getElementById('aboutGolosPollsBtn').addEventListener('click', () => {
 	console.log('<f> about click');
