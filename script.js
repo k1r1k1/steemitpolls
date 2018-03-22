@@ -221,26 +221,34 @@ function getHash() {
 
 function sendVote(pollId) {
 	console.log('<f> sendVote');
-	var parentAuthor = resultContent.author;
-	var parentPermlink = resultContent.permlink;
-	var permlink = 're-' + parentAuthor + '-' + parentPermlink + '-' + Date.now();
-	var title = ''; // title - empty for add a comment
-	var body = 'I choose option # ' + pollId; // poll
-	var jsonMetadata = {
-		app: 'golospolls/0.1',
-		canonical: 'https://golospolls.com#' + username + '/' + permlink,
-		app_account: 'golosapps',
-		data: {
-			poll_id: pollId
-		}
-	};
-	jsonMetadata = JSON.stringify(jsonMetadata);
-	golos.broadcast.comment(wif, parentAuthor, parentPermlink, username, permlink, title, body, jsonMetadata, function (err, result) {
-		if (!err) {
-			console.log('comment', result);
-		} else console.error(err);
-	});
-	console.log('<f>sendVote');
+	if (checkToVote) {
+		swal({
+			title: 'ERROR',
+			text: 'Sorry, seems like you are already voted',
+			type: 'error'
+		})
+	} else {
+		var parentAuthor = resultContent.author;
+		var parentPermlink = resultContent.permlink;
+		var permlink = 're-' + parentAuthor + '-' + parentPermlink + '-' + Date.now();
+		var title = ''; // title - empty for add a comment
+		var body = 'I choose option # ' + pollId; // poll
+		var jsonMetadata = {
+			app: 'golospolls/0.1',
+			canonical: 'https://golospolls.com#' + username + '/' + permlink,
+			app_account: 'golosapps',
+			data: {
+				poll_id: pollId
+			}
+		};
+		jsonMetadata = JSON.stringify(jsonMetadata);
+		golos.broadcast.comment(wif, parentAuthor, parentPermlink, username, permlink, title, body, jsonMetadata, function (err, result) {
+			if (!err) {
+				console.log('comment', result);
+			} else console.error(err);
+		});
+		console.log('<f>sendVote');
+	}
 }
 
 function getVote(collback) { // getting poll data
@@ -261,7 +269,7 @@ function getVote(collback) { // getting poll data
 					if (username == item.author) { // check if already voted
 						checkToVote = true;
 					} else {
-						console.log('FALSE');
+						checkToVote = false;
 					}
 				}
 			});
