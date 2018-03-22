@@ -198,6 +198,10 @@ footer {
 	box-shadow: 0 0 0 .2rem rgba(51, 102, 153, .5)
 }
 
+.btn-outline-secondary {
+	width: 2.7rem;
+}
+
 @keyframes lds-cube {
     0% {
         -webkit-transform: scale(1.5);
