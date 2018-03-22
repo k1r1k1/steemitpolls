@@ -13,6 +13,7 @@ var inputsC = 0, // inputs counter
 	resultContent = '', // global variable for content
 	pollData = {}, // polling answers
 	votes = {},
+	checkToVote = false,
 	updProgressTimer,
 	hash = location.hash.substring(1); // geting hash
 if (hash != '') getHash();
@@ -257,6 +258,11 @@ function getVote(collback) { // getting poll data
 						percnt: 0
 					};
 					pollData[item.json_metadata.data.poll_id].count++;
+					if (username == item.author) { // check if already voted
+						checkToVote = true;
+					} else {
+						console.log('FALSE');
+					}
 				}
 			});
 			for (index = 0; index < resultContent.json_metadata.data.poll_answers.length; ++index) {
