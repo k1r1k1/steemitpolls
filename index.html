@@ -114,23 +114,26 @@
 					<div class="card-body text-dark">
 					</div>
 				</div>
-				<div class="card border-secondary mb-3">
+				<div class="card border-light mb-3">
 					<div class="card-header">Sharing form</div>
 					<div class="card-body text-dark">
-					<h5>Get link</h5>
+					<h5>Get link & injection code</h5>
 					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<button class="btn btn-outline-secondary" type="button" id="cplkbtn"><span class="icon-link"></span></button>
+						</div>
 						<input type="text" class="form-control" placeholder="https://golospolls.com/poll/b72hgjb3434bmn" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="cplkint">
-						<div class="input-group-append">
-							<button class="btn btn-outline-secondary" type="button" id="cplkbtn"><span class="icon-link"></span> Copy to clipboard</button>
-						</div>
 					</div>
-					<h5>Get code</h5>
 					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="<a href='#'>Poll</a>" aria-label="Get a html-code of your poll" aria-describedby="basic-addon2" id="cpcdint">
-						<div class="input-group-append">
-							<button class="btn btn-outline-secondary" type="button" id="cpcdbtn"><span class="icon-embed2"></span> Copy to clipboard</button>
+						<div class="input-group-prepend">
+							<button class="btn btn-outline-secondary" type="button" id="cpcdbtn"><span class="icon-embed2"></span></button>
 						</div>
+						<input type="text" class="form-control" placeholder="<a href='#'>Poll</a>" aria-label="Get a html-code of your poll" aria-describedby="basic-addon2" id="cpcdint">
 					</div>
+					<h5>Share on social media</h5>
+					<button type="button" class="btn btn-outline-primary-fb"><span class="icon-facebook2"></span></button>
+					<button type="button" class="btn btn-outline-primary-vk"><span class="icon-vk"></span></button>
+					<button type="button" class="btn btn-outline-info"><span class="icon-telegram"></span></button>
 				</div>
 				</div>
 			</div>

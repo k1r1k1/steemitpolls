@@ -97,6 +97,10 @@ html {
     min-height: 100%;
 }
 
+.btn-primary-vk {
+	color: ;
+}
+
 .card {
     margin-top: 20px;
 }
@@ -156,6 +160,42 @@ footer {
     line-height: 60px;
     background-color: #f5f5f5;
     text-align: center;
+}
+
+.btn-outline-primary-vk {
+	color: #336699;
+	background-color: transparent;
+	background-image: none;
+	border-color: #3366cc
+}
+
+.btn-outline-primary-vk:hover {
+	color: #fff;
+	background-color: #336699;
+	border-color: #3366cc
+}
+
+.btn-outline-primary-vk.focus,
+.btn-outline-primary-vk:focus {
+	box-shadow: 0 0 0 .2rem rgba(51, 102, 153, .5)
+}
+
+.btn-outline-primary-fb {
+	color: #4267b2;
+	background-color: transparent;
+	background-image: none;
+	border-color: #4742b2
+}
+
+.btn-outline-primary-fb:hover {
+	color: #fff;
+	background-color: #4267b2;
+	border-color: #4742b2
+}
+
+.btn-outline-primary-fb.focus,
+.btn-outline-primary-fb:focus {
+	box-shadow: 0 0 0 .2rem rgba(51, 102, 153, .5)
 }
 
 @keyframes lds-cube {
