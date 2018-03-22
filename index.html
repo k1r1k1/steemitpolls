@@ -2,145 +2,151 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="img/logo.png" />
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-    <title>GolosPolls</title>
-    <!— Yandex.Metrika counter —>
-    <script type="text/javascript">
-        (function(d, w, c) {
-            (w[c] = w[c] || []).push(function() {
-                try {
-                    w.yaCounter47878184 = new Ya.Metrika2({
-                        id: 47878184,
-                        clickmap: true,
-                        trackLinks: true,
-                        accurateTrackBounce: true,
-                        webvisor: true,
-                        trackHash: true
-                    });
-                } catch (e) {}
-            });
-            var n = d.getElementsByTagName("script")[0],
-                s = d.createElement("script"),
-                f = function() {
-                    n.parentNode.insertBefore(s, n);
-                };
-            s.type = "text/javascript";
-            s.async = true;
-            s.src = "https://mc.yandex.ru/metrika/tag.js";
-            if (w.opera == "[object Opera]") {
-                d.addEventListener("DOMContentLoaded", f, false);
-            } else {
-                f();
-            }
-        })(document, window, "yandex_metrika_callbacks2");
-    </script> <noscript><div><img src="https://mc.yandex.ru/watch/47878184" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-     <!— /Yandex.Metrika counter —>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="shortcut icon" href="img/logo.png" />
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css">
+	<title>GolosPolls</title>
+	<!— Yandex.Metrika counter —>
+	<script type="text/javascript">
+		(function(d, w, c) {
+			(w[c] = w[c] || []).push(function() {
+				try {
+					w.yaCounter47878184 = new Ya.Metrika2({
+						id: 47878184,
+						clickmap: true,
+						trackLinks: true,
+						accurateTrackBounce: true,
+						webvisor: true,
+						trackHash: true
+					});
+				} catch (e) {}
+			});
+			var n = d.getElementsByTagName("script")[0],
+				s = d.createElement("script"),
+				f = function() {
+					n.parentNode.insertBefore(s, n);
+				};
+			s.type = "text/javascript";
+			s.async = true;
+			s.src = "https://mc.yandex.ru/metrika/tag.js";
+			if (w.opera == "[object Opera]") {
+				d.addEventListener("DOMContentLoaded", f, false);
+			} else {
+				f();
+			}
+		})(document, window, "yandex_metrika_callbacks2");
+	</script> <noscript><div><img src="https://mc.yandex.ru/watch/47878184" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!— /Yandex.Metrika counter —>
 </head>
+
 <body>
-    <div class="lding">
-        <div class="lds-css ng-scope">
-            <div class="lds-cube">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </div>
-    </div>
-    <header class="mainimage">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container">
-                <a class="navbar-brand"><img src="img/logo.png" width="30" height="30" class="d-inline-block align-top" alt=""> GolosPolls</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	<div class="lding">
+		<div class="lds-css ng-scope">
+			<div class="lds-cube">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+		</div>
+	</div>
+	<header class="mainimage">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container">
+				<a class="navbar-brand"><img src="img/logo.png" width="30" height="30" class="d-inline-block align-top" alt=""> GolosPolls</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="btn btn-success my-2 my-sm-0" href="https://golospolls.com/" role="button"><span class="icon-plus"></span> Create new poll</a>
-                        </li>
-                        <li class="nav-item">
-                            <button class="btn btn-primary my-2 my-sm-0" id="my-polls"><span class="icon-cloud-download"></span> Get my polls</button>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <button class="btn btn-info my-2 my-sm-0" id="aboutGolosPollsBtn"><span class="icon-info"></span> About</button>
-                        </li>
-                        <li class="nav-item d-flex align-items-center" id="li-lang">
-                        </li>
-                        <a class="github-corner" target="_blank" href="https://github.com/epexa/golospolls" tabindex="-1">
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="btn btn-success my-2 my-sm-0" href="https://golospolls.com/" role="button"><span class="icon-plus"></span> Create new poll</a>
+						</li>
+						<li class="nav-item">
+							<button class="btn btn-primary my-2 my-sm-0" id="my-polls"><span class="icon-cloud-download"></span> Get my polls</button>
+						</li>
+					</ul>
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<button class="btn btn-info my-2 my-sm-0" id="aboutGolosPollsBtn"><span class="icon-info"></span> About</button>
+						</li>
+						<li class="nav-item d-flex align-items-center" id="li-lang">
+						</li>
+						<a class="github-corner" target="_blank" href="https://github.com/epexa/golospolls" tabindex="-1">
                             <img src="graphics/github-arm.svg" xmlns="http://www.w3.org/2000/svg" class="octo-arm" type="image/svg+xml">
                             </img>
                             <img src="graphics/github-body.svg" xmlns="http://www.w3.org/2000/svg" type="image/svg+xml" >
                             </img>
                         </a>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <article>
-        <main rloadingole="main" class="container">
-            <div id="PollConstructor">
-                <div class="card border-secondary mb-3">
-                    <div class="card-header">Here you can create your own form for polls</div>
-                    <div class="card-body text-secondary">
-                        <div class="form-group">
-                            <label>Enter the title</label>
-                            <input type="text" class="form-control title" placeholder="Type your text here">
-                        </div>
-                        <div id="PollForm">
-                            <label>Fill in the following fields</label>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <button type="button" class="btn btn-info btn-lg btn-block" id="complete">Create poll</button>
-            </div>
-            <div id="complete-form" style="display: none;">
-                <div class="card border-primary mb-3">
-                    <div class="card-header">Make your choice</div>
-                    <div class="card-header-right">
-                        <p></p>
-                    </div>
-                    <div class="card-body text-dark">
-                    </div>
-                </div>
-                <h5>Get link</h5>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="https://golospolls.com/poll/b72hgjb3434bmn" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="cplkint">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button" id="cplkbtn">Copy to clipboard</button>
-                    </div>
-                </div>
-                <h5>Get code</h5>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="<a href='#'>Poll</a>" aria-label="Get a html-code of your poll" aria-describedby="basic-addon2" id="cpcdint">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button" id="cpcdbtn">Copy to clipboard</button>
-                    </div>
-                </div>
-            </div>
-            <br>
-        </main>
-    </article>
-    <footer class="footer">
-        <div class="container">
-            <span class="text-muted">GolosPolls @ 2018</span>
-        </div>
-    </footer>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<article>
+		<main rloadingole="main" class="container">
+			<div id="PollConstructor">
+				<div class="card border-secondary mb-3">
+					<div class="card-header">Here you can create your own form for polls</div>
+					<div class="card-body text-secondary">
+						<div class="form-group">
+							<label>Enter the title</label>
+							<input type="text" class="form-control title" placeholder="Type your text here">
+						</div>
+						<div id="PollForm">
+							<label>Fill in the following fields</label>
+						</div>
+					</div>
+				</div>
+				<br>
+				<button type="button" class="btn btn-info btn-lg btn-block" id="complete">Create poll</button>
+			</div>
+			<div id="complete-form" style="display: none;">
+				<div class="card border-primary mb-3">
+					<div class="card-header">Make your choice</div>
+					<div class="card-header-right">
+						<p></p>
+					</div>
+					<div class="card-body text-dark">
+					</div>
+				</div>
+				<div class="card border-secondary mb-3">
+					<div class="card-header">Sharing form</div>
+					<div class="card-body text-dark">
+					<h5>Get link</h5>
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="https://golospolls.com/poll/b72hgjb3434bmn" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="cplkint">
+						<div class="input-group-append">
+							<button class="btn btn-outline-secondary" type="button" id="cplkbtn"><span class="icon-link"></span> Copy to clipboard</button>
+						</div>
+					</div>
+					<h5>Get code</h5>
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="<a href='#'>Poll</a>" aria-label="Get a html-code of your poll" aria-describedby="basic-addon2" id="cpcdint">
+						<div class="input-group-append">
+							<button class="btn btn-outline-secondary" type="button" id="cpcdbtn"><span class="icon-embed2"></span> Copy to clipboard</button>
+						</div>
+					</div>
+				</div>
+				</div>
+			</div>
+			<br>
+		</main>
+	</article>
+	<footer class="footer">
+		<div class="container">
+			<span class="text-muted">GolosPolls @ 2018</span>
+		</div>
+	</footer>
 </body>
 <!-- Optional JavaScript -->
 <script>
-    // CommonJS Workaround
-    var module = {};
+	// CommonJS Workaround
+	var module = {};
 </script>
 <script src="https://unpkg.com/i18next@10.5.0/i18next.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-xhr-backend/1.5.1/i18nextXHRBackend.min.js" crossorigin="anonymous"></script>

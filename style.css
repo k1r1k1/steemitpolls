@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?i9aocy');
-  src:  url('fonts/icomoon.eot?i9aocy#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?i9aocy') format('truetype'),
-    url('fonts/icomoon.woff?i9aocy') format('woff'),
-    url('fonts/icomoon.svg?i9aocy#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?kszjk3');
+  src:  url('fonts/icomoon.eot?kszjk3#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?kszjk3') format('truetype'),
+    url('fonts/icomoon.woff?kszjk3') format('woff'),
+    url('fonts/icomoon.svg?kszjk3#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -45,8 +45,11 @@
 .icon-cloud-check:before {
   content: "\e9c4";
 }
-.icon-earth:before {
+.icon-sphere:before {
   content: "\e9c9";
+}
+.icon-link:before {
+  content: "\e9cb";
 }
 .icon-question:before {
   content: "\ea09";
@@ -68,6 +71,9 @@
 }
 .icon-arrow-down:before {
   content: "\ea36";
+}
+.icon-embed2:before {
+  content: "\ea80";
 }
 .icon-facebook2:before {
   content: "\ea91";
