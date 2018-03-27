@@ -153,7 +153,7 @@ function getPoll(callback) {
 	document.getElementById('complete-form').style.display = 'block';
 	document.getElementById('PollConstructor').style.display = 'none';
 	//document.getElementById('complete-form').scrollIntoView();
-	document.querySelector('#cplkint').value = 'https://golospolls.com#' + resultContent.author + '/' + resultContent.permlink;
+	document.querySelector('#cplkint').value = 'https://golospolls.com/#' + resultContent.author + '/' + resultContent.permlink;
 	if (callback) callback();
 }
 
@@ -169,7 +169,19 @@ function progress_click() { // dummy for polling
 		})
 		sendVote(this.id);
 	} else {
-		auth();
+		auth(() => {
+			swal({ // visual 
+				type: 'success',
+				title: 'Thanks for making your choice!',
+				toast: true,
+				showConfirmButton: false,
+				timer: 2500
+			})
+			sendVote(this.id);
+		});
+		if (err) {
+			swal(err)
+		}
 	}
 }
 
@@ -181,7 +193,7 @@ function send_request(str, title, jsonMetadata) {
 	golos.broadcast.comment(wif, parentAuthor, parentPermlink, username, str, title, body, jsonMetadata, function (err, result) {
 		//console.log(err, result);
 		if (!err) {
-			console.log('comment', result);
+			//console.log('post: ', result);
 			window.location.hash = username + '/' + str;
 			document.querySelector('.lding').style.display = 'none';
 		} else console.error(err);
@@ -253,6 +265,7 @@ function sendVote(pollId) {
 
 function getVote(collback) { // getting poll data
 	console.log('<f> getVote');
+	document.querySelector('#share-form').style.display = 'block';
 	var cnt = 0;
 	pollData = {};
 	golos.api.getContentReplies(resultContent.author, resultContent.permlink, function (err, result) {
@@ -423,7 +436,7 @@ document.getElementById('complete').addEventListener('click', function () {
 	console.log('<f> complete button');
 	if (document.querySelector('.form-control.title').value == '') {
 		swal({
-			title: 'ERROR',
+			title: 'Error',
 			text: 'Please, enter the title & the polling fields',
 			type: 'error'
 		})
@@ -469,6 +482,7 @@ document.getElementById('complete').addEventListener('click', function () {
 document.getElementById('my-polls').addEventListener('click', function () {
 	if (wif) { // if already authorized
 		getMyPolls();
+		document.querySelector('#share-form').style.display = 'none';
 	} else {
 		auth(() => {
 			getMyPolls();
