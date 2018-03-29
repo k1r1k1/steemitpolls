@@ -497,28 +497,15 @@ document.getElementById('my-polls').addEventListener('click', function () {
 document.getElementById('aboutGolosPollsBtn').addEventListener('click', () => {
 	console.log('<f> about click');
 	swal({
-		title: 'About this project!',
-		html: `<div>
-            <p class="float-left text-left">
-            GolosPolls - this microservice for conducting polls on the blockchain <a target="_blank" href="https://golos.io">Golos</a>. This platform is a thin client, that works without a backend (only frontend and blockchain) directly on the <a target="_blank" href="https://pages.github.com/">GitHub Pages</a> (through <a target="_blank" href="https://www.cloudflare.com/">CloudFlare</a>).</p>
-            <ul class="float-left text-left">
-            We use:
-            <li><a target="_blank" href="https://github.com/GolosChain/golos-js">Golos.js</a> - the JavaScript API for Golos blockchain;</li>
-            <li><a target="_blank" href="https://github.com/twbs/bootstrap">Bootstrap</a> - the most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web;</li>
-            <li><a target="_blank" href="https://github.com/lipis/flag-icon-css">Flag-icon-css</a> - a collection of all country flags in SVG;</li>
-            <li><a target="_blank" href="https://github.com/greybax/cyrillic-to-translit-js">Cyrillic-to-translit-js</a> - simple javascript function for converting Cyrillic symbols to Translit;</li>
-            <li><a target="_blank" href="https://www.i18next.com">I18next</a> - is an internationalization-framework written in and for JavaScript;</li>
-            <li><a target="_blank" href="https://github.com/zloirock/core-js">Core-js</a> - modular standard library for JavaScript. Includes polyfills for ECMAScript 5, ECMAScript 6: promises, symbols, collections, iterators, typed arrays, ECMAScript 7+ proposals, setImmediate, etc. Some additional features such as dictionaries or extended partial application. You can require only needed features or use it without global namespace pollution.</li>
-            <li><a target="_blank" href="https://github.com/limonte/sweetalert2">SweetAlert2</a> - a beautiful, responsive, customizable, accessible replacement for JavaScript's popup boxes.</li>
-            </ul>
-            </div>`,
-		type: 'info',
-		buttonsStyling: false,
-		confirmButtonClass: 'btn btn-success btn-lg',
-		confirmButtonText: '<span class="icon-checkmark"></span> Cool!',
-		position: 'top',
-		showCloseButton: true
-	});
+        title: document.getElementById('about-html-title').innerHTML,
+        html: document.getElementById('about-html').innerHTML,
+        type: 'info',
+        buttonsStyling: false,
+        confirmButtonClass: 'btn btn-success btn-lg',
+        confirmButtonText: document.getElementById('button-cool').innerHTML,
+        position: 'top',
+        showCloseButton: true
+    });
 }, false);
 
 document.onreadystatechange = function () { // loading animation switch-off
