@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?kszjk3');
-  src:  url('fonts/icomoon.eot?kszjk3#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?kszjk3') format('truetype'),
-    url('fonts/icomoon.woff?kszjk3') format('woff'),
-    url('fonts/icomoon.svg?kszjk3#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?aq6uv6');
+  src:  url('fonts/icomoon.eot?aq6uv6#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?aq6uv6') format('truetype'),
+    url('fonts/icomoon.woff?aq6uv6') format('woff'),
+    url('fonts/icomoon.svg?aq6uv6#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,17 +24,32 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-images:before {
-  content: "\e90e";
+.icon-home3:before {
+  content: "\e902";
+}
+.icon-image:before {
+  content: "\e90d";
 }
 .icon-folder:before {
   content: "\e92f";
 }
-.icon-folder-upload:before {
-  content: "\e934";
+.icon-bell:before {
+  content: "\e951";
 }
-.icon-bubbles:before {
-  content: "\e96c";
+.icon-bug:before {
+  content: "\e999";
+}
+.icon-stats-bars2:before {
+  content: "\e99d";
+}
+.icon-hammer2:before {
+  content: "\e9a8";
+}
+.icon-bin:before {
+  content: "\e9ac";
+}
+.icon-cloud:before {
+  content: "\e9c1";
 }
 .icon-cloud-download:before {
   content: "\e9c2";
@@ -45,11 +60,20 @@
 .icon-cloud-check:before {
   content: "\e9c4";
 }
-.icon-sphere:before {
-  content: "\e9c9";
+.icon-earth:before {
+  content: "\e9ca";
 }
 .icon-link:before {
   content: "\e9cb";
+}
+.icon-flag:before {
+  content: "\e9cc";
+}
+.icon-warning:before {
+  content: "\ea07";
+}
+.icon-notification:before {
+  content: "\ea08";
 }
 .icon-question:before {
   content: "\ea09";
@@ -69,8 +93,11 @@
 .icon-checkmark:before {
   content: "\ea10";
 }
-.icon-arrow-down:before {
-  content: "\ea36";
+.icon-enter:before {
+  content: "\ea13";
+}
+.icon-exit:before {
+  content: "\ea14";
 }
 .icon-embed2:before {
   content: "\ea80";
@@ -81,11 +108,17 @@
 .icon-telegram:before {
   content: "\ea95";
 }
+.icon-twitter:before {
+  content: "\ea96";
+}
 .icon-vk:before {
   content: "\ea98";
 }
 .icon-github:before {
   content: "\eab0";
+}
+.icon-skype:before {
+  content: "\eac5";
 }
 
 body {
