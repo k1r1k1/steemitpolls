@@ -5,7 +5,7 @@
 //-----------------------------/
 initLang('en'); // lang init = en
 // switching to testnet
-golos.config.set('websocket', 'wss://ws.testnet3.golos.io');
+golos.config.set('websocket', 'wss://ws.testnet.golos.io');
 golos.config.set('address_prefix', 'GLS');
 golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
 var cyrillicToTranslit = module.exports; // cyrillicToTranslit initializing 
@@ -339,8 +339,13 @@ function getMyPolls() {
 		limit: 100
 	};
 	golos.api.getDiscussionsByBlog(query, function (err, result) {
-		console.log('<f>getDiscussionsByBlog');
+		console.log('<f>getDiscussionsByBlog ', result);
+		if (result == '') {
+			document.querySelector('#complete-form .card-header').innerHTML = 'You do not have any polls yet';
+			document.querySelector('.lding').style.display = 'none';
+		}
 		if (!err) {
+			document.querySelector('#complete-form .card-header').innerHTML = 'Make your choice';
 			result.forEach(function (item) {
 				var parent = item.author;
 				var parentPermlink = item.permlink;
@@ -497,15 +502,15 @@ document.getElementById('my-polls').addEventListener('click', function () {
 document.getElementById('aboutGolosPollsBtn').addEventListener('click', () => {
 	console.log('<f> about click');
 	swal({
-        title: document.getElementById('about-html-title').innerHTML,
-        html: document.getElementById('about-html').innerHTML,
-        type: 'info',
-        buttonsStyling: false,
-        confirmButtonClass: 'btn btn-success btn-lg',
-        confirmButtonText: document.getElementById('button-cool').innerHTML,
-        position: 'top',
-        showCloseButton: true
-    });
+		title: document.getElementById('about-html-title').innerHTML,
+		html: document.getElementById('about-html').innerHTML,
+		type: 'info',
+		buttonsStyling: false,
+		confirmButtonClass: 'btn btn-success btn-lg',
+		confirmButtonText: document.getElementById('button-cool').innerHTML,
+		position: 'top',
+		showCloseButton: true
+	});
 }, false);
 
 document.onreadystatechange = function () { // loading animation switch-off
