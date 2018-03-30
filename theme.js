@@ -1,5 +1,5 @@
 function changeTheme() {
-	var themes = ['sandstone', 'united'];
+	var themes = [ 'yeti','sandstone', 'united', 'cosmo'];
 	var exceptionsThemes = ['cerulean', 'cyborg', 'darkly', 'materia', 'sketchy', 'slate', 'solar', 'spacelab', 'superhero', 'yeti', 'lumen', 'simplex', 'flatly'];
 	var menus = ['bg-light', 'bg-primary', 'bg-secondary', 'bg-success', 'bg-danger', 'bg-warning', 'bg-info', 'bg-dark'];
 	var menus2 = ['navbar-light', 'navbar-dark'];
