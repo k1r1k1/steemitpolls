@@ -101,7 +101,7 @@ function completeForm() {
 	console.log('title : ' + title);
 	var jsonMetadata = {
 		app: 'golospolls/0.1',
-		canonical: 'https://golospolls.com#' + username + '/' + str,
+		canonical: 'https://golospolls.com/#' + username + '/' + str,
 		app_account: 'golosapps',
 		data: {
 			poll_title: title,
