@@ -56,7 +56,7 @@ function addPollingInputs() { // adding a response option
 	document.getElementById('pOptionButt' + inputsC).removeAttribute('disabled');
 	document.getElementById('pOption' + inputsC).style.opacity = '1';
 	document.getElementById('inputOption' + inputsC).setAttribute('placeholder', 'Type your text here');
-	document.querySelector('#inputOption' + inputsC).removeEventListener('mousedown', addPollingInputs, false);
+	document.querySelector('#inputOption' + inputsC).removeEventListener('focus', addPollingInputs, false);
 	addInactiveInput();
 }
 addPollingInputs(); // add 2nd active field in a polling form
@@ -73,7 +73,7 @@ function addInactiveInput() {
                         <button class="btn btn-danger" type="button" id="pOptionButt` + inputsC + `" disabled><span class="icon-cross"></span></button>
                     </div>
                 </div>`;
-	$div.querySelector('#inputOption' + inputsC).addEventListener('mousedown', addPollingInputs, false);
+	$div.querySelector('#inputOption' + inputsC).addEventListener('focus', addPollingInputs, false);
 	$div.querySelector('button').addEventListener('click', function (e) {
 		if (e.target.tagName == 'BUTTON') {
 			e.target.parentNode.parentNode.remove();
