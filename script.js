@@ -152,7 +152,7 @@ function getPoll(callback) {
 	});
 	document.getElementById('complete-form').style.display = 'block';
 	document.getElementById('PollConstructor').style.display = 'none';
-	//document.getElementById('complete-form').scrollIntoView();
+	document.getElementById('complete-form').scrollIntoView();
 	document.querySelector('#cplkint').value = 'https://golospolls.com/#' + resultContent.author + '/' + resultContent.permlink;
 	if (callback) callback();
 }
