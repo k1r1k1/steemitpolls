@@ -345,8 +345,8 @@ function getMyPolls() {
 			document.querySelector('.lding').style.display = 'none';
 		}
 		if (!err) {
-			document.querySelector('#complete-form .card-header').innerHTML = 'Make your choice';
 			result.forEach(function (item) {
+				document.querySelector('#complete-form .card-header').innerHTML = 'Make your choice';
 				var parent = item.author;
 				var parentPermlink = item.permlink;
 				golos.api.getContentReplies(parent, parentPermlink, function (err, result) {
