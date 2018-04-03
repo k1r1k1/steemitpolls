@@ -268,17 +268,21 @@ function getVote(collback) { // getting poll data
 	document.querySelector('#share-form').style.display = 'block';
 	var cnt = 0;
 	pollData = {};
+	voters = [];
 	golos.api.getContentReplies(resultContent.author, resultContent.permlink, function (err, result) {
 		if (!err) {
 			result.forEach(function (item) {
 				item.json_metadata = JSON.parse(item.json_metadata);
 				if (typeof item.json_metadata.data != 'undefined' && typeof item.json_metadata.data.poll_id != 'undefined') {
-					cnt++;
-					if (!pollData[item.json_metadata.data.poll_id]) pollData[item.json_metadata.data.poll_id] = {
-						count: 0,
-						percnt: 0
-					};
-					pollData[item.json_metadata.data.poll_id].count++;
+					if (!~voters.indexOf('"' + item.author + '",')) { // check for cheating votes
+						voters = voters + '"' + item.author + '",';
+						cnt++;
+						if (!pollData[item.json_metadata.data.poll_id]) pollData[item.json_metadata.data.poll_id] = {
+							count: 0,
+							percnt: 0
+						};
+						pollData[item.json_metadata.data.poll_id].count++;
+					}
 					if (username == item.author) { // check if already voted
 						checkToVote = true;
 					} else {
@@ -286,6 +290,7 @@ function getVote(collback) { // getting poll data
 					}
 				}
 			});
+			console.log(voters);
 			for (index = 0; index < resultContent.json_metadata.data.poll_answers.length; ++index) {
 				if (typeof pollData[index] != 'undefined') {
 					pollData[index].percnt = Math.round((pollData[index].count * 100) / cnt);
@@ -293,12 +298,13 @@ function getVote(collback) { // getting poll data
 						document.querySelectorAll('.progress-bar')[index].style = 'width: ' + pollData[index].percnt + '%;';
 						document.querySelectorAll('.progress-bar')[index].innerHTML = pollData[index].percnt + '% (' + pollData[index].count + ')';
 					}
-				} else {
+				}
+				/*else {
 					pollData[index] = {
 						count: 0,
 						percnt: 0
 					};
-				}
+				}*/
 			}
 		} else console.error(err);
 		document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">voters: ' + cnt + '</span><span class="badge badge-info">created: ' + moment(resultContent.created).format('lll') + '</span>';
