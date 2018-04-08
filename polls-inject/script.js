@@ -67,10 +67,10 @@ function progress_click() { // dummy for polling
 		});
 		if (err) {
 			swal({
-			title: 'error',
-			text: 'authorization failed',
-			type: 'error'
-		})
+				title: 'error',
+				text: 'authorization failed',
+				type: 'error'
+			})
 		}
 	}
 }
@@ -79,7 +79,7 @@ function getHash() {
 	console.log('<f> getHash ', hash);
 	if (hash == '') clearUpdTimer();
 	startUpdProgTimer();
-	var startTarget = '/#'; //
+	var startTarget = '#'; //
 	var startPos = -1;
 	while ((startPos = hash.indexOf(startTarget, startPos + 1)) != -1) {
 		var Pos = startPos,
@@ -89,7 +89,7 @@ function getHash() {
 	while ((Pos = hash.indexOf(startTarget, Pos + 1)) != -1) {
 		var slashPos = Pos;
 	}
-	var username = hash.substring(targetStart + 2, slashPos); // '+ 2' removes the target symbols
+	var username = hash.substring(targetStart + 1, slashPos); // '+ 2' removes the target symbols
 	var permlink = hash.substring(slashPos + 1); // '+ 1' removes '/' 
 	golos.api.getContent(username, permlink, function (err, result) { // The console displays the data required for the post 
 		console.log(err, result);
@@ -102,6 +102,8 @@ function getHash() {
 			clearUpdTimer();
 		}
 	});
+	console.log(username);
+	console.log(permlink);
 }
 
 function sendVote(pollId) {
@@ -173,7 +175,7 @@ function getVote(collback) { // getting poll data
 				}
 			}
 		} else console.error(err);
-		document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">voters: ' + cnt + '</span><span class="badge badge-info">created: ' + moment(resultContent.created).format('lll') + '</span>';
+		document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">' + moment(resultContent.created).format('lll') + '</span>';
 		if (collback) {
 			collback(pollData);
 			console.log('<f>getVote callback');
