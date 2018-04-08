@@ -194,5 +194,4 @@ function clearUpdTimer() {
 		console.log('<f> clearUpdTimeout');
 	}
 }
-
 getHash();
