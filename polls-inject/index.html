@@ -1,18 +1,25 @@
 <title>Demo GolosPolls-Inject</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+<!-- Put this script tag to the <head> of your page -->
+<script src="inject.js"></script>
+
 <style>
-   body{
-    background-color: #ccccff;
+	body {
+		background: #ccc;
+	}
 </style>
+
 <body>
-<h2>Usage example GolosPolls-Injection</h2>
-<p>Here i put &lt;iframe&gt <strong>GolosPolls-Inject</strong></p>
-<div class="inject">
-	<!-- GolosPolls -->
-	<iframe id="gps-widget" src="outdex.html#test5/na-skolko-budem-zharit-etim-letom-1523091948572" frameborder="0" scrolling="no" width="350" height="100%">iframes are not supported for this web browser
-	</iframe>
-	<!-- / GolosPolls -->
-</div>
-<p>That`s all folks!</p>
+	<h2>Usage example GolosPolls-Injection</h2>
+	<p>Here i put &lt;div class="inject"&gt&lt;/div&gt</p>
+
+	<!-- Put this div and script tags to the place, where the Poll block will be -->
+	<div class="gPolls"></div>
+	<script type="text/javascript">
+		gPollsWidth = '300';
+		gPollsLink = ''
+	</script>
+
+	<p>That`s all folks!</p>
 </body>
