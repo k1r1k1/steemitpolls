@@ -31,6 +31,5 @@ golosPollsApi.src = 'script.js';
 (document.head || document.documentElement).appendChild(golosPollsApi);
 
 window.onload = function() {
-	console.log('DOMContentLoaded');
 	init();
 };

@@ -1,10 +1,10 @@
-function init() {
+function init() { // init script after page loaded
 gPollsContainer = document.createElement('div');
 gPollsContainer.class = 'card border-primary mb-3';
 gPollsContainer.innerHTML = `<div class="card-header"><img src="logo.png" width="25" height="25" class="d-inline-block align-top" alt=""><a class="gPolls" href="https://golospolls.com/" target="_blank">GolosPolls.com</a></div><div class="card-header-right"><p></p></div><div class="card-body text-dark"></div></div>`;
 document.querySelector('.gPolls').style.width = gPollsWidth;
 document.querySelector('.gPolls').appendChild(gPollsContainer);
-// init script after page loaded
+// div inject
 golos.config.set('websocket', 'wss://ws.testnet.golos.io');
 golos.config.set('address_prefix', 'GLS');
 golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
