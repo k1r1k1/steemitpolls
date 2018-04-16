@@ -1,4 +1,9 @@
-document.addEventListener('DOMContentLoaded', function() {
+function init() {
+gPollsContainer = document.createElement('div');
+gPollsContainer.class = 'card border-primary mb-3';
+gPollsContainer.innerHTML = `<div class="card-header"><img src="logo.png" width="25" height="25" class="d-inline-block align-top" alt=""><a class="gPolls" href="https://golospolls.com/" target="_blank">GolosPolls.com</a></div><div class="card-header-right"><p></p></div><div class="card-body text-dark"></div></div>`;
+document.querySelector('.gPolls').style.width = gPollsWidth;
+document.querySelector('.gPolls').appendChild(gPollsContainer);
 // init script after page loaded
 golos.config.set('websocket', 'wss://ws.testnet.golos.io');
 golos.config.set('address_prefix', 'GLS');
@@ -8,7 +13,7 @@ var inputsC = 0, // inputs counter
 	pollData = {}, // polling answers
 	votes = {},
 	checkToVote = false,
-	hash = this.location.hash,
+	hash = gPollsLink,
 	updProgressTimer;
 
 function getPoll(callback) {
@@ -197,4 +202,4 @@ function clearUpdTimer() {
 	}
 }
 getHash();
-});
+};
