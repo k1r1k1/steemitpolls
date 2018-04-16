@@ -29,7 +29,3 @@ gAuth.src = 'https://golosimages.com/auth.js';
 golosPollsApi = document.createElement('script');
 golosPollsApi.src = 'script.js';
 (document.head || document.documentElement).appendChild(golosPollsApi);
-
-window.onload = function() {
-	init();
-};
