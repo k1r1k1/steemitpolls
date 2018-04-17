@@ -94,8 +94,7 @@ function completeForm() {
 	for (var cnt = 0; $pollInputs.length - 1 > cnt; cnt++) {
 		answers[cnt] = $pollInputs[cnt].value;
 	}
-	str = module.exports().transform(document.querySelector('.form-control.title').value, '-');
-	str.replace(/[^\w\d]/g, '_');
+	str = urlLit(document.querySelector('.form-control.title').value, 0);
 	str = str + '-' + Date.now();
 	var title = document.querySelector('.form-control.title').value;
 	console.log('permlink : ' + str);
@@ -288,10 +287,10 @@ function sendVote(pollId) {
 			} else {
 				console.error(err);
 				swal({
-				type: 'error',
-				title: 'error',
-				text: err
-			});
+					type: 'error',
+					title: 'error',
+					text: err
+				});
 			}
 		});
 	}
@@ -460,6 +459,20 @@ function getMyPolls() {
 	document.querySelector('.card-body.text-dark').innerHTML = '';
 	document.querySelector('.card-body.text-dark').appendChild($div);
 }
+
+function urlLit(w, v) {
+	var tr = 'a b v g d e ["zh","j"] z i y k l m n o p r s t u f h c ch sh ["shh","shch"] ~ y ~ e yu ya ~ ["jo","e"]'.split(' ');
+	var ww = '';
+	w = w.toLowerCase();
+	for (i = 0; i < w.length; ++i) {
+		cc = w.charCodeAt(i);
+		ch = (cc >= 1072 ? tr[cc - 1072] : w[i]);
+		if (ch.length < 3) ww += ch;
+		else ww += eval(ch)[v];
+	}
+	return (ww.replace(/[^a-zA-Z0-9\-]/g, '-').replace(/[-]{2,}/gim, '-').replace(/^\-+/g, '').replace(/\-+$/g, ''));
+}
+
 
 // buttons events 
 
