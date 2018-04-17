@@ -15,6 +15,8 @@ var inputsC = 0, // inputs counter
 	votes = {},
 	checkToVote = false,
 	updProgressTimer,
+	tagNewPost,
+	counter, // for poll after creating a new post 
 	hash = location.hash.substring(1); // geting hash
 if (hash != '') getHash();
 window.onhashchange = function () {
@@ -87,8 +89,8 @@ function addInactiveInput() {
 function completeForm() {
 	console.log('<f> completeForm');
 	// collecting data & sending 
-	var $pollInputs = document.getElementById('PollForm').getElementsByClassName('form-control');
-	var answers = [];
+	var $pollInputs = document.getElementById('PollForm').getElementsByClassName('form-control'),
+		answers = [];
 	for (var cnt = 0; $pollInputs.length - 1 > cnt; cnt++) {
 		answers[cnt] = $pollInputs[cnt].value;
 	}
@@ -109,14 +111,24 @@ function completeForm() {
 		}
 	};
 	send_request(str, title, jsonMetadata);
-	swal({ // visual 
+	// chech if error!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	swal({ // visual
 		type: 'success',
 		title: 'Your polling form has been compiled',
 		text: 'Don`t forget to share it!',
 		showConfirmButton: false,
 		timer: 2500
 	})
-	console.log('<f>completeForm');
+	tagNewPost = true;
+	counter = 20;
+	newPostTimout = setInterval(function () {
+		counter--;
+		console.log('counter =', counter);
+		if (counter == 0) {
+			clearTimeout(newPostTimout);
+			tagNewPost = false;
+		}
+	}, 1000);
 }
 
 function getPoll(callback) {
@@ -233,9 +245,18 @@ function getHash() {
 
 function sendVote(pollId) {
 	console.log('<f> sendVote');
+	if (tagNewPost) {
+		swal({
+			title: 'error',
+			text: 'Sorry, you have to wait for ' + counter + ' seconds before first vote',
+			type: 'error',
+			showConfirmButton: false,
+			timer: 2500
+		})
+	}
 	if (checkToVote) {
 		swal({
-			title: 'ERROR',
+			title: 'error',
 			text: 'Sorry, seems like you are already voted',
 			type: 'error'
 		})
@@ -259,7 +280,6 @@ function sendVote(pollId) {
 				console.log('comment', result);
 			} else console.error(err);
 		});
-		console.log('<f>sendVote');
 	}
 }
 
@@ -411,34 +431,6 @@ function getMyPolls() {
                         </table>`
 	document.querySelector('.card-body.text-dark').innerHTML = '';
 	document.querySelector('.card-body.text-dark').appendChild($div);
-}
-
-function getUrls() {
-	if (wif == '') {
-		auth(() => {
-			swal({
-				type: 'success',
-				title: 'Success',
-				html: `Authorization was successful!`,
-				preConfirm: async () => {
-					golos.api.getContent(username, constPermlik, function (err, result) {
-						result.id == 0 ? swal({
-							html: document.getElementById('no-records-IPFS').innerHTML
-						}) : getPostJson(username, constPermlik, result);
-						if (err) swal(err);
-					});
-				}
-			});
-			logOutProcc();
-		});
-	} else {
-		golos.api.getContent(username, constPermlik, function (err, result) {
-			result.id == 0 ? swal({
-				html: document.getElementById('no-records-IPFS').innerHTML
-			}) : getPostJson(username, constPermlik, result);
-			if (err) swal(err);
-		});
-	}
 }
 
 // buttons events 
