@@ -208,7 +208,14 @@ function send_request(str, title, jsonMetadata) {
 			//console.log('post: ', result);
 			window.location.hash = username + '/' + str;
 			document.querySelector('.lding').style.display = 'none';
-		} else console.error(err);
+		} else {
+			console.error(err);
+			swal({
+				type: 'error',
+				title: 'error',
+				text: err
+			});
+		}
 	}); // add post
 }
 
@@ -278,7 +285,14 @@ function sendVote(pollId) {
 		golos.broadcast.comment(wif, parentAuthor, parentPermlink, username, permlink, title, body, jsonMetadata, function (err, result) {
 			if (!err) {
 				console.log('comment', result);
-			} else console.error(err);
+			} else {
+				console.error(err);
+				swal({
+				type: 'error',
+				title: 'error',
+				text: err
+			});
+			}
 		});
 	}
 }
@@ -326,7 +340,14 @@ function getVote(collback) { // getting poll data
 					};
 				}*/
 			}
-		} else console.error(err);
+		} else {
+			console.error(err);
+			swal({
+				type: 'error',
+				title: 'error',
+				text: err
+			});
+		}
 		document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">voters: ' + cnt + '</span><span class="badge badge-info">created: ' + moment(resultContent.created).format('lll') + '</span>';
 		if (collback) {
 			collback(pollData);
@@ -413,7 +434,14 @@ function getMyPolls() {
 					}
 				});
 			});
-		} else console.error(err);
+		} else {
+			console.error(err);
+			swal({
+				type: 'error',
+				title: 'error',
+				text: err
+			});
+		}
 	});
 	var $div = document.createElement('table');
 	$div.className = 'table table-striped';
