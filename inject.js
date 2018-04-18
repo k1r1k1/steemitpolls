@@ -2,7 +2,8 @@ var golosJs, momentJs, sweetAlert, gAuth, gPollsApi, bootstrapMin, gPollsStyle, 
 
 bootstrapMin = document.createElement('link');
 bootstrapMin.rel = 'stylesheet';
-bootstrapMin.href = 'https://golospolls.com/inject.css';
+bootstrapMin.type = 'text/css';
+bootstrapMin.href = 'inject.css';
 (document.head || document.documentElement).appendChild(bootstrapMin);
 
 golosJs = document.createElement('script');
