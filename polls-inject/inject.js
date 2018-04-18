@@ -7,7 +7,7 @@ bootstrapMin.href = 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstr
 
 gPollsStyle = document.createElement('link');
 gPollsStyle.rel = 'stylesheet';
-gPollsStyle.href = 'gPolls.css';
+gPollsStyle.href = 'https://golospolls.com/polls-inject/gPolls.css';
 (document.head || document.documentElement).appendChild(gPollsStyle);
 
 golosJs = document.createElement('script');
