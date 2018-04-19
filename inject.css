@@ -11,7 +11,7 @@
 	padding: .1rem;
 }
 
-a .gPolls {
+.gPolls a {
 	text-decoration: none;
 	margin-bottom: .1rem;
 }
@@ -57,44 +57,8 @@ a .gPolls {
 
 /* bootstrap native */
 
-:root {
-	--blue: #007bff;
-	--indigo: #6610f2;
-	--purple: #6f42c1;
-	--pink: #e83e8c;
-	--red: #dc3545;
-	--orange: #fd7e14;
-	--yellow: #ffc107;
-	--green: #28a745;
-	--teal: #20c997;
-	--cyan: #17a2b8;
-	--white: #fff;
-	--gray: #6c757d;
-	--gray-dark: #343a40;
-	--primary: #007bff;
-	--secondary: #6c757d;
-	--success: #28a745;
-	--info: #17a2b8;
-	--warning: #ffc107;
-	--danger: #dc3545;
-	--light: #f8f9fa;
-	--dark: #343a40;
-	--breakpoint-xs: 0;
-	--breakpoint-sm: 576px;
-	--breakpoint-md: 768px;
-	--breakpoint-lg: 992px;
-	--breakpoint-xl: 1200px;
-	--font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-	--font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace
-}
 
-*,
-::after,
-::before {
-	box-sizing: border-box
-}
-
-html {
+.gPolls html {
 	font-family: sans-serif;
 	line-height: 1.15;
 	-webkit-text-size-adjust: 100%;
@@ -107,21 +71,21 @@ html {
 	width: device-width
 }
 
-article,
+.gPolls article,
 aside,
-dialog,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-main,
-nav,
-section {
+.gPolls dialog,
+.gPolls figcaption,
+.gPolls figure,
+.gPolls footer,
+.gPolls header,
+.gPolls hgroup,
+.gPolls main,
+.gPolls nav,
+.gPolls section {
 	display: block
 }
 
-body {
+.gPolls body {
 	margin: 0;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 	font-size: 1rem;
@@ -136,55 +100,55 @@ body {
 	outline: 0!important
 }
 
-hr {
+.gPolls hr {
 	box-sizing: content-box;
 	height: 0;
 	overflow: visible
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+.gPolls h1,
+.gPolls h2,
+.gPolls h3,
+.gPolls h4,
+.gPolls h5,
+.gPolls h6 {
 	margin-top: 0;
 	margin-bottom: .5rem
 }
 
-p {
+.gPolls p {
 	margin-top: 0;
 	margin-bottom: 1rem
 }
 
-a {
+.gPolls a {
 	color: #007bff;
 	text-decoration: none;
 	background-color: transparent;
 	-webkit-text-decoration-skip: objects
 }
 
-a:hover {
+.gPolls a:hover {
 	color: #0056b3;
 	text-decoration: underline
 }
 
-a:not([href]):not([tabindex]) {
+.gPolls a:not([href]):not([tabindex]) {
 	color: inherit;
 	text-decoration: none
 }
 
-a:not([href]):not([tabindex]):focus,
-a:not([href]):not([tabindex]):hover {
+.gPolls a:not([href]):not([tabindex]):focus,
+.gPolls a:not([href]):not([tabindex]):hover {
 	color: inherit;
 	text-decoration: none
 }
 
-a:not([href]):not([tabindex]):focus {
+.gPolls a:not([href]):not([tabindex]):focus {
 	outline: 0
 }
 
-progress {
+.gPolls progress {
 	vertical-align: baseline
 }
 
@@ -704,8 +668,4 @@ h6 {
 label {
 	display: inline-block;
 	margin-bottom: .5rem
-}
-
-a > code {
-	color: inherit
 }
