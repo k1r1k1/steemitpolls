@@ -3,13 +3,11 @@
 // 		https://golospolls.com/		//
 /* ------------------------------- */
 
-initLang('en'); // lang init = en
 // switching to testnet
 golos.config.set('websocket', 'wss://ws.testnet.golos.io');
 golos.config.set('address_prefix', 'GLS');
 golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
-var inputsC = 0, // inputs counter
-	resultContent = '', // global variable for content
+var resultContent = '', // global variable for content
 	pollData = {}, // polling answers
 	votes = {},
 	checkToVote = false,
@@ -92,10 +90,13 @@ function progress_click() { // dummy for polling
 
 function getHash() {
 	console.log('<f> getHash');
+	if (gPollsLink)
+		hash = gPollsLink;
 	if (location.hash == '') clearUpdTimer();
-	startUpdProgTimer()
+	startUpdProgTimer();
 	var startTarget = '/@'; // search '/@' - FIX THIS BUG! WHY IT`S WORKING?
 	var startPos = -1;
+	if (document.querySelector('.lding'))
 	document.querySelector('.lding').style.display = 'block';
 	while ((startPos = hash.indexOf(startTarget, startPos + 1)) != -1) {
 		var Pos = startPos,
@@ -107,6 +108,7 @@ function getHash() {
 	}
 	var username = hash.substring(targetStart + 2, slashPos); // '+ 2' removes the target symbols
 	var permlink = hash.substring(slashPos + 1); // '+ 1' removes '/' 
+	console.log('post data: username=', username, ' permlink= ', permlink);
 	golos.api.getContent(username, permlink, function (err, result) { // The console displays the data required for the post 
 		console.log(err, result);
 		resultContent = result;
@@ -117,6 +119,7 @@ function getHash() {
 			console.error('Failed to find post', err);
 			clearUpdTimer();
 		}
+		if (document.querySelector('.lding'))
 		document.querySelector('.lding').style.display = 'none';
 	});
 }

@@ -3,6 +3,8 @@
 // 		https://golospolls.com/		//
 /* ------------------------------- */
 
+var inputsC = 0; // inputs counter
+initLang('en'); // lang init = en
 addInactiveInput();
 addPollingInputs();
 
