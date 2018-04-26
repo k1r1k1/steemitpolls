@@ -7,7 +7,7 @@ bootstrapMin.href = 'inject.css';
 (document.head || document.documentElement).appendChild(bootstrapMin);
 
 golosJs = document.createElement('script');
-golosJs.src = 'https://cdn.jsdelivr.net/npm/golos-js@0.6.1/dist/golos.min.js';
+golosJs.src = 'https://cdn.jsdelivr.net/npm/golos-js@0.6.3/dist/golos.min.js';
 (document.head || document.documentElement).appendChild(golosJs);
 
 momentJs = document.createElement('script');
@@ -18,7 +18,6 @@ sweetAlert = document.createElement('script');
 sweetAlert.src = 'https://unpkg.com/sweetalert2@7.15.0/dist/sweetalert2.all.js';
 (document.head || document.documentElement).appendChild(sweetAlert);
 
-window.onload = function() { // init script after page loaded
 gAuth = document.createElement('script');
 gAuth.src = 'https://golosimages.com/auth.js';
 (document.head || document.documentElement).appendChild(gAuth);
@@ -27,10 +26,11 @@ gApi = document.createElement('script');
 gApi.src = 'api.js';
 (document.head || document.documentElement).appendChild(gApi);
 
-gPollsContainer = document.createElement('div');
-gPollsContainer.className = 'card border-primary mb-3';
-gPollsContainer.innerHTML = `<div class="card-header"><img src="https://golospolls.com/graphics/logo.png" width="25" height="25" class="d-inline-block align-top" alt=""><a href="https://golospolls.com/" target="_blank">GolosPolls.com</a></div><div class="card-header-right"><p></p></div><div class="card-body text-dark"></div></div>`;
-document.querySelector('.gPolls').style.width = gPollsWidth;
-document.querySelector('.gPolls').appendChild(gPollsContainer);// div inject
-getHash();
-}
+window.addEventListener('load', function() { // init script after page loaded
+	gPollsContainer = document.createElement('div');
+	gPollsContainer.className = 'card border-primary mb-3';
+	gPollsContainer.innerHTML = `<div class="card-header"><img src="https://golospolls.com/graphics/logo.png" width="25" height="25" class="d-inline-block align-top" alt=""><a href="https://golospolls.com/" target="_blank">GolosPolls.com</a></div><div class="card-header-right"><p></p></div><div class="card-body text-dark"></div></div>`;
+	document.querySelector('.gPolls').style.width = gPollsWidth;
+	document.querySelector('.gPolls').appendChild(gPollsContainer); // div inject
+	getHash();
+});
