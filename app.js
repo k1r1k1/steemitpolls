@@ -58,6 +58,7 @@ function incertHtmlPoll(resultContent) {
 			}
 		}
 		getVote(function() {
+			console.log('dwdadwadawd');
 			incertPollProg();
 			document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">voters: ' + cnt + '</span><span class="badge badge-info">created: ' + moment(resultContent.created).format('lll') + '</span>';
 		})
@@ -69,16 +70,21 @@ function incertHtmlPoll(resultContent) {
 }
 
 function incertPollProg() {
-	console.log('<f> incertPollProg',pollData);
-	for (index = 0; index < pollData.length; ++index) {
+	console.log('<f> incertPollProg before',pollData);
+	cnt = resultContent.json_metadata.data.poll_answers.length;
+	console.log('pollData ',pollData[1]);
+	console.log('cnt ',cnt);
+	for (index = 0; index < resultContent.json_metadata.data.poll_answers.length; ++index) {
 		if (typeof pollData[index] != 'undefined') {
 			pollData[index].percnt = Math.round((pollData[index].count * 100) / cnt);
+			console.log('pollData[index].percnt ',pollData[index].percnt);
 			if (document.querySelectorAll('.progress-bar')[index]) {
 				document.querySelectorAll('.progress-bar')[index].style = 'width: ' + pollData[index].percnt + '%;';
 				document.querySelectorAll('.progress-bar')[index].innerHTML = pollData[index].percnt + '% (' + pollData[index].count + ')';
 			}
 		}
 	}
+	console.log('<f> incertPollProg after',pollData);
 }
 
 function CopyLinkToClipboard() {

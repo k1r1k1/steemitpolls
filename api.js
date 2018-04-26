@@ -147,8 +147,6 @@ function getVote(callback) { // getting poll data
 					}
 				}
 			});
-			console.log('voters ',voters);
-			console.log('pollData ',pollData);
 		} else {
 			console.error(err);
 			swal({
@@ -157,8 +155,8 @@ function getVote(callback) { // getting poll data
 				text: err
 			});
 		}
+		callback();
 	});
-	callback();
 }
 
 function startUpdProgTimer() {
