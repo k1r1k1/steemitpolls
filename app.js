@@ -31,7 +31,7 @@ document.onreadystatechange = function () { // loading animation switch-off
 }
 
 function incertHtmlPoll(resultContent) {
-	console.log('<f> incertHtmlPoll ', resultContent);
+	console.log('<f> incertHtmlPoll ');
 	document.querySelector('.card-body.text-dark').innerHTML = '';
 	var $div = document.createElement('h5'); // inserting header in poll
 	$div.className = 'card-title';
@@ -41,7 +41,7 @@ function incertHtmlPoll(resultContent) {
 		for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress 
 			var $div = document.createElement('div');
 			$div.className = 'progress-block';
-			if (data[cnt]) {
+			if (resultContent.json_metadata.data.poll_answers[cnt]) {
 				$div.innerHTML = `<label class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</label>
                     <div class="progress" id="` + cnt + `" style="cursor: pointer;">
                         <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div>
@@ -57,7 +57,7 @@ function incertHtmlPoll(resultContent) {
 				document.getElementById(cnt).onclick = progress_click; // dummy for polling     
 			}
 		}
-		getVote(function(resultContent) {
+		getVote(function() {
 			incertPollProg();
 			document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">voters: ' + cnt + '</span><span class="badge badge-info">created: ' + moment(resultContent.created).format('lll') + '</span>';
 		})
@@ -69,7 +69,8 @@ function incertHtmlPoll(resultContent) {
 }
 
 function incertPollProg() {
-	for (index = 0; index < resultContent.json_metadata.data.poll_answers.length; ++index) {
+	console.log('<f> incertPollProg',pollData);
+	for (index = 0; index < pollData.length; ++index) {
 		if (typeof pollData[index] != 'undefined') {
 			pollData[index].percnt = Math.round((pollData[index].count * 100) / cnt);
 			if (document.querySelectorAll('.progress-bar')[index]) {

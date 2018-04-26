@@ -66,7 +66,9 @@ function getHash(callback) {
 		if (!err && result.title != '') {
 			console.log('getContent ', result.title);
 			if (!result.json_metadata) getHash();
+			resultContent = result;
 			result.json_metadata = JSON.parse(result.json_metadata); //parse json to js
+			console.log('getHash-resultContent=',resultContent);
 			callback(result);
 		} else {
 			console.error('Failed to find post ', err);
@@ -146,6 +148,7 @@ function getVote(callback) { // getting poll data
 				}
 			});
 			console.log('voters ',voters);
+			console.log('pollData ',pollData);
 		} else {
 			console.error(err);
 			swal({
