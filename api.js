@@ -6,7 +6,7 @@
 
 var resultContent = '', // global variable for content
 	pollData = {}, // polling answers
-	votes = {},
+	countOfVoters,
 	checkToVote = false,
 	updProgressTimer,
 	tagNewPost,
@@ -129,7 +129,7 @@ function sendVote(pollId) {
 
 function getVote(callback) { // getting poll data
 	//document.querySelector('#share-form').style.display = 'block';
-	var cnt = 0;
+	countOfVoters = 0;
 	checkToVote = false;
 	pollData = {};
 	voters = [];
@@ -144,10 +144,8 @@ function getVote(callback) { // getting poll data
 							count: 0,
 							percnt: 0
 						};
-						cnt++;
-						console.log('cnt=', cnt);
+						countOfVoters++;
 						pollData[item.json_metadata.data.poll_id].count++;
-						pollData[item.json_metadata.data.poll_id].percnt = Math.round((pollData[item.json_metadata.data.poll_id].count * 100) / cnt);
 					}
 					if (username == item.author) { // check if already voted
 						checkToVote = true;
@@ -158,7 +156,7 @@ function getVote(callback) { // getting poll data
 			});
 			//console.log('pollData length',Object.keys(pollData).length); // count of object
 			Object.keys(pollData).map(function (objectKey, index) { // foreach pollData
-				pollData[objectKey].percnt = Math.round((pollData[objectKey].count * 100) / cnt); // calculate percent
+				pollData[objectKey].percnt = Math.round((pollData[objectKey].count * 100) / countOfVoters); // calculate percent
 			});
 		} else {
 			console.error(err);
@@ -168,7 +166,6 @@ function getVote(callback) { // getting poll data
 				text: err
 			});
 		}
-		console.log('<f> getVote', result, 'voters', cnt, 'pollData', pollData);
 		if (callback) callback();
 	});
 }

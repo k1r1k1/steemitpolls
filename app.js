@@ -74,7 +74,7 @@ function insertHtmlPoll(resultContent) {
 					}
 				}
 			}
-			document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">voters: ' + pollData.length + '</span><span class="badge badge-info">created: ' + moment(resultContent.created).format('lll') + '</span>';
+			document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">voters: ' + countOfVoters + '</span><span class="badge badge-info">created: ' + moment(resultContent.created).format('lll') + '</span>';
 		})
 	});
 	document.getElementById('complete-form').style.display = 'block';
