@@ -140,11 +140,12 @@ function getVote(callback) { // getting poll data
 				if (typeof item.json_metadata.data != 'undefined' && typeof item.json_metadata.data.poll_id != 'undefined') {
 					if (!~voters.indexOf('"' + item.author + '",')) { // check for cheating votes
 						voters = voters + '"' + item.author + '",';
-						cnt++;
 						if (!pollData[item.json_metadata.data.poll_id]) pollData[item.json_metadata.data.poll_id] = {
 							count: 0,
 							percnt: 0
 						};
+						cnt++;
+						console.log('cnt=', cnt);
 						pollData[item.json_metadata.data.poll_id].count++;
 						pollData[item.json_metadata.data.poll_id].percnt = Math.round((pollData[item.json_metadata.data.poll_id].count * 100) / cnt);
 					}
@@ -155,6 +156,10 @@ function getVote(callback) { // getting poll data
 					}
 				}
 			});
+			//console.log('pollData length',Object.keys(pollData).length); // count of object
+			Object.keys(pollData).map(function (objectKey, index) { // foreach pollData
+				pollData[objectKey].percnt = Math.round((pollData[objectKey].count * 100) / cnt); // calculate percent
+			});
 		} else {
 			console.error(err);
 			swal({
@@ -163,7 +168,7 @@ function getVote(callback) { // getting poll data
 				text: err
 			});
 		}
-		console.log('<f> getVote', result,'voters',cnt,'pollData',pollData);
+		console.log('<f> getVote', result, 'voters', cnt, 'pollData', pollData);
 		if (callback) callback();
 	});
 }
