@@ -35,7 +35,8 @@ function progress_click() { // dummy for polling
 			})
 			sendVote(this.id);
 		});
-		if (err) {
+	}
+	if (err) {
 			console.error(err);
 			swal({
 				type: 'error',
@@ -45,7 +46,6 @@ function progress_click() { // dummy for polling
 				timer: 4000
 			});
 		}
-	}
 }
 
 function getHash(callback) {
@@ -154,7 +154,7 @@ function getVote(callback) { // getting poll data
 					}
 				}
 			});
-			//console.log('pollData length',Object.keys(pollData).length); // count of object
+			console.log('<f> getVote count:',Object.keys(pollData).length); // count of object
 			Object.keys(pollData).map(function (objectKey, index) { // foreach pollData
 				pollData[objectKey].percnt = Math.round((pollData[objectKey].count * 100) / countOfVoters); // calculate percent
 			});
