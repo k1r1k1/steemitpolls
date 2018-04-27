@@ -36,7 +36,14 @@ function progress_click() { // dummy for polling
 			sendVote(this.id);
 		});
 		if (err) {
-			swal(err)
+			console.error(err);
+			swal({
+				type: 'error',
+				title: 'error',
+				text: err,
+				showConfirmButton: false,
+				timer: 4000
+			});
 		}
 	}
 }
@@ -68,7 +75,7 @@ function getHash(callback) {
 			if (!result.json_metadata) getHash();
 			resultContent = result;
 			result.json_metadata = JSON.parse(result.json_metadata); //parse json to js
-			console.log('getHash-resultContent=',resultContent);
+			console.log('getHash-resultContent=', resultContent);
 			callback(result);
 		} else {
 			console.error('Failed to find post ', err);
@@ -98,14 +105,14 @@ function sendVote(pollId) {
 		})
 	} else {
 		var parentAuthor = resultContent.author;
-		console.log('parentAuthor',parentAuthor);
+		console.log('parentAuthor', parentAuthor);
 		var parentPermlink = resultContent.permlink;
-		console.log('parentPermlink',parentPermlink);
+		console.log('parentPermlink', parentPermlink);
 		var permlink = 're-' + parentAuthor + '-' + parentPermlink + '-' + Date.now();
-		console.log('permlink',permlink);
+		console.log('permlink', permlink);
 		var title = ''; // title - empty for add a comment
 		var body = 'I choose option # ' + pollId; // poll
-		console.log('pollId',pollId);
+		console.log('pollId', pollId);
 		var jsonMetadata = {
 			app: 'golospolls/0.1',
 			canonical: 'https://golospolls.com#' + username + '/' + permlink,
@@ -115,18 +122,13 @@ function sendVote(pollId) {
 			}
 		};
 		jsonMetadata = JSON.stringify(jsonMetadata);
-		console.log('golos-broadcast-comment ',wif, parentAuthor, parentPermlink, username, permlink, title, body, jsonMetadata);
+		console.log('golos-broadcast-comment ', wif, parentAuthor, parentPermlink, username, permlink, title, body, jsonMetadata);
 		golos.broadcast.comment(wif, parentAuthor, parentPermlink, username, permlink, title, body, jsonMetadata, function (err, result) {
 			if (!err) {
 				console.log('comment', result);
 			} else {
-			console.error(err);
-			swal({
-				type: 'error',
-				title: 'error',
-				text: err
-			});
-		}
+				console.error(err);
+			}
 		});
 	}
 }

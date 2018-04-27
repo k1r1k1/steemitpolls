@@ -57,18 +57,18 @@ function insertHtmlPoll(resultContent) {
 				document.getElementById(cnt).onclick = progress_click; // dummy for polling     
 			}
 		}
-		getVote(function() {
-				console.log('<f> incertPollProg pollData',pollData);
-	cnt = resultContent.json_metadata.data.poll_answers.length;
-	for (index = 0; index < resultContent.json_metadata.data.poll_answers.length; ++index) {
-		if (typeof pollData[index] != 'undefined') {
-			pollData[index].percnt = Math.round((pollData[index].count * 100) / cnt);
-			if (document.querySelectorAll('.progress-bar')[index]) {
-				document.querySelectorAll('.progress-bar')[index].style = 'width: ' + pollData[index].percnt + '%;';
-				document.querySelectorAll('.progress-bar')[index].innerHTML = pollData[index].percnt + '% (' + pollData[index].count + ')';
+		getVote(function () {
+			console.log('<f> incertPollProg pollData', pollData);
+			cnt = resultContent.json_metadata.data.poll_answers.length;
+			for (index = 0; index < resultContent.json_metadata.data.poll_answers.length; ++index) {
+				if (typeof pollData[index] != 'undefined') {
+					pollData[index].percnt = Math.round((pollData[index].count * 100) / cnt);
+					if (document.querySelectorAll('.progress-bar')[index]) {
+						document.querySelectorAll('.progress-bar')[index].style = 'width: ' + pollData[index].percnt + '%;';
+						document.querySelectorAll('.progress-bar')[index].innerHTML = pollData[index].percnt + '% (' + pollData[index].count + ')';
+					}
+				}
 			}
-		}
-	}
 			document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">voters: ' + pollData.length + '</span><span class="badge badge-info">created: ' + moment(resultContent.created).format('lll') + '</span>';
 		})
 	});
@@ -171,7 +171,7 @@ function completeForm() {
 		timer: 2500
 	})
 	tagNewPost = true;
-	counter = 20;
+	counter = 24;
 	newPostTimout = setInterval(function () {
 		counter--;
 		console.log('counter =', counter);
@@ -198,7 +198,9 @@ function send_request(str, title, jsonMetadata) {
 			swal({
 				type: 'error',
 				title: 'error',
-				text: err
+				text: err,
+				showConfirmButton: false,
+				timer: 4000
 			});
 		}
 	}); // add post
@@ -275,7 +277,9 @@ function getMyPolls() {
 			swal({
 				type: 'error',
 				title: 'error',
-				text: err
+				text: err,
+				showConfirmButton: false,
+				timer: 4000
 			});
 		}
 	});
@@ -352,7 +356,14 @@ document.getElementById('complete').addEventListener('click', function () {
 				})
 			});
 			if (err) {
-				swal(err)
+				console.error(err);
+				swal({
+					type: 'error',
+					title: 'error',
+					text: err,
+					showConfirmButton: false,
+					timer: 4000
+				});
 			} else
 				document.querySelector('.lding').style.display = 'none'; // loader off
 		}
@@ -368,7 +379,13 @@ document.getElementById('my-polls').addEventListener('click', function () {
 			getMyPolls();
 		});
 		if (err) {
-			swal(err)
+			console.error(err);
+			swal({
+				type: 'error',
+				title: 'error',
+				text: err,
+				timer: 4000
+			});
 		} else
 			document.querySelector('.lding').style.display = 'none'; // loader off
 	}
