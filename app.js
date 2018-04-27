@@ -14,7 +14,6 @@ if (hash != '') {
 	if (document.querySelector('.lding')) document.querySelector('.lding').style.display = 'none';
 	if (typeof gPollsLink !== "undefined") hash = gPollsLink;
 	if (location.hash == '') clearUpdTimer();
-	startUpdProgTimer(3500);
 });
 	if (document.querySelector('.lding')) document.querySelector('.lding').style.display = 'none';
 }
@@ -83,6 +82,7 @@ function insertHtmlPoll(resultContent) {
 	document.getElementById('PollConstructor').style.display = 'none';
 	document.getElementById('complete-form').scrollIntoView();
 	document.querySelector('#cplkint').value = 'https://golospolls.com/#' + resultContent.author + '/' + resultContent.permlink;
+	startUpdProgTimer(3500);
 }
 
 function CopyLinkToClipboard() {
@@ -242,6 +242,7 @@ function getMyPolls() {
 				document.querySelector('#complete-form .card-header').innerHTML = 'Make your choice';
 				var parent = item.author;
 				var parentPermlink = item.permlink;
+				console.log('parent=',parent,'parentPermlink=',parentPermlink);
 				golos.api.getContentReplies(parent, parentPermlink, function (err, result) {
 					if (!err) {
 						pollData = {};
