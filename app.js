@@ -239,10 +239,7 @@ function getMyPolls() {
 		if (!err) {
 			result.forEach(function (item) {
 				document.querySelector('#complete-form .card-header').innerHTML = 'Make your choice';
-				var parent = item.author;
-				var parentPermlink = item.permlink;
-				console.log('parent=',parent,'parentPermlink=',parentPermlink);
-				golos.api.getContentReplies(parent, parentPermlink, function (err, result) {
+				golos.api.getContentReplies(item.author, item.permlink, function (err, result) {
 					if (!err) {
 						pollData = {};
 						countofvotes = 0;
