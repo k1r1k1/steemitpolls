@@ -8,9 +8,16 @@ golos.config.set('websocket', 'wss://ws.testnet.golos.io');
 
 var inputsC = 0; // inputs counter
 initLang('en'); // lang init = en
-if (hash != '') getHash(function (resultContent) {
+if (hash != '') {
+	getHash(function (resultContent) {
 	insertHtmlPoll(resultContent);
+	if (document.querySelector('.lding')) document.querySelector('.lding').style.display = 'none';
+	if (typeof gPollsLink !== "undefined") hash = gPollsLink;
+	if (location.hash == '') clearUpdTimer();
+	startUpdProgTimer(3500);
 });
+	if (document.querySelector('.lding')) document.querySelector('.lding').style.display = 'none';
+}
 
 window.onhashchange = function () {
 	hash = location.hash.substring(1);
@@ -171,6 +178,7 @@ function completeForm() {
 		timer: 2500
 	})
 	tagNewPost = true;
+	clearTimeout(newPostTimout);
 	counter = 24;
 	newPostTimout = setInterval(function () {
 		counter--;

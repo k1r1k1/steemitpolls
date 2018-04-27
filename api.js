@@ -50,12 +50,6 @@ function progress_click() { // dummy for polling
 
 function getHash(callback) {
 	console.log('<f> getHash');
-
-	/*if (document.querySelector('.lding')) document.querySelector('.lding').style.display = 'block';
-	if (typeof gPollsLink !== "undefined") hash = gPollsLink;
-	if (location.hash == '') clearUpdTimer();
-	startUpdProgTimer();*/
-
 	var startTarget = '/@'; // search '/@'
 	var startPos = -1;
 	while ((startPos = hash.indexOf(startTarget, startPos + 1)) != -1) {
@@ -134,7 +128,6 @@ function sendVote(pollId) {
 }
 
 function getVote(callback) { // getting poll data
-	console.log('<f> getVote');
 	//document.querySelector('#share-form').style.display = 'block';
 	var cnt = 0;
 	checkToVote = false;
@@ -169,13 +162,14 @@ function getVote(callback) { // getting poll data
 				text: err
 			});
 		}
-		callback();
+		console.log('<f> getVote', result);
+		if (callback) callback();
 	});
 }
 
-function startUpdProgTimer() {
-	console.log('<f> updProgressTimer');
-	updProgressTimer = setInterval(getVote, 3000);
+function startUpdProgTimer(interval) {
+	updProgressTimer = setInterval(getVote, interval);
+	console.log('<f> start-updProgressTimer');
 }
 
 function clearUpdTimer() {
