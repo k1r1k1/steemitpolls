@@ -14,7 +14,7 @@ var resultContent = '', // global variable for content
 	hash = location.hash.substring(1); // geting hash
 
 function progress_click() { // dummy for polling 
-	console.log('<f> progress_click');
+	console.log('<f> progress_click #' + this.id);
 	if (wif) {
 		swal({ // visual 
 			type: 'success',
@@ -98,10 +98,14 @@ function sendVote(pollId) {
 		})
 	} else {
 		var parentAuthor = resultContent.author;
+		console.log('parentAuthor',parentAuthor);
 		var parentPermlink = resultContent.permlink;
+		console.log('parentPermlink',parentPermlink);
 		var permlink = 're-' + parentAuthor + '-' + parentPermlink + '-' + Date.now();
+		console.log('permlink',permlink);
 		var title = ''; // title - empty for add a comment
 		var body = 'I choose option # ' + pollId; // poll
+		console.log('pollId',pollId);
 		var jsonMetadata = {
 			app: 'golospolls/0.1',
 			canonical: 'https://golospolls.com#' + username + '/' + permlink,
@@ -111,10 +115,18 @@ function sendVote(pollId) {
 			}
 		};
 		jsonMetadata = JSON.stringify(jsonMetadata);
+		console.log('golos-broadcast-comment ',wif, parentAuthor, parentPermlink, username, permlink, title, body, jsonMetadata);
 		golos.broadcast.comment(wif, parentAuthor, parentPermlink, username, permlink, title, body, jsonMetadata, function (err, result) {
 			if (!err) {
 				console.log('comment', result);
-			}
+			} else {
+			console.error(err);
+			swal({
+				type: 'error',
+				title: 'error',
+				text: err
+			});
+		}
 		});
 	}
 }

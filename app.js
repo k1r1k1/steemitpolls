@@ -9,14 +9,14 @@ golos.config.set('websocket', 'wss://ws.testnet.golos.io');
 var inputsC = 0; // inputs counter
 initLang('en'); // lang init = en
 if (hash != '') getHash(function (resultContent) {
-	incertHtmlPoll(resultContent);
+	insertHtmlPoll(resultContent);
 });
 
 window.onhashchange = function () {
 	hash = location.hash.substring(1);
 	console.log('hash has been changed: ', hash);
 	if (hash != '') getHash(function (resultContent) {
-		incertHtmlPoll(resultContent);
+		insertHtmlPoll(resultContent);
 	});
 }
 
@@ -30,8 +30,8 @@ document.onreadystatechange = function () { // loading animation switch-off
 	}
 }
 
-function incertHtmlPoll(resultContent) {
-	console.log('<f> incertHtmlPoll ');
+function insertHtmlPoll(resultContent) {
+	console.log('<f> insertHtmlPoll ');
 	document.querySelector('.card-body.text-dark').innerHTML = '';
 	var $div = document.createElement('h5'); // inserting header in poll
 	$div.className = 'card-title';
@@ -58,33 +58,24 @@ function incertHtmlPoll(resultContent) {
 			}
 		}
 		getVote(function() {
-			console.log('dwdadwadawd');
-			incertPollProg();
-			document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">voters: ' + cnt + '</span><span class="badge badge-info">created: ' + moment(resultContent.created).format('lll') + '</span>';
-		})
-	});
-	document.getElementById('complete-form').style.display = 'block';
-	document.getElementById('PollConstructor').style.display = 'none';
-	document.getElementById('complete-form').scrollIntoView();
-	document.querySelector('#cplkint').value = 'https://golospolls.com/#' + resultContent.author + '/' + resultContent.permlink;
-}
-
-function incertPollProg() {
-	console.log('<f> incertPollProg before',pollData);
+				console.log('<f> incertPollProg pollData',pollData);
 	cnt = resultContent.json_metadata.data.poll_answers.length;
-	console.log('pollData ',pollData[1]);
-	console.log('cnt ',cnt);
 	for (index = 0; index < resultContent.json_metadata.data.poll_answers.length; ++index) {
 		if (typeof pollData[index] != 'undefined') {
 			pollData[index].percnt = Math.round((pollData[index].count * 100) / cnt);
-			console.log('pollData[index].percnt ',pollData[index].percnt);
 			if (document.querySelectorAll('.progress-bar')[index]) {
 				document.querySelectorAll('.progress-bar')[index].style = 'width: ' + pollData[index].percnt + '%;';
 				document.querySelectorAll('.progress-bar')[index].innerHTML = pollData[index].percnt + '% (' + pollData[index].count + ')';
 			}
 		}
 	}
-	console.log('<f> incertPollProg after',pollData);
+			document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">voters: ' + pollData.length + '</span><span class="badge badge-info">created: ' + moment(resultContent.created).format('lll') + '</span>';
+		})
+	});
+	document.getElementById('complete-form').style.display = 'block';
+	document.getElementById('PollConstructor').style.display = 'none';
+	document.getElementById('complete-form').scrollIntoView();
+	document.querySelector('#cplkint').value = 'https://golospolls.com/#' + resultContent.author + '/' + resultContent.permlink;
 }
 
 function CopyLinkToClipboard() {
