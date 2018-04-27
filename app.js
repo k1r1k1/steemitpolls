@@ -68,7 +68,6 @@ function insertHtmlPoll(resultContent) {
 			cnt = resultContent.json_metadata.data.poll_answers.length;
 			for (index = 0; index < resultContent.json_metadata.data.poll_answers.length; ++index) {
 				if (typeof pollData[index] != 'undefined') {
-					pollData[index].percnt = Math.round((pollData[index].count * 100) / cnt);
 					if (document.querySelectorAll('.progress-bar')[index]) {
 						document.querySelectorAll('.progress-bar')[index].style = 'width: ' + pollData[index].percnt + '%;';
 						document.querySelectorAll('.progress-bar')[index].innerHTML = pollData[index].percnt + '% (' + pollData[index].count + ')';

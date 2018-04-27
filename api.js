@@ -146,6 +146,7 @@ function getVote(callback) { // getting poll data
 							percnt: 0
 						};
 						pollData[item.json_metadata.data.poll_id].count++;
+						pollData[item.json_metadata.data.poll_id].percnt = Math.round((pollData[item.json_metadata.data.poll_id].count * 100) / cnt);
 					}
 					if (username == item.author) { // check if already voted
 						checkToVote = true;
@@ -162,7 +163,7 @@ function getVote(callback) { // getting poll data
 				text: err
 			});
 		}
-		console.log('<f> getVote', result);
+		console.log('<f> getVote', result,'voters',cnt,'pollData',pollData);
 		if (callback) callback();
 	});
 }
