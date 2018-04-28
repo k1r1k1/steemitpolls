@@ -16,36 +16,53 @@ var resultContent = '', // global variable for content
 function progress_click() { // dummy for polling 
 	console.log('<f> progress_click #' + this.id);
 	if (wif) {
-		swal({ // visual 
-			type: 'success',
-			title: 'Thanks for making your choice!',
-			toast: true,
-			showConfirmButton: false,
-			timer: 2500
-		})
-		sendVote(this.id);
+		sendVote(this.id, function(err, result) {
+			if (err) {
+				console.error(err);
+				swal({
+					type: 'error',
+					title: 'error',
+					text: err,
+					showConfirmButton: false,
+					timer: 4000
+				});
+			}
+			else {
+				swal({ // visual
+					type: 'success',
+					title: 'Thanks for making your choice!',
+					toast: true,
+					showConfirmButton: false,
+					timer: 2500
+				});
+			}
+		});
 	} else {
+		console.log('auth() =>');
 		auth(() => {
-			swal({ // visual 
-				type: 'success',
-				title: 'Thanks for making your choice!',
-				toast: true,
-				showConfirmButton: false,
-				timer: 2500
-			})
-			sendVote(this.id);
+			sendVote(this.id, function(err, result) {
+			if (err) {
+				console.error(err);
+				swal({
+					type: 'error',
+					title: 'error',
+					text: err,
+					showConfirmButton: false,
+					timer: 4000
+				});
+			}
+			else {
+				swal({ // visual
+					type: 'success',
+					title: 'Thanks for making your choice!',
+					toast: true,
+					showConfirmButton: false,
+					timer: 2500
+				});
+			}
+		});
 		});
 	}
-	if (err) {
-			console.error(err);
-			swal({
-				type: 'error',
-				title: 'error',
-				text: err,
-				showConfirmButton: false,
-				timer: 4000
-			});
-		}
 }
 
 function getHash(callback) {
@@ -80,7 +97,7 @@ function getHash(callback) {
 	});
 }
 
-function sendVote(pollId) {
+function sendVote(pollId, callback) {
 	console.log('<f> sendVote');
 	if (tagNewPost) {
 		swal({
@@ -123,6 +140,7 @@ function sendVote(pollId) {
 			} else {
 				console.error(err);
 			}
+			callback(err, result);
 		});
 	}
 }
@@ -154,7 +172,7 @@ function getVote(callback) { // getting poll data
 					}
 				}
 			});
-			console.log('<f> getVote count:',Object.keys(pollData).length); // count of object
+			console.log('<f> getVote count:', Object.keys(pollData).length); // count of object
 			Object.keys(pollData).map(function (objectKey, index) { // foreach pollData
 				pollData[objectKey].percnt = Math.round((pollData[objectKey].count * 100) / countOfVoters); // calculate percent
 			});

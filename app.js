@@ -12,7 +12,6 @@ if (hash != '') {
 	getHash(function (resultContent) {
 	insertHtmlPoll(resultContent);
 	if (document.querySelector('.lding')) document.querySelector('.lding').style.display = 'none';
-	if (typeof gPollsLink !== "undefined") hash = gPollsLink;
 	if (location.hash == '') clearUpdTimer();
 });
 	if (document.querySelector('.lding')) document.querySelector('.lding').style.display = 'none';
