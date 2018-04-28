@@ -81,7 +81,7 @@ function getHash(callback) {
 	golos.api.getContent(username, permlink, function (err, result) { // The console displays the data required for the post 
 		if (!err && result.title != '') {
 			console.log('getContent ', result.title);
-			if (!result.json_metadata) getHash();
+			//if (!result.json_metadata) getHash();
 			resultContent = result;
 			result.json_metadata = JSON.parse(result.json_metadata); //parse json to js
 			console.log('getHash-resultContent=', resultContent);

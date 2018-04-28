@@ -69,17 +69,9 @@ function incertHtmlPoll(resultContent) {
 					}
 				}
 			}
-			document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">voters: ' + pollData.length + '</span><span class="badge badge-info">created: ' + moment(resultContent.created).format('lll') + '</span>';
+			document.querySelector('.card-header-right p').innerHTML = '</span><span class="badge badge-info">created: ' + moment(resultContent.created).format('lll') + '</span>';
 		})
 	});
-	document.getElementById('complete-form').style.display = 'block';
-	document.getElementById('PollConstructor').style.display = 'none';
-	document.getElementById('complete-form').scrollIntoView();
-	document.querySelector('#cplkint').value = 'https://golospolls.com/#' + resultContent.author + '/' + resultContent.permlink;
-}
-
-function test() {
-	console.log('test')
 }
 
 window.addEventListener('load', function () { // init script after page loaded
@@ -91,17 +83,9 @@ window.addEventListener('load', function () { // init script after page loaded
 	gPollsContainer.innerHTML = `<div class="card-header"><img src="https://golospolls.com/graphics/logo.png" width="25" height="25" class="d-inline-block align-top" alt=""><a href="https://golospolls.com/" target="_blank">GolosPolls.com</a></div><div class="card-header-right"><p></p></div><div class="card-body text-dark"></div></div>`;
 	document.querySelector('.gPolls').style.width = gPollsWidth;
 	document.querySelector('.gPolls').appendChild(gPollsContainer); // div inject
-	
-	
-	
 	console.log('<f> doc ready');
 	hash = gPollsLink;
-	
-	
-	getHash(function(resultContent) {
-		test()
+	getHash(function (resultContent) {
 		incertHtmlPoll(resultContent);
 	});
-	
-	
 });
