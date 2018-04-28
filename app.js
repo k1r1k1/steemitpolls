@@ -287,7 +287,7 @@ function getMyPolls(callback) {
 				timer: 4000
 			});
 		}
-		callback(err, result);
+		if (callback) callback(err, result);
 	});
 	var $div = document.createElement('table');
 	$div.className = 'table table-striped';
