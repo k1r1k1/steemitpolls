@@ -142,7 +142,7 @@ function addInactiveInput() {
 	document.getElementById('PollForm').appendChild($div);
 }
 
-function completeForm() {
+function completeForm(callback) {
 	console.log('<f> completeForm');
 	// collecting data & sending 
 	var $pollInputs = document.getElementById('PollForm').getElementsByClassName('form-control'),
@@ -166,7 +166,7 @@ function completeForm() {
 			poll_answers: answers
 		}
 	};
-	send_request(str, title, jsonMetadata);
+	send_request(callback, str, title, jsonMetadata);
 	// chech if error!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	swal({ // visual
 		type: 'success',
@@ -188,7 +188,7 @@ function completeForm() {
 	}, 1000);
 }
 
-function send_request(str, title, jsonMetadata) {
+function send_request(callback, str, title, jsonMetadata) {
 	console.log('<f> send_request');
 	var parentAuthor = ''; // for post creating, empty field
 	var parentPermlink = 'test'; // main tag
@@ -209,6 +209,7 @@ function send_request(str, title, jsonMetadata) {
 				timer: 4000
 			});
 		}
+		callback(err, result);
 	}); // add post
 }
 
@@ -345,32 +346,30 @@ document.getElementById('complete').addEventListener('click', function () {
 				}
 			})
 		} else {
+			console.log('auth() =>');
 			auth(() => {
-				swal({
-					title: 'Are you sure?',
-					text: 'You won`t be able to revert this!',
-					type: 'question',
-					showCancelButton: true,
-					confirmButtonColor: '#3085d6',
-					cancelButtonColor: '#d33',
-					confirmButtonText: 'Yes, just do it!'
-				}).then((result) => {
-					if (result.value) {
-						completeForm();
+				completeForm(function (err, result) {
+					if (err) {
+						console.error(err);
+						swal({
+							type: 'error',
+							title: 'error',
+							text: err,
+							showConfirmButton: false,
+							timer: 4000
+						});
+					} else {
+						swal({ // visual
+							type: 'success',
+							title: 'Thanks for making your choice!',
+							toast: true,
+							showConfirmButton: false,
+							timer: 2500
+						});
 					}
-				})
-			});
-			if (err) {
-				console.error(err);
-				swal({
-					type: 'error',
-					title: 'error',
-					text: err,
-					showConfirmButton: false,
-					timer: 4000
 				});
-			} else
-				document.querySelector('.lding').style.display = 'none'; // loader off
+			});
+			document.querySelector('.lding').style.display = 'none'; // loader off
 		}
 	}
 }, false);
