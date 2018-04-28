@@ -69,7 +69,7 @@ function incertHtmlPoll(resultContent) {
 					}
 				}
 			}
-			document.querySelector('.card-header-right p').innerHTML = '</span><span class="badge badge-info">created: ' + moment(resultContent.created).format('lll') + '</span>';
+			document.querySelector('.card-header-right p').innerHTML = '</span><span class="badge badge-info">' + moment(resultContent.created).format('lll') + '</span>';
 		})
 	});
 }
@@ -80,7 +80,8 @@ window.addEventListener('load', function () { // init script after page loaded
 	golos.config.set('websocket', 'wss://ws.testnet.golos.io');
 	gPollsContainer = document.createElement('div');
 	gPollsContainer.className = 'card border-primary mb-3';
-	gPollsContainer.innerHTML = `<div class="card-header"><img src="https://golospolls.com/graphics/logo.png" width="25" height="25" class="d-inline-block align-top" alt=""><a href="https://golospolls.com/" target="_blank">GolosPolls.com</a></div><div class="card-header-right"><p></p></div><div class="card-body text-dark"></div></div>`;
+	gPollsContainer.innerHTML = `
+<div class="card-header bg-transparent border-success"><img src="https://golospolls.com/graphics/logo.png" width="25" height="25" class="d-inline-block align-top" alt=""><a href="https://golospolls.com/">GolosPolls</a></div><div class="card-header-right"><p></p></div><div class="card-body text-dark"></div></div>`;
 	document.querySelector('.gPolls').style.width = gPollsWidth;
 	document.querySelector('.gPolls').appendChild(gPollsContainer); // div inject
 	console.log('<f> doc ready');
