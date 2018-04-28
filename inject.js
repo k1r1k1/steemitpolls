@@ -3,7 +3,7 @@ var golosJs, momentJs, sweetAlert, gAuth, gPollsApi, bootstrapMin, gPollsStyle, 
 bootstrapMin = document.createElement('link');
 bootstrapMin.rel = 'stylesheet';
 bootstrapMin.type = 'text/css';
-bootstrapMin.href = 'inject.css';
+bootstrapMin.href = 'https://golospolls.com/inject.css';
 (document.head || document.documentElement).appendChild(bootstrapMin);
 
 golosJs = document.createElement('script');
@@ -27,7 +27,7 @@ gAuth.src = 'https://golosimages.com/auth.js';
 (document.head || document.documentElement).appendChild(gAuth);
 
 gApi = document.createElement('script');
-gApi.src = 'api.js';
+gApi.src = 'https://golospolls.com/api.js';
 (document.head || document.documentElement).appendChild(gApi);
 
 function incertHtmlPoll(resultContent) {
