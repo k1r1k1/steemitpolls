@@ -16,7 +16,7 @@ var resultContent = '', // global variable for content
 function progress_click() { // dummy for polling 
 	console.log('<f> progress_click #' + this.id);
 	if (wif) {
-		sendVote(this.id, function(err, result) {
+		sendVote(this.id, function (err, result) {
 			if (err) {
 				console.error(err);
 				swal({
@@ -26,8 +26,7 @@ function progress_click() { // dummy for polling
 					showConfirmButton: false,
 					timer: 4000
 				});
-			}
-			else {
+			} else {
 				swal({ // visual
 					type: 'success',
 					title: 'Thanks for making your choice!',
@@ -40,27 +39,26 @@ function progress_click() { // dummy for polling
 	} else {
 		console.log('auth() =>');
 		auth(() => {
-			sendVote(this.id, function(err, result) {
-			if (err) {
-				console.error(err);
-				swal({
-					type: 'error',
-					title: 'error',
-					text: err,
-					showConfirmButton: false,
-					timer: 4000
-				});
-			}
-			else {
-				swal({ // visual
-					type: 'success',
-					title: 'Thanks for making your choice!',
-					toast: true,
-					showConfirmButton: false,
-					timer: 2500
-				});
-			}
-		});
+			sendVote(this.id, function (err, result) {
+				if (err) {
+					console.error(err);
+					swal({
+						type: 'error',
+						title: 'error',
+						text: err,
+						showConfirmButton: false,
+						timer: 4000
+					});
+				} else {
+					swal({ // visual
+						type: 'success',
+						title: 'Thanks for making your choice!',
+						toast: true,
+						showConfirmButton: false,
+						timer: 2500
+					});
+				}
+			});
 		});
 	}
 }

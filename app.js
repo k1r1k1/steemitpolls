@@ -10,10 +10,10 @@ var inputsC = 0; // inputs counter
 initLang('en'); // lang init = en
 if (hash != '') {
 	getHash(function (resultContent) {
-	insertHtmlPoll(resultContent);
-	if (document.querySelector('.lding')) document.querySelector('.lding').style.display = 'none';
-	if (location.hash == '') clearUpdTimer();
-});
+		insertHtmlPoll(resultContent);
+		if (document.querySelector('.lding')) document.querySelector('.lding').style.display = 'none';
+		if (location.hash == '') clearUpdTimer();
+	});
 	if (document.querySelector('.lding')) document.querySelector('.lding').style.display = 'none';
 }
 
@@ -212,7 +212,7 @@ function send_request(str, title, jsonMetadata) {
 	}); // add post
 }
 
-function getMyPolls() {
+function getMyPolls(callback) {
 	console.log('<f>my-polls click');
 	clearUpdTimer();
 	document.querySelector('.lding').style.display = 'block';
@@ -286,6 +286,7 @@ function getMyPolls() {
 				timer: 4000
 			});
 		}
+		callback(err, result);
 	});
 	var $div = document.createElement('table');
 	$div.className = 'table table-striped';
@@ -379,19 +380,30 @@ document.getElementById('my-polls').addEventListener('click', function () {
 		getMyPolls();
 		document.querySelector('#share-form').style.display = 'none';
 	} else {
+		console.log('auth() =>');
 		auth(() => {
-			getMyPolls();
-		});
-		if (err) {
-			console.error(err);
-			swal({
-				type: 'error',
-				title: 'error',
-				text: err,
-				timer: 4000
+			getMyPolls(function (err, result) {
+				if (err) {
+					console.error(err);
+					swal({
+						type: 'error',
+						title: 'error',
+						text: err,
+						showConfirmButton: false,
+						timer: 4000
+					});
+				} else {
+					swal({ // visual
+						type: 'success',
+						title: 'Thanks for making your choice!',
+						toast: true,
+						showConfirmButton: false,
+						timer: 2500
+					});
+				}
 			});
-		} else
-			document.querySelector('.lding').style.display = 'none'; // loader off
+		});
+		document.querySelector('.lding').style.display = 'none'; // loader off
 	}
 }, false);
 
