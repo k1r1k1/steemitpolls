@@ -7,7 +7,5 @@ We use:
 * [SweetAlert2](https://github.com/limonte/sweetalert2) - a beautiful, responsive, customizable, accessible replacement for JavaScript's popup boxes;
 * [I18next](https://www.i18next.com) -  is an internationalization-framework written in and for JavaScript;
 * [Flag-icon-css](https://github.com/lipis/flag-icon-css) -  A collection of all country flags in SVG;
-* [Core-js](https://github.com/zloirock/core-js) - modular standard library for JavaScript.Includes polyfills for ECMAScript 5, ECMAScript 6: promises, symbols, collections, iterators, typed arrays, ECMAScript 7+ proposals, setImmediate, etc. Some additional features such as dictionaries or extended partial application. You can require only needed features or use it without global namespace pollution;
-* [cyrillic-to-translit-js](https://github.com/greybax/cyrillic-to-translit-js) - Simple javascript function for converting Cyrillic symbols to Translit.
 * [Moment.js](https://github.com/moment/moment/) - A lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates.
 * [IcoMoon-Free](https://github.com/Keyamoon/IcoMoon-Free) - IcoMoon-Free is a free vector icon pack
