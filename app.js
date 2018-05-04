@@ -31,6 +31,8 @@ addPollingInputs();
 document.onreadystatechange = function () { // loading animation switch-off
 	console.log('<f> doc ready');
 	if (document.readyState === "complete") {
+		document.querySelector('#language').classList.remove('btn-info'); // lang button style change
+		document.querySelector('#language').classList.add('btn-warning');
 		document.querySelector('.lding').style.display = 'none';
 	}
 }
@@ -77,6 +79,7 @@ function insertHtmlPoll(resultContent) {
 		})
 	});
 	document.getElementById('complete-form').style.display = 'block';
+	document.getElementById('share-form').style.display = 'block';
 	document.getElementById('PollConstructor').style.display = 'none';
 	document.getElementById('complete-form').scrollIntoView();
 	document.querySelector('#cplkint').value = 'https://golospolls.com/#' + resultContent.author + '/' + resultContent.permlink;
