@@ -105,10 +105,12 @@ function sendVote(pollId, callback) {
 			showConfirmButton: false,
 			timer: 2500
 		})
+		return;
 	}
 	if (checkToVote) {
+		console.error('You can only vote once');
 		swal({
-			title: 'error',
+			title: 'You can only vote once',
 			text: 'Sorry, seems like you are already voted',
 			type: 'error'
 		})
@@ -187,7 +189,7 @@ function getVote(callback) { // getting poll data
 }
 
 function startUpdProgTimer(interval) {
-	updProgressTimer = setInterval(getVote, interval);
+	updProgressTimer = setInterval(updateProgressValues, interval);
 	console.log('<f> start-updProgressTimer');
 }
 

@@ -9,6 +9,7 @@ golos.config.set('websocket', 'wss://ws.testnet.golos.io');
 var inputsC = 0; // inputs counter
 initLang('en'); // lang init = en
 if (hash != '') {
+	console.log('hash hash');
 	getHash(function (resultContent) {
 		insertHtmlPoll(resultContent);
 		if (document.querySelector('.lding')) document.querySelector('.lding').style.display = 'none';
@@ -64,7 +65,18 @@ function insertHtmlPoll(resultContent) {
 				document.getElementById(cnt).onclick = progress_click; // dummy for polling     
 			}
 		}
-		getVote(function () {
+		updateProgressValues();
+	});
+	document.getElementById('complete-form').style.display = 'block';
+	document.getElementById('share-form').style.display = 'block';
+	document.getElementById('PollConstructor').style.display = 'none';
+	document.getElementById('complete-form').scrollIntoView();
+	document.querySelector('#cplkint').value = 'https://golospolls.com/#' + resultContent.author + '/' + resultContent.permlink;
+	startUpdProgTimer(3500);
+}
+
+function updateProgressValues() {
+	getVote(function () {
 			console.log('<f> incertPollProg pollData', pollData);
 			cnt = resultContent.json_metadata.data.poll_answers.length;
 			for (index = 0; index < resultContent.json_metadata.data.poll_answers.length; ++index) {
@@ -77,13 +89,6 @@ function insertHtmlPoll(resultContent) {
 			}
 			document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">voters: ' + countOfVoters + '</span><span class="badge badge-info">created: ' + moment(resultContent.created).format('lll') + '</span>';
 		})
-	});
-	document.getElementById('complete-form').style.display = 'block';
-	document.getElementById('share-form').style.display = 'block';
-	document.getElementById('PollConstructor').style.display = 'none';
-	document.getElementById('complete-form').scrollIntoView();
-	document.querySelector('#cplkint').value = 'https://golospolls.com/#' + resultContent.author + '/' + resultContent.permlink;
-	startUpdProgTimer(3500);
 }
 
 function CopyLinkToClipboard() {
@@ -129,7 +134,7 @@ function addInactiveInput() {
 	$div.className = 'input-group mb-3';
 	$div.id = 'pOption' + inputsC;
 	$div.style = 'opacity: 0.4; transition: .5s;';
-	$div.innerHTML = `<input type="text" class="form-control" placeholder="Click here to add a new one" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="inputOption` + inputsC + `">
+	$div.innerHTML = `<input type="text" class="form-control" placeholder="Click here to add a new one" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="inputOption` + inputsC + `" data-toggle="tooltip" data-placement="left" title="Please fill or remove this field">
 <div class="input-group-append">
                         <button class="btn btn-danger" type="button" id="pOptionButt` + inputsC + `" disabled><span class="icon-cross"></span></button>
                     </div>
@@ -149,10 +154,18 @@ function completeForm(callback) {
 	console.log('<f> completeForm');
 	// collecting data & sending 
 	var $pollInputs = document.getElementById('PollForm').getElementsByClassName('form-control'),
+		errTrigger,
+		newPostTimout,
 		answers = [];
 	for (var cnt = 0; $pollInputs.length - 1 > cnt; cnt++) {
+		if ($pollInputs[cnt].value == '') {
+			$pollInputs[cnt].setAttribute('class', 'form-control title is-invalid');
+			errTrigger = true;
+		} else {
 		answers[cnt] = $pollInputs[cnt].value;
+		}
 	}
+	if (errTrigger) return;
 	str = urlLit(document.querySelector('.form-control.title').value, 0);
 	//str.replace(/[^\w\d]/g, '_');
 	str = str + '-' + Date.now();
