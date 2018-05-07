@@ -9,6 +9,11 @@
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css">
 	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css">
+	<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.12.0/build/highlight.min.js"></script>
+	<script>
+		hljs.initHighlightingOnLoad();
+	</script>
 	<title>GolosPolls</title>
 	<!— Yandex.Metrika counter —>
 	<script type="text/javascript">
@@ -69,10 +74,13 @@
 						<li class="nav-item">
 							<button class="btn btn-primary my-2 my-sm-0" id="my-polls"><span class="icon-cloud-download"></span> Get my polls</button>
 						</li>
+						<li class="nav-item">
+							<button class="btn btn-info my-2 my-sm-0" id="integration"><span class="icon-embed2"></span> Integration</button>
+						</li>
 					</ul>
 					<ul class="navbar-nav">
 						<li class="nav-item">
-							<button class="btn btn-info my-2 my-sm-0" id="aboutGolosPollsBtn"><span class="icon-info"></span> About</button>
+							<button class="btn btn-danger my-2 my-sm-0" id="aboutGolosPollsBtn"><span class="icon-info"></span> About</button>
 						</li>
 						<li class="nav-item d-flex align-items-center" id="li-lang">
 						</li>
@@ -139,9 +147,6 @@
 			</div>
 			<br>
 			<div id="about-html-title" hidden="true">About!</div>
-			<div id="button-cool" hidden="true">
-				<span class="icon-checkmark"></span> Cool!
-			</div>
 			<div id="about-html" hidden="true">
 				<p class="float-left text-left">
 					GolosPolls - this microservice for conducting polls on the blockchain <a target="_blank" href="https://golos.io">Golos</a>. This platform is a thin client, that works without a backend (only frontend and blockchain) directly on the <a target="_blank" href="https://pages.github.com/">GitHub Pages</a> (through <a target="_blank" href="https://www.cloudflare.com/">CloudFlare</a>).</p>
@@ -157,6 +162,20 @@
 					<li><a target="_blank" href="https://github.com/Keyamoon/IcoMoon-Free">IcoMoon-Free</a> - is a free vector icon pack by Keyamoon.</li>
 				</ul>
 			</div>
+
+			<div id="integration-html" hidden="true">
+				<div id="integration-html-header" hidden="true">Usage example GolosPoll-Widget</div>
+				<div class="text-left">
+					1. Put this script tag to the &lt;head&gt; of your page:
+					<pre><code>&lt;script src=&quot;https://golospolls.com/inject.js&quot;&gt;&lt;/script&gt;
+					</code></pre>
+					2. Put this div and script tags to the place, where the Poll block will be:
+					<pre><code>&lt;div class="gPolls"&gt;&lt;/div&gt;
+	&lt;script type=&quot;text/javascript&quot;&gt;
+		var gPollsWidth = &quot;300&quot;, 
+		gPollsLink = &quot;test5/the-title-of-the-test-poll-comma-in-quotes-and-an-exclamation-mark-1525694921192&quot;;
+	&lt;/script&gt;</code></pre>
+				</div>
 			</div>
 		</main>
 	</article>

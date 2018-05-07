@@ -429,10 +429,22 @@ document.getElementById('aboutGolosPollsBtn').addEventListener('click', () => {
 		title: document.getElementById('about-html-title').innerHTML,
 		html: document.getElementById('about-html').innerHTML,
 		type: 'info',
-		buttonsStyling: false,
-		confirmButtonClass: 'btn btn-success btn-lg',
-		confirmButtonText: document.getElementById('button-cool').innerHTML,
-		position: 'top',
-		showCloseButton: true
+		showConfirmButton: false,
+		width: 600,
+		padding: '1rem',
+		showCloseButton: 'true'
+	});
+}, false);
+
+document.getElementById('integration').addEventListener('click', () => {
+	console.log('<f> integration click');
+	swal({
+		title: document.getElementById('integration-html-header').innerHTML,
+		html: document.getElementById('integration-html').innerHTML,
+		type: 'info',
+		showConfirmButton: false,
+		width: 600,
+		padding: '1rem',
+		showCloseButton: 'true'
 	});
 }, false);
