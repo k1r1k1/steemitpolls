@@ -72,6 +72,7 @@ function insertHtmlPoll(resultContent) {
 	document.getElementById('PollConstructor').style.display = 'none';
 	document.getElementById('complete-form').scrollIntoView();
 	document.querySelector('#cplkint').value = 'https://golospolls.com/#' + resultContent.author + '/' + resultContent.permlink;
+	document.querySelector('#cpcdint').value = `<!-- Put this script tag to the <head> of your page --> <script src="https://golospolls.com/inject.js"></script><!-- Put this div and script tags to the place, where the Poll block will be --> <div class="gPolls"></div><script type="text/javascript">var gPollsWidth = '300', gPollsLink = '` + resultContent.author + `/` + resultContent.permlink + `';</script>`;
 	startUpdProgTimer(3500);
 }
 
