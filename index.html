@@ -14,7 +14,20 @@
 	<script>
 		hljs.initHighlightingOnLoad();
 	</script>
-	<title>GolosPolls</title>
+	<!-- vk share -->
+	<script type="text/javascript" src="https://vk.com/js/api/share.js?95" charset="windows-1251"></script>
+	<!-- fb share -->
+	<div id="fb-root"></div>
+	<script>
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s);
+			js.id = id;
+			js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0';
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
 	<!— Yandex.Metrika counter —>
 	<script type="text/javascript">
 		(function(d, w, c) {
@@ -46,6 +59,7 @@
 		})(document, window, "yandex_metrika_callbacks2");
 	</script> <noscript><div><img src="https://mc.yandex.ru/watch/47878184" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 	<!— /Yandex.Metrika counter —>
+	<title>GolosPolls</title>
 </head>
 
 <body>
@@ -140,6 +154,16 @@
 						<input type="text" class="form-control" aria-label="Get a html-code of your poll" aria-describedby="basic-addon2" id="cpcdint">
 					</div>
 					<h5>Share on social media</h5>
+					<!-- Put this script tag to the place, where the Share button will be -->
+					<script type="text/javascript">
+						<!--
+						document.write(VK.Share.button(false, {
+							type: "custom",
+							text: "<img src=\"https://vk.com/images/share_32.png\" width=\"32\" height=\"32\" />"
+						}));
+						-->
+					</script>
+					<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="large" data-mobile-iframe="false"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
 					<button type="button" class="btn btn-outline-primary-fb"><span class="icon-facebook2"></span></button>
 					<button type="button" class="btn btn-outline-primary-vk"><span class="icon-vk"></span></button>
 					<button type="button" class="btn btn-outline-info"><span class="icon-telegram"></span></button>
@@ -168,8 +192,7 @@
 				<div class="text-left">
 					1. Put this script tag to the &lt;head&gt; of your page:
 					<pre><code>&lt;script src=&quot;https://golospolls.com/inject.js&quot;&gt;&lt;/script&gt;
-					</code></pre>
-					2. Put this div and script tags to the place, where the Poll block will be:
+					</code></pre> 2. Put this div and script tags to the place, where the Poll block will be:
 					<pre><code>&lt;div class="gPolls"&gt;&lt;/div&gt;
 	&lt;script type=&quot;text/javascript&quot;&gt;
 		var gPollsWidth = &quot;300&quot;, 
