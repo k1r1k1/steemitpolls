@@ -172,7 +172,7 @@ function getVote(callback) { // getting poll data
 					}
 				}
 			});
-			console.log('<f> getVote count:', Object.keys(pollData).length); // count of object
+			// console.log('<f> getVote count:', Object.keys(pollData).length); // count of object
 			Object.keys(pollData).map(function (objectKey, index) { // foreach pollData
 				pollData[objectKey].percnt = Math.round((pollData[objectKey].count * 100) / countOfVoters); // calculate percent
 			});

@@ -35,6 +35,8 @@ document.onreadystatechange = function () { // loading animation switch-off
 		document.querySelector('#language').classList.remove('btn-info'); // lang button style change
 		document.querySelector('#language').classList.add('btn-warning');
 		document.querySelector('.lding').style.display = 'none';
+		console.log('document.readyState = "complete"');
+		document.querySelector('#___plus_0').style = "display: inline-block; float: left; margin: 0rem 0rem 2rem 1rem;text-indent: 0px; padding: 0px; background: transparent; border-style: none; line-height: normal; font-size: 1px; vertical-align: baseline; width: 98px; height: 24px;"
 	}
 }
 
@@ -78,7 +80,7 @@ function insertHtmlPoll(resultContent) {
 
 function updateProgressValues() {
 	getVote(function () {
-			console.log('<f> incertPollProg pollData', pollData);
+			// console.log('<f> incertPollProg pollData', pollData);
 			cnt = resultContent.json_metadata.data.poll_answers.length;
 			for (index = 0; index < resultContent.json_metadata.data.poll_answers.length; ++index) {
 				if (typeof pollData[index] != 'undefined') {
