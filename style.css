@@ -123,10 +123,12 @@
 
 .f-book {
 	display:inline-block;
+	height: 23px;
 }
 
 #vkshare0 {
 	display:inline-block;
+	height: 23px;
 	margin-left: 1rem;
 }
 
