@@ -124,18 +124,21 @@
 .f-book {
 	display:inline-block;
 	float: left;
+	width: 5rem;
 }
 
 .g-plus {
 	display:inline-block;
 	float: left;
 	margin-left: 1rem;
+	width: 5rem;
 }
 
 #___plus_0 {
 	display:inline-block;
 	float: left;
 	margin-left: 1rem;
+	width: 5rem;
 }
 
 body {
