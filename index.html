@@ -28,6 +28,8 @@
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
 	</script>
+	<!-- g+ share -->
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	<!— Yandex.Metrika counter —>
 	<script type="text/javascript">
 		(function(d, w, c) {
@@ -154,17 +156,19 @@
 						<input type="text" class="form-control" aria-label="Get a html-code of your poll" aria-describedby="basic-addon2" id="cpcdint">
 					</div>
 					<h5>Share on social media</h5>
-					<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fgolospolls.com&layout=button&size=small&mobile_iframe=true&width=59&height=20&appId" width="59" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
-					<!-- Put this script tag to the place, where the Share button will be -->
+					<!-- fb button -->
+					<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fgolospolls.com&layout=button_count&size=small&mobile_iframe=true&width=69&height=20&appId" width="69" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+					<!-- vk button -->
 					<script type="text/javascript">
 						<!--
 						document.write(VK.Share.button(false, {
-							type: "round_nocount",
-							height: "64px",
+							type: "round",
 							text: "Поделитесь"
 						}));
 						-->
 					</script>
+					<!-- g+ button -->
+					<div class="g-plus" data-action="share" data-height="24" data-href="https://golospolls.com/"></div>
 					<button type="button" class="btn btn-outline-primary-fb"><span class="icon-facebook2"></span></button>
 					<button type="button" class="btn btn-outline-primary-vk"><span class="icon-vk"></span></button>
 					<button type="button" class="btn btn-outline-info"><span class="icon-telegram"></span></button>
