@@ -132,6 +132,12 @@
 	margin-left: 1rem;
 }
 
+#___plus_0 {
+	display:inline-block;
+	float: left;
+	margin-left: 1rem;
+}
+
 body {
     margin-bottom: 60px;
 }
