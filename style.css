@@ -121,6 +121,17 @@
   content: "\eac5";
 }
 
+.f-book {
+	display:inline-block;
+	float: left;
+}
+
+.g-plus {
+	display:inline-block;
+	float: left;
+	margin-left: 1rem;
+}
+
 body {
     margin-bottom: 60px;
 }
