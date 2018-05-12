@@ -30,6 +30,25 @@
 	</script>
 	<!-- g+ share -->
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<!-- tw share -->
+	<script>
+		window.twttr = (function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0],
+				t = window.twttr || {};
+			if (d.getElementById(id)) return t;
+			js = d.createElement(s);
+			js.id = id;
+			js.src = "https://platform.twitter.com/widgets.js";
+			fjs.parentNode.insertBefore(js, fjs);
+
+			t._e = [];
+			t.ready = function(f) {
+				t._e.push(f);
+			};
+
+			return t;
+		}(document, "script", "twitter-wjs"));
+	</script>
 	<!— Yandex.Metrika counter —>
 	<script type="text/javascript">
 		(function(d, w, c) {
@@ -158,6 +177,8 @@
 					<h5>Share on social media</h5>
 					<!-- fb button -->
 					<iframe class="f-book" src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fgolospolls.com&layout=button_count&size=small&mobile_iframe=true&width=69&height=20&appId" width="69" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+					<!-- tw button -->
+					<a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Attention%20friends!%20I'm%20interested%20in%20your%20opinion%20on%20one%20issue%20-%20please%20choose%20the%20option%20that%20you%20think%20is%20correct%20http://golospolls.com">Tweet</a>
 					<!-- vk button -->
 					<script type="text/javascript">
 						<!--
