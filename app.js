@@ -12,26 +12,6 @@ if (hash != '') {
 	console.log('hash hash');
 	getHash(function (resultContent) {
 		insertHtmlPoll(resultContent);
-		// inserting social buttons
-		$div = document.createElement('div');
-		$div.className = 'facebookButton';
-		$div.innerHTML = `<iframe class="f-book" src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fgolospolls.com&layout=button_count&size=small&mobile_iframe=true&width=69&height=20&appId" width="69" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>`;
-		document.querySelectorAll('.card-body.text-dark')[1].appendChild($div);
-
-		$div = document.createElement('div');
-		$div.className = 'twitterButton';
-		$div.innerHTML = `<a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Attention%20friends!%20I'm%20interested%20in%20your%20opinion%20on%20one%20issue%20-%20please%20choose%20the%20option%20that%20you%20think%20is%20correct%20http://golospolls.com">Tweet</a>`;
-		document.querySelectorAll('.card-body.text-dark')[1].appendChild($div);
-
-		$div = document.createElement('div');
-		$div.className = 'vkButton';
-		$div.innerHTML = `<script type="text/javascript"><!-- document.write(VK.Share.button(false, {type: "round", class: "vk-share", text: "Share" })); --></script>`;
-		document.querySelectorAll('.card-body.text-dark')[1].appendChild($div);
-
-		$div = document.createElement('div');
-		$div.className = 'googlePlusButton';
-		$div.innerHTML = `<div class="g-plus" data-action="share" data-height="24" data-href="https://golospolls.com/"></div>`;
-		document.querySelectorAll('.card-body.text-dark')[1].appendChild($div);
 		if (document.querySelector('.lding')) document.querySelector('.lding').style.display = 'none';
 		if (location.hash == '') clearUpdTimer();
 	});
@@ -45,6 +25,7 @@ window.onhashchange = function () {
 		insertHtmlPoll(resultContent);
 	});
 }
+
 addInactiveInput();
 addPollingInputs();
 
@@ -99,18 +80,18 @@ function insertHtmlPoll(resultContent) {
 
 function updateProgressValues() {
 	getVote(function () {
-		// console.log('<f> incertPollProg pollData', pollData);
-		cnt = resultContent.json_metadata.data.poll_answers.length;
-		for (index = 0; index < resultContent.json_metadata.data.poll_answers.length; ++index) {
-			if (typeof pollData[index] != 'undefined') {
-				if (document.querySelectorAll('.progress-bar')[index]) {
-					document.querySelectorAll('.progress-bar')[index].style = 'width: ' + pollData[index].percnt + '%;';
-					document.querySelectorAll('.progress-bar')[index].innerHTML = pollData[index].percnt + '% (' + pollData[index].count + ')';
+			// console.log('<f> incertPollProg pollData', pollData);
+			cnt = resultContent.json_metadata.data.poll_answers.length;
+			for (index = 0; index < resultContent.json_metadata.data.poll_answers.length; ++index) {
+				if (typeof pollData[index] != 'undefined') {
+					if (document.querySelectorAll('.progress-bar')[index]) {
+						document.querySelectorAll('.progress-bar')[index].style = 'width: ' + pollData[index].percnt + '%;';
+						document.querySelectorAll('.progress-bar')[index].innerHTML = pollData[index].percnt + '% (' + pollData[index].count + ')';
+					}
 				}
 			}
-		}
-		document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">voters: ' + countOfVoters + '</span><span class="badge badge-info">created: ' + moment(resultContent.created).format('lll') + '</span>';
-	})
+			document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">voters: ' + countOfVoters + '</span><span class="badge badge-info">created: ' + moment(resultContent.created).format('lll') + '</span>';
+		})
 }
 
 function CopyLinkToClipboard() {
@@ -184,7 +165,7 @@ function completeForm(callback) {
 			$pollInputs[cnt].setAttribute('class', 'form-control title is-invalid');
 			errTrigger = true;
 		} else {
-			answers[cnt] = $pollInputs[cnt].value;
+		answers[cnt] = $pollInputs[cnt].value;
 		}
 	}
 	if (errTrigger) return;
