@@ -36,7 +36,7 @@ document.onreadystatechange = function () { // loading animation switch-off
 		document.querySelector('#language').classList.add('btn-warning');
 		document.querySelector('.lding').style.display = 'none';
 		document.querySelector('#___plus_0').style = "display: inline-block; margin: 0rem 0rem 2rem 1rem; text-indent: 0px; padding: 0px; background: transparent; border-style: none; line-height: normal; font-size: 1px; vertical-align: baseline; width: 98px; height: 24px;";
-		document.querySelector('#twitter-widget-0').style = "position: static; visibility: visible; width: 60px; height: 23px;";
+		document.querySelector('#twitter-widget-0').style = "position: static; visibility: visible; width: 60px; height: 23px; margin-left: 1rem;";
 	}
 }
 
