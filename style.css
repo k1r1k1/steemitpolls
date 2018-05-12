@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?aq6uv6');
-  src:  url('fonts/icomoon.eot?aq6uv6#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?aq6uv6') format('truetype'),
-    url('fonts/icomoon.woff?aq6uv6') format('woff'),
-    url('fonts/icomoon.svg?aq6uv6#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?3w5azy');
+  src:  url('fonts/icomoon.eot?3w5azy#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?3w5azy') format('truetype'),
+    url('fonts/icomoon.woff?3w5azy') format('woff'),
+    url('fonts/icomoon.svg?3w5azy#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,41 +24,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-home3:before {
-  content: "\e902";
-}
-.icon-image:before {
-  content: "\e90d";
-}
-.icon-folder:before {
-  content: "\e92f";
-}
-.icon-bell:before {
-  content: "\e951";
-}
-.icon-bug:before {
-  content: "\e999";
-}
-.icon-stats-bars2:before {
-  content: "\e99d";
-}
-.icon-hammer2:before {
-  content: "\e9a8";
-}
-.icon-bin:before {
-  content: "\e9ac";
-}
-.icon-cloud:before {
-  content: "\e9c1";
-}
 .icon-cloud-download:before {
   content: "\e9c2";
 }
 .icon-cloud-upload:before {
   content: "\e9c3";
-}
-.icon-cloud-check:before {
-  content: "\e9c4";
 }
 .icon-earth:before {
   content: "\e9ca";
@@ -66,23 +36,11 @@
 .icon-link:before {
   content: "\e9cb";
 }
-.icon-flag:before {
-  content: "\e9cc";
-}
-.icon-warning:before {
-  content: "\ea07";
-}
 .icon-notification:before {
   content: "\ea08";
 }
-.icon-question:before {
-  content: "\ea09";
-}
 .icon-plus:before {
   content: "\ea0a";
-}
-.icon-minus:before {
-  content: "\ea0b";
 }
 .icon-info:before {
   content: "\ea0c";
@@ -90,17 +48,20 @@
 .icon-cross:before {
   content: "\ea0f";
 }
-.icon-checkmark:before {
-  content: "\ea10";
-}
 .icon-enter:before {
   content: "\ea13";
 }
 .icon-exit:before {
   content: "\ea14";
 }
+.icon-embed:before {
+  content: "\ea7f";
+}
 .icon-embed2:before {
   content: "\ea80";
+}
+.icon-google-plus:before {
+  content: "\ea8b";
 }
 .icon-facebook2:before {
   content: "\ea91";
@@ -113,12 +74,6 @@
 }
 .icon-vk:before {
   content: "\ea98";
-}
-.icon-github:before {
-  content: "\eab0";
-}
-.icon-skype:before {
-  content: "\eac5";
 }
 
 .f-book {
