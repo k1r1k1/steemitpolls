@@ -88,7 +88,11 @@ function getHash(callback) {
 			callback(result);
 		} else {
 			console.error('Failed to find post ', err);
-			console.log('getContent ', result);
+			swal({
+				type: 'error',
+				title: 'error',
+				text: 'ERROR: Failed to find post'
+			});
 			clearUpdTimer();
 		}
 		//if (document.querySelector('.lding')) document.querySelector('.lding').style.display = 'none';
