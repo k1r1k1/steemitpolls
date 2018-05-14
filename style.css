@@ -76,15 +76,51 @@
   content: "\ea98";
 }
 
-.f-book {
-	display:inline-block;
-	height: 23px;
+.share-fb {
+	border-radius: .25rem;
+	height: 1.5rem;
+	background-color: #4267b2;
+	color: #fff;
+	border: 1px solid #4267b2;
+	padding: 0.1rem 0.5rem;
 }
 
-#vkshare0 {
-	display:inline-block;
-	height: 23px;
-	margin-left: .1rem;
+.share-fb:hover {
+	color: #fff;
+	background-color: #365899;
+	border-color: #4267b2
+}
+
+.share-fb.focus,
+.share-fb:focus {
+	box-shadow: 0 0 0 .2rem rgba(54, 88, 139, .5)
+}
+
+.share-tw {
+	border-radius: .25rem;
+	height: 1.5rem;
+	padding: 0.1rem 0.5rem;
+}
+
+.share-vk {
+	border-radius: .25rem;
+	height: 1.5rem;
+	background-color: #6287ae;
+	color: #fff;
+	border: 1px solid #4267b2;
+	padding: 0.1rem 0.5rem;
+	background-image: url('img/logo-vk.png');
+}
+
+.share-vk:hover {
+	color: #fff;
+	background-color: #678eb4;
+	border-color: #4267b2
+}
+
+.share-vk.focus,
+.share-vk:focus {
+	box-shadow: 0 0 0 .2rem rgba(98, 135, 174, .5)
 }
 
 body {
@@ -94,10 +130,6 @@ body {
 html {
     position: relative;
     min-height: 100%;
-}
-
-.btn-primary-vk {
-	color: ;
 }
 
 .card {
@@ -163,42 +195,6 @@ footer {
     line-height: 60px;
     background-color: #f5f5f5;
     text-align: center;
-}
-
-.btn-outline-primary-vk {
-	color: #336699;
-	background-color: transparent;
-	background-image: none;
-	border-color: #3366cc
-}
-
-.btn-outline-primary-vk:hover {
-	color: #fff;
-	background-color: #336699;
-	border-color: #3366cc
-}
-
-.btn-outline-primary-vk.focus,
-.btn-outline-primary-vk:focus {
-	box-shadow: 0 0 0 .2rem rgba(51, 102, 153, .5)
-}
-
-.btn-outline-primary-fb {
-	color: #4267b2;
-	background-color: transparent;
-	background-image: none;
-	border-color: #4742b2
-}
-
-.btn-outline-primary-fb:hover {
-	color: #fff;
-	background-color: #4267b2;
-	border-color: #4742b2
-}
-
-.btn-outline-primary-fb.focus,
-.btn-outline-primary-fb:focus {
-	box-shadow: 0 0 0 .2rem rgba(51, 102, 153, .5)
 }
 
 .btn-outline-secondary {
