@@ -96,10 +96,18 @@
 	box-shadow: 0 0 0 .2rem rgba(54, 88, 139, .5)
 }
 
+.share-fb span {
+	vertical-align: text-top;
+}
+
 .share-tw {
 	border-radius: .25rem;
 	height: 1.5rem;
 	padding: 0.1rem 0.5rem;
+}
+
+.share-tw span {
+	vertical-align: text-top;
 }
 
 .share-vk {
@@ -109,7 +117,6 @@
 	color: #fff;
 	border: 1px solid #4267b2;
 	padding: 0.1rem 0.5rem;
-	background-image: url('img/logo-vk.png');
 }
 
 .share-vk:hover {
@@ -122,6 +129,37 @@
 .share-vk:focus {
 	box-shadow: 0 0 0 .2rem rgba(98, 135, 174, .5)
 }
+
+.share-vk img {
+    margin: .19rem 0 0 -.2rem;
+}
+
+.share-vk span {
+	font-size: 0.8rem;
+	vertical-align: text-top;
+    margin-left: .5rem;
+}
+
+.share-gp {
+	border-radius: .25rem;
+	height: 1.5rem;
+	background-color: #fff;
+	color: #cc3732;
+	border: 1px solid #dddddd;
+	padding: 0.1rem 0.5rem;
+}
+
+.share-gp:hover {
+	color: #fff;
+	background-color: #cc3732;
+	border-color: #ad1712
+}
+
+.share-gp.focus,
+.share-gp:focus {
+	box-shadow: 0 0 0 .2rem rgba(173, 23, 18, .5)
+}
+cc3732
 
 body {
     margin-bottom: 60px;

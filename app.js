@@ -12,6 +12,28 @@ if (hash != '') {
 	console.log('hash hash');
 	getHash(function (resultContent) {
 		insertHtmlPoll(resultContent);
+		// inserting social buttons
+		/*setTimeout(function () {
+		var $div = document.createElement('div');
+		$div.className = 'facebookButton';
+		$div.innerHTML = `<iframe class="f-book" src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fgolospolls.com&layout=button_count&size=small&mobile_iframe=true&width=69&height=20&appId" width="69" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>`;
+		document.querySelectorAll('.card-body.text-dark')[1].appendChild($div);
+
+		var $div = document.createElement('div');
+		$div.className = 'twitterButton';
+		$div.innerHTML = `<a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Attention%20friends!%20I'm%20interested%20in%20your%20opinion%20on%20one%20issue%20-%20please%20choose%20the%20option%20that%20you%20think%20is%20correct%20http://golospolls.com">Tweet</a>`;
+		document.querySelectorAll('.card-body.text-dark')[1].appendChild($div);
+
+		var $div = document.createElement('div');
+		$div.className = 'vkButton';
+		$div.innerHTML = `<script type="text/javascript"><!-- document.write(VK.Share.button(false, {type: "round", class: "vk-share", text: "Share" })); --></script>`;
+		document.querySelectorAll('.card-body.text-dark')[1].appendChild($div);
+
+		var $div = document.createElement('div');
+		$div.className = 'googlePlusButton';
+		$div.innerHTML = `<div class="g-plus" data-action="share" data-height="24" data-href="https://golospolls.com/"></div>`;
+		document.querySelectorAll('.card-body.text-dark')[1].appendChild($div);
+		}, 5000)*/
 		if (document.querySelector('.lding')) document.querySelector('.lding').style.display = 'none';
 		if (location.hash == '') clearUpdTimer();
 	});
@@ -25,18 +47,15 @@ window.onhashchange = function () {
 		insertHtmlPoll(resultContent);
 	});
 }
-
 addInactiveInput();
 addPollingInputs();
 
 document.onreadystatechange = function () { // loading animation switch-off
 	console.log('<f> doc ready');
 	if (document.readyState === "complete") {
-		document.querySelector('#language').classList.remove('btn-info'); // lang button style change
-		document.querySelector('#language').classList.add('btn-warning');
+		/*document.querySelector('#language').classList.remove('btn-info'); // lang button style change
+		document.querySelector('#language').classList.add('btn-warning');*/
 		document.querySelector('.lding').style.display = 'none';
-		document.querySelector('#___plus_0').style = "display: inline-block; margin-bottom: .1rem; text-indent: 0px; padding: 0px; background: transparent; border-style: none; line-height: normal; font-size: 1px; vertical-align: baseline; width: 98px; height: 24px;";
-		document.querySelector('#twitter-widget-0').style = "position: static; visibility: visible; width: 60px; height: 23px; margin-left: .1rem;";
 	}
 }
 
@@ -80,18 +99,18 @@ function insertHtmlPoll(resultContent) {
 
 function updateProgressValues() {
 	getVote(function () {
-			// console.log('<f> incertPollProg pollData', pollData);
-			cnt = resultContent.json_metadata.data.poll_answers.length;
-			for (index = 0; index < resultContent.json_metadata.data.poll_answers.length; ++index) {
-				if (typeof pollData[index] != 'undefined') {
-					if (document.querySelectorAll('.progress-bar')[index]) {
-						document.querySelectorAll('.progress-bar')[index].style = 'width: ' + pollData[index].percnt + '%;';
-						document.querySelectorAll('.progress-bar')[index].innerHTML = pollData[index].percnt + '% (' + pollData[index].count + ')';
-					}
+		// console.log('<f> incertPollProg pollData', pollData);
+		cnt = resultContent.json_metadata.data.poll_answers.length;
+		for (index = 0; index < resultContent.json_metadata.data.poll_answers.length; ++index) {
+			if (typeof pollData[index] != 'undefined') {
+				if (document.querySelectorAll('.progress-bar')[index]) {
+					document.querySelectorAll('.progress-bar')[index].style = 'width: ' + pollData[index].percnt + '%;';
+					document.querySelectorAll('.progress-bar')[index].innerHTML = pollData[index].percnt + '% (' + pollData[index].count + ')';
 				}
 			}
-			document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">voters: ' + countOfVoters + '</span><span class="badge badge-info">created: ' + moment(resultContent.created).format('lll') + '</span>';
-		})
+		}
+		document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">voters: ' + countOfVoters + '</span><span class="badge badge-info">created: ' + moment(resultContent.created).format('lll') + '</span>';
+	})
 }
 
 function CopyLinkToClipboard() {
@@ -165,7 +184,7 @@ function completeForm(callback) {
 			$pollInputs[cnt].setAttribute('class', 'form-control title is-invalid');
 			errTrigger = true;
 		} else {
-		answers[cnt] = $pollInputs[cnt].value;
+			answers[cnt] = $pollInputs[cnt].value;
 		}
 	}
 	if (errTrigger) return;
