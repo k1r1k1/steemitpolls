@@ -158,7 +158,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="card border-light mb-3" id="share-form" style="display: none;">
+			<div class="card border-light mb-3" id="share-form" style="display: block;">
 				<div class="card-header">Sharing form</div>
 				<div class="card-body text-dark">
 					<h5>Get link & injection code</h5>
@@ -175,22 +175,14 @@
 						<input type="text" class="form-control" aria-label="Get a html-code of your poll" aria-describedby="basic-addon2" id="cpcdint">
 					</div>
 					<h5>Share on social media</h5>
-					<!-- fb button -->
-					<iframe class="f-book" src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fgolospolls.com&layout=button_count&size=small&mobile_iframe=true&width=69&height=20&appId" width="69" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
-					<!-- tw button -->
-					<a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Attention%20friends!%20I'm%20interested%20in%20your%20opinion%20on%20one%20issue%20-%20please%20choose%20the%20option%20that%20you%20think%20is%20correct%20http://golospolls.com">Tweet</a>
-					<!-- vk button -->
-					<script type="text/javascript">
-						<!--
-						document.write(VK.Share.button(false, {
-							type: "round",
-							class: "vk-share",
-							text: "Share"
-						}));
-						-->
-					</script>
-					<!-- g+ button -->
-					<div class="g-plus" data-action="share" data-height="24" data-href="https://golospolls.com/"></div>
+					<a class="btn share-fb" href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&u=https%3A%2F%2Fgolospolls.com%2F&display=popup&ref=plugin&src=share_button" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><span class="icon-facebook2"> Share</span></a>
+					
+					<a class="btn btn-info share-tw" href="https://twitter.com/intent/tweet?ref_src=twsrc%5Etfw&text=Attention%20friends!%20I%27m%20interested%20in%20your%20opinion%20on%20one%20issue%20-%20please%20choose%20the%20option%20that%20you%20think%20is%20correct%20http%3A%2F%2Fgolospolls.com&tw_p=tweetbutton&url=file%3A%2F%2F%2FC%3A%2FHUB%2Fgolospolls%2Findex.html%23test5%2Fthe-title-of-the-test-poll-comma-in-quotes-and-an-exclamation-mark-1525694921192" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><span class="icon-twitter"> Share</span></a>
+					
+					<a class="btn share-vk" href="https://vk.com/share.php?url=https%3A%2F%2Fgolospolls.com%2F%23test5%2Fthe-title-of-the-test-poll-comma-in-quotes-and-an-exclamation-mark-1525694921192" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><span> Share</span></a>
+					
+					<a class="btn btn-info" href="https://plus.google.com/share?app=110&url=https%3A%2F%2Fgolospolls.com%2F" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><span class="icon-google-plus"> Share</span></a>
+					
 				</div>
 			</div>
 			<br>
