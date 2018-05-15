@@ -164,6 +164,12 @@
 	vertical-align: text-top;
 }
 
+#modal-lang-form .img-thumbnail {
+    padding: 0px;
+    height: 30px;
+    width: 40px;
+}
+
 body {
     margin-bottom: 60px;
 }
