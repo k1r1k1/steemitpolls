@@ -159,7 +159,10 @@
 .share-gp:focus {
 	box-shadow: 0 0 0 .2rem rgba(173, 23, 18, .5)
 }
-cc3732
+
+.share-gp span {
+	vertical-align: text-top;
+}
 
 body {
     margin-bottom: 60px;
