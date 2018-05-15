@@ -13,27 +13,15 @@ if (hash != '') {
 	getHash(function (resultContent) {
 		insertHtmlPoll(resultContent);
 		// inserting social buttons
-		/*setTimeout(function () {
 		var $div = document.createElement('div');
-		$div.className = 'facebookButton';
-		$div.innerHTML = `<iframe class="f-book" src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fgolospolls.com&layout=button_count&size=small&mobile_iframe=true&width=69&height=20&appId" width="69" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>`;
+		$div.innerHTML = `<a class="btn share-fb" href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&u=https%3A%2F%2Fgolospolls.com%2F#` + resultContent.author + `/` + resultContent.permlink + `&display=popup&ref=plugin&src=share_button" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><span class="icon-facebook2"> Share</span></a>
+					
+<a class="btn btn-info share-tw" href="https://twitter.com/intent/tweet?ref_src=twsrc%5Etfw&text=Attention%20friends!%20I%27m%20interested%20in%20your%20opinion%20on%20one%20issue%20-%20please%20choose%20the%20option%20that%20you%20think%20is%20correct%20http%3A%2F%2Fgolospolls.com&tw_p=tweetbutton&url=https%3A%2F%2Fgolospolls.com%2F#` + resultContent.author + `/` + resultContent.permlink + `" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><span class="icon-twitter"> Tweet</span></a>
+					
+<a class="btn share-vk" href="https://vk.com/share.php?url=https%3A%2F%2Fgolospolls.com%2F#` + resultContent.author + `/` + resultContent.permlink + `" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><img src="graphics/vk-logo.png" width="20" height="13" class="d-inline-block align-top"><span>Поделиться</span></a>
+					
+<a class="btn share-gp" href="https://plus.google.com/share?app=110&url=https%3A%2F%2Fgolospolls.com%2F#` + resultContent.author + `/` + resultContent.permlink + `" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><span class="icon-google-plus"> Share</span></a>`;
 		document.querySelectorAll('.card-body.text-dark')[1].appendChild($div);
-
-		var $div = document.createElement('div');
-		$div.className = 'twitterButton';
-		$div.innerHTML = `<a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Attention%20friends!%20I'm%20interested%20in%20your%20opinion%20on%20one%20issue%20-%20please%20choose%20the%20option%20that%20you%20think%20is%20correct%20http://golospolls.com">Tweet</a>`;
-		document.querySelectorAll('.card-body.text-dark')[1].appendChild($div);
-
-		var $div = document.createElement('div');
-		$div.className = 'vkButton';
-		$div.innerHTML = `<script type="text/javascript"><!-- document.write(VK.Share.button(false, {type: "round", class: "vk-share", text: "Share" })); --></script>`;
-		document.querySelectorAll('.card-body.text-dark')[1].appendChild($div);
-
-		var $div = document.createElement('div');
-		$div.className = 'googlePlusButton';
-		$div.innerHTML = `<div class="g-plus" data-action="share" data-height="24" data-href="https://golospolls.com/"></div>`;
-		document.querySelectorAll('.card-body.text-dark')[1].appendChild($div);
-		}, 5000)*/
 		if (document.querySelector('.lding')) document.querySelector('.lding').style.display = 'none';
 		if (location.hash == '') clearUpdTimer();
 	});
