@@ -2,7 +2,6 @@
 //	GolosPolls main script file		//
 // 		https://golospolls.com/		//
 /* ------------------------------- */
-// switching to testnet
 
 var resultContent = '', // global variable for content
 	pollData = {}, // polling answers
