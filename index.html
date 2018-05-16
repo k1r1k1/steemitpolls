@@ -22,7 +22,7 @@
 
 	<link rel="shortcut icon" href="https://golospolls.com/graphics/logo.png" />
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.1.0/dist/yeti/bootstrap.min.css">
 	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css">
 	<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.12.0/build/highlight.min.js"></script>
@@ -120,6 +120,15 @@
 							<label>Enter the title</label>
 							<input type="text" class="form-control title" placeholder="Type your text here">
 						</div>
+						<label>Add image with <a href="https://golosimages.com/"><img src="https://golosimages.com/graphics/logo.png" width="15" height="15"> GolosImages</a></label>
+						<button class="btn btn-info btn-sm" id="upload">Open</button><img src="graphics/loading.gif" width="60" height="60" style="display: none;">
+						<script>
+							document.getElementById('upload').addEventListener('click', function() {
+								uploadImageToIpfs(function(files) {
+									console.log(files);
+								});
+							});
+						</script>
 						<div id="PollForm">
 							<label>Fill in the following fields</label>
 						</div>
@@ -197,6 +206,7 @@
 	</footer>
 </body>
 <!-- Optional JavaScript -->
+<script src="https://golosimages.com/inject.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/i18next@11.2.3/i18next.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/i18next-xhr-backend@1.5.1/i18nextXHRBackend.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@2.2.0/i18nextBrowserLanguageDetector.min.js"></script>
