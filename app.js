@@ -3,8 +3,8 @@
 // 		https://golospolls.com/		//
 /* ------------------------------- */
 
-golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
-golos.config.set('websocket', 'wss://ws.testnet.golos.io');
+/*golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
+golos.config.set('websocket', 'wss://ws.testnet.golos.io');*/
 
 var inputsC = 0; // inputs counter
 initLang('en'); // lang init = en
@@ -218,7 +218,20 @@ function send_request(callback, str, title, jsonMetadata) {
 	console.log('<f> send_request');
 	var parentAuthor = ''; // for post creating, empty field
 	var parentPermlink = 'test'; // main tag
-	var body = 'At the moment, you are looking at the test page of a simple microservice, which is currently under development. And since it so happened that you look at it, here`s a random cat, good luck to you and all the best.<img src="https://tinygrainofrice.files.wordpress.com/2013/08/kitten-16219-1280x1024.jpg"></img>'; // post text
+	var body = `<p>
+					GolosPolls - this microservice for conducting polls on the blockchain <a target="_blank" href="https://golos.io">Golos</a>. This platform is a thin client, that works without a backend (only frontend and blockchain) directly on the <a>GitHub Pages</a> (through <a target="_blank" href="https://www.cloudflare.com/">CloudFlare</a>).</p>
+					<img src="graphics/logo.png" height="300" width="300"></img>
+				<ul>
+					We use:
+					<li><a target="_blank" href="https://github.com/GolosChain/golos-js">Golos.js</a> - the JavaScript API for Golos blockchain;</li>
+					<li><a target="_blank" href="https://github.com/twbs/bootstrap">Bootstrap</a> - the most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web;</li>
+					<li><a target="_blank" href="https://github.com/lipis/flag-icon-css">Flag-icon-css</a> - a collection of all country flags in SVG;</li>
+					<li><a target="_blank" href="https://github.com/greybax/cyrillic-to-translit-js">Cyrillic-to-translit-js</a> - simple javascript function for converting Cyrillic symbols to Translit;</li>
+					<li><a target="_blank" href="https://www.i18next.com">I18next</a> - is an internationalization-framework written in and for JavaScript;</li>
+					<li><a target="_blank" href="https://github.com/zloirock/core-js">Core-js</a> - modular standard library for JavaScript. Includes polyfills for ECMAScript 5, ECMAScript 6: promises, symbols, collections, iterators, typed arrays, ECMAScript 7+ proposals, setImmediate, etc. Some additional features such as dictionaries or extended partial application. You can require only needed features or use it without global namespace pollution.</li>
+					<li><a target="_blank" href="https://github.com/limonte/sweetalert2">SweetAlert2</a> - a beautiful, responsive, customizable, accessible replacement for JavaScript's popup boxes.</li>
+					<li><a target="_blank" href="https://github.com/Keyamoon/IcoMoon-Free">IcoMoon-Free</a> - is a free vector icon pack by Keyamoon.</li>
+				</ul>`; // post text
 	golos.broadcast.comment(wif, parentAuthor, parentPermlink, username, str, title, body, jsonMetadata, function (err, result) {
 		//console.log(err, result);
 		if (!err) {
@@ -374,6 +387,8 @@ document.getElementById('complete').addEventListener('click', function () {
 		} else {
 			console.log('auth() =>');
 			auth(() => {
+				wif = JSON.parse(wif);
+				localStorage.wif = wif.posting;
 				completeForm(function (err, result) {
 					if (err) {
 						console.error(err);
@@ -407,6 +422,8 @@ document.getElementById('my-polls').addEventListener('click', function () {
 	} else {
 		console.log('auth() =>');
 		auth(() => {
+			wif = JSON.parse(wif);
+			localStorage.wif = wif.posting;
 			getMyPolls(function (err, result) {
 				if (err) {
 					console.error(err);

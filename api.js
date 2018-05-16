@@ -39,6 +39,8 @@ function progress_click() { // dummy for polling
 	} else {
 		console.log('auth() =>');
 		auth(() => {
+			wif = JSON.parse(wif);
+			localStorage.wif = wif.posting;
 			sendVote(this.id, function (err, result) {
 				if (err) {
 					console.error(err);
