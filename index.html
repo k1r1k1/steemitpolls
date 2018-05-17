@@ -122,17 +122,17 @@
 						</div>
 						<label>Add image with <a href="https://golosimages.com/"> GolosImages</a></label>
 						<button class="btn btn-info btn-sm" id="upload">Open</button><img id="load-img" src="graphics/loading.gif" width="60" height="60" style="display: none;">
-						<label id="img-path"></label>
+						<a href="" id="img-path" target="_blank"></a>
 						<script>
 							document.getElementById('upload').addEventListener('click', function() {
 								document.querySelector('#load-img').style = "display: ;";
+								document.querySelector('#img-path').href = '';
 								document.querySelector('#img-path').innerHTML = '';
 								uploadImageToIpfs(function(files) {
-									console.log(files);
-									console.log(files[0]);
-									console.log(files[0].path);
+									console.log(files[0][0].path + files[0][0].hash);
 									document.querySelector('#load-img').style = "display: none;";
-									document.querySelector('#img-path').innerHTML = files[0].path + files[0].hash;
+									document.querySelector('#img-path').href = files[0][0].path + files[0][0].hash;
+									document.querySelector('#img-path').innerHTML = files[0][0].path + files[0][0].hash;
 								});
 							});
 						</script>
