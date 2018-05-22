@@ -44,6 +44,9 @@ document.onreadystatechange = function () { // loading animation switch-off
 		/*document.querySelector('#language').classList.remove('btn-info'); // lang button style change
 		document.querySelector('#language').classList.add('btn-warning');*/
 		document.querySelector('.lding').style.display = 'none';
+		// patch
+		wif = localStorage.wif;
+		username = localStorage.username;
 	}
 }
 
@@ -144,7 +147,9 @@ function addInactiveInput() {
 	$div.className = 'input-group mb-3';
 	$div.id = 'pOption' + inputsC;
 	$div.style = 'opacity: 0.4; transition: .5s;';
-	$div.innerHTML = `<input type="text" class="form-control" placeholder="Click here to add a new one" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="inputOption` + inputsC + `" data-toggle="tooltip" data-placement="left" title="Please fill or remove this field">
+	$div.innerHTML = `<div class="input-group-prepend">
+                        <button class="btn btn-secondary" type="button" id="addImg` + inputsC + `" disabled><span class="icon-image"></span></button>
+                    </div><input type="text" class="form-control" placeholder="Click here to add a new one" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="inputOption` + inputsC + `" data-toggle="tooltip" data-placement="left">
 <div class="input-group-append">
                         <button class="btn btn-danger" type="button" id="pOptionButt` + inputsC + `" disabled><span class="icon-cross"></span></button>
                     </div>
