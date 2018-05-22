@@ -133,6 +133,7 @@ document.querySelector('#cpcdbtn').addEventListener('click', CopyCodeToClipboard
 function addPollingInputs() { // adding a response option
 	console.log('<f> addPollingInputs');
 	document.getElementById('pOptionButt' + inputsC).removeAttribute('disabled');
+	document.getElementById('addImg' + inputsC).removeAttribute('disabled');
 	document.getElementById('pOption' + inputsC).style.opacity = '1';
 	document.getElementById('inputOption' + inputsC).setAttribute('placeholder', 'Type your text here');
 	document.querySelector('#inputOption' + inputsC).removeEventListener('focus', addPollingInputs, false);
@@ -155,11 +156,18 @@ function addInactiveInput() {
                     </div>
                 </div>`;
 	$div.querySelector('#inputOption' + inputsC).addEventListener('focus', addPollingInputs, false);
-	$div.querySelector('button').addEventListener('click', function (e) {
+	$div.querySelector('.btn.btn-danger').addEventListener('click', function (e) { // del button event
 		if (e.target.tagName == 'BUTTON') {
 			e.target.parentNode.parentNode.remove();
 		} else if (e.target.tagName == 'SPAN') {
 			e.target.parentNode.parentNode.parentNode.remove();
+		}
+	}, false);
+	$div.querySelector('.btn.btn-secondary').addEventListener('click', function (e) { // img button event
+		if (e.target.tagName == 'BUTTON') {
+			alert('button');
+		} else if (e.target.tagName == 'SPAN') {
+			alert('span');
 		}
 	}, false);
 	document.getElementById('PollForm').appendChild($div);
@@ -391,7 +399,8 @@ document.getElementById('complete').addEventListener('click', function () {
 		} else {
 			console.log('auth() =>');
 			auth(() => {
-				wif = JSON.parse(wif);JSON.parse(wif)['posting']
+				wif = JSON.parse(wif);
+				JSON.parse(wif)['posting']
 				localStorage.wif = wif.posting;
 				completeForm(function (err, result) {
 					if (err) {
@@ -478,3 +487,16 @@ document.getElementById('integration').addEventListener('click', () => {
 		showCloseButton: 'true'
 	});
 }, false);
+
+document.getElementById('upload').addEventListener('click', function () {
+	document.querySelector('#load-img').style = "display: inline-block;";
+	document.querySelector('#img-path').href = '';
+	document.querySelector('#img-path').innerHTML = '';
+	uploadImageToIpfs(function (files) {
+		if (err) console.log('Errorrrrrrr', err);
+		console.log(files[0][0].path + files[0][0].hash);
+		document.querySelector('#load-img').style = "display: none;";
+		document.querySelector('#img-path').href = files[0][0].path + files[0][0].hash;
+		document.querySelector('#img-path').innerHTML = files[0][0].path + files[0][0].hash;
+	});
+});

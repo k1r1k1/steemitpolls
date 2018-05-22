@@ -125,20 +125,6 @@
 						<label>Add the main image with <a href="https://golosimages.com/" target="_blank"> GolosImages</a></label>
 						<button class="btn btn-secondary btn-sm" id="upload"><span class="icon-image"></span></button><img id="load-img" src="graphics/loading.gif" width="60" height="60" style="display: none;">
 						<a href="" id="img-path" target="_blank"></a>
-						<script>
-							document.getElementById('upload').addEventListener('click', function() {
-								document.querySelector('#load-img').style = "display: block;";
-								document.querySelector('#img-path').href = '';
-								document.querySelector('#img-path').innerHTML = '';
-								uploadImageToIpfs(function(files) {
-									if (err) console.log('Errorrrrrrr', err);
-									console.log(files[0][0].path + files[0][0].hash);
-									document.querySelector('#load-img').style = "display: none;";
-									document.querySelector('#img-path').href = files[0][0].path + files[0][0].hash;
-									document.querySelector('#img-path').innerHTML = files[0][0].path + files[0][0].hash;
-								});
-							});
-						</script>
 						<!--golosimages.com integration end-->
 						<div id="PollForm">
 							<label>Fill in the following fields</label>
