@@ -489,7 +489,7 @@ document.getElementById('integration').addEventListener('click', () => {
 }, false);
 
 document.getElementById('upload').addEventListener('click', function () {
-	document.querySelector('#load-img').style = "display: inline-block;";
+	document.querySelector('#load-img').style = "display: inline-block; margin-left: 1rem;";
 	document.querySelector('#img-path').href = '';
 	document.querySelector('#img-path').innerHTML = '';
 	uploadImageToIpfs(function (files) {
