@@ -492,11 +492,18 @@ document.getElementById('upload').addEventListener('click', function () {
 	document.querySelector('#load-img').style = "display: inline-block; margin-left: 1rem;";
 	document.querySelector('#img-path').href = '';
 	document.querySelector('#img-path').innerHTML = '';
-	uploadImageToIpfs(function (files) {
-		if (err) console.log('Errorrrrrrr', err);
-		console.log(files[0][0].path + files[0][0].hash);
+	uploadImageToIpfs(function (err, files) {
 		document.querySelector('#load-img').style = "display: none;";
-		document.querySelector('#img-path').href = files[0][0].path + files[0][0].hash;
-		document.querySelector('#img-path').innerHTML = files[0][0].path + files[0][0].hash;
+		if (err) {
+			console.error('ipfs error: ', err);
+			document.querySelector('#img-path').innerHTML = err;
+			document.querySelector('#img-path').style.color = 'red';
+		} else {
+			console.log(files[0][0].path + files[0][0].hash);
+			document.querySelector('#img-path').target = '_blank';
+			document.querySelector('#img-path').style.color = '#008cba';
+			document.querySelector('#img-path').href = files[0][0].path + files[0][0].hash;
+			document.querySelector('#img-path').innerHTML = files[0][0].path + files[0][0].hash;
+		}
 	});
 });
