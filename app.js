@@ -5,11 +5,9 @@
 // switching to testnet
 /*golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
 golos.config.set('websocket', 'wss://ws.testnet.golos.io');*/
-
 var inputsC = 0; // inputs counter
 initLang('en'); // lang init = en
 if (hash != '') {
-	console.log('hash hash');
 	getHash(function (resultContent) {
 		insertHtmlPoll(resultContent);
 		// inserting social buttons
@@ -47,6 +45,26 @@ document.onreadystatechange = function () { // loading animation switch-off
 		// patch
 		wif = localStorage.wif;
 		username = localStorage.username;
+
+		// custom ipfs connection
+		let changeNode = {}
+		function initCustomConnection() {
+			changeNode.connectionCustom = {
+				api: {
+					protocol: `http`,
+					port: `5001`,
+					address: `91.201.41.253`
+				},
+				gateway: {
+					protocol: `http`,
+					port: `7777`,
+					address: `91.201.41.253`
+				}
+			}
+			initConnection(changeNode.connectionCustom);
+		}
+		initCustomConnection();
+
 	}
 }
 
@@ -55,7 +73,7 @@ function insertHtmlPoll(resultContent) {
 	document.querySelector('.card-body.text-dark').innerHTML = '';
 	var $div = document.createElement('h5'); // inserting header in poll
 	$div.className = 'card-title';
-	$div.innerHTML = resultContent.json_metadata.data.poll_title;
+	$div.innerHTML = resultContent.json_metadata.data.poll_title + '<p><img src="' + resultContent.json_metadata.data.title_image + '" height="250">';
 	document.querySelector('.card-body.text-dark').appendChild($div);
 	getVote(function () {
 		for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress 
@@ -63,6 +81,7 @@ function insertHtmlPoll(resultContent) {
 			$div.className = 'progress-block';
 			if (resultContent.json_metadata.data.poll_answers[cnt]) {
 				$div.innerHTML = `<label class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</label>
+						<p><img src="` +  resultContent.json_metadata.data.poll_images[cnt] + `" height="150">
                     <div class="progress" id="` + cnt + `" style="cursor: pointer;">
                         <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div>
                     </div><br>`;
@@ -131,7 +150,6 @@ function CopyCodeToClipboard() {
 document.querySelector('#cpcdbtn').addEventListener('click', CopyCodeToClipboard, false);
 
 function addPollingInputs() { // adding a response option
-	console.log('<f> addPollingInputs');
 	document.getElementById('pOptionButt' + inputsC).removeAttribute('disabled');
 	document.getElementById('addImg' + inputsC).removeAttribute('disabled');
 	document.getElementById('pOption' + inputsC).style.opacity = '1';
@@ -142,13 +160,13 @@ function addPollingInputs() { // adding a response option
 addPollingInputs(); // add 2nd active field in a polling form
 
 function addInactiveInput() {
-	console.log('<f> addInactiveInput');
 	inputsC++;
 	var $div = document.createElement('div');
 	$div.className = 'input-group mb-3';
 	$div.id = 'pOption' + inputsC;
-	$div.style = 'opacity: 0.4; transition: .5s;';
+	$div.style = 'opacity: 0.4;';
 	$div.innerHTML = `<div class="input-group-prepend">
+<img id="load-img" src="graphics/loading.gif" width="34" height="34" style="display: none; margin: 0 5px;">
                         <button class="btn btn-secondary" type="button" id="addImg` + inputsC + `" disabled><span class="icon-image"></span></button>
                     </div><input type="text" class="form-control" placeholder="Click here to add a new one" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="inputOption` + inputsC + `" data-toggle="tooltip" data-placement="left">
 <div class="input-group-append">
@@ -164,10 +182,18 @@ function addInactiveInput() {
 		}
 	}, false);
 	$div.querySelector('.btn.btn-secondary').addEventListener('click', function (e) { // img button event
-		if (e.target.tagName == 'BUTTON') {
-			alert('button');
-		} else if (e.target.tagName == 'SPAN') {
-			alert('span');
+		if (e.target.tagName == 'BUTTON' || e.target.tagName == 'SPAN') {
+			(e.target.parentNode.parentNode).querySelector('img').style.display = 'block';
+			(e.target.parentNode.parentNode).querySelector('img').src = 'graphics/loading.gif';
+			uploadImageToIpfs(function (err, files) {
+				if (err) {
+					console.error('ipfs error: ', err);
+					(e.target.parentNode.parentNode).querySelector('img').src = 'graphics/err.png';
+				} else {
+					console.log(files[0][0].path + files[0][0].hash);
+					(e.target.parentNode.parentNode).querySelector('img').src = files[0][0].path + files[0][0].hash;
+				}
+			});
 		}
 	}, false);
 	document.getElementById('PollForm').appendChild($div);
@@ -177,15 +203,18 @@ function completeForm(callback) {
 	console.log('<f> completeForm');
 	// collecting data & sending 
 	var $pollInputs = document.getElementById('PollForm').getElementsByClassName('form-control'),
+		$pollImages = document.getElementById('PollForm').getElementsByTagName('img'),
 		errTrigger,
 		newPostTimout,
-		answers = [];
+		answers = [],
+		answerimages = [];
 	for (var cnt = 0; $pollInputs.length - 1 > cnt; cnt++) {
 		if ($pollInputs[cnt].value == '') {
 			$pollInputs[cnt].setAttribute('class', 'form-control title is-invalid');
 			errTrigger = true;
 		} else {
 			answers[cnt] = $pollInputs[cnt].value;
+			answerimages[cnt] = $pollImages[cnt].src;
 		}
 	}
 	if (errTrigger) return;
@@ -202,6 +231,8 @@ function completeForm(callback) {
 		app_account: 'golosapps',
 		data: {
 			poll_title: title,
+			title_image: document.querySelector('#load-img').src,
+			poll_images: answerimages,
 			poll_answers: answers
 		}
 	};
@@ -231,7 +262,7 @@ function send_request(callback, str, title, jsonMetadata) {
 	console.log('<f> send_request');
 	var parentAuthor = ''; // for post creating, empty field
 	var parentPermlink = 'test'; // main tag
-	var body = `<p>
+	var body = 'test;'/* `<p>
 					GolosPolls - is microservice for conducting polls on the blockchain <a target="_blank" href="https://golos.io">Golos</a>. This platform is a thin client, that works without a backend (only frontend and blockchain) directly on the <a>GitHub Pages</a> (through <a target="_blank" href="https://www.cloudflare.com/">CloudFlare</a>).</p>
 					<img src="https://golospolls.com/graphics/logo.png" height="300" width="300"></img>
 				<ul>
@@ -243,7 +274,7 @@ function send_request(callback, str, title, jsonMetadata) {
 					<li><a target="_blank" href="https://github.com/zloirock/core-js">Core-js</a> - modular standard library for JavaScript. Includes polyfills for ECMAScript 5, ECMAScript 6: promises, symbols, collections, iterators, typed arrays, ECMAScript 7+ proposals, setImmediate, etc. Some additional features such as dictionaries or extended partial application. You can require only needed features or use it without global namespace pollution.</li>
 					<li><a target="_blank" href="https://github.com/limonte/sweetalert2">SweetAlert2</a> - a beautiful, responsive, customizable, accessible replacement for JavaScript's popup boxes.</li>
 					<li><a target="_blank" href="https://github.com/Keyamoon/IcoMoon-Free">IcoMoon-Free</a> - is a free vector icon pack by Keyamoon.</li>
-				</ul>`; // post text
+				</ul>`; // post text */
 	golos.broadcast.comment(wif, parentAuthor, parentPermlink, username, str, title, body, jsonMetadata, function (err, result) {
 		//console.log(err, result);
 		if (!err) {
@@ -490,20 +521,14 @@ document.getElementById('integration').addEventListener('click', () => {
 
 document.getElementById('upload').addEventListener('click', function () {
 	document.querySelector('#load-img').style = "display: inline-block; margin-left: 1rem;";
-	document.querySelector('#img-path').href = '';
-	document.querySelector('#img-path').innerHTML = '';
+	document.querySelector('#load-img').src = 'graphics/loading.gif';
 	uploadImageToIpfs(function (err, files) {
-		document.querySelector('#load-img').style = "display: none;";
 		if (err) {
 			console.error('ipfs error: ', err);
-			document.querySelector('#img-path').innerHTML = err;
-			document.querySelector('#img-path').style.color = 'red';
+			document.querySelector('#load-img').src = 'graphics/err.png';
 		} else {
 			console.log(files[0][0].path + files[0][0].hash);
-			document.querySelector('#img-path').target = '_blank';
-			document.querySelector('#img-path').style.color = '#008cba';
-			document.querySelector('#img-path').href = files[0][0].path + files[0][0].hash;
-			document.querySelector('#img-path').innerHTML = files[0][0].path + files[0][0].hash;
+			document.querySelector('#load-img').src = files[0][0].path + files[0][0].hash;
 		}
 	});
 });
