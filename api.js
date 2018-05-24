@@ -11,6 +11,11 @@ var resultContent = '', // global variable for content
 	tagNewPost,
 	counter, // for poll after creating a new post 
 	hash = location.hash.substring(1); // geting hash
+// patch
+var wif = localStorage.wif,
+	username = localStorage.username;
+console.log('wif', wif);
+console.log('username', username);
 
 function progress_click() { // dummy for polling 
 	console.log('<f> progress_click #' + this.id);
@@ -152,6 +157,7 @@ function sendVote(pollId, callback) {
 
 function getVote(callback) { // getting poll data
 	//document.querySelector('#share-form').style.display = 'block';
+	console.log('<f> getVote');
 	countOfVoters = 0;
 	checkToVote = false;
 	pollData = {};

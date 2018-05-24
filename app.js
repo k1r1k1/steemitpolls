@@ -11,6 +11,7 @@ if (hash != '') {
 	getHash(function (resultContent) {
 		insertHtmlPoll(resultContent);
 		// inserting social buttons
+		console.log('*********BUTTONS****INJECTION************');
 		var $div = document.createElement('div');
 		$div.innerHTML = `<a class="btn share-fb" href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&u=https%3A%2F%2Fgolospolls.com%2F#` + resultContent.author + `%2F` + resultContent.permlink + `&display=popup&ref=plugin&src=share_button" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><span class="icon-facebook2"> Share</span></a>
 					
@@ -36,20 +37,10 @@ window.onhashchange = function () {
 addInactiveInput();
 addPollingInputs();
 
-document.onreadystatechange = function () { // loading animation switch-off
-	console.log('<f> doc ready');
-	if (document.readyState === "complete") {
-		/*document.querySelector('#language').classList.remove('btn-info'); // lang button style change
-		document.querySelector('#language').classList.add('btn-warning');*/
-		document.querySelector('.lding').style.display = 'none';
-		// patch
-		wif = localStorage.wif;
-		username = localStorage.username;
-
 		// custom ipfs connection
-		let changeNode = {}
+/*		var connectionCustom = {};
 		function initCustomConnection() {
-			changeNode.connectionCustom = {
+			connectionCustom = {
 				api: {
 					protocol: `http`,
 					port: `5001`,
@@ -61,10 +52,17 @@ document.onreadystatechange = function () { // loading animation switch-off
 					address: `91.201.41.253`
 				}
 			}
-			initConnection(changeNode.connectionCustom);
-		}
-		initCustomConnection();
+			initConnection(connectionCustom);
+			console.log(connectionCustom);
+		}*/
 
+document.onreadystatechange = function () { // loading animation switch-off
+	console.log('<f> doc ready');
+	if (document.readyState === "complete") {
+		/*document.querySelector('#language').classList.remove('btn-info'); // lang button style change
+		document.querySelector('#language').classList.add('btn-warning');*/
+		document.querySelector('.lding').style.display = 'none';
+		initCustomConnection();
 	}
 }
 
@@ -73,7 +71,7 @@ function insertHtmlPoll(resultContent) {
 	document.querySelector('.card-body.text-dark').innerHTML = '';
 	var $div = document.createElement('h5'); // inserting header in poll
 	$div.className = 'card-title';
-	$div.innerHTML = resultContent.json_metadata.data.poll_title + '<p><img src="' + resultContent.json_metadata.data.title_image + '" height="250">';
+	$div.innerHTML = resultContent.json_metadata.data.poll_title + '<p><br><img src="' + resultContent.json_metadata.data.title_image + '" class="img-thumbnail mx-auto d-block" height="400">';
 	document.querySelector('.card-body.text-dark').appendChild($div);
 	getVote(function () {
 		for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress 
@@ -81,7 +79,7 @@ function insertHtmlPoll(resultContent) {
 			$div.className = 'progress-block';
 			if (resultContent.json_metadata.data.poll_answers[cnt]) {
 				$div.innerHTML = `<label class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</label>
-						<p><img src="` +  resultContent.json_metadata.data.poll_images[cnt] + `" height="150">
+						<p><img src="` +  resultContent.json_metadata.data.poll_images[cnt] + `" height="150" class="rounded">
                     <div class="progress" id="` + cnt + `" style="cursor: pointer;">
                         <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div>
                     </div><br>`;
