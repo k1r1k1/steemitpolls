@@ -63,6 +63,7 @@ function incertHtmlPoll(resultContent) {
 			document.querySelector('.card-header-right p').innerHTML = '</span><span class="badge badge-info">' + moment(resultContent.created).format('lll') + '</span>';
 		})
 	});
+	document.querySelector('.card.border-primary.mb-3 a').href = 'https://golospolls.com/#' + resultContent.author + '/' + resultContent.permlink;
 	startUpdProgTimer(3500);
 }
 

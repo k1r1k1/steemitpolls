@@ -26,32 +26,10 @@ window.onhashchange = function () {
 addInactiveInput();
 addPollingInputs();
 
-// custom ipfs connection
-/*		var connectionCustom = {};
-		function initCustomConnection() {
-			connectionCustom = {
-				api: {
-					protocol: `http`,
-					port: `5001`,
-					address: `91.201.41.253`
-				},
-				gateway: {
-					protocol: `http`,
-					port: `7777`,
-					address: `91.201.41.253`
-				}
-			}
-			initConnection(connectionCustom);
-			console.log(connectionCustom);
-		}*/
-
 document.onreadystatechange = function () { // loading animation switch-off
 	console.log('<f> doc ready');
 	if (document.readyState === "complete") {
-		/*document.querySelector('#language').classList.remove('btn-info'); // lang button style change
-		document.querySelector('#language').classList.add('btn-warning');*/
 		document.querySelector('.lding').style.display = 'none';
-		/*initCustomConnection();*/
 	}
 }
 
@@ -60,13 +38,16 @@ function insertHtmlPoll(resultContent) {
 	document.querySelector('.card-body.text-dark').innerHTML = '';
 	var $div = document.createElement('h5'); // inserting header in poll
 	$div.className = 'card-title';
-	$div.innerHTML = resultContent.json_metadata.data.poll_title + '<p><br><img src="' + resultContent.json_metadata.data.title_image + '" class="img-thumbnail mx-auto d-block" height="400">';
+	$div.innerHTML = resultContent.json_metadata.data.poll_title;
+	if (resultContent.json_metadata.data.title_image) {
+		$div.innerHTML = $div.innerHTML + '<p><br><img src="' + resultContent.json_metadata.data.title_image + '" class="img-thumbnail mx-auto d-block" height="400">';
+	}
 	document.querySelector('.card-body.text-dark').appendChild($div);
 	getVote(function () {
 		for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress 
 			var $div = document.createElement('div');
 			$div.className = 'progress-block';
-			if (resultContent.json_metadata.data.poll_answers[cnt]) {
+			if (resultContent.json_metadata && resultContent.json_metadata.data && resultContent.json_metadata.data.poll_answers && resultContent.json_metadata.data.poll_images && resultContent.json_metadata.data.poll_answers[cnt] && resultContent.json_metadata.data.poll_images[cnt]) {
 				$div.innerHTML = `<label class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</label>
 						<p><img src="` + resultContent.json_metadata.data.poll_images[cnt] + `" height="150" class="rounded">
                     <div class="progress" id="` + cnt + `" style="cursor: pointer;">
@@ -247,7 +228,7 @@ function send_request(callback, str, title, jsonMetadata) {
 	console.log('<f> send_request');
 	var parentAuthor = ''; // for post creating, empty field
 	var parentPermlink = 'test'; // main tag
-	var body = 'test;'
+	var body = 'test';
 	/* `<p>
 						GolosPolls - is microservice for conducting polls on the blockchain <a target="_blank" href="https://golos.io">Golos</a>. This platform is a thin client, that works without a backend (only frontend and blockchain) directly on the <a>GitHub Pages</a> (through <a target="_blank" href="https://www.cloudflare.com/">CloudFlare</a>).</p>
 						<img src="https://golospolls.com/graphics/logo.png" height="300" width="300"></img>
@@ -262,9 +243,7 @@ function send_request(callback, str, title, jsonMetadata) {
 						<li><a target="_blank" href="https://github.com/Keyamoon/IcoMoon-Free">IcoMoon-Free</a> - is a free vector icon pack by Keyamoon.</li>
 					</ul>`; // post text */
 	golos.broadcast.comment(wif, parentAuthor, parentPermlink, username, str, title, body, jsonMetadata, function (err, result) {
-		//console.log(err, result);
 		if (!err) {
-			//console.log('post: ', result);
 			window.location.hash = username + '/' + str;
 			document.querySelector('.lding').style.display = 'none';
 		} else {
