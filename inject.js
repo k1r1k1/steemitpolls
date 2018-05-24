@@ -27,11 +27,11 @@ gAuth.src = 'https://golosimages.com/auth.js';
 (document.head || document.documentElement).appendChild(gAuth);
 
 gApi = document.createElement('script');
-gApi.src = 'https://golospolls.com/api.js';
+gApi.src = 'api.js';
 (document.head || document.documentElement).appendChild(gApi);
 
 function incertHtmlPoll(resultContent) {
-	console.log('<f> incertHtmlPoll ');
+	console.log('<f> incertHtmlPoll inject');
 	document.querySelector('.card-body.text-dark').innerHTML = '';
 	var $div = document.createElement('h5'); // inserting header in poll
 	$div.className = 'card-title';
@@ -60,24 +60,16 @@ function incertHtmlPoll(resultContent) {
 		getVote(function () {
 			console.log('<f> incertPollProg pollData', pollData);
 			cnt = resultContent.json_metadata.data.poll_answers.length;
-			for (index = 0; index < resultContent.json_metadata.data.poll_answers.length; ++index) {
-				if (typeof pollData[index] != 'undefined') {
-					pollData[index].percnt = Math.round((pollData[index].count * 100) / cnt);
-					if (document.querySelectorAll('.progress-bar')[index]) {
-						document.querySelectorAll('.progress-bar')[index].style = 'width: ' + pollData[index].percnt + '%;';
-						document.querySelectorAll('.progress-bar')[index].innerHTML = pollData[index].percnt + '% (' + pollData[index].count + ')';
-					}
-				}
-			}
 			document.querySelector('.card-header-right p').innerHTML = '</span><span class="badge badge-info">' + moment(resultContent.created).format('lll') + '</span>';
 		})
 	});
+	startUpdProgTimer(3500);
 }
 
 window.addEventListener('load', function () { // init script after page loaded
 	console.log('<f> doc loaded');
-/*	golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
-	golos.config.set('websocket', 'wss://ws.testnet.golos.io');*/
+	/*	golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
+		golos.config.set('websocket', 'wss://ws.testnet.golos.io');*/
 	gPollsContainer = document.createElement('div');
 	gPollsContainer.className = 'card border-primary mb-3';
 	gPollsContainer.innerHTML = `

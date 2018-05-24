@@ -183,10 +183,18 @@ function getVote(callback) { // getting poll data
 					}
 				}
 			});
-			// console.log('<f> getVote count:', Object.keys(pollData).length); // count of object
 			Object.keys(pollData).map(function (objectKey, index) { // foreach pollData
 				pollData[objectKey].percnt = Math.round((pollData[objectKey].count * 100) / countOfVoters); // calculate percent
 			});
+			cnt = resultContent.json_metadata.data.poll_answers.length;
+			for (index = 0; index < resultContent.json_metadata.data.poll_answers.length; ++index) {
+				if (typeof pollData[index] != 'undefined') {
+					if (document.querySelectorAll('.progress-bar')[index]) {
+						document.querySelectorAll('.progress-bar')[index].style = 'width: ' + pollData[index].percnt + '%;';
+						document.querySelectorAll('.progress-bar')[index].innerHTML = pollData[index].percnt + '% (' + pollData[index].count + ')';
+					}
+				}
+			}
 		} else {
 			console.error(err);
 			swal({
@@ -200,7 +208,7 @@ function getVote(callback) { // getting poll data
 }
 
 function startUpdProgTimer(interval) {
-	updProgressTimer = setInterval(updateProgressValues, interval);
+	updProgressTimer = setInterval(getVote, interval);
 	console.log('<f> start-updProgressTimer');
 }
 
