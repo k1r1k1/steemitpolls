@@ -180,6 +180,11 @@ function completeForm(callback) {
 			errTrigger = true;
 		} else {
 			answers[cnt] = $pollInputs[cnt].value;
+			if ($pollImages[cnt].src == 'graphics/loading.gif') {
+				console.log(`$pollImages.src == 'https://golospolls.com/graphics/loading.gif'`);
+				$pollImages[cnt].src = '';
+			}
+			console.log('src',$pollImages[cnt].src);
 			answerimages[cnt] = $pollImages[cnt].src;
 		}
 	}
@@ -191,6 +196,9 @@ function completeForm(callback) {
 	console.log('permlink : ' + str);
 	console.log('json var : ' + answers); // debug info
 	console.log('title : ' + title);
+	if (document.querySelector('#load-img').src == 'graphics/loading.gif') {
+		document.querySelector('#load-img').src = '';
+	}
 	var jsonMetadata = {
 		app: 'golospolls/0.1',
 		canonical: 'https://golospolls.com/#' + username + '/' + str,
