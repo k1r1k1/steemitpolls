@@ -181,11 +181,8 @@ function completeForm(callback) {
 		} else {
 			answers[cnt] = $pollInputs[cnt].value;
 			if ($pollImages[cnt].src == 'https://golospolls.com/graphics/loading.gif') {
-				console.log(`$pollImages.src == 'graphics/loading.gif'`);
 				answerimages[cnt] = '';
 			} else {
-				console.log('$pollImages src',$pollImages[cnt].src);
-				console.log('answerimages src',answerimages[cnt]);
 				answerimages[cnt] = $pollImages[cnt].src;
 			}
 		}
@@ -194,13 +191,14 @@ function completeForm(callback) {
 	str = urlLit(document.querySelector('.form-control.title').value, 0);
 	//str.replace(/[^\w\d]/g, '_');
 	str = str + '-' + Date.now();
-	var title = document.querySelector('.form-control.title').value;
+	var title = document.querySelector('.form-control.title').value,
+		title_pic = document.querySelector('#load-img').src;
 	console.log('permlink : ' + str);
 	console.log('json var : ' + answers); // debug info
 	console.log('title : ' + title);
 	console.log('json answerimages : ' + answerimages);
-	if (document.querySelector('#load-img').src == 'graphics/loading.gif') {
-		document.querySelector('#load-img').src = '';
+	if (document.querySelector('#load-img').src == 'https://golospolls.com/graphics/loading.gif') {
+		title_pic = '';
 	}
 	var jsonMetadata = {
 		app: 'golospolls/0.1',
@@ -208,7 +206,7 @@ function completeForm(callback) {
 		app_account: 'golosapps',
 		data: {
 			poll_title: title,
-			title_image: document.querySelector('#load-img').src,
+			title_image: title_pic,
 			poll_images: answerimages,
 			poll_answers: answers
 		}
