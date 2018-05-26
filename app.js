@@ -182,10 +182,12 @@ function completeForm(callback) {
 			answers[cnt] = $pollInputs[cnt].value;
 			if ($pollImages[cnt].src == 'https://golospolls.com/graphics/loading.gif') {
 				console.log(`$pollImages.src == 'graphics/loading.gif'`);
-				$pollImages[cnt].src = '';
+				answerimages[cnt] = '';
+			} else {
+				console.log('$pollImages src',$pollImages[cnt].src);
+				console.log('answerimages src',answerimages[cnt]);
+				answerimages[cnt] = $pollImages[cnt].src;
 			}
-			console.log('src',$pollImages[cnt].src);
-			answerimages[cnt] = $pollImages[cnt].src;
 		}
 	}
 	if (errTrigger) return;
@@ -196,6 +198,7 @@ function completeForm(callback) {
 	console.log('permlink : ' + str);
 	console.log('json var : ' + answers); // debug info
 	console.log('title : ' + title);
+	console.log('json answerimages : ' + answerimages);
 	if (document.querySelector('#load-img').src == 'graphics/loading.gif') {
 		document.querySelector('#load-img').src = '';
 	}
