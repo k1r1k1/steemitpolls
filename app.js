@@ -180,8 +180,8 @@ function completeForm(callback) {
 			errTrigger = true;
 		} else {
 			answers[cnt] = $pollInputs[cnt].value;
-			if ($pollImages[cnt].src == 'graphics/loading.gif') {
-				console.log(`$pollImages.src == 'https://golospolls.com/graphics/loading.gif'`);
+			if ($pollImages[cnt].src == 'https://golospolls.com/graphics/loading.gif') {
+				console.log(`$pollImages.src == 'graphics/loading.gif'`);
 				$pollImages[cnt].src = '';
 			}
 			console.log('src',$pollImages[cnt].src);
