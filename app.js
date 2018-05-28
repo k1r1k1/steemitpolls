@@ -404,9 +404,6 @@ document.getElementById('complete').addEventListener('click', function () {
 		} else {
 			console.log('auth() =>');
 			auth(() => {
-				wif = JSON.parse(wif);
-				JSON.parse(wif)['posting']
-				localStorage.wif = wif.posting;
 				completeForm(function (err, result) {
 					if (err) {
 						console.error(err);
@@ -440,8 +437,6 @@ document.getElementById('my-polls').addEventListener('click', function () {
 	} else {
 		console.log('auth() =>');
 		auth(() => {
-			wif = JSON.parse(wif);
-			localStorage.wif = wif.posting;
 			getMyPolls(function (err, result) {
 				if (err) {
 					console.error(err);

@@ -11,11 +11,6 @@ var resultContent = '', // global variable for content
 	tagNewPost,
 	counter, // for poll after creating a new post 
 	hash = location.hash.substring(1); // geting hash
-// patch
-var wif = localStorage.wif,
-	username = localStorage.username;
-console.log('wif', wif);
-console.log('username', username);
 
 function progress_click() { // dummy for polling 
 	console.log('<f> progress_click #' + this.id);
@@ -43,8 +38,6 @@ function progress_click() { // dummy for polling
 	} else {
 		console.log('auth() =>');
 		auth(() => {
-			wif = JSON.parse(wif);
-			localStorage.wif = wif.posting;
 			sendVote(this.id, function (err, result) {
 				if (err) {
 					console.error(err);
@@ -107,52 +100,54 @@ function getHash(callback) {
 
 function sendVote(pollId, callback) {
 	console.log('<f> sendVote');
-	if (tagNewPost) {
-		swal({
-			title: 'error',
-			text: 'Sorry, you have to wait for ' + counter + ' seconds before first vote',
-			type: 'error',
-			showConfirmButton: false,
-			timer: 2500
-		})
-		return;
-	}
-	if (checkToVote) {
-		console.error('You can only vote once');
-		swal({
-			title: 'You can only vote once',
-			text: 'Sorry, seems like you are already voted',
-			type: 'error'
-		})
-	} else {
-		var parentAuthor = resultContent.author;
-		console.log('parentAuthor', parentAuthor);
-		var parentPermlink = resultContent.permlink;
-		console.log('parentPermlink', parentPermlink);
-		var permlink = 're-' + parentAuthor + '-' + parentPermlink + '-' + Date.now();
-		console.log('permlink', permlink);
-		var title = ''; // title - empty for add a comment
-		var body = 'I choose option # ' + pollId; // poll
-		console.log('pollId', pollId);
-		var jsonMetadata = {
-			app: 'golospolls/0.1',
-			canonical: 'https://golospolls.com#' + username + '/' + permlink,
-			app_account: 'golosapps',
-			data: {
-				poll_id: pollId
-			}
-		};
-		jsonMetadata = JSON.stringify(jsonMetadata);
-		console.log('golos-broadcast-comment ', wif, parentAuthor, parentPermlink, username, permlink, title, body, jsonMetadata);
-		golos.broadcast.comment(wif, parentAuthor, parentPermlink, username, permlink, title, body, jsonMetadata, function (err, result) {
-			if (!err) {
-				console.log('comment', result);
-			} else {
-				console.error(err);
-			}
-			callback(err, result);
-		});
-	}
+	getVote(() => {
+		if (tagNewPost) {
+			swal({
+				title: 'error',
+				text: 'Sorry, you have to wait for ' + counter + ' seconds before first vote',
+				type: 'error',
+				showConfirmButton: false,
+				timer: 2500
+			})
+			return;
+		}
+		if (checkToVote) {
+			console.error('You can only vote once');
+			swal({
+				title: 'You can only vote once',
+				text: 'Sorry, seems like you are already voted',
+				type: 'error'
+			})
+		} else {
+			var parentAuthor = resultContent.author;
+			console.log('parentAuthor', parentAuthor);
+			var parentPermlink = resultContent.permlink;
+			console.log('parentPermlink', parentPermlink);
+			var permlink = 're-' + parentAuthor + '-' + parentPermlink + '-' + Date.now();
+			console.log('permlink', permlink);
+			var title = ''; // title - empty for add a comment
+			var body = 'I choose option # ' + pollId; // poll
+			console.log('pollId', pollId);
+			var jsonMetadata = {
+				app: 'golospolls/0.1',
+				canonical: 'https://golospolls.com#' + username + '/' + permlink,
+				app_account: 'golosapps',
+				data: {
+					poll_id: pollId
+				}
+			};
+			jsonMetadata = JSON.stringify(jsonMetadata);
+			console.log('golos-broadcast-comment ', wif, parentAuthor, parentPermlink, username, permlink, title, body, jsonMetadata);
+			golos.broadcast.comment(wif, parentAuthor, parentPermlink, username, permlink, title, body, jsonMetadata, function (err, result) {
+				if (!err) {
+					console.log('comment', result);
+				} else {
+					console.error(err);
+				}
+				callback(err, result);
+			});
+		}
+	});
 }
 
 function getVote(callback) { // getting poll data
