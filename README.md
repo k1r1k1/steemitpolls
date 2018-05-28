@@ -7,5 +7,6 @@ We use:
 * [SweetAlert2](https://github.com/limonte/sweetalert2) - a beautiful, responsive, customizable, accessible replacement for JavaScript's popup boxes;
 * [I18next](https://www.i18next.com) -  is an internationalization-framework written in and for JavaScript;
 * [Flag-icon-css](https://github.com/lipis/flag-icon-css) -  A collection of all country flags in SVG;
-* [Moment.js](https://github.com/moment/moment/) - A lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates.
-* [IcoMoon-Free](https://github.com/Keyamoon/IcoMoon-Free) - IcoMoon-Free is a free vector icon pack
+* [Moment.js](https://github.com/moment/moment/) - A lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates;
+* [IcoMoon-Free](https://github.com/Keyamoon/IcoMoon-Free) - IcoMoon-Free is a free vector icon pack;
+* [findAndReplaceDOMText](https://github.com/padolsey/findAndReplaceDOMText) - searches for regular expression matches in a given DOM node and replaces or wraps each match with a node or piece of text that you can specify.
