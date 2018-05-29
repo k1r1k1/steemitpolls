@@ -33,6 +33,7 @@ document.onreadystatechange = function () { // loading animation switch-off
 	if (document.readyState === "complete") {
 		addInactiveInput();
 		addPollingInputs();
+		addPollingInputs();
 		document.querySelector('.lding').style.display = 'none';
 	}
 }
@@ -125,6 +126,7 @@ function addPollingInputs() { // adding a response option
 	document.getElementById('addImg' + inputsC).removeAttribute('disabled');
 	document.getElementById('pOption' + inputsC).style.opacity = '1';
 	document.getElementById('inputOption' + inputsC).setAttribute('placeholder', document.querySelectorAll('.translate-phrases li')[6].innerHTML);
+	document.querySelector('.card-body').getElementsByClassName('form-control')[0].setAttribute('placeholder', document.querySelectorAll('.translate-phrases li')[6].innerHTML);
 	document.querySelector('#inputOption' + inputsC).removeEventListener('focus', addPollingInputs, false);
 	addInactiveInput();
 }
