@@ -33,7 +33,7 @@ document.onreadystatechange = function () { // loading animation switch-off
 	if (document.readyState === "complete") {
 		addInactiveInput();
 		addPollingInputs();
-		addPollingInputs();
+		addPollingInputs(); // add 2nd active field in a polling form
 		document.querySelector('.lding').style.display = 'none';
 	}
 }
@@ -130,7 +130,6 @@ function addPollingInputs() { // adding a response option
 	document.querySelector('#inputOption' + inputsC).removeEventListener('focus', addPollingInputs, false);
 	addInactiveInput();
 }
-addPollingInputs(); // add 2nd active field in a polling form
 
 function addInactiveInput() {
 	inputsC++;
