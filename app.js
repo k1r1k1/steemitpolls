@@ -90,7 +90,7 @@ function insertHtmlPoll(resultContent) {
 function updateProgressValues() {
 	getVote(function () {
 		console.log('<f> updateProgressValues', pollData);
-		document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">voters: ' + countOfVoters + '</span><span class="badge badge-info">created: ' + moment(resultContent.created).format('lll') + '</span>';
+		document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">' + document.querySelectorAll('.translate-phrases li')[4].innerHTML + ': ' + countOfVoters + '</span><span class="badge badge-info">' + document.querySelectorAll('.translate-phrases li')[1].innerHTML + ': ' + moment(resultContent.created).format('lll') + '</span>';
 	})
 }
 
@@ -100,7 +100,7 @@ function CopyLinkToClipboard() {
 	swal({
 		type: 'success',
 		toast: true,
-		title: 'Link has been copied',
+		title: document.querySelectorAll('.translate-phrases li')[10].innerHTML,
 		showConfirmButton: false,
 		timer: 1800
 	})
@@ -113,7 +113,7 @@ function CopyCodeToClipboard() {
 	swal({
 		type: 'success',
 		toast: true,
-		title: 'Code has been copied',
+		title: document.querySelectorAll('.translate-phrases li')[11].innerHTML,
 		showConfirmButton: false,
 		timer: 1800
 	})
@@ -124,7 +124,7 @@ function addPollingInputs() { // adding a response option
 	document.getElementById('pOptionButt' + inputsC).removeAttribute('disabled');
 	document.getElementById('addImg' + inputsC).removeAttribute('disabled');
 	document.getElementById('pOption' + inputsC).style.opacity = '1';
-	document.getElementById('inputOption' + inputsC).setAttribute('placeholder', 'Type your text here');
+	document.getElementById('inputOption' + inputsC).setAttribute('placeholder', document.querySelectorAll('.translate-phrases li')[6].innerHTML);
 	document.querySelector('#inputOption' + inputsC).removeEventListener('focus', addPollingInputs, false);
 	addInactiveInput();
 }
@@ -139,7 +139,7 @@ function addInactiveInput() {
 	$div.innerHTML = `<div class="input-group-prepend">
 <img id="load-img" src="graphics/loading.gif" width="34" height="34" style="display: none; margin: 0 5px;">
                         <button class="btn btn-secondary" type="button" id="addImg` + inputsC + `" disabled><span class="icon-image"></span></button>
-                    </div><input type="text" class="form-control" placeholder="Click here to add a new one" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="inputOption` + inputsC + `" data-toggle="tooltip" data-placement="left">
+                    </div><input type="text" class="form-control" placeholder="` + document.querySelectorAll('.translate-phrases li')[12].innerHTML + `" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="inputOption` + inputsC + `" data-toggle="tooltip" data-placement="left">
 <div class="input-group-append">
                         <button class="btn btn-danger" type="button" id="pOptionButt` + inputsC + `" disabled><span class="icon-cross"></span></button>
                     </div>
@@ -220,8 +220,8 @@ function completeForm(callback) {
 	// chech if error!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	swal({ // visual
 		type: 'success',
-		title: 'Your polling form has been compiled',
-		text: 'Don`t forget to share it!',
+		title: document.querySelectorAll('.translate-phrases li')[13].innerHTML,
+		text: document.querySelectorAll('.translate-phrases li')[14].innerHTML,
 		showConfirmButton: false,
 		timer: 2500
 	})
@@ -264,7 +264,7 @@ function send_request(callback, str, title, jsonMetadata) {
 			console.error(err);
 			swal({
 				type: 'error',
-				title: 'error',
+				title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
 				text: err,
 				showConfirmButton: false,
 				timer: 4000
@@ -294,11 +294,11 @@ function getMyPolls(callback) {
 	golos.api.getDiscussionsByBlog(query, function (err, result) {
 		console.log('<f>getDiscussionsByBlog ', result);
 		if (result == '') {
-			document.querySelector('#complete-form .card-header').innerHTML = 'You do not have any polls yet';
+			document.querySelector('#complete-form .card-header').innerHTML = document.querySelectorAll('.translate-phrases li')[8].innerHTML;
 			document.querySelector('.lding').style.display = 'none';
 		}
 		if (!err) {
-			document.querySelector('#complete-form .card-header').innerHTML = 'Make your choice';
+			document.querySelector('#complete-form .card-header').innerHTML = document.querySelectorAll('.translate-phrases li')[0].innerHTML;
 			result.forEach(function (item) {
 				golos.api.getContentReplies(item.author, item.permlink, function (err, result) {
 					if (!err) {
@@ -321,7 +321,7 @@ function getMyPolls(callback) {
 									winner = item.json_metadata.data.poll_answers[result.json_metadata.data.poll_id];
 								}
 								if (max == 0)
-									winner = 'no one voted';
+									winner = document.querySelectorAll('.translate-phrases li')[6].innerHTML;
 							}
 						});
 						if (item.json_metadata.data) {
@@ -342,7 +342,7 @@ function getMyPolls(callback) {
 			console.error(err);
 			swal({
 				type: 'error',
-				title: 'error',
+				title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
 				text: err,
 				showConfirmButton: false,
 				timer: 4000
@@ -354,11 +354,11 @@ function getMyPolls(callback) {
 	$div.className = 'table table-striped';
 	$div.innerHTML = `<thead>
                             <tr>
-                              <th scope="col">Poll title</th>
-                              <th scope="col">Created</th>
-                              <th scope="col">Variants</th>
-                              <th scope="col">Voters</th>
-                              <th scope="col">Leading</th>
+                              <th scope="col">` + document.querySelectorAll('.translate-phrases li')[3].innerHTML + `</th>
+                              <th scope="col">` + document.querySelectorAll('.translate-phrases li')[1].innerHTML + `</th>
+                              <th scope="col">` + document.querySelectorAll('.translate-phrases li')[2].innerHTML + `</th>
+                              <th scope="col">` + document.querySelectorAll('.translate-phrases li')[4].innerHTML + `</th>
+                              <th scope="col">` + document.querySelectorAll('.translate-phrases li')[5].innerHTML + `</th>
                             </tr>
                           </thead>
                           <tbody class="myPollTab">
@@ -368,7 +368,7 @@ function getMyPolls(callback) {
 	document.querySelector('.card-body.text-dark').appendChild($div);
 }
 
-function urlLit(w, v) {
+function urlLit(w, v) { // cyrilic-to-translit-function
 	var tr = 'a b v g d e ["zh","j"] z i y k l m n o p r s t u f h c ch sh ["shh","shch"] ~ y ~ e yu ya ~ ["jo","e"]'.split(' ');
 	var ww = '';
 	w = w.toLowerCase();
@@ -387,20 +387,20 @@ document.getElementById('complete').addEventListener('click', function () {
 	console.log('<f> complete button');
 	if (document.querySelector('.form-control.title').value == '') {
 		swal({
-			title: 'Error',
-			text: 'Please, enter the title & the polling fields',
+			title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
+			text: document.querySelectorAll('.translate-phrases li')[18].innerHTML,
 			type: 'error'
 		})
 	} else {
 		if (wif) { // if already authorized
 			swal({
-				title: 'Are you sure?',
-				text: 'You won`t be able to revert this!',
+				title: document.querySelectorAll('.translate-phrases li')[19].innerHTML,
+				text: document.querySelectorAll('.translate-phrases li')[16].innerHTML,
 				type: 'question',
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',
 				cancelButtonColor: '#d33',
-				confirmButtonText: 'Yes, just do it!'
+				confirmButtonText: document.querySelectorAll('.translate-phrases li')[7].innerHTML
 			}).then((result) => {
 				if (result.value) {
 					completeForm();
@@ -414,7 +414,7 @@ document.getElementById('complete').addEventListener('click', function () {
 						console.error(err);
 						swal({
 							type: 'error',
-							title: 'error',
+							title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
 							text: err,
 							showConfirmButton: false,
 							timer: 4000
@@ -422,7 +422,7 @@ document.getElementById('complete').addEventListener('click', function () {
 					} else {
 						swal({ // visual
 							type: 'success',
-							title: 'Thanks for making your choice!',
+							title: document.querySelectorAll('.translate-phrases li')[9].innerHTML,
 							toast: true,
 							showConfirmButton: false,
 							timer: 2500
@@ -447,7 +447,7 @@ document.getElementById('my-polls').addEventListener('click', function () {
 					console.error(err);
 					swal({
 						type: 'error',
-						title: 'error',
+						title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
 						text: err,
 						showConfirmButton: false,
 						timer: 4000
@@ -455,7 +455,7 @@ document.getElementById('my-polls').addEventListener('click', function () {
 				} else {
 					swal({ // visual
 						type: 'success',
-						title: 'Thanks for making your choice!',
+						title: document.querySelectorAll('.translate-phrases li')[9].innerHTML,
 						toast: true,
 						showConfirmButton: false,
 						timer: 2500
