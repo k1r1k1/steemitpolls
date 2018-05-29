@@ -36,7 +36,7 @@
 	"Please enter your login and master password or only your private posting key":"Veuillez entrer votre identifiant et votre mot de passe principal ou seulement votre clé privée",
 	"Login":"S'identifier",
 	"Your login is incorrect!":"Votre identifiant est incorrect!",
-	"Error":"Erreur",
+	"error":"Erreur",
 	"Master Key or password is incorrect!":"La clé principale ou le mot de passe est incorrect!",
 	"Success":"Succès",
 	"Authorization was successful!":"L'autorisation a été réussie!",

@@ -36,7 +36,7 @@
 	"Please enter your login and master password or only your private posting key":"あなたのログインとマスターパスワードを入力してください、またはプライベート投稿キーのみを入力してください",
 	"Login":"ログイン",
 	"Your login is incorrect!":"あなたのログインは間違っています！",
-	"Error":"エラー",
+	"error":"エラー",
 	"Master Key or password is incorrect!":"マスターキーまたはパスワードが間違っています！",
 	"Success":"成功",
 	"Authorization was successful!":"承認は成功しました！",

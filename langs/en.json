@@ -40,7 +40,7 @@
 	"Неправельный логин или пароль!":"Master Key or password is incorrect!",
 	"Успех":"Success",
 	"Авторизация прошла успешно!":"Authorization was successful!",
-	"Ошибка":"Error",
+	"ошибка":"error",
 	"Вы ввели неправельный приватный ключ!":"Private key is incorrect!",
 	"Интеграция":"Integration",
 	"Круто!":"Cool!",

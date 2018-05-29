@@ -40,7 +40,7 @@
 	"Master Key or password is incorrect!":"Няправільны майстар ключ або пароль!",
 	"Success":"Поспех",
 	"Authorization was successful!":"Аўтарызацыя прайшла паспяхова!",
-	"Error":"Памылка",
+	"error":"Памылка",
 	"Private key is incorrect!":"Вы ўвялі няправільны прыватны ключ!",
 	"Integration":"інтэграцыя",
 	"Cool!":"Крута!",

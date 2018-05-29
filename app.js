@@ -27,12 +27,12 @@ window.onhashchange = function () {
 		insertHtmlPoll(resultContent);
 	});
 }
-addInactiveInput();
-addPollingInputs();
 
 document.onreadystatechange = function () { // loading animation switch-off
 	console.log('<f> doc ready');
 	if (document.readyState === "complete") {
+		addInactiveInput();
+		addPollingInputs();
 		document.querySelector('.lding').style.display = 'none';
 	}
 }
