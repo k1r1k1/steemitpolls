@@ -171,7 +171,7 @@ function getVote(callback) { // getting poll data
 						countOfVoters++;
 						pollData[item.json_metadata.data.poll_id].count++;
 					}
-					if (localStorage.wif) {
+					if (typeof localStorage.wif != 'undefined') {
 						if (username == item.author) { // check if already voted
 						checkToVote = true;
 						} else {
