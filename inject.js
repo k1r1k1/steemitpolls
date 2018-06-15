@@ -74,7 +74,7 @@ window.addEventListener('load', function () { // init script after page loaded
 	gPollsContainer = document.createElement('div');
 	gPollsContainer.className = 'card border-primary mb-3';
 	gPollsContainer.innerHTML = `
-<div class="card-header bg-transparent border-success"><img src="https://golospolls.com/graphics/logo.png" width="25" height="25" class="d-inline-block align-top" alt=""><a href="https://golospolls.com/">GolosPolls</a></div><div class="card-header-right"><p></p></div><div class="card-body text-dark"></div></div>`;
+<div class="card-header bg-transparent border-success"><img src="https://golospolls.com/graphics/logo.png" width="25" height="25" class="d-inline-block align-top" alt=""><a href="https://golospolls.com/" target="_blank">GolosPolls</a></div><div class="card-header-right"><p></p></div><div class="card-body text-dark"></div></div>`;
 	document.querySelector('.gPolls').style.width = gPollsWidth;
 	document.querySelector('.gPolls').appendChild(gPollsContainer); // div inject
 	console.log('<f> doc ready');
