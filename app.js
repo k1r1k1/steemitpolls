@@ -290,7 +290,7 @@ function getMyPolls(callback) {
 		limit: 100
 	};
 	golos.api.getDiscussionsByBlog(query, function (err, result) {
-		console.log('<f>getDiscussionsByBlog ', result);
+		console.log('<f>getDiscussionsByBlog ', query, result);
 		if (result == '') {
 			document.querySelector('#complete-form .card-header').innerHTML = document.querySelectorAll('.translate-phrases li')[8].innerHTML;
 			document.querySelector('.lding').style.display = 'none';
