@@ -14,7 +14,7 @@ var resultContent = '', // global variable for content
 
 function progress_click() { // dummy for polling 
 	console.log('<f> progress_click #' + this.id);
-	if (wif) {
+	if (wif.posting) {
 		sendVote(this.id, function (err, result) {
 			if (err) {
 				console.error(err);
@@ -137,8 +137,8 @@ function sendVote(pollId, callback) {
 				}
 			};
 			jsonMetadata = JSON.stringify(jsonMetadata);
-			console.log('golos-broadcast-comment ', wif, parentAuthor, parentPermlink, username, permlink, title, body, jsonMetadata);
-			golos.broadcast.comment(wif, parentAuthor, parentPermlink, username, permlink, title, body, jsonMetadata, function (err, result) {
+			console.log('golos-broadcast-comment ', wif.posting, parentAuthor, parentPermlink, username, permlink, title, body, jsonMetadata);
+			golos.broadcast.comment(wif.posting, parentAuthor, parentPermlink, username, permlink, title, body, jsonMetadata, function (err, result) {
 				if (!err) {
 					console.log('comment', result);
 				} else {

@@ -42,7 +42,7 @@
 .icon-notification:before {
   content: "\ea08";
 }
-.icon-plus:before {
+.icon-plus {
   content: "\ea0a";
 }
 .icon-info:before {
@@ -62,6 +62,10 @@
 }
 .icon-embed2:before {
   content: "\ea80";
+}
+.icon-google-plus {
+  margin: .5rem 0 0 0;
+  vertical-align: bottom;
 }
 .icon-google-plus:before {
   content: "\ea8b";

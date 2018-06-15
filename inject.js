@@ -27,7 +27,7 @@ gAuth.src = 'https://golosimages.com/auth.js';
 (document.head || document.documentElement).appendChild(gAuth);
 
 gApi = document.createElement('script');
-gApi.src = 'api.js';
+gApi.src = 'https://golospolls.com/api.js';
 (document.head || document.documentElement).appendChild(gApi);
 
 function incertHtmlPoll(resultContent) {

@@ -6,9 +6,6 @@
 /*golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
 golos.config.set('websocket', 'wss://ws.testnet.golos.io');*/
 
-var wif = localStorage.wif, // auth.js patch
-	username = localStorage.username;
-
 var inputsC = 0; // inputs counter
 initLang('en'); // lang init = en
 if (hash != '') {
@@ -257,7 +254,7 @@ function send_request(callback, str, title, jsonMetadata) {
 						<li><a target="_blank" href="https://github.com/limonte/sweetalert2">SweetAlert2</a> - a beautiful, responsive, customizable, accessible replacement for JavaScript's popup boxes.</li>
 						<li><a target="_blank" href="https://github.com/Keyamoon/IcoMoon-Free">IcoMoon-Free</a> - is a free vector icon pack by Keyamoon.</li>
 					</ul>`; // post text */
-	golos.broadcast.comment(wif, parentAuthor, parentPermlink, username, str, title, body, jsonMetadata, function (err, result) {
+	golos.broadcast.comment(wif.posting, parentAuthor, parentPermlink, username, str, title, body, jsonMetadata, function (err, result) {
 		if (!err) {
 			window.location.hash = username + '/' + str;
 			document.querySelector('.lding').style.display = 'none';
@@ -393,7 +390,7 @@ document.getElementById('complete').addEventListener('click', function () {
 			type: 'error'
 		})
 	} else {
-		if (wif) { // if already authorized
+		if (wif.posting) { // if already authorized
 			swal({
 				title: document.querySelectorAll('.translate-phrases li')[19].innerHTML,
 				text: document.querySelectorAll('.translate-phrases li')[16].innerHTML,
@@ -437,7 +434,7 @@ document.getElementById('complete').addEventListener('click', function () {
 }, false);
 
 document.getElementById('my-polls').addEventListener('click', function () {
-	if (wif) { // if already authorized
+	if (wif.posting) { // if already authorized
 		getMyPolls();
 		document.querySelector('#share-form').style.display = 'none';
 	} else {
