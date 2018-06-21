@@ -7,7 +7,7 @@ bootstrapMin.href = 'https://golospolls.com/inject.css';
 (document.head || document.documentElement).appendChild(bootstrapMin);
 
 golosJs = document.createElement('script');
-golosJs.src = 'https://cdn.jsdelivr.net/npm/golos-js@0.6.3/dist/golos.min.js';
+golosJs.src = 'https://cdn.jsdelivr.net/npm/golos-js@0.7.0/dist/golos.min.js';
 (document.head || document.documentElement).appendChild(golosJs);
 
 momentJs = document.createElement('script');
