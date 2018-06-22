@@ -157,7 +157,7 @@ function getVote(callback) { // getting poll data
 	checkToVote = false;
 	pollData = {};
 	voters = [];
-	golos.api.getContentReplies(resultContent.author, resultContent.permlink, function (err, result) {
+	golos.api.getContentReplies(resultContent.author, resultContent.permlink, 10000, function (err, result) {
 		if (!err) {
 			result.forEach(function (item) {
 				item.json_metadata = JSON.parse(item.json_metadata);

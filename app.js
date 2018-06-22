@@ -298,7 +298,7 @@ function getMyPolls(callback) {
 		if (!err) {
 			document.querySelector('#complete-form .card-header').innerHTML = document.querySelectorAll('.translate-phrases li')[0].innerHTML;
 			result.forEach(function (item) {
-				golos.api.getContentReplies(item.author, item.permlink, function (err, result) {
+				golos.api.getContentReplies(item.author, item.permlink, 10000, function (err, result) {
 					if (!err) {
 						pollData = {};
 						countofvotes = 0;
@@ -345,6 +345,7 @@ function getMyPolls(callback) {
 				showConfirmButton: false,
 				timer: 4000
 			});
+			document.querySelector('.lding').style.display = 'none';
 		}
 		if (callback) callback(err, result);
 	});
