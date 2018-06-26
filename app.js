@@ -2,6 +2,9 @@
 //	extended js for main service	//
 // 		https://golospolls.com/		//
 /* ------------------------------- */
+// switching to testnet
+golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
+golos.config.set('websocket', 'wss://ws.testnet.golos.io');
 
 var inputsC = 0; // inputs counter
 initLang('en'); // lang init = en
@@ -97,7 +100,7 @@ function CopyLinkToClipboard() {
 		toast: true,
 		title: document.querySelectorAll('.translate-phrases li')[10].innerHTML,
 		showConfirmButton: false,
-		timer: 1800
+		timer: 2000
 	})
 }
 document.querySelector('#cplkbtn').addEventListener('click', CopyLinkToClipboard, false);
@@ -110,7 +113,7 @@ function CopyCodeToClipboard() {
 		toast: true,
 		title: document.querySelectorAll('.translate-phrases li')[11].innerHTML,
 		showConfirmButton: false,
-		timer: 1800
+		timer: 2000
 	})
 }
 document.querySelector('#cpcdbtn').addEventListener('click', CopyCodeToClipboard, false);
@@ -287,10 +290,12 @@ function getMyPolls(callback) {
 		limit: 100
 	};
 	golos.api.getDiscussionsByBlog(query, function (err, result) {
-		console.log('<f>getDiscussionsByBlog ', query, result);
+		console.log('<f>getDiscussionsByBlog ', query);
+		console.log(result);
 		if (result == '') {
-			document.querySelector('#complete-form .card-header').innerHTML = document.querySelectorAll('.translate-phrases li')[8].innerHTML;
+			console.log(`<f>result = ""`);
 			document.querySelector('.lding').style.display = 'none';
+			document.querySelector('#complete-form .card-header').innerHTML = document.querySelectorAll('.translate-phrases li')[8].innerHTML;
 		}
 		if (!err) {
 			document.querySelector('#complete-form .card-header').innerHTML = document.querySelectorAll('.translate-phrases li')[0].innerHTML;
@@ -385,6 +390,7 @@ document.getElementById('complete').addEventListener('click', function () {
 		swal({
 			title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
 			text: document.querySelectorAll('.translate-phrases li')[18].innerHTML,
+			timer: 4000,
 			type: 'error'
 		})
 	} else {
@@ -421,7 +427,7 @@ document.getElementById('complete').addEventListener('click', function () {
 							title: document.querySelectorAll('.translate-phrases li')[9].innerHTML,
 							toast: true,
 							showConfirmButton: false,
-							timer: 2500
+							timer: 4000
 						});
 					}
 				});
@@ -454,7 +460,7 @@ document.getElementById('my-polls').addEventListener('click', function () {
 						title: document.querySelectorAll('.translate-phrases li')[9].innerHTML,
 						toast: true,
 						showConfirmButton: false,
-						timer: 2500
+						timer: 4000
 					});
 				}
 			});
