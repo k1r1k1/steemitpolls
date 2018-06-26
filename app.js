@@ -2,9 +2,6 @@
 //	extended js for main service	//
 // 		https://golospolls.com/		//
 /* ------------------------------- */
-// switching to testnet
-/*golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
-golos.config.set('websocket', 'wss://ws.testnet.golos.io');*/
 
 var inputsC = 0; // inputs counter
 initLang('en'); // lang init = en
@@ -286,7 +283,7 @@ function getMyPolls(callback) {
 		max = 0;
 	var query = {
 		select_authors: [username],
-		select_tags: ['test'],
+		filter_tags: ['test'],
 		limit: 100
 	};
 	golos.api.getDiscussionsByBlog(query, function (err, result) {

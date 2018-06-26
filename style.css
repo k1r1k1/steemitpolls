@@ -236,6 +236,10 @@ footer {
 	width: 2.7rem;
 }
 
+.form-check {
+    padding-bottom: 1rem;
+}
+
 .github-corner {
   position: fixed;
   top: 0;

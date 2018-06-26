@@ -77,7 +77,8 @@ function getHash(callback) {
 	var username = hash.substring(targetStart + 2, slashPos); // '+ 2' removes the target symbols
 	var permlink = hash.substring(slashPos + 1); // '+ 1' removes '/'
 	console.log('post data: username=' + '"' + username + '"' + ' permlink="' + permlink + '"');
-	golos.api.getContent(username, permlink, function (err, result) { // The console displays the data required for the post 
+	golos.api.getContent(username, permlink, 10000, function (err, result) { // The console displays the data required for the post
+		console.log('golos.api.getContent');
 		if (!err && result.title != '') {
 			console.log('getContent ', result.title);
 			//if (!result.json_metadata) getHash();
