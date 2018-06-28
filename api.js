@@ -21,9 +21,7 @@ function progress_click() { // dummy for polling
 				swal({
 					type: 'error',
 					title: 'error',
-					text: err,
-					showConfirmButton: false,
-					timer: 4000
+					text: err
 				});
 			} else {
 				swal({ // visual
@@ -44,9 +42,7 @@ function progress_click() { // dummy for polling
 					swal({
 						type: 'error',
 						title: 'error',
-						text: err,
-						showConfirmButton: false,
-						timer: 4000
+						text: err
 					});
 				} else {
 					swal({ // visual
@@ -95,7 +91,6 @@ function getHash(callback) {
 			});
 			clearUpdTimer();
 		}
-		//if (document.querySelector('.lding')) document.querySelector('.lding').style.display = 'none';
 	});
 }
 
@@ -106,9 +101,7 @@ function sendVote(pollId, callback) {
 			swal({
 				title: 'error',
 				text: 'Sorry, you have to wait for ' + counter + ' seconds before first vote',
-				type: 'error',
-				showConfirmButton: false,
-				timer: 2500
+				type: 'error'
 			})
 			return;
 		}

@@ -6,7 +6,8 @@
 golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
 golos.config.set('websocket', 'wss://ws.testnet.golos.io');
 
-var inputsC = 0; // inputs counter
+var inputsC = 0,
+	newPostTimout; // inputs counter
 initLang('en'); // lang init = en
 if (hash != '') {
 	getHash(function (resultContent) {
@@ -174,7 +175,6 @@ function completeForm(callback) {
 	var $pollInputs = document.getElementById('PollForm').getElementsByClassName('form-control'),
 		$pollImages = document.getElementById('PollForm').getElementsByTagName('img'),
 		errTrigger,
-		newPostTimout,
 		answers = [],
 		answerimages = [];
 	for (var cnt = 0; $pollInputs.length - 1 > cnt; cnt++) {
@@ -259,13 +259,12 @@ function send_request(callback, str, title, jsonMetadata) {
 			window.location.hash = username + '/' + str;
 			document.querySelector('.lding').style.display = 'none';
 		} else {
+			clearTimeout(newPostTimout);
 			console.error(err);
 			swal({
 				type: 'error',
 				title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
-				text: err,
-				showConfirmButton: false,
-				timer: 4000
+				text: err
 			});
 		}
 		callback(err, result);
@@ -343,9 +342,7 @@ function getMyPolls(callback) {
 			swal({
 				type: 'error',
 				title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
-				text: err,
-				showConfirmButton: false,
-				timer: 4000
+				text: err
 			});
 			document.querySelector('.lding').style.display = 'none';
 		}
@@ -390,7 +387,6 @@ document.getElementById('complete').addEventListener('click', function () {
 		swal({
 			title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
 			text: document.querySelectorAll('.translate-phrases li')[18].innerHTML,
-			timer: 4000,
 			type: 'error'
 		})
 	} else {
@@ -417,9 +413,7 @@ document.getElementById('complete').addEventListener('click', function () {
 						swal({
 							type: 'error',
 							title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
-							text: err,
-							showConfirmButton: false,
-							timer: 4000
+							text: err
 						});
 					} else {
 						swal({ // visual
@@ -450,9 +444,7 @@ document.getElementById('my-polls').addEventListener('click', function () {
 					swal({
 						type: 'error',
 						title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
-						text: err,
-						showConfirmButton: false,
-						timer: 4000
+						text: err
 					});
 				} else {
 					swal({ // visual
