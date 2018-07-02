@@ -272,3 +272,9 @@ footer {
       animation:octocat-wave 560ms ease-in-out
   }
 }
+
+@media (max-width: 991px) {
+	.navbar li {
+    margin: 0 20px 1rem;
+	}
+}
