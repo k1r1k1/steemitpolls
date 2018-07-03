@@ -43,7 +43,7 @@ function insertHtmlPoll(resultContent) {
 	$div.className = 'card-title';
 	$div.innerHTML = resultContent.json_metadata.data.poll_title;
 	if (resultContent.json_metadata.data.title_image) {
-		$div.innerHTML = $div.innerHTML + '<p><br><img src="' + resultContent.json_metadata.data.title_image + '" class="img-thumbnail mx-auto d-block" height="400">';
+		$div.innerHTML = $div.innerHTML + '<p><br><img src="' + resultContent.json_metadata.data.title_image + '" class="img-thumbnail mx-auto d-block mainmage">';
 	}
 	document.querySelector('.card-body.text-dark').appendChild($div);
 	getVote(function () {

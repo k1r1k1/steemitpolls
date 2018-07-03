@@ -262,6 +262,10 @@ footer {
     margin: 0;
 }
 
+.mainmage {
+	height: 600px;
+}
+
 .github-corner {
   position: fixed;
   top: 0;
