@@ -444,7 +444,7 @@ document.getElementById('my-polls').addEventListener('click', function () {
 				} else {
 					swal({ // visual
 						type: 'success',
-						title: document.querySelectorAll('.translate-phrases li')[8].innerHTML,
+						title: document.querySelectorAll('.translate-phrases li')[21].innerHTML,
 						toast: true,
 						showConfirmButton: false,
 						timer: 4000
