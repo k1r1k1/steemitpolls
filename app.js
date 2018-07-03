@@ -391,25 +391,12 @@ document.getElementById('complete').addEventListener('click', function () {
 		})
 	} else {
 		if (wif.posting) { // if already authorized
-			swal({
-				title: document.querySelectorAll('.translate-phrases li')[19].innerHTML,
-				text: document.querySelectorAll('.translate-phrases li')[16].innerHTML,
-				type: 'question',
-				showCancelButton: true,
-				confirmButtonColor: '#3085d6',
-				cancelButtonColor: '#d33',
-				confirmButtonText: document.querySelectorAll('.translate-phrases li')[7].innerHTML
-			}).then((result) => {
-				if (result.value) {
 					completeForm();
-				}
-			})
 		} else {
 			console.log('auth() =>');
 			auth(() => {
 				completeForm(function (err, result) {
 					if (err) {
-						console.error(err);
 						swal({
 							type: 'error',
 							title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
