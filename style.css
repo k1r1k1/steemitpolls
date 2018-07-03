@@ -258,6 +258,10 @@ footer {
     padding-bottom: 1rem;
 }
 
+.input-group-prepend {
+    margin: 0;
+}
+
 .github-corner {
   position: fixed;
   top: 0;

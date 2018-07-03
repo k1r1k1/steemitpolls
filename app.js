@@ -142,7 +142,9 @@ function addInactiveInput() {
 <div class="input-group-append">
                         <button class="btn btn-danger" type="button" id="pOptionButt` + inputsC + `" disabled><span class="icon-cross"></span></button>
                     </div>
-                </div>`;
+                </div>
+<div class="invalid-feedback">Please fill or remove empty fields
+</div>`;
 	$div.querySelector('#inputOption' + inputsC).addEventListener('focus', addPollingInputs, false);
 	$div.querySelector('.btn.btn-danger').addEventListener('click', function (e) { // del button event
 		if (e.target.tagName == 'BUTTON') {
@@ -182,8 +184,9 @@ function completeForm(callback) {
 			$pollInputs[cnt].setAttribute('class', 'form-control title is-invalid');
 			errTrigger = true;
 		} else {
+			$pollInputs[cnt].setAttribute('class', 'form-control title');
 			answers[cnt] = $pollInputs[cnt].value;
-			if ($pollImages[cnt].src == 'https://golospolls.com/graphics/loading.gif') {
+			if ($pollImages[cnt].src == 'https://golospolls.com/graphics/loading.gif' || $pollImages[cnt].src == 'file:///C:/HUB/golospolls/graphics/loading.gif') {
 				answerimages[cnt] = '';
 			} else {
 				answerimages[cnt] = $pollImages[cnt].src;
