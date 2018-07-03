@@ -282,6 +282,7 @@ function getMyPolls(callback) {
 	document.getElementById('PollConstructor').style.display = 'none';
 	var countofvotes = 0,
 		cnt = 0,
+		countofposts = 0,
 		winner = 0,
 		max = 0;
 	var query = {
@@ -298,7 +299,7 @@ function getMyPolls(callback) {
 			document.querySelector('#complete-form .card-header').innerHTML = document.querySelectorAll('.translate-phrases li')[8].innerHTML;
 		}
 		if (!err) {
-			document.querySelector('#complete-form .card-header').innerHTML = document.querySelectorAll('.translate-phrases li')[0].innerHTML;
+			document.querySelector('#complete-form .card-header').innerHTML = document.querySelectorAll('.translate-phrases li')[20].innerHTML;
 			result.forEach(function (item) {
 				golos.api.getContentReplies(item.author, item.permlink, 10000, function (err, result) {
 					if (!err) {
@@ -324,7 +325,8 @@ function getMyPolls(callback) {
 									winner = document.querySelectorAll('.translate-phrases li')[6].innerHTML;
 							}
 						});
-						if (item.json_metadata.data) {
+						if (typeof item.json_metadata.data != 'undefined' && typeof item.json_metadata.data.poll_title != 'undefined') {
+							countofposts++;
 							var $div = document.createElement('tr');
 							$div.innerHTML = `<td><a href="#` + item.author + `/` + item.permlink + `">` + item.json_metadata.data.poll_title + `</a></td>
                                       <td>` + moment(item.created).format('lll') + `</td>
@@ -333,8 +335,13 @@ function getMyPolls(callback) {
                                       <td>` + winner + `</td>
                                     </tr>`;
 							document.querySelector('.myPollTab').appendChild($div);
-							document.querySelector('.lding').style.display = 'none';
 						}
+						document.querySelector('.lding').style.display = 'none';
+					}
+					if (countofposts == 0) {
+						var $div = document.createElement('tr');
+						$div.innerHTML = `<td colspan="6">` + document.querySelectorAll('.translate-phrases li')[8].innerHTML + `</td>`;
+						document.querySelector('.myPollTab').appendChild($div);
 					}
 				});
 			});
@@ -392,7 +399,7 @@ document.getElementById('complete').addEventListener('click', function () {
 		})
 	} else {
 		if (wif.posting) { // if already authorized
-					completeForm();
+			completeForm();
 		} else {
 			console.log('auth() =>');
 			auth(() => {
@@ -437,7 +444,7 @@ document.getElementById('my-polls').addEventListener('click', function () {
 				} else {
 					swal({ // visual
 						type: 'success',
-						title: document.querySelectorAll('.translate-phrases li')[9].innerHTML,
+						title: document.querySelectorAll('.translate-phrases li')[8].innerHTML,
 						toast: true,
 						showConfirmButton: false,
 						timer: 4000
