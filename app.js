@@ -222,9 +222,7 @@ function completeForm(callback) {
 	swal({ // visual
 		type: 'success',
 		title: document.querySelectorAll('.translate-phrases li')[13].innerHTML,
-		text: document.querySelectorAll('.translate-phrases li')[14].innerHTML,
-		showConfirmButton: false,
-		timer: 2500
+		text: document.querySelectorAll('.translate-phrases li')[14].innerHTML
 	})
 	tagNewPost = true;
 	clearTimeout(newPostTimout);
