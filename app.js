@@ -51,18 +51,12 @@ function insertHtmlPoll(resultContent) {
 			var $div = document.createElement('div');
 			$div.className = 'progress-block';
 			if (resultContent.json_metadata && resultContent.json_metadata.data && resultContent.json_metadata.data.poll_answers && resultContent.json_metadata.data.poll_images && resultContent.json_metadata.data.poll_answers[cnt] && resultContent.json_metadata.data.poll_images[cnt]) {
-				$div.innerHTML = `<label class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</label>
-						<p><img src="` + resultContent.json_metadata.data.poll_images[cnt] + `" height="150" class="rounded">
-                    <div class="progress" id="` + cnt + `" style="cursor: pointer;">
-                        <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div>
-                    </div><br>`;
+				$div.innerHTML = `<div class="card" id="` + cnt + `"><div class="card-body vote-item"><label class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</label>
+						<p><img src="` + resultContent.json_metadata.data.poll_images[cnt] + `" height="150" class="rounded"><div class="progress"  style="cursor: pointer;"><div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div></div></div></div><br>`;
 				document.querySelector('.card-body.text-dark').appendChild($div);
 				document.getElementById(cnt).onclick = progress_click; // dummy for polling 
 			} else {
-				$div.innerHTML = `<label class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</label>
-                    <div class="progress" id="` + cnt + `" style="cursor: pointer;">
-                        <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div>
-                    </div><br>`;
+				$div.innerHTML = `<div class="card" id="` + cnt + `"><div class="card-body vote-item"><label class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</label><div class="progress" style="cursor: pointer;"><div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div></div></div></div><br>`;
 				document.querySelector('.card-body.text-dark').appendChild($div);
 				document.getElementById(cnt).onclick = progress_click; // dummy for polling     
 			}
@@ -485,13 +479,17 @@ document.getElementById('integration').addEventListener('click', () => {
 document.getElementById('upload').addEventListener('click', function () {
 	document.querySelector('#load-img').style = "display: inline-block; margin-left: 1rem;";
 	document.querySelector('#load-img').src = 'graphics/loading.gif';
-	uploadImageToIpfs(function (err, files) {
+		uploadImageToIpfs((err, files) => {
 		if (err) {
 			console.error('ipfs error: ', err);
 			document.querySelector('#load-img').src = 'graphics/err.png';
+			console.log('err event');
 		} else {
 			console.log(files[0][0].path + files[0][0].hash);
 			document.querySelector('#load-img').src = files[0][0].path + files[0][0].hash;
+			console.log(files[0]);
 		}
 	});
+	/*document.querySelector('#load-img').style = "display: none; margin-left: 1rem;";
+	document.querySelector('#load-img').src = '';*/
 });
