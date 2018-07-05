@@ -45,13 +45,15 @@ function insertHtmlPoll(resultContent) {
 	if (resultContent.json_metadata.data.title_image) {
 		$div.innerHTML = $div.innerHTML + '<p><br><img src="' + resultContent.json_metadata.data.title_image + '" class="img-thumbnail mx-auto d-block mainmage">';
 	}
+	if (resultContent.json_metadata.data.poll_description) $div.innerHTML = $div.innerHTML + '<br><label class="">' + resultContent.json_metadata.data.poll_description + '</label>';
 	document.querySelector('.card-body.text-dark').appendChild($div);
 	getVote(function () {
 		for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress 
 			var $div = document.createElement('div');
 			$div.className = 'progress-block';
 			if (resultContent.json_metadata && resultContent.json_metadata.data && resultContent.json_metadata.data.poll_answers && resultContent.json_metadata.data.poll_images && resultContent.json_metadata.data.poll_answers[cnt] && resultContent.json_metadata.data.poll_images[cnt]) {
-				$div.innerHTML = `<div class="card" id="` + cnt + `"><div class="card-body vote-item"><label class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</label>
+				$div.innerHTML = `<div class="card" id="` + cnt + `"><div class="card-body vote-item">
+<label class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</label>
 						<p><img src="` + resultContent.json_metadata.data.poll_images[cnt] + `" height="150" class="rounded"><div class="progress"  style="cursor: pointer;"><div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div></div></div></div><br>`;
 				document.querySelector('.card-body.text-dark').appendChild($div);
 				document.getElementById(cnt).onclick = progress_click; // dummy for polling 
@@ -170,6 +172,7 @@ function completeForm(callback) {
 	// collecting data & sending 
 	var $pollInputs = document.getElementById('PollForm').getElementsByClassName('form-control'),
 		$pollImages = document.getElementById('PollForm').getElementsByTagName('img'),
+		pollDescription = document.getElementById('pollDescriptionInput').value,
 		errTrigger,
 		answers = [],
 		answerimages = [];
@@ -208,7 +211,8 @@ function completeForm(callback) {
 			poll_title: title,
 			title_image: title_pic,
 			poll_images: answerimages,
-			poll_answers: answers
+			poll_answers: answers,
+			poll_description: pollDescription
 		}
 	};
 	send_request(callback, str, title, jsonMetadata);

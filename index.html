@@ -23,7 +23,7 @@
 	<link rel="shortcut icon" href="https://golospolls.com/graphics/logo.png" />
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.1.0/dist/yeti/bootstrap.min.css">
-	<link rel="stylesheet" href="style.css?1530527244652">
+	<link rel="stylesheet" href="style.css?1530527244654">
 	<link rel="stylesheet" href="cubeloader.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css">
 	<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.12.0/build/highlight.min.js"></script>
@@ -164,8 +164,10 @@
 					<div class="card-header">Here you can create your own form for polls</div>
 					<div class="card-body">
 						<div class="form-group">
-							<label>Enter the title</label>
+							<label>Please, enter the title</label>
 							<input type="text" class="form-control title" placeholder="Type your text here">
+							<label for="exampleFormControlTextarea1">Enter description (not necessary)</label>
+							<textarea class="form-control" id="pollDescriptionInput" rows="3" maxlength="300"></textarea>
 						</div>
 						<!--golosimages.com integration starts-->
 						<button class="btn btn-secondary btn-sm" id="upload"><span class="icon-image"></span> Add main image</button><img id="load-img" src="graphics/loading.gif" width="34" height="34" style="display: none;">
@@ -262,7 +264,7 @@
 <script src="https://golosimages.com/auth.js"></script>
 <script src="https://golosimages.com/lang.js"></script>
 <script src="https://golosimages.com/inject.js"></script>
-<script src="api.js?1530527244653"></script>
-<script src="app.js?1530527244653"></script>
+<script src="api.js?1530527244654"></script>
+<script src="app.js?1530527244654"></script>
 
 </html>
