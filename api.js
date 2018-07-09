@@ -24,12 +24,10 @@ function progress_click() { // dummy for polling
 					text: err
 				});
 			} else {
-				swal({ // visual
+				swal({
 					type: 'success',
-					title: 'Thanks for making your choice!',
-					toast: true,
-					showConfirmButton: false,
-					timer: 2500
+					title: document.querySelectorAll('.translate-phrases li')[9].innerHTML,
+					html: document.querySelector('.socialButtons').innerHTML
 				});
 			}
 		});

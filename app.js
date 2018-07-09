@@ -33,6 +33,12 @@ document.onreadystatechange = function () { // loading animation switch-off
 		addPollingInputs();
 		addPollingInputs(); // add 2nd active field in a polling form
 		document.querySelector('.lding').style.display = 'none';
+		// temporary autofill
+		document.querySelector('.title').value = Date.now() + '- Hello world!';
+		document.querySelector('#pollDescriptionInput').value = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam dapibus dictum facilisis. Nunc suscipit nisi vel sapien auctor, ac sodales augue iaculis. Suspendisse vel felis in erat dignissim efficitur non eu metus. Morbi a odio sed ligula cursus sollicitudin.';
+		document.querySelector('#inputOption1').value = 'Option number one';
+		document.querySelector('#inputOption2').value = 'Second option';
+		document.querySelector('.footer').scrollIntoView();
 	}
 }
 
@@ -215,27 +221,11 @@ function completeForm(callback) {
 			poll_description: pollDescription
 		}
 	};
-	send_request(callback, str, title, jsonMetadata);
-	// chech if error!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	swal({ // visual
-		type: 'success',
-		title: document.querySelectorAll('.translate-phrases li')[13].innerHTML,
-		text: document.querySelectorAll('.translate-phrases li')[14].innerHTML
-	})
-	tagNewPost = true;
-	clearTimeout(newPostTimout);
-	counter = 24;
-	newPostTimout = setInterval(function () {
-		counter--;
-		console.log('counter =', counter);
-		if (counter == 0) {
-			clearTimeout(newPostTimout);
-			tagNewPost = false;
-		}
-	}, 1000);
+	document.querySelector('.lding').style.display = 'block';
+	send_request(str, title, jsonMetadata);
 }
 
-function send_request(callback, str, title, jsonMetadata) {
+function send_request(str, title, jsonMetadata) {
 	console.log('<f> send_request');
 	var parentAuthor = ''; // for post creating, empty field
 	var parentPermlink = 'test'; // main tag
@@ -256,7 +246,17 @@ function send_request(callback, str, title, jsonMetadata) {
 	golos.broadcast.comment(wif.posting, parentAuthor, parentPermlink, username, str, title, body, jsonMetadata, function (err, result) {
 		if (!err) {
 			window.location.hash = username + '/' + str;
-			document.querySelector('.lding').style.display = 'none';
+			tagNewPost = true;
+			clearTimeout(newPostTimout);
+			counter = 24;
+			newPostTimout = setInterval(function () {
+				counter--;
+				console.log('counter =', counter);
+				if (counter == 0) {
+					clearTimeout(newPostTimout);
+					tagNewPost = false;
+				}
+			}, 1000);
 		} else {
 			clearTimeout(newPostTimout);
 			console.error(err);
@@ -266,7 +266,7 @@ function send_request(callback, str, title, jsonMetadata) {
 				text: err
 			});
 		}
-		callback(err, result);
+		document.querySelector('.lding').style.display = 'none';
 	}); // add post
 }
 
@@ -483,7 +483,7 @@ document.getElementById('integration').addEventListener('click', () => {
 document.getElementById('upload').addEventListener('click', function () {
 	document.querySelector('#load-img').style = "display: inline-block; margin-left: 1rem;";
 	document.querySelector('#load-img').src = 'graphics/loading.gif';
-		uploadImageToIpfs((err, files) => {
+	uploadImageToIpfs((err, files) => {
 		if (err) {
 			console.error('ipfs error: ', err);
 			document.querySelector('#load-img').src = 'graphics/err.png';
