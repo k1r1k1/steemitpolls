@@ -45,7 +45,7 @@ function insertHtmlPoll(resultContent) {
 	if (resultContent.json_metadata.data.title_image) {
 		$div.innerHTML = $div.innerHTML + '<p><br><img src="' + resultContent.json_metadata.data.title_image + '" class="img-thumbnail mx-auto d-block mainmage">';
 	}
-	if (resultContent.json_metadata.data.poll_description) $div.innerHTML = $div.innerHTML + '<br><label class="">' + resultContent.json_metadata.data.poll_description + '</label>';
+	if (resultContent.json_metadata.data.poll_description) $div.innerHTML = $div.innerHTML + '<label class="">' + resultContent.json_metadata.data.poll_description + '</label>';
 	document.querySelector('.card-body.text-dark').appendChild($div);
 	getVote(function () {
 		for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress 
