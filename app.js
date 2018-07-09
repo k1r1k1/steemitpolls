@@ -54,6 +54,7 @@ function insertHtmlPoll(resultContent) {
 	if (resultContent.json_metadata.data.poll_description) $div.innerHTML = $div.innerHTML + '<label class="">' + resultContent.json_metadata.data.poll_description + '</label>';
 	document.querySelector('.card-body.text-dark').appendChild($div);
 	getVote(function () {
+		console.log('===========57');
 		for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress 
 			var $div = document.createElement('div');
 			$div.className = 'progress-block';
@@ -69,7 +70,6 @@ function insertHtmlPoll(resultContent) {
 				document.getElementById(cnt).onclick = progress_click; // dummy for polling     
 			}
 		}
-		updateProgressValues();
 	});
 	document.getElementById('complete-form').style.display = 'block';
 	document.getElementById('share-form').style.display = 'block';
@@ -90,7 +90,7 @@ function insertHtmlPoll(resultContent) {
 
 function updateProgressValues() {
 	getVote(function () {
-		console.log('<f> updateProgressValues', pollData);
+		console.log('<f> updateProgressValues');
 		document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">' + document.querySelectorAll('.translate-phrases li')[4].innerHTML + ': ' + countOfVoters + '</span><span class="badge badge-info">' + document.querySelectorAll('.translate-phrases li')[1].innerHTML + ': ' + moment(resultContent.created).format('lll') + '</span>';
 	})
 }
