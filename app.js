@@ -54,7 +54,6 @@ function insertHtmlPoll(resultContent) {
 	if (resultContent.json_metadata.data.poll_description) $div.innerHTML = $div.innerHTML + '<label class="">' + resultContent.json_metadata.data.poll_description + '</label>';
 	document.querySelector('.card-body.text-dark').appendChild($div);
 	getVote(function () {
-		console.log('===========57');
 		for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress 
 			var $div = document.createElement('div');
 			$div.className = 'progress-block';
@@ -289,12 +288,13 @@ function getMyPolls(callback) {
 		limit: 100
 	};
 	golos.api.getDiscussionsByBlog(query, function (err, result) {
-		console.log('<f>getDiscussionsByBlog ', query);
-		console.log(result);
-		if (result == '') {
-			console.log(`<f>result = ""`);
-			document.querySelector('.lding').style.display = 'none';
-			document.querySelector('#complete-form .card-header').innerHTML = document.querySelectorAll('.translate-phrases li')[8].innerHTML;
+			console.log('<f>getDiscussionsByBlog ', query);
+			console.log(result);
+			if (result == '') {
+				var $div = document.createElement('tr');
+				$div.innerHTML = `<td colspan="6">` + document.querySelectorAll('.translate-phrases li')[8].innerHTML + `</td>`;
+				document.querySelector('.myPollTab').appendChild($div);
+				document.querySelector('.lding').style.display = 'none';
 		}
 		if (!err) {
 			document.querySelector('#complete-form .card-header').innerHTML = document.querySelectorAll('.translate-phrases li')[20].innerHTML;
@@ -336,11 +336,6 @@ function getMyPolls(callback) {
 						}
 						document.querySelector('.lding').style.display = 'none';
 					}
-					if (countofposts == 0) {
-						var $div = document.createElement('tr');
-						$div.innerHTML = `<td colspan="6">` + document.querySelectorAll('.translate-phrases li')[8].innerHTML + `</td>`;
-						document.querySelector('.myPollTab').appendChild($div);
-					}
 				});
 			});
 		} else {
@@ -354,9 +349,9 @@ function getMyPolls(callback) {
 		}
 		if (callback) callback(err, result);
 	});
-	var $div = document.createElement('table');
-	$div.className = 'table table-striped';
-	$div.innerHTML = `<thead>
+var $div = document.createElement('table');
+$div.className = 'table table-striped';
+$div.innerHTML = `<thead>
                             <tr>
                               <th scope="col">` + document.querySelectorAll('.translate-phrases li')[3].innerHTML + `</th>
                               <th scope="col">` + document.querySelectorAll('.translate-phrases li')[1].innerHTML + `</th>
@@ -368,8 +363,8 @@ function getMyPolls(callback) {
                           <tbody class="myPollTab">
                           </tbody>
                         </table>`
-	document.querySelector('.card-body.text-dark').innerHTML = '';
-	document.querySelector('.card-body.text-dark').appendChild($div);
+document.querySelector('.card-body.text-dark').innerHTML = '';
+document.querySelector('.card-body.text-dark').appendChild($div);
 }
 
 function urlLit(w, v) { // cyrilic-to-translit-function
