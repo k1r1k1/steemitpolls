@@ -381,6 +381,36 @@ function urlLit(w, v) { // cyrilic-to-translit-function
 	return (ww.replace(/[^a-zA-Z0-9\-]/g, '-').replace(/[-]{2,}/gim, '-').replace(/^\-+/g, '').replace(/\-+$/g, ''));
 }
 
+function reblogGolos() {
+	console.log('=> reblog click');
+	const json = JSON.stringify(['reblog', {
+		account: username,
+		author: resultContent.author,
+		permlink: resultContent.permlink
+}]);
+	auth(() => {
+		golos.broadcast.customJson(wif.posting, [], [username], 'follow', json, (err, result) => {
+			console.log('username', username, 'author', resultContent.author, 'permlink', resultContent.permlink);
+			if (err) {
+				swal({
+					type: 'error',
+					title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
+					text: err
+				});
+			} else {
+				swal({
+					type: 'success',
+					toast: true,
+					title: document.querySelectorAll('.translate-phrases li')[21].innerHTML,
+					showConfirmButton: false,
+					timer: 2000
+				})
+			}
+			console.log(result);
+		});
+	});
+};
+
 // buttons events 
 
 document.getElementById('complete').addEventListener('click', function () {
@@ -475,31 +505,3 @@ document.getElementById('upload').addEventListener('click', function () {
 		}
 	});
 });
-
-function reblogGolos() {
-	console.log('=> reblog click');
-	const json = JSON.stringify(['reblog', {
-		account: username,
-		author: resultContent.author,
-		permlink: resultContent.permlink
-}]);
-	auth(() => {
-		golos.broadcast.customJson(wif.posting, [], [username], 'follow', json, (err, result) => {
-			if (err) {
-				swal({
-					type: 'error',
-					title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
-					text: err
-				});
-			} else {
-				swal({
-					type: 'success',
-					toast: true,
-					title: document.querySelectorAll('.translate-phrases li')[21].innerHTML,
-					showConfirmButton: false,
-					timer: 2000
-				})
-			}
-		});
-	});
-};
