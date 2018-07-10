@@ -189,6 +189,35 @@
 	vertical-align: text-top;
 }
 
+.share-golos {
+	border-radius: .25rem;
+	height: 1.5rem;
+	width: 80px;
+	font-size: 13px;
+    font-weight: 500;
+	background-color: #fff;
+	color: #F21616;
+	border: 1px solid #dddddd;
+	padding: 0.1rem 0.5rem;
+}
+
+.share-golos:hover {
+	color: #fff;
+	background-color: #2572BA;
+	border-color: #00047a
+}
+
+.share-golos.focus,
+.share-golos:focus {
+	box-shadow: 0 0 0 .2rem rgba(173, 23, 18, .5)
+}
+
+.share-golos span {
+	vertical-align: text-top;
+    content: url(graphics/golos.png);
+    width: 18px;
+}
+
 #modal-lang-form .img-thumbnail {
     padding: 0px;
     height: 30px;

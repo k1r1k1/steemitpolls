@@ -82,14 +82,15 @@ function insertHtmlPoll(resultContent) {
 	$div.innerHTML = `<a class="btn share-fb" href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&u=https%3A%2F%2Fgolospolls.com%2F#` + resultContent.author + `%2F` + resultContent.permlink + `&display=popup&ref=plugin&src=share_button" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><span class="icon-facebook2"> Share</span></a>
 <a class="btn btn-info share-tw" href="https://twitter.com/intent/tweet?ref_src=twsrc%5Etfw&text=Attention%20friends!%20I%27m%20interested%20in%20your%20opinion%20on%20one%20issue%20-%20please%20choose%20the%20option%20that%20you%20think%20is%20correct%20http%3A%2F%2Fgolospolls.com&tw_p=tweetbutton&url=https%3A%2F%2Fgolospolls.com%2F#` + resultContent.author + `%2F` + resultContent.permlink + `" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><span class="icon-twitter"> Tweet</span></a>
 <a class="btn share-vk" href="https://vk.com/share.php?url=https%3A%2F%2Fgolospolls.com%2F#` + resultContent.author + `%2F` + resultContent.permlink + `" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><img src="graphics/vk-logo.png" width="20" height="13" class="d-inline-block align-top"><span>Поделиться</span></a>
-<a class="btn share-gp" href="https://plus.google.com/share?app=110&url=https%3A%2F%2Fgolospolls.com%2F#` + resultContent.author + `%2F` + resultContent.permlink + `" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><span class="icon-google-plus"> Share</span></a>`;
+<a class="btn share-gp" href="https://plus.google.com/share?app=110&url=https%3A%2F%2Fgolospolls.com%2F#` + resultContent.author + `%2F` + resultContent.permlink + `" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><span class="icon-google-plus"> Share</span></a>
+<button class="btn share-golos" role="button" onclick="reblogGolos();return false;"><span></span>Reblog</button>`;
 	document.querySelector('.socialButtons').innerHTML = '';
 	document.querySelector('.socialButtons').appendChild($div);
 }
 
 function updateProgressValues() {
 	getVote(function () {
-		console.log('<f> updateProgressValues');
+		// console.log('<f> updateProgressValues');
 		document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">' + document.querySelectorAll('.translate-phrases li')[4].innerHTML + ': ' + countOfVoters + '</span><span class="badge badge-info">' + document.querySelectorAll('.translate-phrases li')[1].innerHTML + ': ' + moment(resultContent.created).format('lll') + '</span>';
 	})
 }
@@ -288,13 +289,13 @@ function getMyPolls(callback) {
 		limit: 100
 	};
 	golos.api.getDiscussionsByBlog(query, function (err, result) {
-			console.log('<f>getDiscussionsByBlog ', query);
-			console.log(result);
-			if (result == '') {
-				var $div = document.createElement('tr');
-				$div.innerHTML = `<td colspan="6">` + document.querySelectorAll('.translate-phrases li')[8].innerHTML + `</td>`;
-				document.querySelector('.myPollTab').appendChild($div);
-				document.querySelector('.lding').style.display = 'none';
+		console.log('<f>getDiscussionsByBlog ', query);
+		console.log(result);
+		if (result == '') {
+			var $div = document.createElement('tr');
+			$div.innerHTML = `<td colspan="6">` + document.querySelectorAll('.translate-phrases li')[8].innerHTML + `</td>`;
+			document.querySelector('.myPollTab').appendChild($div);
+			document.querySelector('.lding').style.display = 'none';
 		}
 		if (!err) {
 			document.querySelector('#complete-form .card-header').innerHTML = document.querySelectorAll('.translate-phrases li')[20].innerHTML;
@@ -349,9 +350,9 @@ function getMyPolls(callback) {
 		}
 		if (callback) callback(err, result);
 	});
-var $div = document.createElement('table');
-$div.className = 'table table-striped';
-$div.innerHTML = `<thead>
+	var $div = document.createElement('table');
+	$div.className = 'table table-striped';
+	$div.innerHTML = `<thead>
                             <tr>
                               <th scope="col">` + document.querySelectorAll('.translate-phrases li')[3].innerHTML + `</th>
                               <th scope="col">` + document.querySelectorAll('.translate-phrases li')[1].innerHTML + `</th>
@@ -363,8 +364,8 @@ $div.innerHTML = `<thead>
                           <tbody class="myPollTab">
                           </tbody>
                         </table>`
-document.querySelector('.card-body.text-dark').innerHTML = '';
-document.querySelector('.card-body.text-dark').appendChild($div);
+	document.querySelector('.card-body.text-dark').innerHTML = '';
+	document.querySelector('.card-body.text-dark').appendChild($div);
 }
 
 function urlLit(w, v) { // cyrilic-to-translit-function
@@ -473,6 +474,32 @@ document.getElementById('upload').addEventListener('click', function () {
 			console.log(files[0]);
 		}
 	});
-	/*document.querySelector('#load-img').style = "display: none; margin-left: 1rem;";
-	document.querySelector('#load-img').src = '';*/
 });
+
+function reblogGolos() {
+	console.log('=> reblog click');
+	const json = JSON.stringify(['reblog', {
+		account: username,
+		author: resultContent.author,
+		permlink: resultContent.permlink
+}]);
+	auth(() => {
+		golos.broadcast.customJson(wif.posting, [], [username], 'follow', json, (err, result) => {
+			if (err) {
+				swal({
+					type: 'error',
+					title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
+					text: err
+				});
+			} else {
+				swal({
+					type: 'success',
+					toast: true,
+					title: document.querySelectorAll('.translate-phrases li')[21].innerHTML,
+					showConfirmButton: false,
+					timer: 2000
+				})
+			}
+		});
+	});
+};

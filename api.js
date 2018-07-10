@@ -143,8 +143,7 @@ function sendVote(pollId, callback) {
 }
 
 function getVote(callback) { // getting poll data
-	//document.querySelector('#share-form').style.display = 'block';
-	console.log('<f> getVote');
+	// console.log('<f> getVote');
 	countOfVoters = 0;
 	checkToVote = false;
 	pollData = {};
