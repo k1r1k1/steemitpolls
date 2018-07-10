@@ -403,14 +403,6 @@ document.getElementById('complete').addEventListener('click', function () {
 							title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
 							text: err
 						});
-					} else {
-						swal({ // visual
-							type: 'success',
-							title: document.querySelectorAll('.translate-phrases li')[9].innerHTML,
-							toast: true,
-							showConfirmButton: false,
-							timer: 4000
-						});
 					}
 				});
 			});
@@ -433,14 +425,6 @@ document.getElementById('my-polls').addEventListener('click', function () {
 						type: 'error',
 						title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
 						text: err
-					});
-				} else {
-					swal({ // visual
-						type: 'success',
-						title: document.querySelectorAll('.translate-phrases li')[21].innerHTML,
-						toast: true,
-						showConfirmButton: false,
-						timer: 4000
 					});
 				}
 			});
