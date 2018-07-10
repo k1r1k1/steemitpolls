@@ -209,7 +209,7 @@
 
 .share-golos.focus,
 .share-golos:focus {
-	box-shadow: 0 0 0 .2rem rgba(173, 23, 18, .5)
+	box-shadow: 0 0 0 .2rem rgba(0, 60, 173, .5)
 }
 
 .share-golos span {

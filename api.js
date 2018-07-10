@@ -72,10 +72,7 @@ function getHash(callback) {
 	var permlink = hash.substring(slashPos + 1); // '+ 1' removes '/'
 	console.log('post data: username=' + '"' + username + '"' + ' permlink="' + permlink + '"');
 	golos.api.getContent(username, permlink, 10000, function (err, result) { // The console displays the data required for the post
-		console.log('golos.api.getContent');
 		if (!err && result.title != '') {
-			console.log('getContent ', result.title);
-			//if (!result.json_metadata) getHash();
 			resultContent = result;
 			result.json_metadata = JSON.parse(result.json_metadata); //parse json to js
 			console.log('getHash-resultContent=', resultContent);
@@ -104,7 +101,6 @@ function sendVote(pollId, callback) {
 			return;
 		}
 		if (checkToVote) {
-			console.error('You can only vote once');
 			swal({
 				title: 'You can only vote once',
 				text: 'Sorry, seems like you are already voted',
@@ -197,7 +193,7 @@ function getVote(callback) { // getting poll data
 
 function startUpdProgTimer(interval) {
 	updProgressTimer = setInterval(updateProgressValues, interval);
-	console.log('<f> start-updProgressTimer');
+	console.log('<f> start-updTimer');
 }
 
 function clearUpdTimer() {

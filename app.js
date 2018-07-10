@@ -326,10 +326,16 @@ function getMyPolls(callback) {
 						});
 						if (typeof item.json_metadata.data != 'undefined' && typeof item.json_metadata.data.poll_title != 'undefined') {
 							countofposts++;
+							let i = 0,
+								answerSrt = '';
+							item.json_metadata.data.poll_answers.forEach(function (poll_answers) { // poll answers converting
+								answerSrt = answerSrt + item.json_metadata.data.poll_answers[i] + '; ';
+								i++;
+							});
 							var $div = document.createElement('tr');
 							$div.innerHTML = `<td><a href="#` + item.author + `/` + item.permlink + `">` + item.json_metadata.data.poll_title + `</a></td>
                                       <td>` + moment(item.created).format('lll') + `</td>
-                                      <td>` + item.json_metadata.data.poll_answers + `</td>
+                                      <td>` + answerSrt + `</td>
                                       <td>` + countofvotes + `</td>
                                       <td>` + winner + `</td>
                                     </tr>`;
@@ -390,6 +396,7 @@ function reblogGolos() {
 }]);
 	auth(() => {
 		golos.broadcast.customJson(wif.posting, [], [username], 'follow', json, (err, result) => {
+
 			console.log('username', username, 'author', resultContent.author, 'permlink', resultContent.permlink);
 			if (err) {
 				swal({
