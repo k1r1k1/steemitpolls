@@ -70,7 +70,6 @@ function getHash(callback) {
 	}
 	var username = hash.substring(targetStart + 2, slashPos); // '+ 2' removes the target symbols
 	var permlink = hash.substring(slashPos + 1); // '+ 1' removes '/'
-	console.log('post data: username=' + '"' + username + '"' + ' permlink="' + permlink + '"');
 	golos.api.getContent(username, permlink, 10000, function (err, result) { // The console displays the data required for the post
 		if (!err && result.title != '') {
 			resultContent = result;
@@ -104,14 +103,10 @@ function sendVote(pollId, callback) {
 			tryVoteAgain();
 		} else {
 			var parentAuthor = resultContent.author;
-			console.log('parentAuthor', parentAuthor);
 			var parentPermlink = resultContent.permlink;
-			console.log('parentPermlink', parentPermlink);
 			var permlink = 're-' + parentAuthor + '-' + parentPermlink + '-' + Date.now();
-			console.log('permlink', permlink);
 			var title = ''; // title - empty for add a comment
 			var body = 'I choose option # ' + pollId; // poll
-			console.log('pollId', pollId);
 			var jsonMetadata = {
 				app: 'golospolls/0.1',
 				canonical: 'https://golospolls.com#' + username + '/' + permlink,
@@ -121,7 +116,6 @@ function sendVote(pollId, callback) {
 				}
 			};
 			jsonMetadata = JSON.stringify(jsonMetadata);
-			console.log('golos-broadcast-comment ', wif.posting, parentAuthor, parentPermlink, username, permlink, title, body, jsonMetadata);
 			golos.broadcast.comment(wif.posting, parentAuthor, parentPermlink, username, permlink, title, body, jsonMetadata, function (err, result) {
 				if (!err) {
 					console.log('comment', result);
@@ -154,6 +148,7 @@ function getVote(callback) { // getting poll data
 						countOfVoters++;
 						pollData[item.json_metadata.data.poll_id].count++;
 					}
+					console.log('comments:',item);
 					if (typeof localStorage.wif != 'undefined') {
 						if (username == item.author) { // check if already voted
 						checkToVote = {};
@@ -171,15 +166,21 @@ function getVote(callback) { // getting poll data
 			cnt = resultContent.json_metadata.data.poll_answers.length;
 			for (index = 0; index < resultContent.json_metadata.data.poll_answers.length; ++index) {
 				if (typeof pollData[index] != 'undefined') {
+					console.log('index =', index);
 					if (document.querySelectorAll('.progress-bar')[index]) {
 						document.querySelectorAll('.progress-bar')[index].style = 'width: ' + pollData[index].percnt + '%;';
 						document.querySelectorAll('.progress-bar')[index].innerHTML = pollData[index].percnt + '% (' + pollData[index].count + ')';
-						console.log('username', username, 'author', checkToVote.author);
-						/*if (item.author == checkToVote.author) {
+
+						if (typeof result[index] != 'undefined' && typeof result[index].author != 'undefined' && result[index].author == username) {
+							console.log('index my=', index);
 							document.querySelectorAll('.progress-bar')[index].classList.add('bg-success');
 							document.querySelectorAll('.progress-bar')[index].innerHTML = '<span class="icon-checkmark"> ' + pollData[index].percnt + '% (' + pollData[index].count + ')</span>';
-						}*/
+						}
+						console.log('my Comment:', username, checkToVote);
 					}
+				} else if (document.querySelectorAll('.progress-bar')[index]) {
+						document.querySelectorAll('.progress-bar')[index].style = 'width: 0%;';
+						document.querySelectorAll('.progress-bar')[index].innerHTML = '0% (0)';
 				}
 			}
 		} else {
