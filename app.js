@@ -418,38 +418,6 @@ function reblogGolos() {
 	});
 };
 
-/*
-function tryVoteAgain() {
-	swal({
-		title: 'You can only vote once',
-		text: 'delete the previous vote to vote again',
-		type: 'error',
-		showCancelButton: true,
-		confirmButtonColor: '#d33',
-		cancelButtonColor: '#3085d6',
-		confirmButtonText: 'Yes, delete it!'
-	}).then((result) => {
-		if (result.value) {
-			golos.broadcast.deleteComment(wif, checkToVote.author, checkToVote.permlink, function (err, result) {
-				if (err) {
-					swal({
-						title: 'error',
-						type: err,
-						text: 'error'
-					})
-				} else {
-					swal({
-						title: 'Deleted!',
-						text: 'Your vote has been deleted.',
-						type: 'success'
-					})
-				}
-			});
-		}
-	})
-}
-*/
-
 function tryVoteAgain() {
 	swal({
 		title: 'You can only vote once',
@@ -467,13 +435,14 @@ function tryVoteAgain() {
 			console.log('permlink', checkToVote.permlink);
 			golos.broadcast.deleteComment(wif.posting, checkToVote.author, checkToVote.permlink, function (err, result) {
 				if (err) {
-					swal({
-						title: 'error',
-						type: err,
-						text: 'error'
-					})
+					swal(
+						'error',
+						'err',
+						err
+					)
 					console.error(err);
 				}
+				insertHtmlPoll(resultContent);
 			});
 			swal(
 				'Deleted!',
