@@ -299,6 +299,10 @@ footer {
 	cursor: pointer;
 }
 
+.vote-item:hover {
+    box-shadow: 0 0 0 .2rem rgba(54, 88, 139, .5)
+}
+
 .github-corner {
   position: fixed;
   top: 0;

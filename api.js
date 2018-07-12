@@ -174,6 +174,11 @@ function getVote(callback) { // getting poll data
 					if (document.querySelectorAll('.progress-bar')[index]) {
 						document.querySelectorAll('.progress-bar')[index].style = 'width: ' + pollData[index].percnt + '%;';
 						document.querySelectorAll('.progress-bar')[index].innerHTML = pollData[index].percnt + '% (' + pollData[index].count + ')';
+						console.log('username', username, 'author', checkToVote.author);
+						/*if (item.author == checkToVote.author) {
+							document.querySelectorAll('.progress-bar')[index].classList.add('bg-success');
+							document.querySelectorAll('.progress-bar')[index].innerHTML = '<span class="icon-checkmark"> ' + pollData[index].percnt + '% (' + pollData[index].count + ')</span>';
+						}*/
 					}
 				}
 			}
