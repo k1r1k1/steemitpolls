@@ -154,6 +154,7 @@ function getVote(callback) { // getting poll data
 						checkToVote = {};
 						checkToVote.permlink = item.permlink;
 						checkToVote.author = item.author;
+						checkToVote.poll_id = item.json_metadata.data.poll_id;
 						} else {
 							checkToVote = false;
 						}
@@ -165,16 +166,15 @@ function getVote(callback) { // getting poll data
 			});
 			cnt = resultContent.json_metadata.data.poll_answers.length;
 			for (index = 0; index < resultContent.json_metadata.data.poll_answers.length; ++index) {
+				console.log('index =', index);
 				if (typeof pollData[index] != 'undefined') {
-					console.log('index =', index);
 					if (document.querySelectorAll('.progress-bar')[index]) {
 						document.querySelectorAll('.progress-bar')[index].style = 'width: ' + pollData[index].percnt + '%;';
 						document.querySelectorAll('.progress-bar')[index].innerHTML = pollData[index].percnt + '% (' + pollData[index].count + ')';
-
-						if (typeof result[index] != 'undefined' && typeof result[index].author != 'undefined' && result[index].author == username) {
-							console.log('index my=', index);
-							document.querySelectorAll('.progress-bar')[index].classList.add('bg-success');
-							document.querySelectorAll('.progress-bar')[index].innerHTML = '<span class="icon-checkmark"> ' + pollData[index].percnt + '% (' + pollData[index].count + ')</span>';
+						if (checkToVote) {
+							console.log('index my=', checkToVote.poll_id);
+							document.querySelectorAll('.progress-bar')[checkToVote.poll_id].classList.add('bg-success');
+							document.querySelectorAll('.progress-bar')[checkToVote.poll_id].innerHTML = '<span class="icon-checkmark"> ' + pollData[index].percnt + '% (' + pollData[index].count + ') - your vote' + '</span>';
 						}
 						console.log('my Comment:', username, checkToVote);
 					}
