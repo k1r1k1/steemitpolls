@@ -101,11 +101,7 @@ function sendVote(pollId, callback) {
 			return;
 		}
 		if (checkToVote) {
-			swal({
-				title: 'You can only vote once',
-				text: 'Sorry, seems like you are already voted',
-				type: 'error'
-			})
+			tryVoteAgain();
 		} else {
 			var parentAuthor = resultContent.author;
 			console.log('parentAuthor', parentAuthor);
@@ -160,7 +156,9 @@ function getVote(callback) { // getting poll data
 					}
 					if (typeof localStorage.wif != 'undefined') {
 						if (username == item.author) { // check if already voted
-						checkToVote = true;
+						checkToVote = {};
+						checkToVote.permlink = item.permlink;
+						checkToVote.author = item.author;
 						} else {
 							checkToVote = false;
 						}
