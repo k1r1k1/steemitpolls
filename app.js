@@ -45,13 +45,14 @@ document.onreadystatechange = function () { // loading animation switch-off
 function insertHtmlPoll(resultContent) {
 	console.log('<f> insertHtmlPoll ');
 	document.querySelector('.card-body.text-dark').innerHTML = '';
+	document.querySelector('#complete-form .card-header').innerHTML = document.querySelectorAll('.translate-phrases li')[0].innerHTML + ' @' + username;
 	var $div = document.createElement('h5'); // inserting header in poll
 	$div.className = 'card-title';
-	$div.innerHTML = resultContent.json_metadata.data.poll_title;
+	$div.innerHTML = resultContent.json_metadata.data.poll_title + ' (by @' + resultContent.author + ')';
 	if (resultContent.json_metadata.data.title_image) {
 		$div.innerHTML = $div.innerHTML + '<p><br><img src="' + resultContent.json_metadata.data.title_image + '" class="img-thumbnail mx-auto d-block mainmage">';
 	}
-	if (resultContent.json_metadata.data.poll_description) $div.innerHTML = $div.innerHTML + '<label class="">' + resultContent.json_metadata.data.poll_description + '</label>';
+	if (resultContent.json_metadata.data.poll_description) $div.innerHTML = $div.innerHTML + '<br><label class="">' + resultContent.json_metadata.data.poll_description + '</label>';
 	document.querySelector('.card-body.text-dark').appendChild($div);
 	getVote(function () {
 		for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress 
@@ -92,6 +93,11 @@ function updateProgressValues() {
 	getVote(function () {
 		// console.log('<f> updateProgressValues');
 		document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">' + document.querySelectorAll('.translate-phrases li')[4].innerHTML + ': ' + countOfVoters + '</span><span class="badge badge-info">' + document.querySelectorAll('.translate-phrases li')[1].innerHTML + ': ' + moment(resultContent.created).format('lll') + '</span>';
+		if (checkToVote) {
+			document.querySelector('.rem-vote').style.display = 'inline-block';
+		} else {
+			document.querySelector('.rem-vote').style.display = 'none';
+		}
 	})
 }
 
@@ -140,7 +146,7 @@ function addInactiveInput() {
 	$div.innerHTML = `<div class="input-group-prepend">
 <img id="load-img" src="graphics/loading.gif" width="34" height="34" style="display: none; margin: 0 5px;">
                         <button class="btn btn-secondary" type="button" id="addImg` + inputsC + `" disabled><span class="icon-image"></span></button>
-                    </div><input type="text" class="form-control" placeholder="` + document.querySelectorAll('.translate-phrases li')[12].innerHTML + `" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="inputOption` + inputsC + `" data-toggle="tooltip" data-placement="left">
+                    </div><input type="text" class="form-control" placeholder="` + document.querySelectorAll('.translate-phrases li')[12].innerHTML + `" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="inputOption` + inputsC + `" data-toggle="tooltip" data-placement="left"  onchange="checkInput(this.id);">
 <div class="input-group-append">
                         <button class="btn btn-danger" type="button" id="pOptionButt` + inputsC + `" disabled><span class="icon-cross"></span></button>
                     </div>
@@ -225,6 +231,14 @@ function completeForm(callback) {
 	send_request(str, title, jsonMetadata);
 }
 
+function checkInput(id) {
+	if (document.getElementById(id).value == '') {
+		document.getElementById(id).setAttribute('class', 'form-control title is-invalid');
+	} else {
+		document.getElementById(id).setAttribute('class', 'form-control title');
+	}
+}
+
 function send_request(str, title, jsonMetadata) {
 	console.log('<f> send_request');
 	var parentAuthor = ''; // for post creating, empty field
@@ -274,6 +288,7 @@ function getMyPolls(callback) {
 	console.log('<f>my-polls click');
 	clearUpdTimer();
 	document.querySelector('.lding').style.display = 'block';
+	document.querySelector('.rem-vote').style.display = 'none';
 	location.hash = '';
 	document.querySelector('.card-header-right p').innerHTML = '';
 	document.getElementById('complete-form').style.display = 'block';
@@ -304,13 +319,18 @@ function getMyPolls(callback) {
 					if (!err) {
 						pollData = {};
 						countofvotes = 0;
+						voters = [];
 						max = 0;
 						winner = 0;
 						item.json_metadata = JSON.parse(item.json_metadata); //parse json to js
 						result.forEach(function (result) {
 							result.json_metadata = JSON.parse(result.json_metadata);
+							console.log('result', result);
 							if (typeof result.json_metadata.data != 'undefined' && typeof result.json_metadata.data.poll_id != 'undefined') {
-								countofvotes++;
+								if (!~voters.indexOf('"' + result.author + '",')) {
+									voters = voters + '"' + result.author + '",';
+									countofvotes++;
+								}
 								cnt++;
 								if (!pollData[result.json_metadata.data.poll_id]) pollData[result.json_metadata.data.poll_id] = {
 									count: 0,
@@ -430,29 +450,31 @@ function tryVoteAgain() {
 		reverseButtons: true
 	}).then((result) => {
 		if (result.value) {
-			console.log('wif', wif.posting);
-			console.log('author', checkToVote.author);
-			console.log('permlink', checkToVote.permlink);
-			golos.broadcast.deleteComment(wif.posting, checkToVote.author, checkToVote.permlink, function (err, result) {
-				if (err) {
-					swal(
-						'error',
-						'err',
-						err
-					)
-					console.error(err);
-				}
-				insertHtmlPoll(resultContent);
-			});
-			swal(
-				'Deleted!',
-				'Your vote has been deleted.',
-				'success'
-			)
-			console.log(result);
+			removeMyVote();
 		}
 	})
 }
+
+function removeMyVote() {
+	golos.broadcast.deleteComment(wif.posting, checkToVote.author, checkToVote.permlink, function (err, result) {
+		if (err) {
+			swal(
+				'error',
+				'err',
+				err
+			)
+			console.error(err);
+		}
+		insertHtmlPoll(resultContent);
+	});
+	swal(
+		'Deleted!',
+		'Your vote has been deleted.',
+		'success'
+	)
+	console.log(result);
+}
+
 // buttons events 
 
 document.getElementById('complete').addEventListener('click', function () {
@@ -482,6 +504,10 @@ document.getElementById('complete').addEventListener('click', function () {
 			document.querySelector('.lding').style.display = 'none'; // loader off
 		}
 	}
+}, false);
+
+document.querySelector('.rem-vote').addEventListener('click', () => {
+	removeMyVote();
 }, false);
 
 document.getElementById('my-polls').addEventListener('click', function () {

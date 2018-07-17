@@ -295,6 +295,15 @@ footer {
 	height: 600px;
 }
 
+.rem-vote {
+	display: none;
+	height: 25px;
+    margin: 0 1rem 0rem 59%;
+    padding-top: 0;
+    color: #fff;
+    background-color: #ff7500;
+}
+
 .vote-item {
 	cursor: pointer;
 }
