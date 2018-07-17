@@ -1,4 +1,4 @@
-let len, arrIpfs, ipfs,
+let len, arrIpfs, ipfs, $imgId,
 	initConnection = connection => {
 		ipfs = window.IpfsApi({
 			host: connection.api.address,
@@ -21,12 +21,12 @@ const connectionDefault = {
 	}
 }
 
-document.onreadystatechange = function () {
-	setTimeout(() => initConnection(connectionDefault), 2000)
-}
+setTimeout(() => initConnection(connectionDefault), 2000)
 
-function uploadImageToIpfs(cb) {
+function uploadImageToIpfs(imgid, cb) {
 	window.cb = cb;
+	$imgId = imgid;
+	console.log('imgid ipfs =', imgid); // !!! <====
 	let div = document.createElement('div');
 	div.innerHTML = '<input id="imagesSelector" type="file" multiple accept=".png,.jpg,.jpeg" onclick="document.body.onfocus = checkIt;"  hidden="true"/>';
 	(document.head || document.documentElement).appendChild(div);
@@ -34,20 +34,19 @@ function uploadImageToIpfs(cb) {
 }
 
 function checkIt() {
-	var $ldimg = document.querySelector('#load-img'),
-		$inpimg = document.querySelector('#imagesSelector');
+	var $inpimg = document.querySelector('#imagesSelector');
 	setTimeout(function () {
 		if ($inpimg.value.length) {
-			$ldimg.style = "display: inline-block; margin-left: 1rem;";
-			$ldimg.src = 'graphics/loading.gif';
-			console.log('files opened');
+			console.log();
+			document.getElementById($imgId).style = 'display: inline-block; margin-left: 1rem;';
+			document.getElementById($imgId).src = 'graphics/loading.gif';
 			console.log('value', $inpimg.files);
 			handleFiles($inpimg.files);
+			document.body.onfocus = null;
 		} else {
-			console.log('Cancel clicked');
 			console.log('value =', $inpimg.files);
-			$ldimg.style = "display: none;";
-			$ldimg.src = '';
+			document.getElementById($imgId).style = "display: none;";
+			document.getElementById($imgId).src = '';
 			document.body.onfocus = null;
 		}
 	}, 500)

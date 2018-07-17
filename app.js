@@ -144,7 +144,7 @@ function addInactiveInput() {
 	$div.id = 'pOption' + inputsC;
 	$div.style = 'opacity: 0.4;';
 	$div.innerHTML = `<div class="input-group-prepend">
-<img id="load-img" src="graphics/loading.gif" width="34" height="34" style="display: none; margin: 0 5px;">
+<img id="load-img` + inputsC + `" src="graphics/loading.gif" width="34" height="34" style="display: none; margin: 0 5px;">
                         <button class="btn btn-secondary" type="button" id="addImg` + inputsC + `" disabled><span class="icon-image"></span></button>
                     </div><input type="text" class="form-control" placeholder="` + document.querySelectorAll('.translate-phrases li')[12].innerHTML + `" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="inputOption` + inputsC + `" data-toggle="tooltip" data-placement="left"  onchange="checkInput(this.id);">
 <div class="input-group-append">
@@ -163,9 +163,7 @@ function addInactiveInput() {
 	}, false);
 	$div.querySelector('.btn.btn-secondary').addEventListener('click', function (e) { // img button event
 		if (e.target.tagName == 'BUTTON' || e.target.tagName == 'SPAN') {
-			(e.target.parentNode.parentNode).querySelector('img').style.display = 'block';
-			(e.target.parentNode.parentNode).querySelector('img').src = 'graphics/loading.gif';
-			uploadImageToIpfs(function (err, files) {
+			uploadImageToIpfs(e.target.parentNode.parentNode.querySelector('img').id, function (err, files) {
 				if (err) {
 					console.error('ipfs error: ', err);
 					(e.target.parentNode.parentNode).querySelector('img').src = 'graphics/err.png';
@@ -207,12 +205,12 @@ function completeForm(callback) {
 	//str.replace(/[^\w\d]/g, '_');
 	str = str + '-' + Date.now();
 	var title = document.querySelector('.form-control.title').value,
-		title_pic = document.querySelector('#load-img').src;
+		title_pic = document.querySelector('#load-img0').src;
 	console.log('permlink : ' + str);
 	console.log('json var : ' + answers); // debug info
 	console.log('title : ' + title);
 	console.log('json answerimages : ' + answerimages);
-	if (document.querySelector('#load-img').src == 'https://golospolls.com/graphics/loading.gif') {
+	if (document.querySelector('#load-img0').src == 'https://golospolls.com/graphics/loading.gif') {
 		title_pic = '';
 	}
 	var jsonMetadata = {
@@ -558,15 +556,15 @@ document.getElementById('integration').addEventListener('click', () => {
 	});
 }, false);
 
-document.getElementById('upload').addEventListener('click', function () {
-	uploadImageToIpfs((err, files) => {
+document.getElementById('upload').addEventListener('click', function (e) {
+	uploadImageToIpfs(e.target.parentNode.parentNode.querySelector('img').id, (err, files) => {
 		if (err) {
 			console.error('ipfs error: ', err);
-			document.querySelector('#load-img').src = 'graphics/err.png';
+			document.querySelector('#load-img0').src = 'graphics/err.png';
 			console.log('err event');
 		} else {
 			console.log(files[0][0].path + files[0][0].hash);
-			document.querySelector('#load-img').src = files[0][0].path + files[0][0].hash;
+			document.querySelector('#load-img0').src = files[0][0].path + files[0][0].hash;
 			console.log(files[0]);
 		}
 	});
