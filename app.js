@@ -559,8 +559,6 @@ document.getElementById('integration').addEventListener('click', () => {
 }, false);
 
 document.getElementById('upload').addEventListener('click', function () {
-	document.querySelector('#load-img').style = "display: inline-block; margin-left: 1rem;";
-	document.querySelector('#load-img').src = 'graphics/loading.gif';
 	uploadImageToIpfs((err, files) => {
 		if (err) {
 			console.error('ipfs error: ', err);

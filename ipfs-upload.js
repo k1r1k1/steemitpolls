@@ -28,22 +28,29 @@ document.onreadystatechange = function () {
 function uploadImageToIpfs(cb) {
 	window.cb = cb;
 	let div = document.createElement('div');
-	div.innerHTML = '<input id="imagesSelector" type="file" multiple accept=".png,.jpg,.jpeg" onclick="initialize()" onchange="handleFiles(this.files)" hidden="true"/>';
+	div.innerHTML = '<input id="imagesSelector" type="file" multiple accept=".png,.jpg,.jpeg" onclick="document.body.onfocus = checkIt;"  hidden="true"/>';
 	(document.head || document.documentElement).appendChild(div);
 	document.getElementById('imagesSelector').click();
 }
 
-function initialize() {
-	document.body.onfocus = checkIt;
-	console.log('initializing');
-}
-
 function checkIt() {
-	if (document.getElementById('imagesSelector').value.length)
-		handleFiles(document.getElementById('imagesSelector').files)
-	else
-		alert('Cancel clicked');
-	document.body.onfocus = null;
+	var $ldimg = document.querySelector('#load-img'),
+		$inpimg = document.querySelector('#imagesSelector');
+	setTimeout(function () {
+		if ($inpimg.value.length) {
+			$ldimg.style = "display: inline-block; margin-left: 1rem;";
+			$ldimg.src = 'graphics/loading.gif';
+			console.log('files opened');
+			console.log('value', $inpimg.files);
+			handleFiles($inpimg.files);
+		} else {
+			console.log('Cancel clicked');
+			console.log('value =', $inpimg.files);
+			$ldimg.style = "display: none;";
+			$ldimg.src = '';
+			document.body.onfocus = null;
+		}
+	}, 500)
 }
 
 function handleFiles(files) {
