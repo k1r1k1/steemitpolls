@@ -166,7 +166,6 @@ function getVote(callback) { // getting poll data
 			});
 			cnt = resultContent.json_metadata.data.poll_answers.length;
 			for (index = 0; index < resultContent.json_metadata.data.poll_answers.length; ++index) {
-				console.log('index =', index);
 				if (typeof pollData[index] != 'undefined') {
 					if (document.querySelectorAll('.progress-bar')[index]) {
 						document.querySelectorAll('.progress-bar')[index].style = 'width: ' + pollData[index].percnt + '%;';

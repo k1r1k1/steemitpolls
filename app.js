@@ -323,7 +323,6 @@ function getMyPolls(callback) {
 						item.json_metadata = JSON.parse(item.json_metadata); //parse json to js
 						result.forEach(function (result) {
 							result.json_metadata = JSON.parse(result.json_metadata);
-							console.log('result', result);
 							if (typeof result.json_metadata.data != 'undefined' && typeof result.json_metadata.data.poll_id != 'undefined') {
 								if (!~voters.indexOf('"' + result.author + '",')) {
 									voters = voters + '"' + result.author + '",';
