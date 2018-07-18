@@ -474,8 +474,35 @@ document.getElementById('complete').addEventListener('click', function () {
 	}
 }, false);
 
-document.querySelector('.rem-vote').addEventListener('click', () => {
-	removeMyVote();
+document.querySelector('.edit-poll').addEventListener('click', () => {
+	swal({
+		html: `<div class="form-group-swal">
+							<label>Enter the title</label>
+							<input type="text" class="form-control title" value="` + resultContent.json_metadata.data.poll_title + `" placeholder="Type your text here">
+							<label for="exampleFormControlTextarea1">Enter description (not necessary)</label>
+							<textarea class="form-control" id="pollDescriptionInput" value="` + resultContent.json_metadata.data.poll_description + `" rows="3" maxlength="300"></textarea>
+							<br><button class="btn btn-secondary btn-sm" id="upload"><span class="icon-image"></span> Add main image</button><img id="load-img0" src="" width="34" height="34" style="display: none;">
+						<div id="EditPollForm">
+							<label>Fill in the following fields</label>
+						</div>
+						</div>`,
+		confirmButtonClass: 'btn btn-success',
+  cancelButtonClass: 'btn btn-danger',
+		showCloseButton: true,
+		showCancelButton: true,
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Apply changes'
+	}).then((result) => {
+		if (result.value) {
+			swal(
+				'Success',
+				'Your poll has been edited.',
+				'success'
+			)
+		}
+	})
 }, false);
 
 document.getElementById('my-polls').addEventListener('click', function () {
