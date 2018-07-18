@@ -54,23 +54,19 @@ function insertHtmlPoll(resultContent) {
 	}
 	if (resultContent.json_metadata.data.poll_description) $div.innerHTML = $div.innerHTML + '<br><label class="">' + resultContent.json_metadata.data.poll_description + '</label>';
 	document.querySelector('.card-body.text-dark').appendChild($div);
+
 	getVote(function () {
 		for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress 
 			var $div = document.createElement('div');
 			$div.className = 'progress-block';
-			if (resultContent.json_metadata && resultContent.json_metadata.data && resultContent.json_metadata.data.poll_answers && resultContent.json_metadata.data.poll_images && resultContent.json_metadata.data.poll_answers[cnt] && resultContent.json_metadata.data.poll_images[cnt]) {
-				$div.innerHTML = `<div class="card" id="` + cnt + `"><div class="card-body vote-item">
-<label class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</label>
-						<p><img src="` + resultContent.json_metadata.data.poll_images[cnt] + `" height="150" class="rounded"><div class="progress"  style="cursor: pointer;"><div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div></div></div></div><br>`;
-				document.querySelector('.card-body.text-dark').appendChild($div);
-				document.getElementById(cnt).onclick = progress_click; // dummy for polling 
-			} else {
-				$div.innerHTML = `<div class="card" id="` + cnt + `"><div class="card-body vote-item"><label class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</label><div class="progress" style="cursor: pointer;"><div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div></div></div></div><br>`;
-				document.querySelector('.card-body.text-dark').appendChild($div);
-				document.getElementById(cnt).onclick = progress_click; // dummy for polling     
-			}
+			$div.innerHTML = `<div class="card" id="` + cnt + `"><div class="card-body vote-item"><label class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</label><div class="progress" style="cursor: pointer;"><div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div></div></div></div><br>`;
+			document.querySelector('.card-body.text-dark').appendChild($div);
+			document.getElementById(cnt).onclick = progress_click; // dummy for polling
+			console.log('else');
 		}
+		console.log('cnt', cnt);
 	});
+
 	document.getElementById('complete-form').style.display = 'block';
 	document.getElementById('share-form').style.display = 'block';
 	document.getElementById('PollConstructor').style.display = 'none';
@@ -87,18 +83,6 @@ function insertHtmlPoll(resultContent) {
 <button class="btn share-golos" role="button" onclick="reblogGolos();return false;"><span></span>Reblog</button>`;
 	document.querySelector('.socialButtons').innerHTML = '';
 	document.querySelector('.socialButtons').appendChild($div);
-}
-
-function updateProgressValues() {
-	getVote(function () {
-		// console.log('<f> updateProgressValues');
-		document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">' + document.querySelectorAll('.translate-phrases li')[4].innerHTML + ': ' + countOfVoters + '</span><span class="badge badge-info">' + document.querySelectorAll('.translate-phrases li')[1].innerHTML + ': ' + moment(resultContent.created).format('lll') + '</span>';
-		if (checkToVote) {
-			document.querySelector('.rem-vote').style.display = 'inline-block';
-		} else {
-			document.querySelector('.rem-vote').style.display = 'none';
-		}
-	})
 }
 
 function CopyLinkToClipboard() {
@@ -242,19 +226,6 @@ function send_request(str, title, jsonMetadata) {
 	var parentAuthor = ''; // for post creating, empty field
 	var parentPermlink = 'test'; // main tag
 	var body = 'test';
-	/* `<p>
-						GolosPolls - is microservice for conducting polls on the blockchain <a target="_blank" href="https://golos.io">Golos</a>. This platform is a thin client, that works without a backend (only frontend and blockchain) directly on the <a>GitHub Pages</a> (through <a target="_blank" href="https://www.cloudflare.com/">CloudFlare</a>).</p>
-						<img src="https://golospolls.com/graphics/logo.png" height="300" width="300"></img>
-					<ul>
-						We use:
-						<li><a target="_blank" href="https://github.com/GolosChain/golos-js">Golos.js</a> - the JavaScript API for Golos blockchain;</li>
-						<li><a target="_blank" href="https://github.com/twbs/bootstrap">Bootstrap</a> - the most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web;</li>
-						<li><a target="_blank" href="https://github.com/lipis/flag-icon-css">Flag-icon-css</a> - a collection of all country flags in SVG;</li>
-						<li><a target="_blank" href="https://www.i18next.com">I18next</a> - is an internationalization-framework written in and for JavaScript;</li>
-						<li><a target="_blank" href="https://github.com/zloirock/core-js">Core-js</a> - modular standard library for JavaScript. Includes polyfills for ECMAScript 5, ECMAScript 6: promises, symbols, collections, iterators, typed arrays, ECMAScript 7+ proposals, setImmediate, etc. Some additional features such as dictionaries or extended partial application. You can require only needed features or use it without global namespace pollution.</li>
-						<li><a target="_blank" href="https://github.com/limonte/sweetalert2">SweetAlert2</a> - a beautiful, responsive, customizable, accessible replacement for JavaScript's popup boxes.</li>
-						<li><a target="_blank" href="https://github.com/Keyamoon/IcoMoon-Free">IcoMoon-Free</a> - is a free vector icon pack by Keyamoon.</li>
-					</ul>`; // post text */
 	golos.broadcast.comment(wif.posting, parentAuthor, parentPermlink, username, str, title, body, jsonMetadata, function (err, result) {
 		if (!err) {
 			window.location.hash = username + '/' + str;

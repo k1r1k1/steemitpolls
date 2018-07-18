@@ -146,6 +146,7 @@ function getVote(callback) { // getting poll data
 							percnt: 0
 						};
 						countOfVoters++;
+						console.log('countOfVoters', countOfVoters);
 						pollData[item.json_metadata.data.poll_id].count++;
 					}
 					console.log('comments:',item);
@@ -161,6 +162,8 @@ function getVote(callback) { // getting poll data
 					}
 				}
 			});
+			console.log('countOfVoters', countOfVoters);
+
 			Object.keys(pollData).map(function (objectKey, index) { // foreach pollData
 				pollData[objectKey].percnt = Math.round((pollData[objectKey].count * 100) / countOfVoters); // calculate percent
 			});
@@ -171,7 +174,6 @@ function getVote(callback) { // getting poll data
 						document.querySelectorAll('.progress-bar')[index].style = 'width: ' + pollData[index].percnt + '%;';
 						document.querySelectorAll('.progress-bar')[index].innerHTML = pollData[index].percnt + '% (' + pollData[index].count + ')';
 						if (checkToVote) {
-							console.log('index my=', checkToVote.poll_id);
 							document.querySelectorAll('.progress-bar')[checkToVote.poll_id].classList.add('bg-success');
 							document.querySelectorAll('.progress-bar')[checkToVote.poll_id].innerHTML = '<span class="icon-checkmark"> ' + pollData[index].percnt + '% (' + pollData[index].count + ') - your vote' + '</span>';
 						}
@@ -192,6 +194,23 @@ function getVote(callback) { // getting poll data
 		}
 		if (callback) callback();
 	});
+}
+
+function updateProgressValues() {
+	getVote(function () {
+		// console.log('<f> updateProgressValues');
+		document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">' + document.querySelectorAll('.translate-phrases li')[4].innerHTML + ': ' + countOfVoters + '</span><span class="badge badge-info">' + document.querySelectorAll('.translate-phrases li')[1].innerHTML + ': ' + moment(resultContent.created).format('lll') + '</span>';
+		if (checkToVote) {
+			document.querySelector('.rem-vote').style.display = 'inline-block';
+		} else {
+			document.querySelector('.rem-vote').style.display = 'none';
+		}
+		if (countOfVoters == 0) {
+			document.querySelector('.edit-poll').style.display = 'inline-block';
+		} else {
+			document.querySelector('.edit-poll').style.display = 'none';
+		}
+	})
 }
 
 function startUpdProgTimer(interval) {
