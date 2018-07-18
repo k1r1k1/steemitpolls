@@ -477,7 +477,8 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 		pollHTML = pollHTML + `<div class="input-group mb-3" id="option` + cnt + `"
 <div class="input-group-prepend">
 <img id="load-img` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="34" height="34" style="display: none; margin: 0 5px;">
-</div><input type="text" class="form-control" placeholder="` + document.querySelectorAll('.translate-phrases li')[12].innerHTML + `" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="inputOption` + cnt + `" data-toggle="tooltip" data-placement="left"  onchange="checkInput(this.id);">`;
+</div><input type="text" class="form-control" value="` + resultContent.json_metadata.data.poll_answers[cnt] + `" placeholder="` + document.querySelectorAll('.translate-phrases li')[12].innerHTML + `" id="inputOption` + cnt + `" data-placement="left"  onchange="checkInput(this.id);"><div class="invalid-feedback">Please fill or remove empty fields
+</div>`;
 	}
 
 	swal({
