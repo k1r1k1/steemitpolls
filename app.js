@@ -62,9 +62,7 @@ function insertHtmlPoll(resultContent) {
 			$div.innerHTML = `<div class="card" id="` + cnt + `"><div class="card-body vote-item"><label class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</label><div class="progress" style="cursor: pointer;"><div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div></div></div></div><br>`;
 			document.querySelector('.card-body.text-dark').appendChild($div);
 			document.getElementById(cnt).onclick = progress_click; // dummy for polling
-			console.log('else');
 		}
-		console.log('cnt', cnt);
 	});
 
 	document.getElementById('complete-form').style.display = 'block';
@@ -384,7 +382,6 @@ function reblogGolos() {
 }]);
 	auth(() => {
 		golos.broadcast.customJson(wif.posting, [], [username], 'follow', json, (err, result) => {
-
 			console.log('username', username, 'author', resultContent.author, 'permlink', resultContent.permlink);
 			if (err) {
 				swal({
@@ -475,21 +472,26 @@ document.getElementById('complete').addEventListener('click', function () {
 }, false);
 
 document.querySelector('.edit-poll').addEventListener('click', () => {
+	var pollHTML = '';
+	for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress
+		pollHTML = pollHTML + `<div class="input-group mb-3" id="option` + cnt + `"
+<div class="input-group-prepend">
+<img id="load-img` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="34" height="34" style="display: none; margin: 0 5px;">
+</div><input type="text" class="form-control" placeholder="` + document.querySelectorAll('.translate-phrases li')[12].innerHTML + `" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="inputOption` + cnt + `" data-toggle="tooltip" data-placement="left"  onchange="checkInput(this.id);">`;
+	}
+
 	swal({
 		html: `<div class="form-group-swal">
 							<label>Enter the title</label>
 							<input type="text" class="form-control title" value="` + resultContent.json_metadata.data.poll_title + `" placeholder="Type your text here">
 							<label for="exampleFormControlTextarea1">Enter description (not necessary)</label>
-							<textarea class="form-control" id="pollDescriptionInput" value="` + resultContent.json_metadata.data.poll_description + `" rows="3" maxlength="300"></textarea>
-							<br><button class="btn btn-secondary btn-sm" id="upload"><span class="icon-image"></span> Add main image</button><img id="load-img0" src="" width="34" height="34" style="display: none;">
+							<textarea class="form-control" id="pollDescriptionInput" rows="3" maxlength="300">` + resultContent.json_metadata.data.poll_description + `</textarea>
+							<br><button class="btn btn-secondary btn-sm" id="upload"><span class="icon-image"></span> Add main image</button><img id="load-img0" src="` + resultContent.json_metadata.data.title_image + `" width="34" height="34" style="display: inline-block; margin-left: .5rem;">
 						<div id="EditPollForm">
 							<label>Fill in the following fields</label>
 						</div>
-						</div>`,
-		confirmButtonClass: 'btn btn-success',
-  cancelButtonClass: 'btn btn-danger',
+						</div>` + pollHTML,
 		showCloseButton: true,
-		showCancelButton: true,
 		showCancelButton: true,
 		confirmButtonColor: '#3085d6',
 		cancelButtonColor: '#d33',
