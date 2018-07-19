@@ -351,6 +351,10 @@ footer {
     position: static;
 }
 
+#load-img0 {
+	margin-left: .5rem;
+}
+
 .github-corner {
   position: fixed;
   top: 0;

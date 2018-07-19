@@ -38,7 +38,7 @@ function checkIt() {
 	setTimeout(function () {
 		if ($inpimg.value.length) {
 			console.log();
-			document.getElementById($imgId).style = 'display: inline-block; margin-left: 1rem;';
+			document.getElementById($imgId).style = 'display: inline-block; margin-right: .5rem;';
 			document.getElementById($imgId).src = 'graphics/loading.gif';
 			console.log('value', $inpimg.files);
 			handleFiles($inpimg.files);

@@ -203,7 +203,7 @@ function completeForm(callback) {
 		}
 	};
 	document.querySelector('.lding').style.display = 'block';
-	send_request(str, title, jsonMetadata);
+	send_request(str, title, jsonMetadata, '');
 }
 
 function checkInput(id) {
@@ -214,9 +214,9 @@ function checkInput(id) {
 	}
 }
 
-function send_request(str, title, jsonMetadata) {
+function send_request(str, title, jsonMetadata, parentAuthor) {
 	console.log('<f> send_request');
-	var parentAuthor = ''; // for post creating, empty field
+	//var parentAuthor = ''; // for post creating, empty field
 	var parentPermlink = 'test'; // main tag
 	var body = 'test';
 	golos.broadcast.comment(wif.posting, parentAuthor, parentPermlink, username, str, title, body, jsonMetadata, function (err, result) {
@@ -494,14 +494,14 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 	swal({
 		html: `<div class="form-group-swal">
 							<label>Enter the title</label>
-							<input type="text" class="form-control title" value="` + resultContent.json_metadata.data.poll_title + `" placeholder="Type your text here">
+							<input type="text" class="form-control title edit" value="` + resultContent.json_metadata.data.poll_title + `" placeholder="Type your text here">
 							<label for="exampleFormControlTextarea1">Enter description (not necessary)</label>
 							<textarea class="form-control" id="pollDescriptionInput" rows="3" maxlength="300">` + resultContent.json_metadata.data.poll_description + `</textarea>
-							<br><img class="uplded-img-true" id="load-img" src="` + resultContent.json_metadata.data.title_image + `" width="34" height="34"><img class="uplded-img" src="` + resultContent.json_metadata.data.title_image + `" width="34" height="34" style="margin: 0 -39px;" onClick="ipfsImgLoad(this)">
+							<br><img class="uplded-img-true" id="load-img" src="` + resultContent.json_metadata.data.title_image + `" width="34" height="34"><img class="uplded-img" id="load-img" src="` + resultContent.json_metadata.data.title_image + `" width="34" height="34" style="margin: 0 -39px;" onClick="ipfsImgLoad(this)">
 						<div id="EditPollForm">
 							<label>Fill in the following fields</label>
 						</div>
-						</div>` + pollHTML,
+						</div><div class="varDiv">` + pollHTML + `</div>`,
 		showCloseButton: true,
 		showCancelButton: true,
 		confirmButtonColor: '#3085d6',
@@ -509,6 +509,25 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 		confirmButtonText: 'Apply changes'
 	}).then((result) => {
 		if (result.value) {
+			var i = 0,
+				answers = [];
+			document.querySelectorAll('.varDiv input').forEach(function (item) {
+				answers[i] = item.value;
+				i++;
+				});
+	var jsonMetadata_edit = {
+		app: 'golospolls/0.1',
+		canonical: 'https://golospolls.com/#' + username + '/' + resultContent.permlink,
+		app_account: 'golosapps',
+		data: {
+			poll_title: document.querySelector('.title.edit'),
+			title_image: document.querySelector('.form-group-swal img'),
+			poll_images: document.querySelector('.varDiv').querySelectorAll('.uplded-img-true'),
+			poll_answers: answers,
+			poll_description: document.querySelector('.form-group-swal textarea')
+		}
+	};
+			send_request(resultContent.permlink, document.querySelector('.title.edit'), jsonMetadata_edit, resultContent.author);
 			swal(
 				'Success',
 				'Your poll has been edited.',
