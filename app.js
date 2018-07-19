@@ -203,7 +203,7 @@ function completeForm(callback) {
 		}
 	};
 	document.querySelector('.lding').style.display = 'block';
-	send_request(str, title, jsonMetadata, '');
+	send_request(str, title, jsonMetadata);
 }
 
 function checkInput(id) {
@@ -214,9 +214,9 @@ function checkInput(id) {
 	}
 }
 
-function send_request(str, title, jsonMetadata, parentAuthor) {
+function send_request(str, title, jsonMetadata) {
 	console.log('<f> send_request');
-	//var parentAuthor = ''; // for post creating, empty field
+	var parentAuthor = ''; // for post creating, empty field
 	var parentPermlink = 'test'; // main tag
 	var body = 'test';
 	golos.broadcast.comment(wif.posting, parentAuthor, parentPermlink, username, str, title, body, jsonMetadata, function (err, result) {
@@ -527,7 +527,7 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 			poll_description: document.querySelector('.form-group-swal textarea')
 		}
 	};
-			send_request(resultContent.permlink, document.querySelector('.title.edit'), jsonMetadata_edit, resultContent.author);
+			send_request(resultContent.permlink, document.querySelector('.title.edit'), jsonMetadata_edit);
 			swal(
 				'Success',
 				'Your poll has been edited.',
