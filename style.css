@@ -328,7 +328,7 @@ footer {
 
 .uplded-img:hover {
 	cursor: pointer;
-	transition-delay: .5s;
+	transition-delay: 1s;
 	position: absolute;
 	width: auto;
 	height: 250px;
@@ -346,6 +346,7 @@ footer {
 }
 
 .uplded-img-true {
+	display: inline-block;
 	margin: 0 .5rem;
     position: static;
 }

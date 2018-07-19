@@ -59,9 +59,17 @@ function insertHtmlPoll(resultContent) {
 		for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress 
 			var $div = document.createElement('div');
 			$div.className = 'progress-block';
-			$div.innerHTML = `<div class="card" id="` + cnt + `"><div class="card-body vote-item"><label class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</label><div class="progress" style="cursor: pointer;"><div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div></div></div></div><br>`;
-			document.querySelector('.card-body.text-dark').appendChild($div);
-			document.getElementById(cnt).onclick = progress_click; // dummy for polling
+			if (resultContent.json_metadata && resultContent.json_metadata.data && resultContent.json_metadata.data.poll_answers && resultContent.json_metadata.data.poll_images && resultContent.json_metadata.data.poll_answers[cnt] && resultContent.json_metadata.data.poll_images[cnt]) {
+				$div.innerHTML = `<div class="card" id="` + cnt + `"><div class="card-body vote-item">
+<label class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</label>
+						<p><img src="` + resultContent.json_metadata.data.poll_images[cnt] + `" height="150" class="rounded"><div class="progress"  style="cursor: pointer;"><div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div></div></div></div><br>`;
+				document.querySelector('.card-body.text-dark').appendChild($div);
+				document.getElementById(cnt).onclick = progress_click; // dummy for polling
+			} else {
+				$div.innerHTML = `<div class="card" id="` + cnt + `"><div class="card-body vote-item"><label class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</label><div class="progress" style="cursor: pointer;"><div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div></div></div></div><br>`;
+				document.querySelector('.card-body.text-dark').appendChild($div);
+				document.getElementById(cnt).onclick = progress_click; // dummy for polling
+			}
 		}
 	});
 
@@ -127,7 +135,7 @@ function addInactiveInput() {
 	$div.style = 'opacity: 0.4;';
 	$div.innerHTML = `<div class="input-group-prepend">
 <img id="load-img` + inputsC + `" src="graphics/loading.gif" width="34" height="34" style="display: none; margin: 0 5px;">
-                        <button class="btn btn-secondary" type="button" id="addImg` + inputsC + `" disabled><span class="icon-image"></span></button>
+                        <button class="btn btn-secondary" type="button" onClick="ipfsImgLoad(this)" id="addImg` + inputsC + `" disabled><span class="icon-image"></span></button>
                     </div><input type="text" class="form-control" placeholder="` + document.querySelectorAll('.translate-phrases li')[12].innerHTML + `" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="inputOption` + inputsC + `" data-toggle="tooltip" data-placement="left"  onchange="checkInput(this.id);">
 <div class="input-group-append">
                         <button class="btn btn-danger" type="button" id="pOptionButt` + inputsC + `" disabled><span class="icon-cross"></span></button>
@@ -141,19 +149,6 @@ function addInactiveInput() {
 			e.target.parentNode.parentNode.remove();
 		} else if (e.target.tagName == 'SPAN') {
 			e.target.parentNode.parentNode.parentNode.remove();
-		}
-	}, false);
-	$div.querySelector('.btn.btn-secondary').addEventListener('click', function (e) { // img button event
-		if (e.target.tagName == 'BUTTON' || e.target.tagName == 'SPAN') {
-			uploadImageToIpfs(e.target.parentNode.parentNode.querySelector('img').id, function (err, files) {
-				if (err) {
-					console.error('ipfs error: ', err);
-					(e.target.parentNode.parentNode).querySelector('img').src = 'graphics/err.png';
-				} else {
-					console.log(files[0][0].path + files[0][0].hash);
-					(e.target.parentNode.parentNode).querySelector('img').src = files[0][0].path + files[0][0].hash;
-				}
-			});
 		}
 	}, false);
 	document.getElementById('PollForm').appendChild($div);
@@ -175,7 +170,7 @@ function completeForm(callback) {
 		} else {
 			$pollInputs[cnt].setAttribute('class', 'form-control title');
 			answers[cnt] = $pollInputs[cnt].value;
-			if ($pollImages[cnt].src == 'https://golospolls.com/graphics/loading.gif' || $pollImages[cnt].src == 'file:///C:/HUB/golospolls/graphics/loading.gif') {
+			if ($pollImages[cnt].src == 'https://golospolls.com/graphics/loading.gif') {
 				answerimages[cnt] = '';
 			} else {
 				answerimages[cnt] = $pollImages[cnt].src;
@@ -476,18 +471,17 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 	for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress
 		pollHTML = pollHTML + `<div class="input-group mb-3" id="option` + cnt + `"
 <div class="input-group-prepend">
-<img class="uplded-img-true" id="load-img` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="34" height="34" style="display: inline-block;"><img class="uplded-img" id="load-img` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="34" height="34"><input type="text" class="form-control" value="` + resultContent.json_metadata.data.poll_answers[cnt] + `" placeholder="` + document.querySelectorAll('.translate-phrases li')[12].innerHTML + `" id="inputOption` + cnt + `" data-placement="left"  onchange="checkInput(this.id);"></div>
+<img class="uplded-img-true" id="load-img` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="34" height="34" onClick="ipfsImgLoad(this)"><img class="uplded-img" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="34" height="34"><input type="text" class="form-control" value="` + resultContent.json_metadata.data.poll_answers[cnt] + `" placeholder="` + document.querySelectorAll('.translate-phrases li')[12].innerHTML + `" id="inputOption` + cnt + `" data-placement="left"  onchange="checkInput(this.id);"></div>
 <div class="invalid-feedback">Please fill or remove empty fields
 </div>`;
 	}
-
 	swal({
 		html: `<div class="form-group-swal">
 							<label>Enter the title</label>
 							<input type="text" class="form-control title" value="` + resultContent.json_metadata.data.poll_title + `" placeholder="Type your text here">
 							<label for="exampleFormControlTextarea1">Enter description (not necessary)</label>
 							<textarea class="form-control" id="pollDescriptionInput" rows="3" maxlength="300">` + resultContent.json_metadata.data.poll_description + `</textarea>
-							<br><button class="btn btn-secondary btn-sm" id="upload"><span class="icon-image"></span> Add main image</button><img class="uplded-img-true" id="load-img0" src="` + resultContent.json_metadata.data.title_image + `" width="34" height="34" style="display: inline-block;"><img class="uplded-img" id="load-img0" src="` + resultContent.json_metadata.data.title_image + `" width="34" height="34" style="margin: 0 -39px;">
+							<br><button class="btn btn-secondary btn-sm" id="upload"><span class="icon-image"></span> Add main image</button><img class="uplded-img-true" id="load-img0" src="` + resultContent.json_metadata.data.title_image + `" width="34" height="34" onClick="ipfsImgLoad(this)"><img class="uplded-img" src="` + resultContent.json_metadata.data.title_image + `" width="34" height="34" style="margin: 0 -39px;">
 						<div id="EditPollForm">
 							<label>Fill in the following fields</label>
 						</div>
@@ -556,16 +550,16 @@ document.getElementById('integration').addEventListener('click', () => {
 	});
 }, false);
 
-document.getElementById('upload').addEventListener('click', function (e) {
-	uploadImageToIpfs(e.target.parentNode.parentNode.querySelector('img').id, (err, files) => {
+function ipfsImgLoad(e) {
+	uploadImageToIpfs(e.parentNode.querySelector('img').id, (err, files) => {
 		if (err) {
 			console.error('ipfs error: ', err);
-			document.querySelector('#load-img0').src = 'graphics/err.png';
+			e.parentNode.querySelector('img').src = 'graphics/err.png';
 			console.log('err event');
 		} else {
 			console.log(files[0][0].path + files[0][0].hash);
-			document.querySelector('#load-img0').src = files[0][0].path + files[0][0].hash;
+			e.parentNode.querySelector('img').src = files[0][0].path + files[0][0].hash;
 			console.log(files[0]);
 		}
 	});
-});
+};
