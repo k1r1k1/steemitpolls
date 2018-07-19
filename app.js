@@ -476,8 +476,8 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 	for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress
 		pollHTML = pollHTML + `<div class="input-group mb-3" id="option` + cnt + `"
 <div class="input-group-prepend">
-<img id="load-img` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="34" height="34" style="display: none; margin: 0 5px;">
-</div><input type="text" class="form-control" value="` + resultContent.json_metadata.data.poll_answers[cnt] + `" placeholder="` + document.querySelectorAll('.translate-phrases li')[12].innerHTML + `" id="inputOption` + cnt + `" data-placement="left"  onchange="checkInput(this.id);"><div class="invalid-feedback">Please fill or remove empty fields
+<img class="uplded-img-true" id="load-img` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="34" height="34" style="display: inline-block;"><img class="uplded-img" id="load-img` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="34" height="34"><input type="text" class="form-control" value="` + resultContent.json_metadata.data.poll_answers[cnt] + `" placeholder="` + document.querySelectorAll('.translate-phrases li')[12].innerHTML + `" id="inputOption` + cnt + `" data-placement="left"  onchange="checkInput(this.id);"></div>
+<div class="invalid-feedback">Please fill or remove empty fields
 </div>`;
 	}
 
@@ -487,7 +487,7 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 							<input type="text" class="form-control title" value="` + resultContent.json_metadata.data.poll_title + `" placeholder="Type your text here">
 							<label for="exampleFormControlTextarea1">Enter description (not necessary)</label>
 							<textarea class="form-control" id="pollDescriptionInput" rows="3" maxlength="300">` + resultContent.json_metadata.data.poll_description + `</textarea>
-							<br><button class="btn btn-secondary btn-sm" id="upload"><span class="icon-image"></span> Add main image</button><img id="load-img0" src="` + resultContent.json_metadata.data.title_image + `" width="34" height="34" style="display: inline-block; margin-left: .5rem;">
+							<br><button class="btn btn-secondary btn-sm" id="upload"><span class="icon-image"></span> Add main image</button><img class="uplded-img-true" id="load-img0" src="` + resultContent.json_metadata.data.title_image + `" width="34" height="34" style="display: inline-block;"><img class="uplded-img" id="load-img0" src="` + resultContent.json_metadata.data.title_image + `" width="34" height="34" style="margin: 0 -39px;">
 						<div id="EditPollForm">
 							<label>Fill in the following fields</label>
 						</div>

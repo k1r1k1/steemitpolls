@@ -326,6 +326,30 @@ footer {
     box-shadow: 0 0 0 .2rem rgba(0, 140, 186, .5)
 }
 
+.uplded-img:hover {
+	cursor: pointer;
+	transition-delay: .5s;
+	position: absolute;
+	width: auto;
+	height: 250px;
+	z-index: 2;
+	opacity: 1;
+	transform: translate(-50%, -50%)
+}
+
+.uplded-img {
+	position: absolute;
+	display: inline-block;
+    opacity: 0;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+
+.uplded-img-true {
+	margin: 0 .5rem;
+    position: static;
+}
+
 .github-corner {
   position: fixed;
   top: 0;
