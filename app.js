@@ -523,8 +523,10 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 			document.querySelector('.varDiv').querySelectorAll('.uplded-img-true').forEach(function (item) {
 				if (item.src != 'https://golospolls.com/graphics/img.svg' || item.src != 'https://golospolls.com/graphics/loading.gif' || item.src != 'https://golospolls.com/graphics/err.png') {
 					newPollImages[i] = item.src;
-					i++;
+				} else {
+					newPollImages[i] = '';
 				}
+				i++;
 			});
 			var jsonMetadata_edit = {
 				app: 'golospolls/0.1',
