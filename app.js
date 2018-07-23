@@ -445,7 +445,6 @@ function ipfsImgLoad(e) {
 			e.parentNode.querySelector('img').src = 'graphics/err.png';
 			console.log('err event');
 		} else {
-			e.parentNode.querySelector('.uplded-img').style.display = 'block';
 			console.log(files[0][0].path + files[0][0].hash);
 			e.parentNode.querySelectorAll('img').forEach(function (result) {
 				result.src = files[0][0].path + files[0][0].hash;
@@ -522,8 +521,10 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 			var newPollImages = [];
 			i = 0;
 			document.querySelector('.varDiv').querySelectorAll('.uplded-img-true').forEach(function (item) {
-				newPollImages[i] = item.src;
-				i++;
+				if (item.src != 'https://golospolls.com/graphics/img.svg' || item.src != 'https://golospolls.com/graphics/loading.gif' || item.src != 'https://golospolls.com/graphics/err.png') {
+					newPollImages[i] = item.src;
+					i++;
+				}
 			});
 			var jsonMetadata_edit = {
 				app: 'golospolls/0.1',

@@ -41,14 +41,18 @@ function checkIt() {
 			console.log('(length) value', $inpimg.files);
 			console.log('id =', $imgId);
 			handleFiles($inpimg.files);
+			if (document.getElementById($imgId).parentNode.querySelector('.uplded-img')) {
+				document.getElementById($imgId).parentNode.querySelector('.uplded-img').style.display = 'inline-block';
+			}
 			document.body.onfocus = null;
 		} else {
 			console.log('(!length) value =', $inpimg.files);
 			console.log('id =', $imgId);
-			//document.getElementById($imgId).style = "display: none;";
 			document.getElementById($imgId).src = 'graphics/img.svg';
 			console.log(document.getElementById($imgId).parentNode.querySelector('.uplded-img'));
-			document.getElementById($imgId).parentNode.querySelector('.uplded-img').style.display = 'none';
+			if (document.getElementById($imgId).parentNode.querySelector('.uplded-img')) {
+				document.getElementById($imgId).parentNode.querySelector('.uplded-img').style.display = 'none';
+			}
 			document.body.onfocus = null;
 		}
 	}, 500)
