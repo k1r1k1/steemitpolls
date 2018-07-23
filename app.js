@@ -214,7 +214,7 @@ function checkInput(id) {
 	}
 }
 
-function send_request(str, title, jsonMetadata) {
+function send_request(str, title, jsonMetadata, callback) {
 	console.log('<f> send_request');
 	var parentAuthor = ''; // for post creating, empty field
 	var parentPermlink = 'test'; // main tag
@@ -243,6 +243,7 @@ function send_request(str, title, jsonMetadata) {
 			});
 		}
 		document.querySelector('.lding').style.display = 'none';
+		if (callback) callback(err, result);
 	}); // add post
 }
 
@@ -445,7 +446,7 @@ function ipfsImgLoad(e) {
 		} else {
 			console.log(files[0][0].path + files[0][0].hash);
 			e.parentNode.querySelectorAll('img').forEach(function (result) {
-			result.src = files[0][0].path + files[0][0].hash;
+				result.src = files[0][0].path + files[0][0].hash;
 			});
 		}
 	});
@@ -514,25 +515,37 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 			document.querySelectorAll('.varDiv input').forEach(function (item) {
 				answers[i] = item.value;
 				i++;
+			});
+			i = 0;
+			var newPollImages = [];
+				i = 0;
+			document.querySelector('.varDiv').querySelectorAll('.uplded-img-true').forEach(function (item) {
+				newPollImages[i] = item.src;
+				i++;
+			});
+			var jsonMetadata_edit = {
+				app: 'golospolls/0.1',
+				canonical: 'https://golospolls.com/#' + username + '/' + resultContent.permlink,
+				app_account: 'golosapps',
+				data: {
+					poll_title: document.querySelector('.title.edit').value,
+					title_image: document.querySelector('.form-group-swal img').src,
+					poll_images: newPollImages,
+					poll_answers: answers,
+					poll_description: document.querySelector('.form-group-swal textarea').value
+				}
+			};
+			send_request(resultContent.permlink, document.querySelector('.title.edit'), jsonMetadata_edit, function () {
+				getHash(function (resultContent) {
+					insertHtmlPoll(resultContent);
 				});
-	var jsonMetadata_edit = {
-		app: 'golospolls/0.1',
-		canonical: 'https://golospolls.com/#' + username + '/' + resultContent.permlink,
-		app_account: 'golosapps',
-		data: {
-			poll_title: document.querySelector('.title.edit'),
-			title_image: document.querySelector('.form-group-swal img'),
-			poll_images: document.querySelector('.varDiv').querySelectorAll('.uplded-img-true'),
-			poll_answers: answers,
-			poll_description: document.querySelector('.form-group-swal textarea')
-		}
-	};
-			send_request(resultContent.permlink, document.querySelector('.title.edit'), jsonMetadata_edit);
+			});
+			console.log('newPollImages', newPollImages);
 			swal(
 				'Success',
 				'Your poll has been edited.',
 				'success'
-			)
+			);
 		}
 	})
 }, false);
