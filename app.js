@@ -438,12 +438,14 @@ function removeMyVote() {
 
 function ipfsImgLoad(e) {
 	console.log('<f> ipfsImgLoad(e) ', e);
+	e.parentNode.querySelector('img').src = 'graphics/loading.gif';
 	uploadImageToIpfs(e.parentNode.querySelector('img').id, (err, files) => {
 		if (err) {
 			console.error('ipfs error: ', err);
 			e.parentNode.querySelector('img').src = 'graphics/err.png';
 			console.log('err event');
 		} else {
+			e.parentNode.querySelector('.uplded-img').style.display = 'block';
 			console.log(files[0][0].path + files[0][0].hash);
 			e.parentNode.querySelectorAll('img').forEach(function (result) {
 				result.src = files[0][0].path + files[0][0].hash;
@@ -488,7 +490,7 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 	for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress
 		pollHTML = pollHTML + `<div class="input-group mb-3" id="option` + cnt + `"
 <div class="input-group-prepend">
-<img class="uplded-img-true" id="load-img` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="34" height="34"><img class="uplded-img" id="load-img` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="34" height="34" onClick="ipfsImgLoad(this)"><input type="text" class="form-control" value="` + resultContent.json_metadata.data.poll_answers[cnt] + `" placeholder="` + document.querySelectorAll('.translate-phrases li')[12].innerHTML + `" id="inputOption` + cnt + `" data-placement="left"  onchange="checkInput(this.id);"></div>
+<img class="uplded-img-true" id="load-imag` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="34" height="34" onClick="ipfsImgLoad(this)"><img class="uplded-img" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="34" height="34" onClick="ipfsImgLoad(this)"><input type="text" class="form-control" value="` + resultContent.json_metadata.data.poll_answers[cnt] + `" placeholder="` + document.querySelectorAll('.translate-phrases li')[12].innerHTML + `" id="inputOption` + cnt + `" data-placement="left"  onchange="checkInput(this.id);"></div>
 <div class="invalid-feedback">Please fill or remove empty fields
 </div>`;
 	}
@@ -498,7 +500,7 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 							<input type="text" class="form-control title edit" value="` + resultContent.json_metadata.data.poll_title + `" placeholder="Type your text here">
 							<label for="exampleFormControlTextarea1">Enter description (not necessary)</label>
 							<textarea class="form-control" id="pollDescriptionInput" rows="3" maxlength="300">` + resultContent.json_metadata.data.poll_description + `</textarea>
-							<br><img class="uplded-img-true" id="load-img" src="` + resultContent.json_metadata.data.title_image + `" width="34" height="34"><img class="uplded-img" id="load-img" src="` + resultContent.json_metadata.data.title_image + `" width="34" height="34" style="margin: 0 -39px;" onClick="ipfsImgLoad(this)">
+							<br><img class="uplded-img-true" id="load-imag" src="` + resultContent.json_metadata.data.title_image + `" width="34" height="34" onClick="ipfsImgLoad(this)"><img class="uplded-img" id="load-imag" src="` + resultContent.json_metadata.data.title_image + `" width="34" height="34" style="margin: 0 -39px;" onClick="ipfsImgLoad(this)">
 						<div id="EditPollForm">
 							<label>Fill in the following fields</label>
 						</div>

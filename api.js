@@ -163,7 +163,6 @@ function getVote(callback) { // getting poll data
 				}
 			});
 			console.log('countOfVoters', countOfVoters);
-
 			Object.keys(pollData).map(function (objectKey, index) { // foreach pollData
 				pollData[objectKey].percnt = Math.round((pollData[objectKey].count * 100) / countOfVoters); // calculate percent
 			});

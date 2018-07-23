@@ -37,16 +37,18 @@ function checkIt() {
 	var $inpimg = document.querySelector('#imagesSelector');
 	setTimeout(function () {
 		if ($inpimg.value.length) {
-			console.log();
 			document.getElementById($imgId).style = 'display: inline-block; margin-right: .5rem;';
-			document.getElementById($imgId).src = 'graphics/loading.gif';
-			console.log('value', $inpimg.files);
+			console.log('(length) value', $inpimg.files);
+			console.log('id =', $imgId);
 			handleFiles($inpimg.files);
 			document.body.onfocus = null;
 		} else {
-			console.log('value =', $inpimg.files);
-			document.getElementById($imgId).style = "display: none;";
-			document.getElementById($imgId).src = '';
+			console.log('(!length) value =', $inpimg.files);
+			console.log('id =', $imgId);
+			//document.getElementById($imgId).style = "display: none;";
+			document.getElementById($imgId).src = 'graphics/img.svg';
+			console.log(document.getElementById($imgId).parentNode.querySelector('.uplded-img'));
+			document.getElementById($imgId).parentNode.querySelector('.uplded-img').style.display = 'none';
 			document.body.onfocus = null;
 		}
 	}, 500)

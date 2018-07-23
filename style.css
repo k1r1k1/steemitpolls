@@ -309,6 +309,10 @@ footer {
     background-color: #ff7500;
 }
 
+.uplded-img-true {
+	cursor: pointer;
+}
+
 .edit-poll {
 	display: none;
     height: 25px;
