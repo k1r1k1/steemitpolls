@@ -170,7 +170,7 @@ function completeForm(callback) {
 		} else {
 			$pollInputs[cnt].setAttribute('class', 'form-control title');
 			answers[cnt] = $pollInputs[cnt].value;
-			if ($pollImages[cnt].src == 'https://golospolls.com/graphics/loading.gif') {
+			if ($pollImages[cnt].src == 'https://golospolls.com/graphics/img.svg' || $pollImages[cnt].src == 'https://golospolls.com/graphics/loading.gif' || $pollImages[cnt].src == 'https://golospolls.com/graphics/err.png') {
 				answerimages[cnt] = '';
 			} else {
 				answerimages[cnt] = $pollImages[cnt].src;
@@ -187,7 +187,7 @@ function completeForm(callback) {
 	console.log('json var : ' + answers); // debug info
 	console.log('title : ' + title);
 	console.log('json answerimages : ' + answerimages);
-	if (document.querySelector('#load-img0').src == 'https://golospolls.com/graphics/loading.gif') {
+	if (document.querySelector('#load-img0').src == 'https://golospolls.com/graphics/img.svg' || document.querySelector('#load-img0').src == 'https://golospolls.com/graphics/loading.gif' || document.querySelector('#load-img0').src == 'https://golospolls.com/graphics/err.png') {
 		title_pic = '';
 	}
 	var jsonMetadata = {
@@ -521,10 +521,10 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 			var newPollImages = [];
 			i = 0;
 			document.querySelector('.varDiv').querySelectorAll('.uplded-img-true').forEach(function (item) {
-				if (item.src != 'https://golospolls.com/graphics/img.svg' || item.src != 'https://golospolls.com/graphics/loading.gif' || item.src != 'https://golospolls.com/graphics/err.png') {
-					newPollImages[i] = item.src;
-				} else {
+				if (item.src == 'https://golospolls.com/graphics/img.svg' || item.src == 'https://golospolls.com/graphics/loading.gif' || item.src == 'https://golospolls.com/graphics/err.png') {
 					newPollImages[i] = '';
+				} else {
+					newPollImages[i] = item.src;
 				}
 				i++;
 			});
