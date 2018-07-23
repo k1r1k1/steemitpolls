@@ -518,7 +518,7 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 			});
 			i = 0;
 			var newPollImages = [];
-				i = 0;
+			i = 0;
 			document.querySelector('.varDiv').querySelectorAll('.uplded-img-true').forEach(function (item) {
 				newPollImages[i] = item.src;
 				i++;
@@ -535,7 +535,7 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 					poll_description: document.querySelector('.form-group-swal textarea').value
 				}
 			};
-			send_request(resultContent.permlink, document.querySelector('.title.edit'), jsonMetadata_edit, function () {
+			send_request(resultContent.permlink, document.querySelector('.title.edit').value, jsonMetadata_edit, function () {
 				getHash(function (resultContent) {
 					insertHtmlPoll(resultContent);
 				});
