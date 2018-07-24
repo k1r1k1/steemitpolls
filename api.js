@@ -151,7 +151,7 @@ function getVote(callback) { // getting poll data
 					}
 					console.log('comments:',item);
 					if (typeof localStorage.wif != 'undefined') {
-						if (username == item.author) { // check if already voted
+						if (localStorage.username == item.author) { // check if already voted
 						checkToVote = {};
 						checkToVote.permlink = item.permlink;
 						checkToVote.author = item.author;

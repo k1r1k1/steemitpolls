@@ -23,7 +23,7 @@ bootstrapJs.src = 'https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.22/dist/boo
 (document.head || document.documentElement).appendChild(bootstrapJs);
 
 gAuth = document.createElement('script');
-gAuth.src = 'https://golosimages.com/auth.js';
+gAuth.src = 'https://golospolls.com/auth.js';
 (document.head || document.documentElement).appendChild(gAuth);
 
 gApi = document.createElement('script');
