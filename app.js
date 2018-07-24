@@ -528,13 +528,17 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 				}
 				i++;
 			});
+			var $titleImage = document.querySelector('.form-group-swal img').src;
+			if ($titleImage == 'https://golospolls.com/graphics/img.svg' || $titleImage == 'https://golospolls.com/graphics/loading.gif' || $titleImage == 'https://golospolls.com/graphics/err.png') {
+					$titleImage = '';
+				}
 			var jsonMetadata_edit = {
 				app: 'golospolls/0.1',
 				canonical: 'https://golospolls.com/#' + username + '/' + resultContent.permlink,
 				app_account: 'golosapps',
 				data: {
 					poll_title: document.querySelector('.title.edit').value,
-					title_image: document.querySelector('.form-group-swal img').src,
+					title_image: $titleImage,
 					poll_images: newPollImages,
 					poll_answers: answers,
 					poll_description: document.querySelector('.form-group-swal textarea').value
