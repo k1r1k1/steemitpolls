@@ -521,7 +521,7 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 			var newPollImages = [];
 			i = 0;
 			document.querySelector('.varDiv').querySelectorAll('.uplded-img-true').forEach(function (item) {
-				if (item.src == 'https://golospolls.com/graphics/img.svg' || item.src == 'https://golospolls.com/graphics/loading.gif' || item.src == 'https://golospolls.com/graphics/err.png') {
+				if (item.src.replace(/^.*[\\\/]/, '') == 'img.svg' || item.src.replace(/^.*[\\\/]/, '') == 'loading.gif' || item.src.replace(/^.*[\\\/]/, '') == 'err.png' || item.src.replace(/^.*[\\\/]/, '') == 'index.html') {
 					newPollImages[i] = '';
 				} else {
 					newPollImages[i] = item.src;
@@ -529,7 +529,7 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 				i++;
 			});
 			var $titleImage = document.querySelector('.form-group-swal img').src;
-			if ($titleImage == 'https://golospolls.com/graphics/img.svg' || $titleImage == 'https://golospolls.com/graphics/loading.gif' || $titleImage == 'https://golospolls.com/graphics/err.png') {
+			if ($titleImage.replace(/^.*[\\\/]/, '') == 'img.svg' || $titleImage.replace(/^.*[\\\/]/, '') == 'loading.gif' || $titleImage.replace(/^.*[\\\/]/, '') == 'err.png' || $titleImage.replace(/^.*[\\\/]/, '') == 'index.html') {
 					$titleImage = '';
 				}
 			var jsonMetadata_edit = {
@@ -544,6 +544,8 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 					poll_description: document.querySelector('.form-group-swal textarea').value
 				}
 			};
+			console.log('title_image:', $titleImage);
+			console.log('poll_images:', newPollImages);
 			send_request(resultContent.permlink, document.querySelector('.title.edit').value, jsonMetadata_edit, function () {
 				getHash(function (resultContent) {
 					insertHtmlPoll(resultContent);
