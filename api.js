@@ -11,6 +11,10 @@ var resultContent = '', // global variable for content
 	tagNewPost,
 	counter, // for poll after creating a new post 
 	hash = location.hash.substring(1); // geting hash
+	if (!username) {
+		username = localStorage.username;
+		wif = localStorage.wif;
+	}
 
 function progress_click() { // dummy for polling 
 	console.log('<f> progress_click #' + this.id);
@@ -150,8 +154,8 @@ function getVote(callback) { // getting poll data
 						pollData[item.json_metadata.data.poll_id].count++;
 					}
 					console.log('comments:',item);
-					if (typeof localStorage.wif != 'undefined') {
-						if (localStorage.username == item.author) { // check if already voted
+					if (typeof wif != 'undefined') {
+						if (username == item.author) { // check if already voted
 						checkToVote = {};
 						checkToVote.permlink = item.permlink;
 						checkToVote.author = item.author;
