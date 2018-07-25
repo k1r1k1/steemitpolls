@@ -11,10 +11,6 @@ var resultContent = '', // global variable for content
 	tagNewPost,
 	counter, // for poll after creating a new post 
 	hash = location.hash.substring(1); // geting hash
-	if (!username) {
-		username = localStorage.username;
-		wif = localStorage.wif;
-	}
 
 function progress_click() { // dummy for polling 
 	console.log('<f> progress_click #' + this.id);
@@ -36,8 +32,7 @@ function progress_click() { // dummy for polling
 			}
 		});
 	} else {
-		console.log('auth() =>');
-		auth(() => {
+		auth(function() {
 			sendVote(this.id, function (err, result) {
 				if (err) {
 					console.error(err);
@@ -56,7 +51,7 @@ function progress_click() { // dummy for polling
 					});
 				}
 			});
-		});
+		}, ['posting']);
 	}
 }
 

@@ -376,7 +376,7 @@ function reblogGolos() {
 		author: resultContent.author,
 		permlink: resultContent.permlink
 }]);
-	auth(() => {
+	auth(function () {
 		golos.broadcast.customJson(wif.posting, [], [username], 'follow', json, (err, result) => {
 			console.log('username', username, 'author', resultContent.author, 'permlink', resultContent.permlink);
 			if (err) {
@@ -396,7 +396,7 @@ function reblogGolos() {
 			}
 			console.log(result);
 		});
-	});
+	}, ['posting']);
 };
 
 function tryVoteAgain() {
@@ -467,8 +467,7 @@ document.getElementById('complete').addEventListener('click', function () {
 		if (wif.posting) { // if already authorized
 			completeForm();
 		} else {
-			console.log('auth() =>');
-			auth(() => {
+			auth(function() {
 				completeForm(function (err, result) {
 					if (err) {
 						swal({
@@ -478,7 +477,7 @@ document.getElementById('complete').addEventListener('click', function () {
 						});
 					}
 				});
-			});
+			}, ['posting']);
 			document.querySelector('.lding').style.display = 'none'; // loader off
 		}
 	}
@@ -530,8 +529,8 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 			});
 			var $titleImage = document.querySelector('.form-group-swal img').src;
 			if ($titleImage.replace(/^.*[\\\/]/, '') == 'img.svg' || $titleImage.replace(/^.*[\\\/]/, '') == 'loading.gif' || $titleImage.replace(/^.*[\\\/]/, '') == 'err.png' || $titleImage.replace(/^.*[\\\/]/, '') == 'index.html') {
-					$titleImage = '';
-				}
+				$titleImage = '';
+			}
 			var jsonMetadata_edit = {
 				app: 'golospolls/0.1',
 				canonical: 'https://golospolls.com/#' + username + '/' + resultContent.permlink,
@@ -566,8 +565,7 @@ document.getElementById('my-polls').addEventListener('click', function () {
 		getMyPolls();
 		document.querySelector('#share-form').style.display = 'none';
 	} else {
-		console.log('auth() =>');
-		auth(() => {
+		auth(function() {
 			getMyPolls(function (err, result) {
 				if (err) {
 					console.error(err);
@@ -578,7 +576,7 @@ document.getElementById('my-polls').addEventListener('click', function () {
 					});
 				}
 			});
-		});
+			}, ['posting']);
 		document.querySelector('.lding').style.display = 'none'; // loader off
 	}
 }, false);
