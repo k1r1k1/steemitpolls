@@ -170,7 +170,7 @@ function completeForm(callback) {
 		} else {
 			$pollInputs[cnt].setAttribute('class', 'form-control title');
 			answers[cnt] = $pollInputs[cnt].value;
-			if ($pollImages[cnt].src == 'https://golospolls.com/graphics/img.svg' || $pollImages[cnt].src == 'https://golospolls.com/graphics/loading.gif' || $pollImages[cnt].src == 'https://golospolls.com/graphics/err.png') {
+			if ($pollImages[cnt].src.replace(/^.*[\\\/]/, '') == 'img.svg' || $pollImages[cnt].src.replace(/^.*[\\\/]/, '') == 'loading.gif' || $pollImages[cnt].src.replace(/^.*[\\\/]/, '') == 'err.png' || $pollImages[cnt].src.replace(/^.*[\\\/]/, '') == 'index.html') {
 				answerimages[cnt] = '';
 			} else {
 				answerimages[cnt] = $pollImages[cnt].src;
@@ -182,13 +182,11 @@ function completeForm(callback) {
 	//str.replace(/[^\w\d]/g, '_');
 	str = str + '-' + Date.now();
 	var title = document.querySelector('.form-control.title').value,
-		title_pic = document.querySelector('#load-img0').src;
-	console.log('permlink : ' + str);
-	console.log('json var : ' + answers); // debug info
-	console.log('title : ' + title);
-	console.log('json answerimages : ' + answerimages);
-	if (document.querySelector('#load-img0').src == 'https://golospolls.com/graphics/img.svg' || document.querySelector('#load-img0').src == 'https://golospolls.com/graphics/loading.gif' || document.querySelector('#load-img0').src == 'https://golospolls.com/graphics/err.png') {
+		title_pic;
+	if (document.querySelector('#load-img0').src.replace(/^.*[\\\/]/, '') == 'img.svg' || document.querySelector('#load-img0').src.replace(/^.*[\\\/]/, '') == 'loading.gif' || document.querySelector('#load-img0').src.replace(/^.*[\\\/]/, '') == 'err.png' || document.querySelector('#load-img0').src.replace(/^.*[\\\/]/, '') == 'index.html') {
 		title_pic = '';
+	} else {
+		title_pic = document.querySelector('#load-img0').src;
 	}
 	var jsonMetadata = {
 		app: 'golospolls/0.1',
@@ -203,6 +201,10 @@ function completeForm(callback) {
 		}
 	};
 	document.querySelector('.lding').style.display = 'block';
+	console.log('permlink : ' + str);
+	console.log('json var : ' + answers); // debug info
+	console.log('title : ' + title);
+	console.log('json answerimages : ' + answerimages);
 	send_request(str, title, jsonMetadata);
 }
 
@@ -467,7 +469,7 @@ document.getElementById('complete').addEventListener('click', function () {
 		if (wif.posting) { // if already authorized
 			completeForm();
 		} else {
-			auth(function() {
+			auth(function () {
 				completeForm(function (err, result) {
 					if (err) {
 						swal({
@@ -484,16 +486,17 @@ document.getElementById('complete').addEventListener('click', function () {
 }, false);
 
 document.querySelector('.edit-poll').addEventListener('click', () => {
-	var pollHTML = '';
-	for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress
-		pollHTML = pollHTML + `<div class="input-group mb-3" id="option` + cnt + `"
+	auth(function () {
+		var pollHTML = '';
+		for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress
+			pollHTML = pollHTML + `<div class="input-group mb-3" id="option` + cnt + `"
 <div class="input-group-prepend">
 <img class="uplded-img-true" id="load-imag` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="34" height="34" onClick="ipfsImgLoad(this)"><img class="uplded-img" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="34" height="34" onClick="ipfsImgLoad(this)"><input type="text" class="form-control" value="` + resultContent.json_metadata.data.poll_answers[cnt] + `" placeholder="` + document.querySelectorAll('.translate-phrases li')[12].innerHTML + `" id="inputOption` + cnt + `" data-placement="left"  onchange="checkInput(this.id);"></div>
 <div class="invalid-feedback">Please fill or remove empty fields
 </div>`;
-	}
-	swal({
-		html: `<div class="form-group-swal">
+		}
+		swal({
+			html: `<div class="form-group-swal">
 							<label>Enter the title</label>
 							<input type="text" class="form-control title edit" value="` + resultContent.json_metadata.data.poll_title + `" placeholder="Type your text here">
 							<label for="exampleFormControlTextarea1">Enter description (not necessary)</label>
@@ -503,61 +506,62 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 							<label>Fill in the following fields</label>
 						</div>
 						</div><div class="varDiv">` + pollHTML + `</div>`,
-		showCloseButton: true,
-		showCancelButton: true,
-		confirmButtonColor: '#3085d6',
-		cancelButtonColor: '#d33',
-		confirmButtonText: 'Apply changes'
-	}).then((result) => {
-		if (result.value) {
-			var i = 0,
-				answers = [];
-			document.querySelectorAll('.varDiv input').forEach(function (item) {
-				answers[i] = item.value;
-				i++;
-			});
-			i = 0;
-			var newPollImages = [];
-			i = 0;
-			document.querySelector('.varDiv').querySelectorAll('.uplded-img-true').forEach(function (item) {
-				if (item.src.replace(/^.*[\\\/]/, '') == 'img.svg' || item.src.replace(/^.*[\\\/]/, '') == 'loading.gif' || item.src.replace(/^.*[\\\/]/, '') == 'err.png' || item.src.replace(/^.*[\\\/]/, '') == 'index.html') {
-					newPollImages[i] = '';
-				} else {
-					newPollImages[i] = item.src;
-				}
-				i++;
-			});
-			var $titleImage = document.querySelector('.form-group-swal img').src;
-			if ($titleImage.replace(/^.*[\\\/]/, '') == 'img.svg' || $titleImage.replace(/^.*[\\\/]/, '') == 'loading.gif' || $titleImage.replace(/^.*[\\\/]/, '') == 'err.png' || $titleImage.replace(/^.*[\\\/]/, '') == 'index.html') {
-				$titleImage = '';
-			}
-			var jsonMetadata_edit = {
-				app: 'golospolls/0.1',
-				canonical: 'https://golospolls.com/#' + username + '/' + resultContent.permlink,
-				app_account: 'golosapps',
-				data: {
-					poll_title: document.querySelector('.title.edit').value,
-					title_image: $titleImage,
-					poll_images: newPollImages,
-					poll_answers: answers,
-					poll_description: document.querySelector('.form-group-swal textarea').value
-				}
-			};
-			console.log('title_image:', $titleImage);
-			console.log('poll_images:', newPollImages);
-			send_request(resultContent.permlink, document.querySelector('.title.edit').value, jsonMetadata_edit, function () {
-				getHash(function (resultContent) {
-					insertHtmlPoll(resultContent);
+			showCloseButton: true,
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Apply changes'
+		}).then((result) => {
+			if (result.value) {
+				var i = 0,
+					answers = [];
+				document.querySelectorAll('.varDiv input').forEach(function (item) {
+					answers[i] = item.value;
+					i++;
 				});
-			});
-			console.log('newPollImages', newPollImages);
-			swal(
-				'Success',
-				'Your poll has been edited.',
-				'success'
-			);
-		}
-	})
+				i = 0;
+				var newPollImages = [];
+				i = 0;
+				document.querySelector('.varDiv').querySelectorAll('.uplded-img-true').forEach(function (item) {
+					if (item.src.replace(/^.*[\\\/]/, '') == 'img.svg' || item.src.replace(/^.*[\\\/]/, '') == 'loading.gif' || item.src.replace(/^.*[\\\/]/, '') == 'err.png' || item.src.replace(/^.*[\\\/]/, '') == 'index.html') {
+						newPollImages[i] = '';
+					} else {
+						newPollImages[i] = item.src;
+					}
+					i++;
+				});
+				var $titleImage = document.querySelector('.form-group-swal img').src;
+				if ($titleImage.replace(/^.*[\\\/]/, '') == 'img.svg' || $titleImage.replace(/^.*[\\\/]/, '') == 'loading.gif' || $titleImage.replace(/^.*[\\\/]/, '') == 'err.png' || $titleImage.replace(/^.*[\\\/]/, '') == 'index.html') {
+					$titleImage = '';
+				}
+				var jsonMetadata_edit = {
+					app: 'golospolls/0.1',
+					canonical: 'https://golospolls.com/#' + username + '/' + resultContent.permlink,
+					app_account: 'golosapps',
+					data: {
+						poll_title: document.querySelector('.title.edit').value,
+						title_image: $titleImage,
+						poll_images: newPollImages,
+						poll_answers: answers,
+						poll_description: document.querySelector('.form-group-swal textarea').value
+					}
+				};
+				console.log('title_image:', $titleImage);
+				console.log('poll_images:', newPollImages);
+				send_request(resultContent.permlink, document.querySelector('.title.edit').value, jsonMetadata_edit, function () {
+					getHash(function (resultContent) {
+						insertHtmlPoll(resultContent);
+					});
+				});
+				console.log('newPollImages', newPollImages);
+				swal(
+					'Success',
+					'Your poll has been edited.',
+					'success'
+				);
+			}
+		})
+	}, ['posting']);
 }, false);
 
 document.getElementById('my-polls').addEventListener('click', function () {
@@ -565,7 +569,7 @@ document.getElementById('my-polls').addEventListener('click', function () {
 		getMyPolls();
 		document.querySelector('#share-form').style.display = 'none';
 	} else {
-		auth(function() {
+		auth(function () {
 			getMyPolls(function (err, result) {
 				if (err) {
 					console.error(err);
@@ -576,7 +580,7 @@ document.getElementById('my-polls').addEventListener('click', function () {
 					});
 				}
 			});
-			}, ['posting']);
+		}, ['posting']);
 		document.querySelector('.lding').style.display = 'none'; // loader off
 	}
 }, false);
