@@ -197,7 +197,7 @@ function getVote(callback) { // getting poll data
 function updateProgressValues() {
 	getVote(function () {
 		// console.log('<f> updateProgressValues');
-		document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">' + document.querySelectorAll('.translate-phrases li')[4].innerHTML + ': ' + countOfVoters + '</span><span class="badge badge-info">' + document.querySelectorAll('.translate-phrases li')[1].innerHTML + ': ' + moment(resultContent.created).format('lll') + '</span>';
+		document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">' + document.querySelectorAll('.translate-phrases li')[4].innerHTML + ': ' + countOfVoters + '</span><span class="badge badge-info">' + document.querySelectorAll('.translate-phrases li')[1].innerHTML + ': ' + moment(resultContent.created).format('lll').lang(currentLang) + '</span>';
 		if (checkToVote) {
 			document.querySelector('.rem-vote').style.display = 'inline-block';
 		} else {

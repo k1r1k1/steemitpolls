@@ -39,6 +39,27 @@ document.onreadystatechange = function () { // loading animation switch-off
 		document.querySelector('#inputOption1').value = 'Option number one';
 		document.querySelector('#inputOption2').value = 'Second option';
 		document.querySelector('.footer').scrollIntoView();
+		// end autofill
+		var currentLang = '';// variable in valid format moment.js
+		switch (localStorage.lang) {
+			case 'ua':
+				currentLang = 'uk';
+				break;
+			case 'by':
+				currentLang = 'be';
+				break;
+			case 'cn':
+				currentLang = 'zh-cn';
+				break;
+			case 'kr':
+				currentLang = 'ko';
+				break;
+			case 'jp':
+				currentLang = 'ja';
+				break;
+			default:
+				currentLang = localStorage.lang;
+		}
 	}
 }
 
@@ -323,7 +344,7 @@ function getMyPolls(callback) {
 							});
 							var $div = document.createElement('tr');
 							$div.innerHTML = `<td><a href="#` + item.author + `/` + item.permlink + `">` + item.json_metadata.data.poll_title + `</a></td>
-                                      <td>` + moment(item.created).format('lll') + `</td>
+                                      <td>` + moment(item.created).format('lll').lang(currentLang) + `</td>
                                       <td>` + answerSrt + `</td>
                                       <td>` + countofvotes + `</td>
                                       <td>` + winner + `</td>
