@@ -71,5 +71,12 @@
 	"Voters":"Галасы",
 	"Leading":"Лідзіруе",
 	"is a free vector icon pack by Keyamoon":"бясплатны набор вектарных абразкоў by Keyamoon",
-	"&":"і"
+	"&":"і",
+	"Enter description (not necessary)":"Увядзіце апісанне (не абавязкова)",
+	"Add main image":"Дадаць асноўнае выява",
+	"List of your polls":"Спіс вашых апытанняў",
+	"Remove vote":"выдаліць голас",
+	"your vote":"ваш голас",
+	"a lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates":"Лёгкая JavaScript бібліятэка  для сінтаксічнага аналізу, праверкі, апрацоўкі і фарматавання даты",
+	"searches for regular expression matches in a given DOM node и replaces or wraps each match with a node or piece of text that you can specify":"пошук назваў паведамленняў адпавядае ў дадзеным вузле і DOM замяняе або заварочвае кожнае супадзенне з вузлом або фрагментам тэксту, які можна паказаць"
 }

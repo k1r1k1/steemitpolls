@@ -71,5 +71,12 @@
 	"Voters":"选民",
 	"Leading":"领导",
 	"is a free vector icon pack by Keyamoon":"是Keyamoon的免费矢量图标包",
-	"&":"＆"
+	"&":"＆",
+	"Enter description (not necessary)":"输入说明（不必要）",
+	"Add main image":"添加主图像",
+	"List of your polls":"您的民意调查清单",
+	"Remove vote":"删除投票",
+	"your vote":"你的投票",
+	"a lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates":"一个轻量级的JavaScript日期库，用于解析，验证，操作和格式化日期",
+	"searches for regular expression matches in a given DOM node и replaces or wraps each match with a node or piece of text that you can specify":"在给定的DOM节点中搜索正则表达式匹配，然后用您可以指定的节点或文本替换或包装每个组合"
 }

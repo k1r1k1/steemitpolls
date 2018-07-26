@@ -71,5 +71,12 @@
 	"Voters":"Голоса",
 	"Leading":"Лидирует",
 	"is a free vector icon pack by Keyamoon":"бесплатный набор векторных иконок by Keyamoon",
-	"&":"и"
+	"&":"и",
+	"Enter description (not necessary)":"Введите описание (не обязательно)",
+	"Add main image":"Добавить главное изображение",
+	"List of your polls":"Список ваших опросов",
+	"Remove vote":"Удалить голос",
+	"your vote":"ваш голос",
+	"a lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates":"Легкая JavaScript библиотека для синтаксического анализа, проверки, управления и форматирования дат",
+	"searches for regular expression matches in a given DOM node и replaces or wraps each match with a node or piece of text that you can specify":"ищет совпадения регулярных выражений в данном узле DOM и заменяет или обертывает каждое соответствие узлом или фрагментом текста, который вы можете указать"
 }

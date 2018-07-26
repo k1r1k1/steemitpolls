@@ -352,7 +352,8 @@ footer {
 }
 
 .vote-item:hover {
-	box-shadow: 0 0 0 .2rem rgba(0, 140, 186, .5)
+	transition: .5s;
+	box-shadow: 0 0 0 .5rem rgba(0, 140, 186, .2)
 }
 
 .uplded-img:hover {

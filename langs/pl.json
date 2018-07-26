@@ -70,5 +70,12 @@
 	"Voters":"Wyborcy",
 	"Leading":"Prowadzący",
 	"is a free vector icon pack by Keyamoon":"to bezpłatny pakiet ikon wektorowych od Keyamoon",
-	"&":"i"
+	"&":"i",
+	"Enter description (not necessary)":"Wprowadź opis (niekonieczne)",
+	"Add main image":"Dodaj główne zdjęcie",
+	"List of your polls":"Lista twoich ankiet",
+	"Remove vote":"Usuń głos",
+	"your vote":"twój głos",
+	"a lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates":"Lekka biblioteka daty JavaScript do analizowania, sprawdzania poprawności, manipulowania i formatowania dat",
+	"searches for regular expression matches in a given DOM node и replaces or wraps each match with a node or piece of text that you can specify":"wyszukuje dopasowania wyrażenia regularnego w danym węźle DOM и zastępuje lub opakowuje każdą kombinację za pomocą węzła lub fragmentu tekstu, który można określić"
 }

@@ -71,5 +71,12 @@
 	"Voters":"Голоси",
 	"Leading":"Лідирує",
 	"is a free vector icon pack by Keyamoon":"безкоштовний набір векторних іконок by Keyamoon",
-	"&":"і"
+	"&":"і",
+	"Enter description (not necessary)":"Введіть опис (не обов'язково)",
+	"Add main image":"Додати головне зображення",
+	"List of your polls":"Список ваших опитувань",
+	"Remove vote":"Видалити голос",
+	"your vote":"ваш голос",
+	"a lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates":"Легка JavaScript бібліотека для аналізу, перевірки, маніпулювання та форматування дат",
+	"searches for regular expression matches in a given DOM node и replaces or wraps each match with a node or piece of text that you can specify":"пошук відповідей регулярних виразів у даному вузлі DOM і замінює або обгорнув кожну комбінацію з вузлом або фрагментом тексту, який ви можете вказати"
 }
