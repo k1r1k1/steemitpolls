@@ -32,7 +32,7 @@ function progress_click() { // dummy for polling
 			}
 		});
 	} else {
-		auth(function() {
+		auth(function () {
 			sendVote(this.id, function (err, result) {
 				if (err) {
 					console.error(err);
@@ -148,13 +148,13 @@ function getVote(callback) { // getting poll data
 						console.log('countOfVoters', countOfVoters);
 						pollData[item.json_metadata.data.poll_id].count++;
 					}
-					console.log('comments:',item);
+					console.log('comments:', item);
 					if (typeof wif != 'undefined') {
 						if (username == item.author) { // check if already voted
-						checkToVote = {};
-						checkToVote.permlink = item.permlink;
-						checkToVote.author = item.author;
-						checkToVote.poll_id = item.json_metadata.data.poll_id;
+							checkToVote = {};
+							checkToVote.permlink = item.permlink;
+							checkToVote.author = item.author;
+							checkToVote.poll_id = item.json_metadata.data.poll_id;
 						} else {
 							checkToVote = false;
 						}
@@ -178,8 +178,8 @@ function getVote(callback) { // getting poll data
 						console.log('my Comment:', username, checkToVote);
 					}
 				} else if (document.querySelectorAll('.progress-bar')[index]) {
-						document.querySelectorAll('.progress-bar')[index].style = 'width: 0%;';
-						document.querySelectorAll('.progress-bar')[index].innerHTML = '0% (0)';
+					document.querySelectorAll('.progress-bar')[index].style = 'width: 0%;';
+					document.querySelectorAll('.progress-bar')[index].innerHTML = '0% (0)';
 				}
 			}
 		} else {

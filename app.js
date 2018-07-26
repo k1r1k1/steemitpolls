@@ -45,7 +45,11 @@ document.onreadystatechange = function () { // loading animation switch-off
 function insertHtmlPoll(resultContent) {
 	console.log('<f> insertHtmlPoll ');
 	document.querySelector('.card-body.text-dark').innerHTML = '';
-	document.querySelector('#complete-form .card-header').innerHTML = document.querySelectorAll('.translate-phrases li')[0].innerHTML + ' @' + username;
+	if (username) {
+		document.querySelector('#complete-form .card-header').innerHTML = document.querySelectorAll('.translate-phrases li')[0].innerHTML + ' @' + username;
+	} else {
+		document.querySelector('#complete-form .card-header').innerHTML = document.querySelectorAll('.translate-phrases li')[0].innerHTML
+	}
 	var $div = document.createElement('h5'); // inserting header in poll
 	$div.className = 'card-title';
 	$div.innerHTML = resultContent.json_metadata.data.poll_title + ' (by @' + resultContent.author + ')';
@@ -486,15 +490,15 @@ document.getElementById('complete').addEventListener('click', function () {
 }, false);
 
 document.querySelector('.edit-poll').addEventListener('click', () => {
-	auth(function () {
-		var pollHTML = '';
-		for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress
-			pollHTML = pollHTML + `<div class="input-group mb-3" id="option` + cnt + `"
+	var pollHTML = '';
+	for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress
+		pollHTML = pollHTML + `<div class="input-group mb-3" id="option` + cnt + `"
 <div class="input-group-prepend">
 <img class="uplded-img-true" id="load-imag` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="34" height="34" onClick="ipfsImgLoad(this)"><img class="uplded-img" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="34" height="34" onClick="ipfsImgLoad(this)"><input type="text" class="form-control" value="` + resultContent.json_metadata.data.poll_answers[cnt] + `" placeholder="` + document.querySelectorAll('.translate-phrases li')[12].innerHTML + `" id="inputOption` + cnt + `" data-placement="left"  onchange="checkInput(this.id);"></div>
 <div class="invalid-feedback">Please fill or remove empty fields
 </div>`;
-		}
+	}
+	auth(function () {
 		swal({
 			html: `<div class="form-group-swal">
 							<label>Enter the title</label>
