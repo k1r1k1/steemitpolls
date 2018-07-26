@@ -501,13 +501,13 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 	auth(function () {
 		swal({
 			html: `<div class="form-group-swal">
-							<label>Enter the title</label>
+							<label>`+ document.querySelector('#complete-form .card-header').innerHTML = document.querySelectorAll('.translate-phrases li')[23].innerHTML +`</label>
 							<input type="text" class="form-control title edit" value="` + resultContent.json_metadata.data.poll_title + `" placeholder="Type your text here">
-							<label for="exampleFormControlTextarea1">Enter description (not necessary)</label>
+							<label for="exampleFormControlTextarea1">`+ document.querySelector('#complete-form .card-header').innerHTML = document.querySelectorAll('.translate-phrases li')[24].innerHTML +`</label>
 							<textarea class="form-control" id="pollDescriptionInput" rows="3" maxlength="300">` + resultContent.json_metadata.data.poll_description + `</textarea>
 							<br><img class="uplded-img-true" id="load-imag" src="` + resultContent.json_metadata.data.title_image + `" width="34" height="34" onClick="ipfsImgLoad(this)"><img class="uplded-img" id="load-imag" src="` + resultContent.json_metadata.data.title_image + `" width="34" height="34" style="margin: 0 -39px;" onClick="ipfsImgLoad(this)">
 						<div id="EditPollForm">
-							<label>Fill in the following fields</label>
+							<label>`+ document.querySelector('#complete-form .card-header').innerHTML = document.querySelectorAll('.translate-phrases li')[25].innerHTML +`</label>
 						</div>
 						</div><div class="varDiv">` + pollHTML + `</div>`,
 			showCloseButton: true,
