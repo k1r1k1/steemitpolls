@@ -431,8 +431,16 @@ footer {
 	.github-corner {
 		display: none;
 	}
+	table {
+    font-size: 7px;
+	}
 }
 
 .navbar-toggler {
 	z-index: 2;
+}
+
+.table th, .table td {
+    padding: 0.5rem;
+    border-top: none;
 }
