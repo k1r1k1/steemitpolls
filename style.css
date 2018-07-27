@@ -428,4 +428,11 @@ footer {
 	.navbar li {
 		margin: 0 20px 1rem;
 	}
+	.github-corner {
+		display: none;
+	}
+}
+
+.navbar-toggler {
+	z-index: 2;
 }
