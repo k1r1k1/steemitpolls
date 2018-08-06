@@ -467,7 +467,7 @@ function removeMyVote() {
 }
 
 function ipfsImgLoad(e) {
-	console.log('<f> ipfsImgLoad(e) ', e);
+	console.log('<f> ipfsImgLoad(e) ', e.id);
 	e.parentNode.querySelector('img').src = 'graphics/loading.gif';
 	uploadImageToIpfs(e.parentNode.querySelector('img').id, (err, files) => {
 		if (err) {
@@ -514,28 +514,41 @@ document.getElementById('complete').addEventListener('click', function () {
 }, false);
 
 document.querySelector('.edit-poll').addEventListener('click', () => {
-	var pollHTML = '';
-	for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress
-		pollHTML = pollHTML + `<div class="input-group mb-3" id="option` + cnt + `"
-<div class="input-group-prepend">
-<img class="uplded-img-true" id="load-imag` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="34" height="34" onClick="ipfsImgLoad(this)"><img class="uplded-img" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="34" height="34" onClick="ipfsImgLoad(this)"><input type="text" class="form-control" value="` + resultContent.json_metadata.data.poll_answers[cnt] + `" placeholder="` + document.querySelectorAll('.translate-phrases li')[12].innerHTML + `" id="inputOption` + cnt + `" data-placement="left"  onchange="checkInput(this.id);"></div>
+	var pollHTML = '',
+		$imageEdit = '';
+	for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) {
+		if (resultContent.json_metadata.data.poll_images[cnt]) {
+			$imageEdit = '';
+		} else {
+			$imageEdit = 'style="display: none;"';
+		}
+		pollHTML = pollHTML + `<div class="input-group mb-3" id="option` + cnt + `">
+<div class="input-group"><img class="uplded-img-true" id="load-imag` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="34" height="34"` + $imageEdit + `>
+<span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span></span><input type="text" class="form-control" value="` + resultContent.json_metadata.data.poll_answers[cnt] + `" placeholder="` + document.querySelectorAll('.translate-phrases li')[12].innerHTML + `" id="inputOption` + cnt + `" data-placement="left"  onchange="checkInput(this.id);"></div>
 <div class="invalid-feedback">Please fill or remove empty fields
-</div>`;
+</div></div>`;
 	}
 	auth(function () {
+		if (resultContent.json_metadata.data.title_image) {
+			$imageEdit = '';
+		} else {
+			$imageEdit = 'style="display: none;"';
+		}
+		console.log(resultContent.json_metadata.data.title_image);
 		swal({
 			html: `<div class="form-group-swal">
 							<label>` + document.querySelectorAll('.translate-phrases li')[23].innerHTML + `</label>
 							<input type="text" class="form-control title edit" value="` + resultContent.json_metadata.data.poll_title + `" placeholder="Type your text here">
 							<label for="exampleFormControlTextarea1">` + document.querySelectorAll('.translate-phrases li')[24].innerHTML + `</label>
 							<textarea class="form-control" id="pollDescriptionInput" rows="3" maxlength="300">` + resultContent.json_metadata.data.poll_description + `</textarea>
-							<br><img class="uplded-img-true" id="load-imag" src="` + resultContent.json_metadata.data.title_image + `" width="34" height="34" onClick="ipfsImgLoad(this)"><img class="uplded-img" id="load-imag" src="` + resultContent.json_metadata.data.title_image + `" width="34" height="34" style="margin: 0 -39px;" onClick="ipfsImgLoad(this)">
+							<br><img class="uplded-img-true" id="load-imag" src="` + resultContent.json_metadata.data.title_image + `" width="34" height="34" ` + $imageEdit + ` ><span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span>` + document.querySelectorAll('.translate-phrases li')[12].innerHTML + `</span>
 						<div id="EditPollForm">
 							<label>` + document.querySelectorAll('.translate-phrases li')[25].innerHTML + `</label>
 						</div>
 						</div><div class="varDiv">` + pollHTML + `</div>`,
 			showCloseButton: true,
 			showCancelButton: true,
+			width: 800,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
 			confirmButtonText: 'Apply changes'
@@ -639,7 +652,7 @@ document.getElementById('integration').addEventListener('click', () => {
 	});
 }, false);
 
-	/* dropzone script */
+/* dropzone script */
 
 // Get the template HTML and remove it from the doument
 var previewNode = document.querySelector("#template");
@@ -657,6 +670,28 @@ var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
 	previewsContainer: "#previews", // Define the container to display the previews
 	clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
 });
+
+// "myAwesomeDropzone" is the camelized version of the HTML element's ID
+Dropzone.options.myAwesomeDropzone = {
+	paramName: "file", // The name that will be used to transfer the file
+	maxFilesize: 2, // MB
+	accept: function (file, done) {
+		if (file.name == "justinbieber.jpg") {
+			done("Naha, you don't.");
+		} else {
+			done();
+		}
+	}
+};
+
+/*
+
+uploadMultiple = false;
+maxFiles = 1;
+acceptedFiles = .jpg,.jpeg,.png;
+addRemoveLinks = true;
+
+*/
 
 /*myDropzone.on("addedfile", function(file) {
   // Hookup the start button
@@ -700,12 +735,9 @@ var minSteps = 6,
 
 myDropzone.uploadFiles = function (files) {
 	var self = this;
-
 	for (var i = 0; i < files.length; i++) {
-
 		var file = files[i];
 		totalSteps = Math.round(Math.min(maxSteps, Math.max(minSteps, file.size / bytesPerStep)));
-
 		for (var step = 0; step < totalSteps; step++) {
 			var duration = timeBetweenSteps * (step + 1);
 			setTimeout(function (file, totalSteps, step) {
@@ -715,7 +747,6 @@ myDropzone.uploadFiles = function (files) {
 						total: file.size,
 						bytesSent: (step + 1) * file.size / totalSteps
 					};
-
 					self.emit('uploadprogress', file, file.upload.progress, file.upload.bytesSent);
 					if (file.upload.progress == 100) {
 						file.status = Dropzone.SUCCESS;

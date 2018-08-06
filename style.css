@@ -334,10 +334,6 @@ footer {
 	background-color: #ff7500;
 }
 
-.uplded-img-true {
-	cursor: pointer;
-}
-
 .edit-poll {
 	display: none;
 	height: 25px;
@@ -535,7 +531,7 @@ div.table .file-row:nth-child(odd) {
 }
 
 .dz-image-preview .icon-cross {
-    margin: -4px 0 0 -7px;
+    margin: -5px 0 0 -6px;
     display: block;
 }
 

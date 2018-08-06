@@ -37,24 +37,21 @@ function checkIt() {
 	var $inpimg = document.querySelector('#imagesSelector');
 	setTimeout(function () {
 		if ($inpimg.value.length) {
+			console.log('true');
 			document.getElementById($imgId).style = 'display: inline-block; margin-right: .5rem;';
-			console.log('(length) value', $inpimg.files);
-			console.log('id =', $imgId);
 			handleFiles($inpimg.files);
-			if (document.getElementById($imgId).parentNode.querySelector('.uplded-img')) {
-				document.getElementById($imgId).parentNode.querySelector('.uplded-img').style.display = 'inline-block';
-			}
 			document.body.onfocus = null;
 		} else {
-			console.log('(!length) value =', $inpimg.files);
-			console.log('id =', $imgId);
+			console.log('false');
+			document.getElementById($imgId).parentNode.querySelector('img').src = '';
 			document.getElementById($imgId).src = 'graphics/img.svg';
-			console.log(document.getElementById($imgId).parentNode.querySelector('.uplded-img'));
 			if (document.getElementById($imgId).parentNode.querySelector('.uplded-img')) {
 				document.getElementById($imgId).parentNode.querySelector('.uplded-img').style.display = 'none';
+				console.log(document.getElementById($imgId).parentNode.querySelector('.uplded-img'));
 			}
 			document.body.onfocus = null;
 		}
+		document.getElementById($imgId).parentNode.querySelector('img').style.display = 'inline-block';
 	}, 500)
 }
 
