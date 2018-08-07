@@ -1,7 +1,7 @@
 var golosJs, momentJs, sweetAlert, gAuth, gPollsApi, bootstrapMin, gPollsStyle, gPollsWidth, gPollsLink, gPollsContainer;
 
 bootstrapJs = document.createElement('script');
-bootstrapJs.src = 'https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.22/dist/bootstrap-native-v4.min.js';
+bootstrapJs.src = 'https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.23/dist/bootstrap-native-v4.min.js';
 (document.head || document.documentElement).appendChild(bootstrapJs);
 
 golosJs = document.createElement('script');
