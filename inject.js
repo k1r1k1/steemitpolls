@@ -17,17 +17,17 @@ sweetAlert.src = 'https://cdn.jsdelivr.net/npm/sweetalert2@7.19.1/dist/sweetaler
 (document.head || document.documentElement).appendChild(sweetAlert);
 
 gAuth = document.createElement('script');
-gAuth.src = 'auth.js';
+gAuth.src = 'https://golospolls.com/auth.js';
 (document.head || document.documentElement).appendChild(gAuth);
 
 gApi = document.createElement('script');
-gApi.src = 'api.js';
+gApi.src = 'https://golospolls.com/api.js';
 (document.head || document.documentElement).appendChild(gApi);
 
 bootstrapMin = document.createElement('link');
 bootstrapMin.rel = 'stylesheet';
 bootstrapMin.type = 'text/css';
-bootstrapMin.href = 'inject.css';
+bootstrapMin.href = 'https://golospolls.com/inject.css';
 (document.head || document.documentElement).appendChild(bootstrapMin);
 
 function incertHtmlPoll(resultContent) {
