@@ -28,7 +28,7 @@ function uploadImageToIpfs(imgid, cb) {
 	$imgId = imgid;
 	console.log('imgid ipfs =', imgid); // !!! <====
 	let div = document.createElement('div');
-	div.innerHTML = '<input id="imagesSelector" type="file" multiple accept=".png,.jpg,.jpeg" onclick="document.body.onfocus = checkIt;"  hidden="true"/>';
+	div.innerHTML = '<input id="imagesSelector" type="file" multiple accept=".png,.jpg,.jpeg" onclick="document.querySelector("#imagesSelector").onchange = checkIt;"  hidden="true"/>';
 	(document.head || document.documentElement).appendChild(div);
 	document.getElementById('imagesSelector').click();
 }
