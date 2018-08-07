@@ -1,13 +1,11 @@
 var golosJs, momentJs, sweetAlert, gAuth, gPollsApi, bootstrapMin, gPollsStyle, gPollsWidth, gPollsLink, gPollsContainer;
 
-bootstrapMin = document.createElement('link');
-bootstrapMin.rel = 'stylesheet';
-bootstrapMin.type = 'text/css';
-bootstrapMin.href = 'https://golospolls.com/inject.css';
-(document.head || document.documentElement).appendChild(bootstrapMin);
+bootstrapJs = document.createElement('script');
+bootstrapJs.src = 'https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.22/dist/bootstrap-native-v4.min.js';
+(document.head || document.documentElement).appendChild(bootstrapJs);
 
 golosJs = document.createElement('script');
-golosJs.src = 'https://cdn.jsdelivr.net/npm/golos-js@0.7.0/dist/golos.min.js';
+golosJs.src = 'https://cdn.jsdelivr.net/npm/golos-js@0.7.2/dist/golos.min.js';
 (document.head || document.documentElement).appendChild(golosJs);
 
 momentJs = document.createElement('script');
@@ -18,17 +16,19 @@ sweetAlert = document.createElement('script');
 sweetAlert.src = 'https://cdn.jsdelivr.net/npm/sweetalert2@7.19.1/dist/sweetalert2.all.min.js';
 (document.head || document.documentElement).appendChild(sweetAlert);
 
-bootstrapJs = document.createElement('script');
-bootstrapJs.src = 'https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.22/dist/bootstrap-native-v4.min.js';
-(document.head || document.documentElement).appendChild(bootstrapJs);
-
 gAuth = document.createElement('script');
-gAuth.src = 'https://golospolls.com/auth.js';
+gAuth.src = 'auth.js';
 (document.head || document.documentElement).appendChild(gAuth);
 
 gApi = document.createElement('script');
-gApi.src = 'https://golospolls.com/api.js';
+gApi.src = 'api.js';
 (document.head || document.documentElement).appendChild(gApi);
+
+bootstrapMin = document.createElement('link');
+bootstrapMin.rel = 'stylesheet';
+bootstrapMin.type = 'text/css';
+bootstrapMin.href = 'inject.css';
+(document.head || document.documentElement).appendChild(bootstrapMin);
 
 function incertHtmlPoll(resultContent) {
 	console.log('<f> incertHtmlPoll inject');

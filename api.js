@@ -199,16 +199,22 @@ function getVote(callback) { // getting poll data
 function updateProgressValues() {
 	getVote(function () {
 		// console.log('<f> updateProgressValues');
-		document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">' + document.querySelectorAll('.translate-phrases li')[4].innerHTML + ': ' + countOfVoters + '</span><span class="badge badge-info">' + document.querySelectorAll('.translate-phrases li')[1].innerHTML + ': ' + moment(resultContent.created).format('lll') + '</span>';
-		if (checkToVote) {
-			document.querySelector('.rem-vote').style.display = 'inline-block';
+		if (!document.querySelectorAll('.translate-phrases li')[4]) {
+			document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">' + moment(resultContent.created).format('lll') + '</span>';
 		} else {
-			document.querySelector('.rem-vote').style.display = 'none';
+			document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">' + document.querySelectorAll('.translate-phrases li')[4].innerHTML + ': ' + countOfVoters + '</span><span class="badge badge-info">' + document.querySelectorAll('.translate-phrases li')[1].innerHTML + ': ' + moment(resultContent.created).format('lll') + '</span>'
 		}
-		if (countOfVoters == 0) {
-			document.querySelector('.edit-poll').style.display = 'inline-block';
-		} else {
-			document.querySelector('.edit-poll').style.display = 'none';
+		if (document.querySelector('.rem-vote')) {
+			if (checkToVote) {
+				document.querySelector('.rem-vote').style.display = 'inline-block';
+			} else {
+				document.querySelector('.rem-vote').style.display = 'none';
+			}
+			if (countOfVoters == 0) {
+				document.querySelector('.edit-poll').style.display = 'inline-block';
+			} else {
+				document.querySelector('.edit-poll').style.display = 'none';
+			}
 		}
 	})
 }
