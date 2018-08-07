@@ -813,7 +813,7 @@ label {
 
 .form-control {
 	display: block;
-	width: 100%;
+	width: 95%;
 	padding: .375rem .75rem;
 	font-size: 1rem;
 	line-height: 1.5;
@@ -2315,4 +2315,8 @@ input[type=submit].btn-block {
 .justify-content-center {
 	-ms-flex-pack: center !important;
 	justify-content: center !important
+}
+
+.text-center {
+    text-align: center !important;
 }
