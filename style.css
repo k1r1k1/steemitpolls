@@ -433,6 +433,12 @@ footer {
 	.navbar-nav {
 		text-align: right;
 	}
+	.card-header-right {
+    	top: 50px;
+	}
+	#complete-form .text-dark {
+    	margin-top: 25px;
+	}
 }
 
 .navbar-toggler {
