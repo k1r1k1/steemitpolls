@@ -45,6 +45,7 @@ function checkIt() {
 			console.log('false');
 			document.getElementById($imgId).parentNode.querySelector('img').src = '';
 			document.getElementById($imgId).src = 'graphics/img.svg';
+			document.getElementById($imgId).style = 'display: none;';
 			if (document.getElementById($imgId).parentNode.querySelector('.uplded-img')) {
 				document.getElementById($imgId).parentNode.querySelector('.uplded-img').style.display = 'none';
 				console.log(document.getElementById($imgId).parentNode.querySelector('.uplded-img'));
