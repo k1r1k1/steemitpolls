@@ -51,7 +51,6 @@ function checkIt() {
 			}
 			document.body.onfocus = null;
 		}
-		document.getElementById($imgId).parentNode.querySelector('img').style.display = 'inline-block';
 	}, 500)
 }
 
