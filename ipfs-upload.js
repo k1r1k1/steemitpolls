@@ -40,7 +40,7 @@ function checkIt() {
 			console.log('true');
 			document.getElementById($imgId).style = 'display: inline-block; margin-right: .5rem;';
 			handleFiles($inpimg.files);
-			document.body.onfocus = null;
+			//document.body.onfocus = null;
 		} else {
 			console.log('false');
 			document.getElementById($imgId).parentNode.querySelector('img').src = '';
@@ -49,7 +49,7 @@ function checkIt() {
 				document.getElementById($imgId).parentNode.querySelector('.uplded-img').style.display = 'none';
 				console.log(document.getElementById($imgId).parentNode.querySelector('.uplded-img'));
 			}
-			document.body.onfocus = null;
+			//document.body.onfocus = null;
 		}
 	}, 500)
 }
