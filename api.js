@@ -3,6 +3,7 @@
 // 		https://golospolls.com/		//
 /* ------------------------------- */
 
+
 var resultContent = '', // global variable for content
 	pollData = {}, // polling answers
 	countOfVoters,
