@@ -411,15 +411,6 @@ footer {
 	}
 }
 
-@media (max-width:500px) {
-	.github-corner:hover .octo-arm {
-		animation: none
-	}
-	.github-corner .octo-arm {
-		animation: octocat-wave 560ms ease-in-out
-	}
-}
-
 @media (max-width: 991px) {
 	.navbar li {
 		margin: 0 20px 1rem;
@@ -433,11 +424,29 @@ footer {
 	.navbar-nav {
 		text-align: right;
 	}
+}
+
+@media (max-width:767px) {
 	.card-header-right {
     	top: 50px;
 	}
 	#complete-form .text-dark {
     	margin-top: 25px;
+	}
+}
+
+@media (max-width:500px) {
+	.github-corner:hover .octo-arm {
+		animation: none
+	}
+	.github-corner .octo-arm {
+		animation: octocat-wave 560ms ease-in-out
+	}
+}
+
+@media (max-width:404px) {
+	#complete-form .text-dark {
+    	margin-top: 90px;
 	}
 }
 
