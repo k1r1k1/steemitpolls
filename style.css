@@ -415,9 +415,14 @@ footer {
     margin-bottom: .5rem;
 }
 
+.navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(224,91,29, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
 @media (max-width: 991px) {
 	.navbar li {
-		margin: 0 20px 1rem;
+		margin: 0 20px 0.5rem;
+		display: contents;
 	}
 	.github-corner {
 		display: none;
@@ -429,17 +434,17 @@ footer {
 		text-align: center;
     	margin-top: 1rem;
 	}
+	.navbar-collapse .btn {
+		height: 11vh;
+		width: 100%;
+		font-size: 24px;
+		font-weight: 800;
+	}
 }
 
 @media (max-width:767px) {
 	.card-header-right {
-    	top: 50px;
-	}
-	#complete-form .text-dark {
-    	margin-top: 75px;
-	}
-	#complete-form .table {
-    	margin-top: -100px;
+    	position: initial;
 	}
 }
 
