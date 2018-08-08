@@ -481,6 +481,11 @@ function ipfsImgLoad(e) {
 
 // buttons events 
 
+document.querySelector('#newPoll').addEventListener('click', function () {
+	document.querySelector('#PollConstructor').style.display = 'block';
+	document.querySelector('#complete-form').style.display = 'none';
+});
+
 document.getElementById('complete').addEventListener('click', function () {
 	console.log('<f> complete button');
 	if (document.querySelector('.form-control.title').value == '') {
