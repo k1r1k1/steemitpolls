@@ -411,6 +411,10 @@ footer {
 	}
 }
 
+.socialButtons a {
+    margin-bottom: .5rem;
+}
+
 @media (max-width: 991px) {
 	.navbar li {
 		margin: 0 20px 1rem;
@@ -422,7 +426,8 @@ footer {
 		font-size: 7px;
 	}
 	.navbar-nav {
-		text-align: right;
+		text-align: center;
+    	margin-top: 1rem;
 	}
 }
 
@@ -431,7 +436,10 @@ footer {
     	top: 50px;
 	}
 	#complete-form .text-dark {
-    	margin-top: 25px;
+    	margin-top: 75px;
+	}
+	#complete-form .table {
+    	margin-top: -100px;
 	}
 }
 
@@ -441,12 +449,6 @@ footer {
 	}
 	.github-corner .octo-arm {
 		animation: octocat-wave 560ms ease-in-out
-	}
-}
-
-@media (max-width:404px) {
-	#complete-form .text-dark {
-    	margin-top: 90px;
 	}
 }
 
