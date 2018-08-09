@@ -77,5 +77,6 @@
 	"Remove vote":"Rimuovi voto",
 	"your vote":"il tuo voto",
 	"a lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates":"Una libreria di date JavaScript leggera per l'analisi, la convalida, la manipolazione e la formattazione delle date",
-	"searches for regular expression matches in a given DOM node и replaces or wraps each match with a node or piece of text that you can specify":"cerca le corrispondenze di espressioni regolari in un dato nodo DOM e sostituisce o avvolge ogni combinazione con un nodo o una parte di testo che è possibile specificare"
+	"searches for regular expression matches in a given DOM node и replaces or wraps each match with a node or piece of text that you can specify":"cerca le corrispondenze di espressioni regolari in un dato nodo DOM e sostituisce o avvolge ogni combinazione con un nodo o una parte di testo che è possibile specificare",
+	"Please add at least two answers":"Per favore aggiungi almeno due risposte"
 }

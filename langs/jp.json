@@ -78,5 +78,6 @@
 	"Remove vote":"投票を削除する",
 	"your vote":"あなたの投票",
 	"a lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates":"日付の解析、検証、操作、書式設定のための軽量のJavaScript日付ライブラリ",
-	"searches for regular expression matches in a given DOM node и replaces or wraps each match with a node or piece of text that you can specify":"指定されたDOMノードで正規表現の一致を検索するиは、各組み合わせを指定できるノードまたはテキストで置き換えるか、またはラップします"
+	"searches for regular expression matches in a given DOM node и replaces or wraps each match with a node or piece of text that you can specify":"指定されたDOMノードで正規表現の一致を検索するиは、各組み合わせを指定できるノードまたはテキストで置き換えるか、またはラップします",
+	"Please add at least two answers":"少なくとも2つの回答を追加してください"
 }

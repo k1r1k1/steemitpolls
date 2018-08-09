@@ -186,6 +186,14 @@ function completeForm(callback) {
 		errTrigger,
 		answers = [],
 		answerimages = [];
+	if ($pollInputs < 3) {
+		swal({
+				type: 'error',
+				title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
+				text: document.querySelectorAll('.translate-phrases li')[26].innerHTML
+		});
+		return;
+	}
 	for (var cnt = 0; $pollInputs.length - 1 > cnt; cnt++) {
 		if ($pollInputs[cnt].value == '') {
 			$pollInputs[cnt].setAttribute('class', 'form-control title is-invalid');
@@ -193,7 +201,7 @@ function completeForm(callback) {
 		} else {
 			$pollInputs[cnt].setAttribute('class', 'form-control title');
 			answers[cnt] = $pollInputs[cnt].value;
-			if ($pollImages[cnt].src.replace(/^.*[\\\/]/, '') == 'img.svg' || $pollImages[cnt].src.replace(/^.*[\\\/]/, '') == 'loading.gif' || $pollImages[cnt].src.replace(/^.*[\\\/]/, '') == 'err.png' || $pollImages[cnt].src.replace(/^.*[\\\/]/, '') == 'index.html' || $pollImages[cnt].src == 'https://golospolls.com/')) {
+			if ($pollImages[cnt].src.replace(/^.*[\\\/]/, '') == 'img.svg' || $pollImages[cnt].src.replace(/^.*[\\\/]/, '') == 'loading.gif' || $pollImages[cnt].src.replace(/^.*[\\\/]/, '') == 'err.png' || $pollImages[cnt].src.replace(/^.*[\\\/]/, '') == 'index.html' || $pollImages[cnt].src == 'https://golospolls.com/') {
 				answerimages[cnt] = '';
 			} else {
 				answerimages[cnt] = $pollImages[cnt].src;
@@ -354,7 +362,6 @@ function getMyPolls(callback) {
 				});
 			});
 		} else {
-			console.error(err);
 			swal({
 				type: 'error',
 				title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
@@ -515,7 +522,7 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 			width: 800,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
-			confirmButtonText: 'Apply changes'
+			confirmButtonText: 'Apply'
 		}).then((result) => {
 			if (result.value) {
 				var i = 0,
