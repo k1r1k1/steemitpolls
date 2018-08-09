@@ -291,7 +291,7 @@ html {
 }
 
 .table {
-	margin-top: -1.3rem;
+	margin: 0;
 }
 
 .form-group-swal {
@@ -419,6 +419,10 @@ footer {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(224,91,29, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
+.card-body {
+    padding: .5rem;
+}
+
 @media (max-width: 991px) {
 	.navbar li {
 		margin: 0 20px 0.5rem;
@@ -428,7 +432,7 @@ footer {
 		display: none;
 	}
 	table {
-		font-size: 7px;
+		font-size: 6px;
 	}
 	.navbar-nav {
 		text-align: center;
@@ -439,6 +443,9 @@ footer {
 		width: 100%;
 		font-size: 24px;
 		font-weight: 800;
+	}
+	.table td {
+    	padding: 0.2rem;
 	}
 }
 
@@ -463,6 +470,5 @@ footer {
 
 .table th,
 .table td {
-	padding: 0.5rem;
 	border-top: none;
 }

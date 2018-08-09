@@ -615,3 +615,7 @@ document.getElementById('integration').addEventListener('click', () => {
 		showCloseButton: 'true'
 	});
 }, false);
+
+document.querySelector('.navbar-collapse').addEventListener('click', () => {
+	document.querySelector('.navbar-collapse').classList.remove('show');
+});

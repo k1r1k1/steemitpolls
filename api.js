@@ -210,6 +210,7 @@ function getVote(callback) { // getting poll data
 					if (document.querySelectorAll('.progress-bar')[index]) {
 						document.querySelectorAll('.progress-bar')[index].style = 'width: ' + pollData[index].percnt + '%;';
 						document.querySelectorAll('.progress-bar')[index].innerHTML = pollData[index].percnt + '% (' + pollData[index].count + ')';
+						document.querySelectorAll('.progress-bar')[index].classList.remove('bg-success');
 						if (checkToVote) {
 							document.querySelectorAll('.progress-bar')[checkToVote.poll_id].classList.add('bg-success');
 							document.querySelectorAll('.progress-bar')[checkToVote.poll_id].innerHTML = '<span class="icon-checkmark"> ' + pollData[index].percnt + '% (' + pollData[index].count + ') - your vote' + '</span>';
