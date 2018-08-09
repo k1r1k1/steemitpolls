@@ -186,7 +186,7 @@ function completeForm(callback) {
 		errTrigger,
 		answers = [],
 		answerimages = [];
-	if ($pollInputs < 3) {
+	if ($pollInputs.length < 3) {
 		swal({
 				type: 'error',
 				title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
