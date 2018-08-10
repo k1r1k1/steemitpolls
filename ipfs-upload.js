@@ -71,7 +71,6 @@ function handleFiles(files) {
 		};
 		reader.readAsArrayBuffer(fileList[i]);
 	}
-	document.querySelector('#imagesSelector').remove();
 }
 
 function sendToIpfs(data) {
