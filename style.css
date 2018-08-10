@@ -480,5 +480,13 @@ footer {
     width: 34px;
     height: 34px;
     background-color: #ff0000;
+	color: #fff;
+    opacity: 0;
+	padding: 7px 0 0 9px;
+}
+
+.remImg:hover {
     opacity: 0.6;
+	transition: .5s;
+	cursor: pointer;
 }
