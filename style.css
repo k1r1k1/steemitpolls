@@ -472,3 +472,13 @@ footer {
 .table td {
 	border-top: none;
 }
+
+.remImg {
+    display: inline-block;
+    position: absolute;
+    margin-left: -42px;
+    width: 34px;
+    height: 34px;
+    background-color: #ff0000;
+    opacity: 0.6;
+}

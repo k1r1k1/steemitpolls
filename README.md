@@ -10,3 +10,4 @@ We use:
 * [Moment.js](https://github.com/moment/moment/) - A lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates;
 * [IcoMoon-Free](https://github.com/Keyamoon/IcoMoon-Free) - IcoMoon-Free is a free vector icon pack;
 * [findAndReplaceDOMText](https://github.com/padolsey/findAndReplaceDOMText) - searches for regular expression matches in a given DOM node and replaces or wraps each match with a node or piece of text that you can specify.
+* [Highlight.js](https://github.com/highlightjs/highlight.js)  -  is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework, and has automatic language detection.

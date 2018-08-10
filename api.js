@@ -57,8 +57,6 @@ function progress_click() { // dummy for polling
 }
 
 function getHash(callback) {
-	golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
-	golos.config.set('websocket', 'wss://ws.testnet.golos.io');
 	console.log('<f> getHash');
 	var startTarget = '/@'; // search '/@'
 	var startPos = -1;

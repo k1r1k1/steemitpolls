@@ -2,6 +2,8 @@
 //	extended js for main service	//
 // 		https://golospolls.com/		//
 /* ------------------------------- */
+golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
+golos.config.set('websocket', 'wss://ws.testnet.golos.io');
 
 var inputsC = 0,
 	newPostTimout; // inputs counter
@@ -157,7 +159,7 @@ function addInactiveInput() {
 	$div.id = 'pOption' + inputsC;
 	$div.style = 'opacity: 0.4;';
 	$div.innerHTML = `<div class="input-group-prepend">
-<img id="load-img` + inputsC + `" src="graphics/loading.gif" width="34" height="34" style="display: none; margin: 0 5px;">
+<img id="load-img` + inputsC + `" src="graphics/loading.gif" width="35" height="35" style="display: none; margin: 0 5px;">
                         <button class="btn btn-secondary" type="button" onClick="ipfsImgLoad(this)" id="addImg` + inputsC + `" disabled><span class="icon-image"></span></button>
                     </div><input type="text" class="form-control" placeholder="` + document.querySelectorAll('.translate-phrases li')[12].innerHTML + `" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="inputOption` + inputsC + `" data-toggle="tooltip" data-placement="left"  onchange="checkInput(this.id);">
 <div class="input-group-append">
@@ -494,7 +496,7 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 			$imageEdit = 'style="display: none;"';
 		}
 		pollHTML = pollHTML + `<div class="input-group mb-3" id="option` + cnt + `">
-<div class="input-group"><img class="uplded-img-true" id="load-imag` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="34" height="34"` + $imageEdit + `>
+<div class="input-group"><img class="uplded-img-true" id="load-imag` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="35" height="35"` + $imageEdit + `>
 <span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span></span><input type="text" class="form-control" value="` + resultContent.json_metadata.data.poll_answers[cnt] + `" placeholder="` + document.querySelectorAll('.translate-phrases li')[12].innerHTML + `" id="inputOption` + cnt + `" data-placement="left"  onchange="checkInput(this.id);"></div>
 <div class="invalid-feedback">Please fill or remove empty fields
 </div></div>`;
@@ -512,7 +514,7 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 							<input type="text" class="form-control title edit" value="` + resultContent.json_metadata.data.poll_title + `" placeholder="Type your text here">
 							<label for="exampleFormControlTextarea1">` + document.querySelectorAll('.translate-phrases li')[24].innerHTML + `</label>
 							<textarea class="form-control" id="pollDescriptionInput" rows="3" maxlength="300">` + resultContent.json_metadata.data.poll_description + `</textarea>
-							<br><img class="uplded-img-true" id="load-imag" src="` + resultContent.json_metadata.data.title_image + `" width="34" height="34" ` + $imageEdit + ` ><span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span>` + document.querySelectorAll('.translate-phrases li')[12].innerHTML + `</span>
+							<br><img class="uplded-img-true" id="load-imag" src="` + resultContent.json_metadata.data.title_image + `" width="35" height="35" ` + $imageEdit + ` ><span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span>` + document.querySelectorAll('.translate-phrases li')[12].innerHTML + `</span>
 						<div id="EditPollForm">
 							<label>` + document.querySelectorAll('.translate-phrases li')[25].innerHTML + `</label>
 						</div>
