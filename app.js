@@ -453,10 +453,10 @@ function ipfsImgLoad(e) {
 
 // buttons events 
 
-document.querySelector('#newPoll').addEventListener('click', function () {
+function newPoll() {
 	document.querySelector('#PollConstructor').style.display = 'block';
 	document.querySelector('#complete-form').style.display = 'none';
-});
+}
 
 document.getElementById('complete').addEventListener('click', function () {
 	console.log('<f> complete button');
@@ -578,7 +578,7 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 	}, ['posting']);
 }, false);
 
-document.getElementById('my-polls').addEventListener('click', function () {
+function myPolls() {
 	if (wif.posting) { // if already authorized
 		getMyPolls();
 		document.querySelector('#share-form').style.display = 'none';
@@ -597,10 +597,9 @@ document.getElementById('my-polls').addEventListener('click', function () {
 		}, ['posting']);
 		document.querySelector('.lding').style.display = 'none'; // loader off
 	}
-}, false);
+}
 
-document.getElementById('aboutGolosPollsBtn').addEventListener('click', () => {
-	console.log('<f> about click');
+function about() {
 	swal({
 		title: document.getElementById('about-html-title').innerHTML,
 		html: document.getElementById('about-html').innerHTML,
@@ -610,9 +609,9 @@ document.getElementById('aboutGolosPollsBtn').addEventListener('click', () => {
 		padding: '1rem',
 		showCloseButton: 'true'
 	});
-}, false);
+}
 
-document.getElementById('integration').addEventListener('click', () => {
+function integration() {
 	console.log('<f> integration click');
 	swal({
 		title: document.getElementById('integration-html-header').innerHTML,
@@ -623,8 +622,8 @@ document.getElementById('integration').addEventListener('click', () => {
 		padding: '1rem',
 		showCloseButton: 'true'
 	});
-}, false);
+}
 
-document.querySelector('.navbar-collapse').addEventListener('click', () => {
+document.querySelector('.navbar-collapse').addEventListener('click', () => { // hides mobilenavs onclick
 	document.querySelector('.navbar-collapse').classList.remove('show');
 });

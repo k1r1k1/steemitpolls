@@ -58,34 +58,44 @@ function progress_click() { // dummy for polling
 
 function getHash(callback) {
 	console.log('<f> getHash');
-	var startTarget = '/@'; // search '/@'
-	var startPos = -1;
-	while ((startPos = hash.indexOf(startTarget, startPos + 1)) != -1) {
-		var Pos = startPos,
-			targetStart = startPos;
-	}
-	startTarget = '/'; // search '/' after '/@'
-	while ((Pos = hash.indexOf(startTarget, Pos + 1)) != -1) {
-		var slashPos = Pos;
-	}
-	var username = hash.substring(targetStart + 2, slashPos); // '+ 2' removes the target symbols
-	var permlink = hash.substring(slashPos + 1); // '+ 1' removes '/'
-	golos.api.getContent(username, permlink, 10000, function (err, result) { // The console displays the data required for the post
-		if (!err && result.title != '') {
-			resultContent = result;
-			result.json_metadata = JSON.parse(result.json_metadata); //parse json to js
-			console.log('getHash-resultContent=', resultContent);
-			callback(result);
-		} else {
-			console.error('Failed to find post ', err);
-			swal({
-				type: 'error',
-				title: 'error',
-				text: 'ERROR: Failed to find post'
-			});
-			clearUpdTimer();
+	if (hash == 'create') {
+		newPoll()
+	} else if (hash == 'mypolls') {
+		myPolls()
+	} else if (hash == 'integration') {
+		integration()
+	} else if (hash == 'about') {
+		about()
+	} else {
+		var startTarget = '/#'; // search '/#'
+		var startPos = -1;
+		while ((startPos = hash.indexOf(startTarget, startPos + 1)) != -1) {
+			var Pos = startPos,
+				targetStart = startPos;
 		}
-	});
+		startTarget = '/'; // search '/' after '/#'
+		while ((Pos = hash.indexOf(startTarget, Pos + 1)) != -1) {
+			var slashPos = Pos;
+		}
+		var username = hash.substring(targetStart + 2, slashPos); // '+ 2' removes the target symbols
+		var permlink = hash.substring(slashPos + 1); // '+ 1' removes '/'
+		golos.api.getContent(username, permlink, 10000, function (err, result) { // The console displays the data required for the post
+			if (!err && result.title != '') {
+				resultContent = result;
+				result.json_metadata = JSON.parse(result.json_metadata); //parse json to js
+				console.log('getHash-resultContent=', resultContent);
+				callback(result);
+			} else {
+				console.error('Failed to find post ', err);
+				swal({
+					type: 'error',
+					title: 'error',
+					text: 'ERROR: Failed to find post'
+				});
+				clearUpdTimer();
+			}
+		});
+	}
 }
 
 function sendVote(pollId, callback) {
