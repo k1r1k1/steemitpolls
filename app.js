@@ -624,4 +624,5 @@ function remImg(e) {
 	e.style.display = 'none';
 	e.parentNode.querySelector('img').src = '';
 	e.parentNode.querySelector('img').style.display = 'none';
+	document.querySelector('#imagesSelector').remove();
 }
