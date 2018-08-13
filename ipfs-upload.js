@@ -39,11 +39,12 @@ function checkIt() {
 		if ($inpimg.value.length) {
 			console.log('true');
 			document.getElementById($imgId).style = 'display: inline-block; margin-right: .5rem;';
+			document.getElementById($imgId).parentNode.querySelector('.remImg').style.display = 'inline-block';
 			handleFiles($inpimg.files);
 		} else {
 			console.log('false');
 			document.getElementById($imgId).parentNode.querySelector('img').src = '';
-			document.getElementById($imgId).src = 'graphics/img.svg';
+			document.getElementById($imgId).src = '';
 			document.getElementById($imgId).style = 'display: none;';
 			if (document.getElementById($imgId).parentNode.querySelector('.uplded-img')) {
 				document.getElementById($imgId).parentNode.querySelector('.uplded-img').style.display = 'none';
