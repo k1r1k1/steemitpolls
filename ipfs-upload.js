@@ -46,9 +46,10 @@ function checkIt() {
 			document.getElementById($imgId).parentNode.querySelector('img').src = '';
 			document.getElementById($imgId).src = '';
 			document.getElementById($imgId).style = 'display: none;';
+			document.getElementById($imgId).parentNode.querySelector('.remImg').style.display = 'none';
 			if (document.getElementById($imgId).parentNode.querySelector('.uplded-img')) {
 				document.getElementById($imgId).parentNode.querySelector('.uplded-img').style.display = 'none';
-				console.log(document.getElementById($imgId).parentNode.querySelector('.uplded-img'));
+				document.getElementById($imgId).style = 'display: none;';
 			}
 		}
 	}, 500)

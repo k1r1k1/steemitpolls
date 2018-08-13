@@ -490,3 +490,7 @@ footer {
 	transition: .5s;
 	cursor: pointer;
 }
+
+.input-group-prepend .remImg {
+    margin: 0;
+}
