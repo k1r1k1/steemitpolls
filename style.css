@@ -443,6 +443,8 @@ footer {
 		width: 100%;
 		font-size: 24px;
 		font-weight: 800;
+		padding: 3vh;
+		min-height: 75px;
 	}
 	.table td {
     	padding: 0.2rem;
@@ -462,6 +464,23 @@ footer {
 	.github-corner .octo-arm {
 		animation: octocat-wave 560ms ease-in-out
 	}
+
+	.card {
+    	margin-top: 4rem;
+	}
+
+	.card-header-right p {
+		margin-top: -6.4rem;
+	}
+
+	.card-header-right .rem-buttons {
+		margin-top: -2.9rem;
+		margin-right: -.5rem;
+	}
+
+	#complete-form .card-header {
+		padding-left: .5rem;
+	}
 }
 
 .navbar-toggler {
@@ -476,13 +495,13 @@ footer {
 .remImg {
     display: none;
     position: absolute;
-    margin-left: -42px;
-    width: 34px;
-    height: 34px;
+    margin-left: -43px;
+    width: 35px;
+    height: 35px;
     background-color: #ff0000;
 	color: #fff;
     opacity: 0;
-	padding: 7px 0 0 9px;
+	padding: 8px 0 0 10px;
 }
 
 .remImg:hover {
@@ -493,4 +512,14 @@ footer {
 
 .input-group-prepend .remImg {
     margin: 0;
+}
+
+.swal2-content .remImg {
+	margin: 1px 0 0 -43px;
+	padding: 7px 0 0 9px;
+}
+
+.swal2-content .input-group .remImg {
+    margin: 0 0 0 8px;
+	padding: 7px 0 0 1px;
 }

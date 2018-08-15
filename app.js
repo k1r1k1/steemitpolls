@@ -487,8 +487,16 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 		} else {
 			$imageEdit = 'style="display: none;"';
 		}
+		i = 0;
+		document.querySelectorAll('.remVar').forEach(function (item) {
+					console.log(item);
+					document.querySelectorAll('.remVar')[i].addEventListener('click', () => {
+						alert('I= ', i);
+					})
+			i ++;
+				});
 		pollHTML = pollHTML + `<div class="input-group mb-3" id="option` + cnt + `">
-<div class="input-group"><img class="uplded-img-true" id="load-imag` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="35" height="35"` + $imageEdit + `><div class="remImg" onclick="remImg(this)"><span class="icon-cross"></span></div><span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span></span><input type="text" class="form-control" value="` + resultContent.json_metadata.data.poll_answers[cnt] + `" placeholder="` + document.querySelectorAll('.translate-phrases li')[12].innerHTML + `" id="inputOption` + cnt + `" data-placement="left"  onchange="checkInput(this.id);"></div>
+<div class="input-group-prepend"><img class="uplded-img-true" id="load-imag` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="35" height="35"` + $imageEdit + `><div class="remImg" onclick="remImg(this)"><span class="icon-cross"></span></div><span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span></span><input type="text" class="form-control" value="` + resultContent.json_metadata.data.poll_answers[cnt] + `" placeholder="` + document.querySelectorAll('.translate-phrases li')[12].innerHTML + `" id="inputOption` + cnt + `" data-placement="left"  onchange="checkInput(this.id);"><div class="input-group-append"><button class="btn btn-danger remVar" type="button"><span class="icon-cross"></span></button></div><div class="invalid-feedback">Please fill or remove empty fields</div></div>
 <div class="invalid-feedback">Please fill or remove empty fields
 </div></div>`;
 	}
