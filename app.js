@@ -505,11 +505,11 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 							<input type="text" class="form-control title edit" value="` + resultContent.json_metadata.data.poll_title + `" placeholder="Type your text here">
 							<label for="exampleFormControlTextarea1">` + document.querySelectorAll('.translate-phrases li')[24].innerHTML + `</label>
 							<textarea class="form-control" id="pollDescriptionInput" rows="3" maxlength="300">` + resultContent.json_metadata.data.poll_description + `</textarea>
-							<br><img class="uplded-img-true" id="load-imag" src="` + resultContent.json_metadata.data.title_image + `" width="35" height="35" ` + $imageEdit + ` ><div class="remImg" onclick="remImg(this)"><span class="icon-cross"></span></div><span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span>` + document.querySelectorAll('.translate-phrases li')[12].innerHTML + `</span>
+							<br><img class="uplded-img-true" id="load-imag" src="` + resultContent.json_metadata.data.title_image + `" width="35" height="35" ` + $imageEdit + ` ><div class="remImg" onclick="remImg(this)"><span class="icon-cross"></span></div><span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span> Add main image</span>
 						<div id="EditPollForm">
 							<label>` + document.querySelectorAll('.translate-phrases li')[25].innerHTML + `</label>
 						</div>
-						</div><div class="varDiv">` + pollHTML + `</div>`,
+						</div><div class="varDiv">` + pollHTML + `</div><span class="btn btn-secondary addpoll" onclick=""><span class="icon-plus"></span></span>`,
 			showCloseButton: true,
 			showCancelButton: true,
 			width: 800,

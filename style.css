@@ -523,3 +523,12 @@ footer {
     margin: 0 0 0 8px;
 	padding: 7px 0 0 1px;
 }
+
+
+.swal2-content .input-group-prepend {
+    width: 100%;
+}
+
+.swal2-content .addpoll {
+    margin-right: 96%;
+}
