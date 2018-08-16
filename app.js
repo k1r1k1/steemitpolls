@@ -488,7 +488,7 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 			$imageEdit = 'style="display: none;"';
 		}
 		pollHTML = pollHTML + `<div class="input-group mb-3" id="option` + cnt + `">
-<div class="input-group-prepend"><img class="uplded-img-true" id="load-imag` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="35" height="35"` + $imageEdit + `><div class="remImg" onclick="remImg(this)"><span class="icon-cross"></span></div><span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span></span><input type="text" class="form-control" value="` + resultContent.json_metadata.data.poll_answers[cnt] + `" placeholder="` + document.querySelectorAll('.translate-phrases li')[12].innerHTML + `" id="inputOption` + cnt + `" data-placement="left"  onchange="checkInput(this.id);"><div class="input-group-append"><button class="btn btn-danger remVar" type="button" data-toggle="tooltip" data-placement="right" title="Tooltip on right"><span class="icon-cross"></span></button></div><div class="invalid-feedback">Please fill or remove empty fields</div></div>
+<div class="input-group-prepend"><img class="uplded-img-true" id="load-imag` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="35" height="35"` + $imageEdit + `><div class="remImg" onclick="remImg(this)"><span class="icon-cross"></span></div><span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span></span><input type="text" class="form-control" value="` + resultContent.json_metadata.data.poll_answers[cnt] + `" placeholder="Fill in this field" id="inputOption` + cnt + `" data-placement="left"  onchange="checkInput(this.id);"><div class="input-group-append"><button class="btn btn-danger remVar" type="button"><span class="icon-cross"></span></button></div><div class="invalid-feedback">Please fill or remove empty fields</div></div>
 <div class="invalid-feedback">Please fill or remove empty fields
 </div></div>`;
 	}
@@ -509,7 +509,7 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 						<div id="EditPollForm">
 							<label>` + document.querySelectorAll('.translate-phrases li')[25].innerHTML + `</label>
 						</div>
-						</div><div class="varDiv">` + pollHTML + `</div><span class="btn btn-secondary addpoll" onclick=""><span class="icon-plus"></span></span>`,
+						</div><div class="varDiv">` + pollHTML + `</div><label class="label-error">At least 2 options should stay</label><span class="btn btn-secondary addvar" onclick="addvar()"><span class="icon-plus"></span></span>`,
 			showCloseButton: true,
 			showCancelButton: true,
 			width: 800,
@@ -521,6 +521,9 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 				var i = 0,
 					answers = [];
 				document.querySelectorAll('.varDiv input').forEach(function (item) {
+					/*if (!item.value) {
+						return;
+					}*/
 					answers[i] = item.value;
 					i++;
 				});
@@ -571,17 +574,56 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 	document.querySelectorAll('.remVar').forEach(function (item) {
 		document.querySelectorAll('.remVar')[i].addEventListener('click', () => {
 			if (document.querySelectorAll('.remVar').length > 2) {
-				item.parentNode.parentNode.remove();
+				item.parentNode.parentNode.parentNode.remove();
 			} else {
 				document.querySelectorAll('.remVar').forEach(function (item) {
 					item.setAttribute('disabled', 'disabled');
+					item.setAttribute('title', 'At least 2 options should stay');
 				});
+				document.querySelector('.swal2-content .label-error').style.display = 'block';
+				document.querySelector('.addvar').style = 'margin-right: 96%; margin-top: -55px;'
 				return;
 			}
 		})
 		i++;
 	});
 }, false);
+
+function addvar() {
+	var $div = document.createElement('div');
+	$div.innerHTML = `<div class="input-group mb-3">
+<div class="input-group-prepend"><img class="uplded-img-true" id="load-imag0" src="" width="35" height="35" style="display: none;"><div class="remImg" onclick="remImg(this)"><span class="icon-cross"></span></div><span class="btn btn-secondary" onclick="ipfsImgLoad(this)"><span class="icon-image"></span></span><input type="text" class="form-control" value="" placeholder="Fill in this field" id="inputOption0" data-placement="left" onchange="checkInput(this.id);"><div class="input-group-append"><button class="btn btn-danger remVar" type="button"><span class="icon-cross"></span></button></div><div class="invalid-feedback">Please fill or remove empty fields</div></div><div class="invalid-feedback">Please fill or remove empty fields</div></div>`;
+	$div.querySelector('.remVar').addEventListener('click', () => {
+	if (document.querySelectorAll('.remVar').length > 2) {
+				$div.remove();
+			} else {
+				document.querySelectorAll('.remVar').forEach(function (item) {
+					$div.setAttribute('disabled', 'disabled');
+					$div.setAttribute('title', 'At least 2 options should stay');
+				});
+				document.querySelector('.swal2-content .label-error').style.display = 'block';
+				document.querySelector('.addvar').style = 'margin-right: 96%; margin-top: -55px;'
+				return;
+			}
+	}, false);
+	document.querySelector('.varDiv').appendChild($div);
+	if (document.querySelectorAll('.remVar').length > 2) {
+				document.querySelectorAll('.remVar').forEach(function (item) {
+					item.removeAttribute('disabled');
+					item.removeAttribute('title');
+				});
+				document.querySelector('.swal2-content .label-error').style.display = 'none';
+				document.querySelector('.addvar').style = 'margin-right: 96%; margin-top: 0;'
+			} else {
+				document.querySelectorAll('.remVar').forEach(function (item) {
+					$div.setAttribute('disabled', 'disabled');
+					$div.setAttribute('title', 'At least 2 options should stay');
+				});
+				document.querySelector('.swal2-content .label-error').style.display = 'block';
+				document.querySelector('.addvar').style = 'margin-right: 96%; margin-top: -55px;'
+				return;
+			}
+}
 
 function myPolls() {
 	if (wif.posting) { // if already authorized

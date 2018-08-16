@@ -529,6 +529,13 @@ footer {
     width: 100%;
 }
 
-.swal2-content .addpoll {
+.swal2-content .addvar {
     margin-right: 96%;
+}
+
+.swal2-content .label-error {
+	display: none;
+    margin-left: 36vw;
+    color: #f00;
+    font-weight: 800;
 }
