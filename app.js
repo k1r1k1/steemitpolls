@@ -682,3 +682,12 @@ function remImg(e) {
 	e.parentNode.querySelector('img').style.display = 'none';
 	document.querySelector('#imagesSelector').remove();
 }
+
+document.getElementById('support').addEventListener('click', () => {
+    swal({
+        html: document.getElementById('support-body').innerHTML,
+        showCloseButton: true,
+        width: 600,
+        type: 'question'
+    })
+});
