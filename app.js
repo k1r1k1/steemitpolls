@@ -234,11 +234,13 @@ function completeForm(callback) {
 }
 
 function checkInput(id) {
+	document.getElementById(id).removeAttribute('value');
 	if (document.getElementById(id).value == '') {
 		document.getElementById(id).setAttribute('class', 'form-control title is-invalid');
 	} else {
 		document.getElementById(id).setAttribute('class', 'form-control title');
 	}
+	console.log('value: ',document.getElementById(id).value);
 }
 
 function send_request(str, title, jsonMetadata, callback) {
@@ -488,7 +490,7 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 			$imageEdit = 'style="display: none;"';
 		}
 		pollHTML = pollHTML + `<div class="input-group mb-3" id="option` + cnt + `">
-<div class="input-group-prepend"><img class="uplded-img-true" id="load-imag` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="35" height="35"` + $imageEdit + `><div class="remImg" onclick="remImg(this)"><span class="icon-cross"></span></div><span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span></span><input type="text" class="form-control" value="` + resultContent.json_metadata.data.poll_answers[cnt] + `" placeholder="Fill in this field" id="inputOption` + cnt + `" data-placement="left"  onchange="checkInput(this.id);"><div class="input-group-append"><button class="btn btn-danger remVar" type="button"><span class="icon-cross"></span></button></div><div class="invalid-feedback">Please fill or remove empty fields</div></div>
+<div class="input-group-prepend"><img class="uplded-img-true" id="load-imag` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="35" height="35"` + $imageEdit + `><div class="remImg" onclick="remImg(this)"><span class="icon-cross"></span></div><span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span></span><input type="text" class="form-control" value="` + resultContent.json_metadata.data.poll_answers[cnt] + `" placeholder="Fill in this field" id="input` + cnt + `" data-placement="left"  onchange="checkInput(this.id);"><div class="input-group-append"><button class="btn btn-danger remVar" type="button"><span class="icon-cross"></span></button></div><div class="invalid-feedback">Please fill or remove empty field</div></div>
 <div class="invalid-feedback">Please fill or remove empty fields
 </div></div>`;
 	}
@@ -502,7 +504,7 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 		swal({
 			html: `<div class="form-group-swal">
 							<label>` + document.querySelectorAll('.translate-phrases li')[23].innerHTML + `</label>
-							<input type="text" class="form-control title edit" value="` + resultContent.json_metadata.data.poll_title + `" placeholder="Type your text here">
+							<input type="text" class="form-control title edit" value="` + resultContent.json_metadata.data.poll_title + `" placeholder="Type your text here" onchange="checkInput(this.id);">
 							<label for="exampleFormControlTextarea1">` + document.querySelectorAll('.translate-phrases li')[24].innerHTML + `</label>
 							<textarea class="form-control" id="pollDescriptionInput" rows="3" maxlength="300">` + resultContent.json_metadata.data.poll_description + `</textarea>
 							<br><img class="uplded-img-true" id="load-imag" src="` + resultContent.json_metadata.data.title_image + `" width="35" height="35" ` + $imageEdit + ` ><div class="remImg" onclick="remImg(this)"><span class="icon-cross"></span></div><span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span> Add main image</span>
@@ -521,15 +523,14 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 				var i = 0,
 					answers = [];
 				document.querySelectorAll('.varDiv input').forEach(function (item) {
-					/*if (!item.value) {
-						return;
-					}*/
+					if (item.value == '') {
+						console.log('EMPTY ITEM:', item);
+					}
 					answers[i] = item.value;
 					i++;
 				});
 				i = 0;
 				var newPollImages = [];
-				i = 0;
 				document.querySelector('.varDiv').querySelectorAll('.uplded-img-true').forEach(function (item) {
 					if (item.src.replace(/^.*[\\\/]/, '') == 'img.svg' || item.src.replace(/^.*[\\\/]/, '') == 'loading.gif' || item.src.replace(/^.*[\\\/]/, '') == 'err.png' || item.src.replace(/^.*[\\\/]/, '') == 'index.html') {
 						newPollImages[i] = '';
@@ -556,11 +557,11 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 				};
 				console.log('title_image:', $titleImage);
 				console.log('poll_images:', newPollImages);
-				send_request(resultContent.permlink, document.querySelector('.title.edit').value, jsonMetadata_edit, function () {
+				/*send_request(resultContent.permlink, document.querySelector('.title.edit').value, jsonMetadata_edit, function () {
 					getHash(function (resultContent) {
 						insertHtmlPoll(resultContent);
 					});
-				});
+				});*/
 				console.log('newPollImages', newPollImages);
 				swal(
 					'Success',
@@ -577,7 +578,6 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 				item.parentNode.parentNode.parentNode.remove();
 			} else {
 				document.querySelectorAll('.remVar').forEach(function (item) {
-					item.setAttribute('disabled', 'disabled');
 					item.setAttribute('title', 'At least 2 options should stay');
 				});
 				document.querySelector('.swal2-content .label-error').style.display = 'block';
@@ -592,13 +592,12 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 function addvar() {
 	var $div = document.createElement('div');
 	$div.innerHTML = `<div class="input-group mb-3">
-<div class="input-group-prepend"><img class="uplded-img-true" id="load-imag0" src="" width="35" height="35" style="display: none;"><div class="remImg" onclick="remImg(this)"><span class="icon-cross"></span></div><span class="btn btn-secondary" onclick="ipfsImgLoad(this)"><span class="icon-image"></span></span><input type="text" class="form-control" value="" placeholder="Fill in this field" id="inputOption0" data-placement="left" onchange="checkInput(this.id);"><div class="input-group-append"><button class="btn btn-danger remVar" type="button"><span class="icon-cross"></span></button></div><div class="invalid-feedback">Please fill or remove empty fields</div></div><div class="invalid-feedback">Please fill or remove empty fields</div></div>`;
+<div class="input-group-prepend"><img class="uplded-img-true" id="load-imag0" src="" width="35" height="35" style="display: none;"><div class="remImg" onclick="remImg(this)"><span class="icon-cross"></span></div><span class="btn btn-secondary" onclick="ipfsImgLoad(this)"><span class="icon-image"></span></span><input type="text" class="form-control" placeholder="Fill in this field" id="` + Date.now() + `" data-placement="left" onchange="checkInput(this.id);"><div class="input-group-append"><button class="btn btn-danger remVar" type="button"><span class="icon-cross"></span></button></div><div class="invalid-feedback">Please fill or remove empty fields</div></div><div class="invalid-feedback">Please fill or remove empty fields</div></div>`;
 	$div.querySelector('.remVar').addEventListener('click', () => {
 	if (document.querySelectorAll('.remVar').length > 2) {
 				$div.remove();
 			} else {
 				document.querySelectorAll('.remVar').forEach(function (item) {
-					$div.setAttribute('disabled', 'disabled');
 					$div.setAttribute('title', 'At least 2 options should stay');
 				});
 				document.querySelector('.swal2-content .label-error').style.display = 'block';
@@ -609,14 +608,12 @@ function addvar() {
 	document.querySelector('.varDiv').appendChild($div);
 	if (document.querySelectorAll('.remVar').length > 2) {
 				document.querySelectorAll('.remVar').forEach(function (item) {
-					item.removeAttribute('disabled');
 					item.removeAttribute('title');
 				});
 				document.querySelector('.swal2-content .label-error').style.display = 'none';
 				document.querySelector('.addvar').style = 'margin-right: 96%; margin-top: 0;'
 			} else {
 				document.querySelectorAll('.remVar').forEach(function (item) {
-					$div.setAttribute('disabled', 'disabled');
 					$div.setAttribute('title', 'At least 2 options should stay');
 				});
 				document.querySelector('.swal2-content .label-error').style.display = 'block';
