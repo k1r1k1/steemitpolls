@@ -240,7 +240,7 @@ function checkInput(id) {
 	} else {
 		document.getElementById(id).setAttribute('class', 'form-control title');
 	}
-	console.log('value: ',document.getElementById(id).value);
+	console.log('value: ', document.getElementById(id).value);
 }
 
 function send_request(str, title, jsonMetadata, callback) {
@@ -511,66 +511,74 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 						<div id="EditPollForm">
 							<label>` + document.querySelectorAll('.translate-phrases li')[25].innerHTML + `</label>
 						</div>
-						</div><div class="varDiv">` + pollHTML + `</div><label class="label-error">At least 2 options should stay</label><span class="btn btn-secondary addvar" onclick="addvar()"><span class="icon-plus"></span></span>`,
+						</div><div class="varDiv">` + pollHTML + `</div><label class="label-error">At least 2 options should stay</label><span class="btn btn-secondary addvar" onclick="addvar()"><span class="icon-plus"></span></span><button class="btn btn-success apply"><span class="icon-checkmark"></span> Apply</button><button class="btn btn-danger cancel"><span class="icon-cross"></span> Cancel</button>`,
 			showCloseButton: true,
-			showCancelButton: true,
+			showConfirmButton: false,
 			width: 800,
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
-			confirmButtonText: 'Apply'
-		}).then((result) => {
-			if (result.value) {
-				var i = 0,
-					answers = [];
-				document.querySelectorAll('.varDiv input').forEach(function (item) {
-					if (item.value == '') {
-						console.log('EMPTY ITEM:', item);
-					}
-					answers[i] = item.value;
-					i++;
-				});
-				i = 0;
-				var newPollImages = [];
-				document.querySelector('.varDiv').querySelectorAll('.uplded-img-true').forEach(function (item) {
-					if (item.src.replace(/^.*[\\\/]/, '') == 'img.svg' || item.src.replace(/^.*[\\\/]/, '') == 'loading.gif' || item.src.replace(/^.*[\\\/]/, '') == 'err.png' || item.src.replace(/^.*[\\\/]/, '') == 'index.html') {
-						newPollImages[i] = '';
-					} else {
-						newPollImages[i] = item.src;
-					}
-					i++;
-				});
-				var $titleImage = document.querySelector('.form-group-swal img').src;
-				if ($titleImage.replace(/^.*[\\\/]/, '') == 'img.svg' || $titleImage.replace(/^.*[\\\/]/, '') == 'loading.gif' || $titleImage.replace(/^.*[\\\/]/, '') == 'err.png' || $titleImage.replace(/^.*[\\\/]/, '') == 'index.html') {
-					$titleImage = '';
-				}
-				var jsonMetadata_edit = {
-					app: 'golospolls/0.1',
-					canonical: 'https://golospolls.com/#' + username + '/' + resultContent.permlink,
-					app_account: 'golosapps',
-					data: {
-						poll_title: document.querySelector('.title.edit').value,
-						title_image: $titleImage,
-						poll_images: newPollImages,
-						poll_answers: answers,
-						poll_description: document.querySelector('.form-group-swal textarea').value
-					}
-				};
-				console.log('title_image:', $titleImage);
-				console.log('poll_images:', newPollImages);
-				/*send_request(resultContent.permlink, document.querySelector('.title.edit').value, jsonMetadata_edit, function () {
-					getHash(function (resultContent) {
-						insertHtmlPoll(resultContent);
-					});
-				});*/
-				console.log('newPollImages', newPollImages);
-				swal(
-					'Success',
-					'Your poll has been edited.',
-					'success'
-				);
-			}
 		})
 	}, ['posting']);
+	document.querySelector('.apply').addEventListener('click', () => {
+		var i = 0,
+			err,
+			answers = [];
+		document.querySelectorAll('.varDiv input').forEach(function (item) {
+			if (item.value == '') {
+				checkInput(item.id);
+				console.log('EMPTY ITEM:', item.id);
+				err = true;
+			}
+			answers[i] = item.value;
+			i++;
+		});
+		if (err) {
+			console.log('err');
+			return;
+		}
+		i = 0;
+		var newPollImages = [];
+		document.querySelector('.varDiv').querySelectorAll('.uplded-img-true').forEach(function (item) {
+			if (item.src.replace(/^.*[\\\/]/, '') == 'img.svg' || item.src.replace(/^.*[\\\/]/, '') == 'loading.gif' || item.src.replace(/^.*[\\\/]/, '') == 'err.png' || item.src.replace(/^.*[\\\/]/, '') == 'index.html') {
+				newPollImages[i] = '';
+			} else {
+				newPollImages[i] = item.src;
+			}
+			i++;
+		});
+		var $titleImage = document.querySelector('.form-group-swal img').src;
+		if ($titleImage.replace(/^.*[\\\/]/, '') == 'img.svg' || $titleImage.replace(/^.*[\\\/]/, '') == 'loading.gif' || $titleImage.replace(/^.*[\\\/]/, '') == 'err.png' || $titleImage.replace(/^.*[\\\/]/, '') == 'index.html') {
+			$titleImage = '';
+		}
+		var jsonMetadata_edit = {
+			app: 'golospolls/0.1',
+			canonical: 'https://golospolls.com/#' + username + '/' + resultContent.permlink,
+			app_account: 'golosapps',
+			data: {
+				poll_title: document.querySelector('.title.edit').value,
+				title_image: $titleImage,
+				poll_images: newPollImages,
+				poll_answers: answers,
+				poll_description: document.querySelector('.form-group-swal textarea').value
+			}
+		};
+		console.log('title_image:', $titleImage);
+		console.log('poll_images:', newPollImages);
+		if (!err) {
+			send_request(resultContent.permlink, document.querySelector('.title.edit').value, jsonMetadata_edit, function () {
+				getHash(function (resultContent) {
+					insertHtmlPoll(resultContent);
+				});
+			});
+			console.log('newPollImages', newPollImages);
+			swal(
+				'Success',
+				'Your poll has been edited.',
+				'success'
+			);
+		}
+	})
+	document.querySelector('.cancel').addEventListener('click', () => {
+		document.querySelector('.swal2-close').click();
+	})
 	let i = 0;
 	document.querySelectorAll('.remVar').forEach(function (item) {
 		document.querySelectorAll('.remVar')[i].addEventListener('click', () => {
@@ -594,32 +602,32 @@ function addvar() {
 	$div.innerHTML = `<div class="input-group mb-3">
 <div class="input-group-prepend"><img class="uplded-img-true" id="load-imag0" src="" width="35" height="35" style="display: none;"><div class="remImg" onclick="remImg(this)"><span class="icon-cross"></span></div><span class="btn btn-secondary" onclick="ipfsImgLoad(this)"><span class="icon-image"></span></span><input type="text" class="form-control" placeholder="Fill in this field" id="` + Date.now() + `" data-placement="left" onchange="checkInput(this.id);"><div class="input-group-append"><button class="btn btn-danger remVar" type="button"><span class="icon-cross"></span></button></div><div class="invalid-feedback">Please fill or remove empty fields</div></div><div class="invalid-feedback">Please fill or remove empty fields</div></div>`;
 	$div.querySelector('.remVar').addEventListener('click', () => {
-	if (document.querySelectorAll('.remVar').length > 2) {
-				$div.remove();
-			} else {
-				document.querySelectorAll('.remVar').forEach(function (item) {
-					$div.setAttribute('title', 'At least 2 options should stay');
-				});
-				document.querySelector('.swal2-content .label-error').style.display = 'block';
-				document.querySelector('.addvar').style = 'margin-right: 96%; margin-top: -55px;'
-				return;
-			}
+		if (document.querySelectorAll('.remVar').length > 2) {
+			$div.remove();
+		} else {
+			document.querySelectorAll('.remVar').forEach(function (item) {
+				$div.setAttribute('title', 'At least 2 options should stay');
+			});
+			document.querySelector('.swal2-content .label-error').style.display = 'block';
+			document.querySelector('.addvar').style = 'margin-right: 96%; margin-top: -55px;'
+			return;
+		}
 	}, false);
 	document.querySelector('.varDiv').appendChild($div);
 	if (document.querySelectorAll('.remVar').length > 2) {
-				document.querySelectorAll('.remVar').forEach(function (item) {
-					item.removeAttribute('title');
-				});
-				document.querySelector('.swal2-content .label-error').style.display = 'none';
-				document.querySelector('.addvar').style = 'margin-right: 96%; margin-top: 0;'
-			} else {
-				document.querySelectorAll('.remVar').forEach(function (item) {
-					$div.setAttribute('title', 'At least 2 options should stay');
-				});
-				document.querySelector('.swal2-content .label-error').style.display = 'block';
-				document.querySelector('.addvar').style = 'margin-right: 96%; margin-top: -55px;'
-				return;
-			}
+		document.querySelectorAll('.remVar').forEach(function (item) {
+			item.removeAttribute('title');
+		});
+		document.querySelector('.swal2-content .label-error').style.display = 'none';
+		document.querySelector('.addvar').style = 'margin-right: 96%; margin-top: 0;'
+	} else {
+		document.querySelectorAll('.remVar').forEach(function (item) {
+			$div.setAttribute('title', 'At least 2 options should stay');
+		});
+		document.querySelector('.swal2-content .label-error').style.display = 'block';
+		document.querySelector('.addvar').style = 'margin-right: 96%; margin-top: -55px;'
+		return;
+	}
 }
 
 function myPolls() {
@@ -681,10 +689,10 @@ function remImg(e) {
 }
 
 document.getElementById('support').addEventListener('click', () => {
-    swal({
-        html: document.getElementById('support-body').innerHTML,
-        showCloseButton: true,
-        width: 600,
-        type: 'question'
-    })
+	swal({
+		html: document.getElementById('support-body').innerHTML,
+		showCloseButton: true,
+		width: 600,
+		type: 'question'
+	})
 });

@@ -408,6 +408,10 @@ footer {
 	.table td {
     	padding: 0.2rem;
 	}
+
+	/*.d-flex {
+    	display:
+	}*/
 }
 
 @media (max-width:767px) {
