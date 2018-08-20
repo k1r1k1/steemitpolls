@@ -382,70 +382,6 @@ footer {
     padding: .5rem;
 }
 
-@media (max-width: 991px) {
-	.navbar li {
-		margin: 0 20px 0.5rem;
-		display: contents;
-	}
-	.github-corner {
-		display: none;
-	}
-	table {
-		font-size: 6px;
-	}
-	.navbar-nav {
-		text-align: center;
-    	margin-top: 1rem;
-	}
-	.navbar-collapse .btn {
-		height: 11vh;
-		width: 100%;
-		font-size: 24px;
-		font-weight: 800;
-		padding: 3vh;
-		min-height: 75px;
-	}
-	.table td {
-    	padding: 0.2rem;
-	}
-
-	/*.d-flex {
-    	display:
-	}*/
-}
-
-@media (max-width:767px) {
-	.card-header-right {
-    	position: initial;
-	}
-}
-
-@media (max-width:500px) {
-	.github-corner:hover .octo-arm {
-		animation: none
-	}
-	.github-corner .octo-arm {
-		animation: octocat-wave 560ms ease-in-out
-	}
-
-	.card {
-    	margin-top: 4rem;
-	}
-
-	.card-header-right p {
-		margin-top: -6.4rem;
-	}
-
-	.card-header-right .rem-buttons {
-		margin-top: -2.9rem;
-		margin-right: -.5rem;
-	}
-
-	#complete-form .card-header {
-		padding-left: .5rem;
-	}
-}
-
 .navbar-toggler {
 	z-index: 2;
 }
@@ -505,4 +441,68 @@ footer {
 
 #support {
     margin-right: 1rem;
+}
+
+@media (max-width: 991px) {
+	.navbar li {
+		margin: 0 20px 0.5rem;
+		display: contents;
+	}
+	.github-corner {
+		display: none;
+	}
+	table {
+		font-size: 6px;
+	}
+	.navbar-nav {
+		text-align: center;
+    	margin-top: 1rem;
+	}
+	.navbar-collapse .btn {
+		height: 11vh;
+		width: 100%;
+		font-size: 24px;
+		font-weight: 800;
+		padding: 3vh;
+		min-height: 75px;
+	}
+	.table td {
+    	padding: 0.2rem;
+	}
+}
+
+@media (max-width:767px) {
+	.card-header-right {
+    	position: initial;
+	}
+}
+
+@media (max-width:500px) {
+	.github-corner:hover .octo-arm {
+		animation: none
+	}
+	.github-corner .octo-arm {
+		animation: octocat-wave 560ms ease-in-out
+	}
+
+	.card-header-right p {
+		margin-top: -6.4rem;
+	}
+
+	.card-header-right .rem-buttons {
+		margin-top: -2.9rem;
+		margin-right: -.5rem;
+	}
+
+	#complete-form .card-header {
+		padding-left: .5rem;
+	}
+
+	#complete-form {
+		margin-top: 4rem;
+	}
+
+	#support {
+		margin-right: 0;
+	}
 }
