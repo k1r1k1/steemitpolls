@@ -443,6 +443,14 @@ footer {
     margin-right: 1rem;
 }
 
+.mobile {
+		display: none;
+}
+
+.desktop {
+	display: inline-block;
+}
+
 @media (max-width: 991px) {
 	.navbar li {
 		margin: 0 20px 0.5rem;
@@ -504,5 +512,13 @@ footer {
 
 	#support {
 		margin-right: 0;
+	}
+
+	.mobile {
+		display: block;
+	}
+
+	.desktop {
+		display: none;
 	}
 }
