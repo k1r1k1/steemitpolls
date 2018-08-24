@@ -87,7 +87,7 @@ function insertHtmlPoll(resultContent) {
 			if (resultContent.json_metadata && resultContent.json_metadata.data && resultContent.json_metadata.data.poll_answers && resultContent.json_metadata.data.poll_images && resultContent.json_metadata.data.poll_answers[cnt] && resultContent.json_metadata.data.poll_images[cnt]) {
 				$div.innerHTML = `<div class="card" id="` + cnt + `"><div class="card-body vote-item">
 <label class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</label>
-						<p><img src="` + resultContent.json_metadata.data.poll_images[cnt] + `" height="150" class="rounded"><div class="progress"  style="cursor: pointer;"><div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div></div></div></div><br>`;
+						<p><img src="` + resultContent.json_metadata.data.poll_images[cnt] + `" class="rounded"><div class="progress"  style="cursor: pointer;"><div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div></div></div></div><br>`;
 				document.querySelector('.card-body.text-dark').appendChild($div);
 				document.getElementById(cnt).onclick = progress_click; // dummy for polling
 			} else {

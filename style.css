@@ -180,13 +180,13 @@
 	font-size: 13px;
 	font-weight: 500;
 	background-color: #fff;
-	color: #F21616;
+	color: #F21616 !important;
 	border: 1px solid #dddddd;
 	padding: 0.1rem 0.5rem;
 }
 
 .share-golos:hover {
-	color: #fff;
+	color: #fff !important;
 	background-color: #2572BA;
 	border-color: #00047a
 }
@@ -311,6 +311,11 @@ footer {
 	box-shadow: 0 0 0 .5rem rgba(0, 140, 186, .2)
 }
 
+.vote-item img {
+    max-width: 100%;
+    max-height: 80vh;
+}
+
 .uplded-img:hover {
 	cursor: pointer;
 	transition-delay: 1s;
@@ -341,7 +346,7 @@ footer {
 }
 
 .github-corner {
-	position: fixed;
+	position: absolute;
 	top: 0;
 	right: 0;
 }
