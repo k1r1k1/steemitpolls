@@ -659,8 +659,11 @@ function about() {
 		showConfirmButton: false,
 		width: 600,
 		padding: '1rem',
-		showCloseButton: 'true'
-	});
+		showCloseButton: 'true',
+		//onClose: DeleteUnsavedImages
+	}).then(function () {
+		location.hash = '';
+   });
 }
 
 function integration() {
