@@ -699,3 +699,7 @@ document.getElementById('support').addEventListener('click', () => {
 		type: 'question'
 	})
 });
+
+function humanErrors() {
+
+}
