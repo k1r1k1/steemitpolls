@@ -1,4 +1,4 @@
-/* This library makes standard logs of "Steemit"/"Golos" errors more user-friendly */
+/* This library makes standard error logs of "Steemit"/"Golos" user-friendly and in native language*/
 
 function humaNize(errors) {
 	console.log('caught:',errors);
