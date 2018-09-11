@@ -1,6 +1,7 @@
 {
-	"Error: invalid operation in transaction (3010000) Invalid operation 0 in transaction: business logic error (2030000) You cannot reblog your own content (see err.payload for the full error payload)":"You cannot reblog your own content",
-	"Error: invalid operation in transaction (3010000) Invalid operation 0 in transaction: bandwidth exceeded error (2010000) You may only post once every 5 minutes. (see err.payload for the full error payload)":"You may only post once every 5 minutes",
-	"Error: invalid operation in transaction (3010000) Invalid operation 0 in transaction: bandwidth exceeded error (2010000) You may only comment once every 20 seconds. (see err.payload for the full error payload)":"You may only comment once every 20 seconds",
-	"Error: missing required posting authority (3020300) Missing Posting Authority [\"test5\"] (see err.payload for the full error payload)":"Missing Posting Authority"
+	"\"You cannot reblog your own content\"":"Вы не можете репостить свои собственные записи",
+	"\"You may only post once every 5 minutes.\"":"Вы можете создавать новый пост не чаще чем раз в 5 минут",
+	"\"You may only comment once every 20 seconds.\"":"Вы можете создавать новый комментарий не чаще чем раз в 20 секунд",
+	"\"Missing Posting Authority [\"test5\"]\"":"У вас недостаточно привилегий для этого",
+	"Error: The WS connection was closed before this operation was made":"Связь с сервером потеряна"
 }
