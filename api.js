@@ -24,7 +24,7 @@ function progress_click() { // dummy for polling
 				swal({
 					type: 'error',
 					title: 'error',
-					text: err
+					text: humaNize(err)
 				});
 			} else {
 				swal({
@@ -42,7 +42,7 @@ function progress_click() { // dummy for polling
 					swal({
 						type: 'error',
 						title: 'error',
-						text: err
+						text: humaNize(err)
 					});
 				} else {
 					swal({ // visual
@@ -238,7 +238,7 @@ function getVote(callback) { // getting poll data
 			swal({
 				type: 'error',
 				title: 'error',
-				text: err
+				text: humaNize(err)
 			});
 		}
 		if (callback) callback();

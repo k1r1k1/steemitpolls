@@ -268,7 +268,7 @@ function send_request(str, title, jsonMetadata, callback) {
 			swal({
 				type: 'error',
 				title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
-				text: err
+				text: humaNize(err)
 			});
 		}
 		document.querySelector('.lding').style.display = 'none';
@@ -298,7 +298,7 @@ function getMyPolls(callback) {
 	};
 	golos.api.getDiscussionsByBlog(query, function (err, result) {
 		console.log('<f>getDiscussionsByBlog ', query);
-		console.log(result);
+		/*console.log(result);*/
 		if (result == '') {
 			var $div = document.createElement('tr');
 			$div.innerHTML = `<td colspan="6">` + document.querySelectorAll('.translate-phrases li')[8].innerHTML + `</td>`;
@@ -361,7 +361,7 @@ function getMyPolls(callback) {
 			swal({
 				type: 'error',
 				title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
-				text: err
+				text: humaNize(err)
 			});
 			document.querySelector('.lding').style.display = 'none';
 		}
@@ -412,7 +412,7 @@ function reblogGolos() {
 				swal({
 					type: 'error',
 					title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
-					text: err
+					text: humaNize(err)
 				});
 			} else {
 				swal({
@@ -470,7 +470,7 @@ document.getElementById('complete').addEventListener('click', function () {
 						swal({
 							type: 'error',
 							title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
-							text: err
+							text: humaNize(err)
 						});
 					}
 				});
@@ -642,7 +642,7 @@ function myPolls() {
 					swal({
 						type: 'error',
 						title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
-						text: err
+						text: humaNize(err)
 					});
 				}
 			});
