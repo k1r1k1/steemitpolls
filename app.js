@@ -264,7 +264,6 @@ function send_request(str, title, jsonMetadata, callback) {
 			}, 1000);
 		} else {
 			clearTimeout(newPostTimout);
-			console.error(err);
 			swal({
 				type: 'error',
 				title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
@@ -345,7 +344,7 @@ function getMyPolls(callback) {
 								i++;
 							});
 							var $div = document.createElement('tr');
-							$div.innerHTML = `<td><a href="#` + item.author + `/` + item.permlink + `">` + item.json_metadata.data.poll_title + `</a></td>
+							$div.innerHTML = `<td>` + countofposts + `. <a href="#` + item.author + `/` + item.permlink + `">` + item.json_metadata.data.poll_title + `</a></td>
                                       <td>` + moment(item.created).format('lll') + `</td>
                                       <td>` + answerSrt + `</td>
                                       <td>` + countofvotes + `</td>
@@ -638,7 +637,6 @@ function myPolls() {
 		auth(function () {
 			getMyPolls(function (err, result) {
 				if (err) {
-					console.error(err);
 					swal({
 						type: 'error',
 						title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
@@ -699,7 +697,3 @@ document.getElementById('support').addEventListener('click', () => {
 		type: 'question'
 	})
 });
-
-function humanErrors() {
-
-}

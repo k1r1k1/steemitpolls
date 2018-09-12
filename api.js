@@ -20,7 +20,6 @@ function progress_click() { // dummy for polling
 	if (wif.posting) {
 		sendVote(this.id, function (err, result) {
 			if (err) {
-				console.error(err);
 				swal({
 					type: 'error',
 					title: 'error',
@@ -38,7 +37,6 @@ function progress_click() { // dummy for polling
 		auth(function () {
 			sendVote(this.id, function (err, result) {
 				if (err) {
-					console.error(err);
 					swal({
 						type: 'error',
 						title: 'error',
@@ -88,7 +86,6 @@ function getHash(callback) {
 				console.log('getHash-resultContent=', resultContent);
 				callback(result);
 			} else {
-				console.error('Failed to find post ', err);
 				swal({
 					type: 'error',
 					title: 'error',
@@ -234,7 +231,6 @@ function getVote(callback) { // getting poll data
 				}
 			}
 		} else {
-			console.error(err);
 			swal({
 				type: 'error',
 				title: 'error',
