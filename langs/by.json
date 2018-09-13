@@ -80,5 +80,10 @@
 	"your vote":"ваш голас",
 	"a lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates":"Лёгкая JavaScript бібліятэка  для сінтаксічнага аналізу, праверкі, апрацоўкі і фарматавання даты",
 	"searches for regular expression matches in a given DOM node и replaces or wraps each match with a node or piece of text that you can specify":"пошук назваў паведамленняў адпавядае ў дадзеным вузле і DOM замяняе або заварочвае кожнае супадзенне з вузлом або фрагментам тэксту, які можна паказаць",
-	"Please add at least two answers":"Калі ласка, дадайце па меншай меры два адказы"
+	"Please add at least two answers":"Калі ласка, дадайце па меншай меры два адказы",
+	"Support":"Падтрымка",
+	"Logout":"Выхад",
+	"Please fill or remove empty fields":"Калі ласка, запоўніце або выдаліць пустыя палі",
+	"A lightweight JavaScript date library for parsing, validating, manipulating, и formatting dates":"Лёгкі JavaScript бібліятэка дата для аналізу, праверкі, маніпулявання і фарматавання даты",
+	"is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework, и has automatic language detection":"гэта падсвятленне сінтаксісу напісана на JavaScript Ён працуе ў браўзэры, а таксама на сэрвэры Ён працуе з амаль любой разметцы, не залежыць ад якой-небудзь структуры, і мае аўтаматычнае вызначэнне мовы"
 }

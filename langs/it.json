@@ -78,5 +78,10 @@
 	"your vote":"il tuo voto",
 	"a lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates":"Una libreria di date JavaScript leggera per l'analisi, la convalida, la manipolazione e la formattazione delle date",
 	"searches for regular expression matches in a given DOM node и replaces or wraps each match with a node or piece of text that you can specify":"cerca le corrispondenze di espressioni regolari in un dato nodo DOM e sostituisce o avvolge ogni combinazione con un nodo o una parte di testo che è possibile specificare",
-	"Please add at least two answers":"Per favore aggiungi almeno due risposte"
+	"Please add at least two answers":"Per favore aggiungi almeno due risposte",
+	"Support":"Supporto",
+	"Logout":"Disconnettersi",
+	"Please fill or remove empty fields":"Si prega di compilare o rimuovere campi vuoti",
+	"A lightweight JavaScript date library for parsing, validating, manipulating, и formatting dates":"Una libreria di date JavaScript leggera per l'analisi, la convalida, la manipolazione e le date di formattazione",
+	"is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework, и has automatic language detection":"è un evidenziatore di sintassi scritto in JavaScript, funziona sia nel browser che sul server, funziona praticamente con qualsiasi markup, non dipende da nessun framework, è dotato di rilevamento automatico della lingua"
 }

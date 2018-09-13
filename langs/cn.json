@@ -80,5 +80,10 @@
 	"your vote":"你的投票",
 	"a lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates":"一个轻量级的JavaScript日期库，用于解析，验证，操作和格式化日期",
 	"searches for regular expression matches in a given DOM node и replaces or wraps each match with a node or piece of text that you can specify":"在给定的DOM节点中搜索正则表达式匹配，然后用您可以指定的节点或文本替换或包装每个组合",
-	"Please add at least two answers":"请添加至少两个答案"
+	"Please add at least two answers":"请添加至少两个答案",
+	"Support":"支持",
+	"Logout":"登出",
+	"Please fill or remove empty fields":"请填写或删除空字段",
+	"A lightweight JavaScript date library for parsing, validating, manipulating, и formatting dates":"用于解析，验证，操作和格式化日期的轻量级JavaScript日期库",
+	"is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework, и has automatic language detection":"是用JavaScript编写的语法高亮显示器。它可以在浏览器和服务器上运行。它几乎可以用于任何标记，不依赖于任何框架，并且具有自动语言检测功能"
 }
