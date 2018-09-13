@@ -2,5 +2,6 @@
 	"\"You cannot reblog your own content\"":"你无法重新登录自己的内容",
 	"\"You may only post once every 5 minutes.\"":"你每5分钟只能发一次。",
 	"\"You may only comment once every 20 seconds.\"":"你每20秒只能评论一次。",
-	"Error: The WS connection was closed before this operation was made":"错误：在执行此操作之前，WS连接已关闭"
+	"Error: The WS connection was closed before this operation was made":"错误：在执行此操作之前，WS连接已关闭",
+	"TypeError: Failed to fetch":"IPFS-node 错误"
 }

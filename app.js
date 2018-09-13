@@ -432,9 +432,12 @@ function ipfsImgLoad(e) {
 	e.parentNode.querySelector('img').src = 'graphics/loading.gif';
 	uploadImageToIpfs(e.parentNode.querySelector('img').id, (err, files) => {
 		if (err) {
-			console.error('ipfs error: ', err);
+			swal({
+				type: 'error',
+				title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
+				text: humaNize(err)
+				});
 			e.parentNode.querySelector('img').src = 'graphics/err.png';
-			console.log('err event');
 		} else {
 			console.log(files[0][0].path + files[0][0].hash);
 			e.parentNode.querySelectorAll('img').forEach(function (result) {
