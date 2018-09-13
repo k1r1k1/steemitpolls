@@ -536,7 +536,7 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 		i = 0;
 		var newPollImages = [];
 		document.querySelector('.varDiv').querySelectorAll('.uplded-img-true').forEach(function (item) {
-			if (item.src.replace(/^.*[\\\/]/, '') == 'img.svg' || item.src.replace(/^.*[\\\/]/, '') == 'loading.gif' || item.src.replace(/^.*[\\\/]/, '') == 'err.png' || item.src.replace(/^.*[\\\/]/, '') == 'index.html') {
+			if (item.src.replace(/^.*[\\\/]/, '') == 'img.svg' || item.src.replace(/^.*[\\\/]/, '') == 'loading.gif' || item.src.replace(/^.*[\\\/]/, '') == 'err.png' || item.src.replace(/^.*[\\\/]/, '') == 'index.html' || item.src.replace(/^.*[\\\/]/, '') == '') {
 				newPollImages[i] = '';
 			} else {
 				newPollImages[i] = item.src;
@@ -544,7 +544,7 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 			i++;
 		});
 		var $titleImage = document.querySelector('.form-group-swal img').src;
-		if ($titleImage.replace(/^.*[\\\/]/, '') == 'img.svg' || $titleImage.replace(/^.*[\\\/]/, '') == 'loading.gif' || $titleImage.replace(/^.*[\\\/]/, '') == 'err.png' || $titleImage.replace(/^.*[\\\/]/, '') == 'index.html') {
+		if ($titleImage.replace(/^.*[\\\/]/, '') == 'img.svg' || $titleImage.replace(/^.*[\\\/]/, '') == 'loading.gif' || $titleImage.replace(/^.*[\\\/]/, '') == 'err.png' || $titleImage.replace(/^.*[\\\/]/, '') == 'index.html' || $titleImage.replace(/^.*[\\\/]/, '') == '') {
 			$titleImage = '';
 		}
 		var jsonMetadata_edit = {
