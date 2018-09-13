@@ -15,27 +15,11 @@ var resultContent = '', // global variable for content
 	counter, // for poll after creating a new post 
 	hash = location.hash.substring(1); // geting hash
 
-function progress_click() { // dummy for polling 
-	console.log('<f> progress_click #' + this.id);
-	if (wif.posting) {
-		sendVote(this.id, function (err, result) {
-			if (err) {
-				swal({
-					type: 'error',
-					title: 'error',
-					text: humaNize(err)
-				});
-			} else {
-				swal({
-					type: 'success',
-					title: document.querySelectorAll('.translate-phrases li')[9].innerHTML,
-					html: document.querySelector('.socialButtons').innerHTML
-				});
-			}
-		});
-	} else {
-		auth(function () {
-			sendVote(this.id, function (err, result) {
+function progress_click(id) { // dummy for polling
+	console.log('<f> progress_click #' + id);
+	auth(function () {
+		if (wif.posting) {
+			sendVote(id, function (err, result) {
 				if (err) {
 					swal({
 						type: 'error',
@@ -43,17 +27,15 @@ function progress_click() { // dummy for polling
 						text: humaNize(err)
 					});
 				} else {
-					swal({ // visual
+					swal({
 						type: 'success',
-						title: 'Thanks for making your choice!',
-						toast: true,
-						showConfirmButton: false,
-						timer: 2500
+						title: document.querySelectorAll('.translate-phrases li')[9].innerHTML,
+						html: document.querySelector('.socialButtons').innerHTML
 					});
 				}
 			});
-		}, ['posting']);
-	}
+		}
+	}, ['posting']);
 }
 
 function getHash(callback) {
