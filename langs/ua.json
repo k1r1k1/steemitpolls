@@ -85,5 +85,20 @@
 	"Logout":"Вийти",
 	"Please fill or remove empty fields":"Будь ласка, заповніть або видаліть порожні поля",
 	"A lightweight JavaScript date library for parsing, validating, manipulating, и formatting dates":"Легка бібліотека дат JavaScript для аналізу, перевірки, маніпулювання та дат форматування",
-	"is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework, и has automatic language detection":"це синтаксичний маркер, написаний на JavaScript, він працює як у веб-переглядачі, так і на сервері. Він працює з практично будь-якою розміткою, не залежить від будь-якої структури, і має автоматичний виявлення мови"
+	"is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework, и has automatic language detection":"це синтаксичний маркер, написаний на JavaScript, він працює як у веб-переглядачі, так і на сервері. Він працює з практично будь-якою розміткою, не залежить від будь-якої структури, і має автоматичний виявлення мови",
+	"If you have any ideas/problems/questions, you can report it":"Якщо у вас є ідеї / проблеми / питання, ви можете повідомити нас",
+	"On GitHub in Issues":"На GitHub Issues",
+	"On Email":"На Email",
+	"You can only vote once":"Ви можете голосувати лише один раз",
+	"Please wait for":"Будь ласка, зачекайте",
+	"seconds":"секунди",
+	"delete the previous vote to vote again":"видалити попереднє голосування, щоб знову голосувати",
+	"Please fill or remove empty fields":"Будь ласка, заповніть або видаліть порожні поля",
+	"Fill in this field":"Заповніть це поле",
+	"Your poll has been edited":"Ваше опитування було відредаговано",
+	"At least 2 options should stay":"Необхідно зберегти принаймні 2 варіанти",
+	"Apply":"Застосувати",
+	"Cancel":"Скасувати",
+	"Failed to find post":"Не вдалося знайти повідомлення",
+	"Your vote has been deleted":"Ваш голос був знищений"
 }

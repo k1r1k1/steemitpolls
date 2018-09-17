@@ -89,11 +89,9 @@ function insertHtmlPoll(resultContent) {
 <label class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</label>
 						<p><img src="` + resultContent.json_metadata.data.poll_images[cnt] + `" class="rounded"><div class="progress"  style="cursor: pointer;"><div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div></div></div></div><br>`;
 				document.querySelector('.card-body.text-dark').appendChild($div);
-				//document.getElementById(cnt).onclick = progress_click(cnt); // dummy for polling
 			} else {
 				$div.innerHTML = `<div class="card" id="` + cnt + `" onclick="progress_click(this.id)"><div class="card-body vote-item"><label class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</label><div class="progress" style="cursor: pointer;"><div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div></div></div></div><br>`;
 				document.querySelector('.card-body.text-dark').appendChild($div);
-				//document.getElementById(cnt).onclick = progress_click(cnt); // dummy for polling
 			}
 		}
 	});
@@ -159,7 +157,7 @@ function addInactiveInput() {
 	$div.id = 'pOption' + inputsC;
 	$div.style = 'opacity: 0.4;';
 	$div.innerHTML = `<div class="input-group-prepend">
-<img id="load-img` + inputsC + `" src="graphics/loading.gif" width="35" height="35" style="display: none; margin: 0 5px;"><div class="remImg" onclick="remImg(this)"><span class="icon-cross"></span></div><button class="btn btn-secondary" type="button" onClick="ipfsImgLoad(this)" id="addImg` + inputsC + `" disabled><span class="icon-image"></span></button></div><input type="text" class="form-control" placeholder="` + document.querySelectorAll('.translate-phrases li')[12].innerHTML + `" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="inputOption` + inputsC + `" data-toggle="tooltip" data-placement="left"  onchange="checkInput(this.id);"><div class="input-group-append"><button class="btn btn-danger" type="button" id="pOptionButt` + inputsC + `" disabled><span class="icon-cross"></span></button></div></div><div class="invalid-feedback">Please fill or remove empty fields</div>`;
+<img id="load-img` + inputsC + `" src="graphics/loading.gif" width="35" height="35" style="display: none; margin: 0 5px;"><div class="remImg" onclick="remImg(this)"><span class="icon-cross"></span></div><button class="btn btn-secondary" type="button" onClick="ipfsImgLoad(this)" id="addImg` + inputsC + `" disabled><span class="icon-image"></span></button></div><input type="text" class="form-control" placeholder="` + document.querySelectorAll('.translate-phrases li')[12].innerHTML + `" aria-label="Get a link of your poll" aria-describedby="basic-addon2" id="inputOption` + inputsC + `" data-toggle="tooltip" data-placement="left"  onchange="checkInput(this.id);"><div class="input-group-append"><button class="btn btn-danger" type="button" id="pOptionButt` + inputsC + `" disabled><span class="icon-cross"></span></button></div></div><div class="invalid-feedback">` + document.querySelectorAll('.translate-phrases li')[31].innerHTML + `</div>`;
 	$div.querySelector('#inputOption' + inputsC).addEventListener('focus', addPollingInputs, false);
 	$div.querySelector('.btn.btn-danger').addEventListener('click', function (e) { // del button event
 		if (e.target.tagName == 'BUTTON') {
@@ -488,9 +486,8 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 			$imageEdit = 'style="display: none;"';
 		}
 		pollHTML = pollHTML + `<div class="input-group mb-3" id="option` + cnt + `">
-<div class="input-group-prepend"><img class="uplded-img-true" id="load-imag` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="35" height="35"` + $imageEdit + `><div class="remImg" onclick="remImg(this)"><span class="icon-cross"></span></div><span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span></span><input type="text" class="form-control" value="` + resultContent.json_metadata.data.poll_answers[cnt] + `" placeholder="Fill in this field" id="input` + cnt + `" data-placement="left"  onchange="checkInput(this.id);"><div class="input-group-append"><button class="btn btn-danger remVar" type="button"><span class="icon-cross"></span></button></div><div class="invalid-feedback">Please fill or remove empty field</div></div>
-<div class="invalid-feedback">Please fill or remove empty fields
-</div></div>`;
+<div class="input-group-prepend"><img class="uplded-img-true" id="load-imag` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="35" height="35"` + $imageEdit + `><div class="remImg" onclick="remImg(this)"><span class="icon-cross"></span></div><span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span></span><input type="text" class="form-control" value="` + resultContent.json_metadata.data.poll_answers[cnt] + `" placeholder="` + document.querySelectorAll('.translate-phrases li')[32].innerHTML + `" id="input` + cnt + `" data-placement="left"  onchange="checkInput(this.id);"><div class="input-group-append"><button class="btn btn-danger remVar" type="button"><span class="icon-cross"></span></button></div><div class="invalid-feedback">` + document.querySelectorAll('.translate-phrases li')[31].innerHTML + `</div></div>
+<div class="invalid-feedback">` + document.querySelectorAll('.translate-phrases li')[31].innerHTML + `</div></div>`;
 	}
 	auth(function () {
 		if (resultContent.json_metadata.data.title_image) {
@@ -509,7 +506,7 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 						<div id="EditPollForm">
 							<label>` + document.querySelectorAll('.translate-phrases li')[25].innerHTML + `</label>
 						</div>
-						</div><div class="varDiv">` + pollHTML + `</div><label class="label-error">At least 2 options should stay</label><span class="btn btn-secondary addvar" onclick="addvar()"><span class="icon-plus"></span></span><button class="btn btn-success apply"><span class="icon-checkmark"></span> Apply</button><button class="btn btn-danger cancel"><span class="icon-cross"></span> Cancel</button>`,
+						</div><div class="varDiv">` + pollHTML + `</div><label class="label-error">` + document.querySelectorAll('.translate-phrases li')[34].innerHTML + `</label><span class="btn btn-secondary addvar" onclick="addvar()"><span class="icon-plus"></span></span><button class="btn btn-success apply"><span class="icon-checkmark"></span> ` + document.querySelectorAll('.translate-phrases li')[35].innerHTML + `</button><button class="btn btn-danger cancel"><span class="icon-cross"></span> ` + document.querySelectorAll('.translate-phrases li')[36].innerHTML + `</button>`,
 			showCloseButton: true,
 			showConfirmButton: false,
 			width: 800,
@@ -568,9 +565,9 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 			});
 			console.log('newPollImages', newPollImages);
 			swal(
-				'Success',
-				'Your poll has been edited.',
-				'success'
+				'success',
+				document.querySelectorAll('.translate-phrases li')[33].innerHTML,
+				document.querySelectorAll('.translate-phrases li')[21].innerHTML
 			);
 		}
 	})
@@ -584,7 +581,7 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 				item.parentNode.parentNode.parentNode.remove();
 			} else {
 				document.querySelectorAll('.remVar').forEach(function (item) {
-					item.setAttribute('title', 'At least 2 options should stay');
+					item.setAttribute('title', document.querySelectorAll('.translate-phrases li')[34].innerHTML);
 				});
 				document.querySelector('.swal2-content .label-error').style.display = 'block';
 				document.querySelector('.addvar').style = 'margin-right: 96%; margin-top: -55px;'
@@ -598,13 +595,13 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 function addvar() {
 	var $div = document.createElement('div');
 	$div.innerHTML = `<div class="input-group mb-3">
-<div class="input-group-prepend"><img class="uplded-img-true" id="load-imag0" src="" width="35" height="35" style="display: none;"><div class="remImg" onclick="remImg(this)"><span class="icon-cross"></span></div><span class="btn btn-secondary" onclick="ipfsImgLoad(this)"><span class="icon-image"></span></span><input type="text" class="form-control" placeholder="Fill in this field" id="` + Date.now() + `" data-placement="left" onchange="checkInput(this.id);"><div class="input-group-append"><button class="btn btn-danger remVar" type="button"><span class="icon-cross"></span></button></div><div class="invalid-feedback">Please fill or remove empty fields</div></div><div class="invalid-feedback">Please fill or remove empty fields</div></div>`;
+<div class="input-group-prepend"><img class="uplded-img-true" id="load-imag0" src="" width="35" height="35" style="display: none;"><div class="remImg" onclick="remImg(this)"><span class="icon-cross"></span></div><span class="btn btn-secondary" onclick="ipfsImgLoad(this)"><span class="icon-image"></span></span><input type="text" class="form-control" placeholder="` + document.querySelectorAll('.translate-phrases li')[32].innerHTML + `" id="` + Date.now() + `" data-placement="left" onchange="checkInput(this.id);"><div class="input-group-append"><button class="btn btn-danger remVar" type="button"><span class="icon-cross"></span></button></div><div class="invalid-feedback">` + document.querySelectorAll('.translate-phrases li')[31].innerHTML + `</div></div><div class="invalid-feedback">` + document.querySelectorAll('.translate-phrases li')[31].innerHTML + `</div></div>`;
 	$div.querySelector('.remVar').addEventListener('click', () => {
 		if (document.querySelectorAll('.remVar').length > 2) {
 			$div.remove();
 		} else {
 			document.querySelectorAll('.remVar').forEach(function (item) {
-				$div.setAttribute('title', 'At least 2 options should stay');
+				$div.setAttribute('title', document.querySelectorAll('.translate-phrases li')[34].innerHTML);
 			});
 			document.querySelector('.swal2-content .label-error').style.display = 'block';
 			document.querySelector('.addvar').style = 'margin-right: 96%; margin-top: -55px;'
@@ -620,7 +617,7 @@ function addvar() {
 		document.querySelector('.addvar').style = 'margin-right: 96%; margin-top: 0;'
 	} else {
 		document.querySelectorAll('.remVar').forEach(function (item) {
-			$div.setAttribute('title', 'At least 2 options should stay');
+			$div.setAttribute('title', document.querySelectorAll('.translate-phrases li')[34].innerHTML);
 		});
 		document.querySelector('.swal2-content .label-error').style.display = 'block';
 		document.querySelector('.addvar').style = 'margin-right: 96%; margin-top: -55px;'

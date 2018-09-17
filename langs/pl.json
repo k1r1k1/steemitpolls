@@ -84,5 +84,20 @@
 	"Logout":"Wyloguj",
 	"Please fill or remove empty fields":"Proszę wypełnić lub usunąć puste pola",
 	"A lightweight JavaScript date library for parsing, validating, manipulating, и formatting dates":"Lekka biblioteka daty JavaScript do analizowania, sprawdzania poprawności, manipulowania i formatowania dat",
-	"is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework, и has automatic language detection":"jest podpisem składni napisanym w JavaScript, działa zarówno w przeglądarce, jak i na serwerze, działa praktycznie z każdym znacznikiem, nie zależy od żadnej struktury, и ma automatyczne wykrywanie języka"
+	"is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework, и has automatic language detection":"jest podpisem składni napisanym w JavaScript, działa zarówno w przeglądarce, jak i na serwerze, działa praktycznie z każdym znacznikiem, nie zależy od żadnej struktury, и ma automatyczne wykrywanie języka",
+	"If you have any ideas/problems/questions, you can report it":"Jeśli masz jakieś pomysły / problemy / pytania, możesz to zgłosić",
+	"On GitHub in Issues":"Na GitHub Issues",
+	"On Email":"W e-mailu",
+	"You can only vote once":"Możesz głosować tylko raz",
+	"Please wait for":"Proszę czekać na",
+	"seconds":"sekundy",
+	"delete the previous vote to vote again":"usuń poprzednie głosowanie, aby ponownie zagłosować",
+	"Please fill or remove empty fields":"Proszę wypełnić lub usunąć puste pola",
+	"Fill in this field":"Wypełnij to pole",
+	"Your poll has been edited":"Twoja ankieta została zmieniona",
+	"At least 2 options should stay":"Powinno pozostać co najmniej 2 opcje",
+	"Apply":"Zastosować",
+	"Cancel":"Anuluj",
+	"Failed to find post":"Nie udało się znaleźć wpisu",
+	"Your vote has been deleted":"Twój głos został usunięty"
 }

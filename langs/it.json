@@ -83,5 +83,20 @@
 	"Logout":"Disconnettersi",
 	"Please fill or remove empty fields":"Si prega di compilare o rimuovere campi vuoti",
 	"A lightweight JavaScript date library for parsing, validating, manipulating, и formatting dates":"Una libreria di date JavaScript leggera per l'analisi, la convalida, la manipolazione e le date di formattazione",
-	"is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework, и has automatic language detection":"è un evidenziatore di sintassi scritto in JavaScript, funziona sia nel browser che sul server, funziona praticamente con qualsiasi markup, non dipende da nessun framework, è dotato di rilevamento automatico della lingua"
+	"is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework, и has automatic language detection":"è un evidenziatore di sintassi scritto in JavaScript, funziona sia nel browser che sul server, funziona praticamente con qualsiasi markup, non dipende da nessun framework, è dotato di rilevamento automatico della lingua",
+	"If you have any ideas/problems/questions, you can report it":"Se hai idee / problemi / domande, puoi segnalarcelo",
+	"On GitHub in Issues":"Su GitHub in Problemi",
+	"On Email":"Su email",
+	"You can only vote once":"Puoi votare solo una volta",
+	"Please wait for":"Per favore aspetta",
+	"seconds":"secondi",
+	"delete the previous vote to vote again":"cancellare il voto precedente per votare di nuovo",
+	"Please fill or remove empty fields":"Si prega di compilare o rimuovere campi vuoti",
+	"Fill in this field":"Compila questo campo",
+	"Your poll has been edited":"Il sondaggio è stato modificato",
+	"At least 2 options should stay":"Almeno 2 opzioni dovrebbero rimanere",
+	"Apply":"Applicare",
+	"Cancel":"Annulla",
+	"Failed to find post":"Impossibile trovare post",
+	"Your vote has been deleted":"Il tuo voto è stato cancellato"
 }

@@ -85,5 +85,20 @@
 	"Logout":"登出",
 	"Please fill or remove empty fields":"请填写或删除空字段",
 	"A lightweight JavaScript date library for parsing, validating, manipulating, и formatting dates":"用于解析，验证，操作和格式化日期的轻量级JavaScript日期库",
-	"is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework, и has automatic language detection":"是用JavaScript编写的语法高亮显示器。它可以在浏览器和服务器上运行。它几乎可以用于任何标记，不依赖于任何框架，并且具有自动语言检测功能"
+	"is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework, и has automatic language detection":"是用JavaScript编写的语法高亮显示器。它可以在浏览器和服务器上运行。它几乎可以用于任何标记，不依赖于任何框架，并且具有自动语言检测功能",
+	"If you have any ideas/problems/questions, you can report it":"如果您有任何想法/问题/疑问，可以报告",
+	"On GitHub in Issues":"关于问题的GitHub",
+	"On Email":"在电子邮件",
+	"You can only vote once":"你只能投票一次",
+	"Please wait for":"请等一下",
+	"seconds":"秒",
+	"delete the previous vote to vote again":"删除之前的投票再次投票",
+	"Please fill or remove empty fields":"请填写或删除空白字段",
+	"Fill in this field":"填写此字段",
+	"Your poll has been edited":"您的民意调查已被编辑",
+	"At least 2 options should stay":"应至少保留2个选项",
+	"Apply":"应用",
+	"Cancel":"取消",
+	"Failed to find post":"找不到帖子",
+	"Your vote has been deleted":"您的投票已被删除"
 }

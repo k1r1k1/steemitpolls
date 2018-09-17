@@ -84,5 +84,20 @@
 	"Logout":"로그 아웃",
 	"Please fill or remove empty fields":"빈 칸을 채우거나 제거하십시오.",
 	"A lightweight JavaScript date library for parsing, validating, manipulating, и formatting dates":"구문 분석, 유효성 검사, 조작 및 날짜 서식 지정을위한 간단한 JavaScript 데이트 라이브러리",
-	"is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework, и has automatic language detection":"는 JavaScript로 작성된 구문 형광펜으로 브라우저뿐만 아니라 서버에서도 작동하며 모든 마크 업과 함께 작동하며 프레임 워크에 의존하지 않으며 자동 언어 감지 기능을 갖추고 있습니다"
+	"is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework, и has automatic language detection":"는 JavaScript로 작성된 구문 형광펜으로 브라우저뿐만 아니라 서버에서도 작동하며 모든 마크 업과 함께 작동하며 프레임 워크에 의존하지 않으며 자동 언어 감지 기능을 갖추고 있습니다",
+	"If you have any ideas/problems/questions, you can report it":"아이디어 / 문제 / 질문이 있으면보고 할 수 있습니다",
+	"On GitHub in Issues":"문제에 관한 GitHub",
+	"On Email":"On Email",
+	"You can only vote once":"한 번만 투표 할 수 있습니다",
+	"Please wait for":"기다려주세요",
+	"seconds":"초",
+	"delete the previous vote to vote again":"이전 투표를 삭제하고 다시 투표하십시오",
+	"Please fill or remove empty fields":"빈 칸을 채우거나 제거하십시오.",
+	"Fill in this field":"이 분야를 채우기",
+	"Your poll has been edited":"설문 조사가 수정되었습니다",
+	"At least 2 options should stay":"적어도 두 가지 옵션이 있어야합니다",
+	"Apply":"대다",
+	"Cancel":"취소",
+	"Failed to find post":"게시물을 찾지 못했습니다",
+	"Your vote has been deleted":"귀하의 투표가 삭제되었습니다"
 }

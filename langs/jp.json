@@ -84,5 +84,20 @@
 	"Logout":"ログアウト",
 	"Please fill or remove empty fields":"空のフィールドを埋めるか削除してください",
 	"A lightweight JavaScript date library for parsing, validating, manipulating, и formatting dates":"解析、検証、操作、日付の書式設定のための軽量のJavaScript日付ライブラリ",
-	"is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework, и has automatic language detection":"はJavaScriptで書かれたシンタックスハイライターです。これはブラウザとサーバーで動作します。ほとんどのマークアップで動作し、フレームワークに依存せず、自動言語検出が可能です"
+	"is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework, и has automatic language detection":"はJavaScriptで書かれたシンタックスハイライターです。これはブラウザとサーバーで動作します。ほとんどのマークアップで動作し、フレームワークに依存せず、自動言語検出が可能です",
+	"If you have any ideas/problems/questions, you can report it":"アイディア/問題/疑問がある場合は、それを報告することができます",
+	"On GitHub in Issues":"問題のGitHubについて",
+	"On Email":"メールで",
+	"You can only vote once":"あなたは一度だけ投票できます",
+	"Please wait for":"お待ちください",
+	"seconds":"秒",
+	"delete the previous vote to vote again":"前の投票を削除して再度投票する",
+	"Please fill or remove empty fields":"空欄を記入または削除してください",
+	"Fill in this field":"このフィールドに入力してください",
+	"Your poll has been edited":"あなたの投票は編集されました",
+	"At least 2 options should stay":"少なくとも2つのオプションは維持する必要があります",
+	"Apply":"適用",
+	"Cancel":"キャンセル",
+	"Failed to find post":"投稿を見つけることができませんでした",
+	"Your vote has been deleted":"あなたの投票は削除されました"
 }

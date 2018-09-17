@@ -85,5 +85,20 @@
 	"Logout":"Выйти",
 	"Please fill or remove empty fields":"Пожалуйста, заполните или удалите пустые поля",
 	"A lightweight JavaScript date library for parsing, validating, manipulating, и formatting dates":"Небольшая библиотека дат JavaScript для синтаксического анализа, проверки, управления и форматирования дат",
-	"is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework, и has automatic language detection":"это синтаксический ярлык, написанный на JavaScript. Он работает как в браузере, так и на сервере. Он работает практически с любой разметкой, не зависит от каких-либо фреймворков и имеет автоматическое определение языка"
+	"is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework, и has automatic language detection":"это синтаксический ярлык, написанный на JavaScript. Он работает как в браузере, так и на сервере. Он работает практически с любой разметкой, не зависит от каких-либо фреймворков и имеет автоматическое определение языка",
+	"If you have any ideas/problems/questions, you can report it":"Если у вас возникли проблемы/идеи/вопросы - можете сообщить нам",
+	"On GitHub in Issues":"В GitHub Issues",
+	"On Email":"По Email",
+	"You can only vote once":"Голосовать можно только один раз",
+	"Please wait for":"Пожалуйста, подождите",
+	"seconds":"секунд",
+	"delete the previous vote to vote again":"удалите существующий голос чтобы переголосовать",
+	"Please fill or remove empty fields":"Заполните или удалите пустые поля",
+	"Fill in this field":"Заполните это поле",
+	"Your poll has been edited":"Ваш опрос отредактирован успешно",
+	"At least 2 options should stay":"Должно быть как минимум два варианта",
+	"Apply":"Подтвердить",
+	"Cancel":"Отменить",
+	"Failed to find post":"Не удалось найти запись",
+	"Your vote has been deleted":"Ваш голос удален"
 }

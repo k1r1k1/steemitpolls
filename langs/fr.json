@@ -84,5 +84,20 @@
 	"Logout":"Connectez - Out",
 	"Please fill or remove empty fields":"Veuillez remplir ou supprimer les champs vides",
 	"A lightweight JavaScript date library for parsing, validating, manipulating, и formatting dates":"Une bibliothèque de date JavaScript légère pour l'analyse, la validation, la manipulation et les dates de mise en forme",
-	"is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework, и has automatic language detection":"est un surligneur syntaxique écrit en JavaScript. Il fonctionne aussi bien dans le navigateur que sur le serveur. Il fonctionne à peu près n'importe quel balisage, ne dépend d'aucun framework, et dispose d'une détection automatique du langage"
+	"is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework, и has automatic language detection":"est un surligneur syntaxique écrit en JavaScript. Il fonctionne aussi bien dans le navigateur que sur le serveur. Il fonctionne à peu près n'importe quel balisage, ne dépend d'aucun framework, et dispose d'une détection automatique du langage",
+	"If you have any ideas/problems/questions, you can report it":"Si vous avez des idées / problèmes / questions, vous pouvez le signaler",
+	"On GitHub in Issues":"Sur GitHub dans les numéros",
+	"On Email":"Sur l'email",
+	"You can only vote once":"Vous pouvez voter seulement une fois",
+	"Please wait for":"Attendez s'il vous plaît",
+	"seconds":"secondes",
+	"delete the previous vote to vote again":"supprimer le vote précédent pour voter à nouveau",
+	"Please fill or remove empty fields":"S'il vous plaît remplir ou supprimer des champs vides",
+	"Fill in this field":"Remplissez ce champ",
+	"Your poll has been edited":"Votre sondage a été modifié",
+	"At least 2 options should stay":"Au moins 2 options doivent rester",
+	"Apply":"Appliquer",
+	"Cancel":"Annuler",
+	"Failed to find post":"Échec de recherche post",
+	"Your vote has been deleted":"Votre vote a été supprimé"
 }

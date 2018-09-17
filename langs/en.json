@@ -85,5 +85,19 @@
 	"Пожалуйста, заполните или удалите пустые поля":"Please fill or remove empty fields",
 	"Небольшая библиотека дат JavaScript для синтаксического анализа, проверки, управления и форматирования дат":"A lightweight JavaScript date library for parsing, validating, manipulating, и formatting dates",
 	"это синтаксический ярлык, написанный на JavaScript. Он работает как в браузере, так и на сервере. Он работает практически с любой разметкой, не зависит от каких-либо фреймворков и имеет автоматическое определение языка":"is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework, и has automatic language detection",
-	"Если у вас возникли проблемы/идеи/вопросы - можете сообщить нам":"If you have any ideas/problems/questions, you can report it"
+	"Если у вас возникли проблемы/идеи/вопросы - можете сообщить нам":"If you have any ideas/problems/questions, you can report it",
+	"В GitHub Issues":"On GitHub in Issues",
+	"По Email":"On Email",
+	"Голосовать можно только один раз":"You can only vote once",
+	"Пожалуйста, подождите":"Please wait for",
+	"секунд":"seconds",
+	"удалите существующий голос чтобы переголосовать":"delete the previous vote to vote again",
+	"Заполните или удалите пустые поля":"Please fill or remove empty fields",
+	"Заполните это поле":"Fill in this field",
+	"Ваш опрос отредактирован успешно":"Your poll has been edited",
+	"Должно быть как минимум два варианта":"At least 2 options should stay",
+	"Подтвердить":"Apply",
+	"Отменить":"Cancel",
+	"Не удалось найти запись":"Failed to find post",
+	"Ваш голос удален":"Your vote has been deleted"
 }

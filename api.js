@@ -23,7 +23,7 @@ function progress_click(id) { // dummy for polling
 				if (err) {
 					swal({
 						type: 'error',
-						title: 'error',
+						title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
 						text: humaNize(err)
 					});
 				} else {
@@ -70,8 +70,8 @@ function getHash(callback) {
 			} else {
 				swal({
 					type: 'error',
-					title: 'error',
-					text: 'ERROR: Failed to find post'
+					title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
+					text: document.querySelectorAll('.translate-phrases li')[37].innerHTML
 				});
 				clearUpdTimer();
 			}
@@ -84,8 +84,8 @@ function sendVote(pollId, callback) {
 	getVote(() => {
 		if (tagNewPost) {
 			swal({
-				title: 'error',
-				text: 'Sorry, you have to wait for ' + counter + ' seconds before first vote',
+				title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
+				text: document.querySelectorAll('.translate-phrases li')[28].innerHTML + ' ' + counter + ' ' + document.querySelectorAll('.translate-phrases li')[29].innerHTML,
 				type: 'error'
 			})
 			return;
@@ -121,13 +121,13 @@ function sendVote(pollId, callback) {
 
 function tryVoteAgain() {
 	swal({
-		title: 'You can only vote once',
-		text: 'delete the previous vote to vote again',
+		title: document.querySelectorAll('.translate-phrases li')[27].innerHTML,
+		text: document.querySelectorAll('.translate-phrases li')[30].innerHTML,
 		type: 'error',
 		showCancelButton: true,
 		confirmButtonColor: '#d33',
 		cancelButtonColor: '#3085d6',
-		confirmButtonText: 'Yes, delete it!',
+		confirmButtonText: document.querySelectorAll('.translate-phrases li')[35].innerHTML,
 		reverseButtons: true
 	}).then((result) => {
 		if (result.value) {
@@ -141,7 +141,7 @@ function removeMyVote() {
 		if (err) {
 			swal(
 				'error',
-				'err',
+				document.querySelectorAll('.translate-phrases li')[15].innerHTML,
 				err
 			)
 			console.error(err);
@@ -149,8 +149,8 @@ function removeMyVote() {
 		insertHtmlPoll(resultContent);
 	});
 	swal(
-		'Deleted!',
-		'Your vote has been deleted.',
+		document.querySelectorAll('.translate-phrases li')[21].innerHTML,
+		document.querySelectorAll('.translate-phrases li')[38].innerHTML,
 		'success'
 	)
 	console.log(result);
