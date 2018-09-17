@@ -102,7 +102,7 @@
 	"Your vote has been deleted":"귀하의 투표가 삭제되었습니다",
 	"Usage example GolosPolls widget":"사용 예 GolosPolls 위젯",
 	"Put this script tag to the <head> of your page":"이 스크립트 태그를 페이지의 <head>에 넣으십시오.",
-	"Put this div and script tags to the place, where the Poll block will be":"이 div 태그와 script 태그를 Poll 블록이있는 위치에 놓습니다.",
+	"Put this tags to the place, where the Poll block will be":"이 div 태그와 script 태그를 Poll 블록이있는 위치에 놓습니다.",
 	"live integration":"실시간 통합",
 	"example":"예"
 }

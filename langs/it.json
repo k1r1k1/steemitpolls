@@ -101,7 +101,7 @@
 	"Your vote has been deleted":"Il tuo voto è stato cancellato",
 	"Usage example GolosPolls widget":"Esempio di utilizzo Widget GolosPolls",
 	"Put this script tag to the <head> of your page":"Metti questo tag script sul <head> della tua pagina",
-	"Put this div and script tags to the place, where the Poll block will be":"Metti questi tag div e script sul posto, dove sarà il blocco Sondaggio",
+	"Put this tags to the place, where the Poll block will be":"Metti questi tag div e script sul posto, dove sarà il blocco Sondaggio",
 	"live integration":"integrazione live",
 	"example":"esempio"
 }

@@ -102,7 +102,7 @@
 	"Ваш голос удален":"Your vote has been deleted",
 	"Пример использования":"Usage example GolosPolls widget",
 	"Поместите этот код в блок <head> вашей страницы":"Put this script tag to the <head> of your page",
-	"Поместите этот код в место, где хотите видеть виджет":"Put this div and script tags to the place, where the Poll block will be",
+	"Поместите этот код в место, где хотите видеть виджет":"Put this tags to the place, where the Poll block will be",
 	"Живой":"live integration",
 	"пример":"example"
 }
