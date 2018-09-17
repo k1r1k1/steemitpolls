@@ -100,5 +100,10 @@
 	"Apply":"Застосувати",
 	"Cancel":"Скасувати",
 	"Failed to find post":"Не вдалося знайти повідомлення",
-	"Your vote has been deleted":"Ваш голос був знищений"
+	"Your vote has been deleted":"Ваш голос був знищений",
+	"Usage example GolosPolls widget":"Приклад використання",
+	"Put this script tag to the <head> of your page":"Покладіть цей тег сценарію на <head> своєї сторінки",
+	"Put this div and script tags to the place, where the Poll block will be":"Покладіть ці теги div та сценарії до місця, де буде блок Poll",
+	"live integration":"жива інтеграція",
+	"example":"приклад"
 }

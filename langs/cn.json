@@ -100,5 +100,10 @@
 	"Apply":"应用",
 	"Cancel":"取消",
 	"Failed to find post":"找不到帖子",
-	"Your vote has been deleted":"您的投票已被删除"
+	"Your vote has been deleted":"您的投票已被删除",
+	"Usage example GolosPolls widget":"用法示例GolosPolls小部件",
+	"Put this script tag to the <head> of your page":"将此脚本标记放在页面的<head>中",
+	"Put this div and script tags to the place, where the Poll block will be":"将此div和脚本标记放在Poll块所在的位置",
+	"live integration":"实时整合",
+	"example":"例"
 }

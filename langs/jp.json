@@ -99,5 +99,10 @@
 	"Apply":"適用",
 	"Cancel":"キャンセル",
 	"Failed to find post":"投稿を見つけることができませんでした",
-	"Your vote has been deleted":"あなたの投票は削除されました"
+	"Your vote has been deleted":"あなたの投票は削除されました",
+	"Usage example GolosPolls widget":"使用例GolosPollsウィジェット",
+	"Put this script tag to the <head> of your page":"このスクリプトタグをあなたのページの<head>に入れてください",
+	"Put this div and script tags to the place, where the Poll block will be":"このdivタグとscriptタグを、Pollブロックが置かれる場所に配置します。",
+	"live integration":"ライブ統合",
+	"example":"例"
 }

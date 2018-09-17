@@ -99,5 +99,10 @@
 	"Apply":"Zastosować",
 	"Cancel":"Anuluj",
 	"Failed to find post":"Nie udało się znaleźć wpisu",
-	"Your vote has been deleted":"Twój głos został usunięty"
+	"Your vote has been deleted":"Twój głos został usunięty",
+	"Usage example GolosPolls widget":"Przykład użycia Widżet GolosPolls",
+	"Put this script tag to the <head> of your page":"Umieść ten tag skryptu na <head> swojej strony",
+	"Put this div and script tags to the place, where the Poll block will be":"Umieść te znaczniki div i script w miejscu, w którym będzie blokada ankiety",
+	"live integration":"integracja na żywo",
+	"example":"przykład"
 }
