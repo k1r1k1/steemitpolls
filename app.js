@@ -102,7 +102,7 @@ function insertHtmlPoll(resultContent) {
 	document.getElementById('complete-form').scrollIntoView();
 	document.querySelector('#cplkint').value = 'https://golospolls.com/#' + resultContent.author + '/' + resultContent.permlink;
 	document.querySelector('#cpcdint').value = `<!-- Put this script tag to the <head> of your page --> <script src="https://golospolls.com/inject.js"></script><!-- Put this div and script tags to the place, where the Poll block will be --> <div class="gPolls"></div><script type="text/javascript">var gPollsWidth = '300', gPollsLink = '` + resultContent.author + `/` + resultContent.permlink + `';</script>`;
-	startUpdProgTimer(3500);
+	startUpdProgTimer(4815);
 	// inserting social buttons
 	var $div = document.createElement('div');
 	$div.innerHTML = `<a class="btn share-fb" href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&u=https%3A%2F%2Fgolospolls.com%2F#` + resultContent.author + `%2F` + resultContent.permlink + `&display=popup&ref=plugin&src=share_button" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><span class="icon-facebook2"> Share</span></a>
@@ -228,7 +228,7 @@ function completeForm(callback) {
 	console.log('json var : ' + answers); // debug info
 	console.log('title : ' + title);
 	console.log('json answerimages : ' + answerimages);
-	send_request(str, title, jsonMetadata);
+	send_request(str, title, jsonMetadata, true);
 }
 
 function checkInput(id) {
@@ -241,25 +241,27 @@ function checkInput(id) {
 	console.log('value: ', document.getElementById(id).value);
 }
 
-function send_request(str, title, jsonMetadata, callback) {
+function send_request(str, title, jsonMetadata, tagNewPost, callback) {
 	console.log('<f> send_request');
 	var parentAuthor = ''; // for post creating, empty field
 	var parentPermlink = 'test'; // main tag
 	var body = 'test';
 	golos.broadcast.comment(wif.posting, parentAuthor, parentPermlink, username, str, title, body, jsonMetadata, function (err, result) {
 		if (!err) {
+			clearUpdTimer();
 			window.location.hash = username + '/' + str;
-			tagNewPost = true;
-			clearTimeout(newPostTimout);
-			counter = 24;
-			newPostTimout = setInterval(function () {
-				counter--;
-				console.log('counter =', counter);
-				if (counter == 0) {
-					clearTimeout(newPostTimout);
-					tagNewPost = false;
-				}
-			}, 1000);
+			if (tagNewPost) {
+				clearTimeout(newPostTimout);
+				counter = 24;
+				newPostTimout = setInterval(function () {
+					counter--;
+					console.log('counter =', counter);
+					if (counter == 0) {
+						clearTimeout(newPostTimout);
+						tagNewPost = false;
+					}
+				}, 1000);
+			}
 		} else {
 			clearTimeout(newPostTimout);
 			swal({
@@ -487,17 +489,14 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 		}
 		pollHTML = pollHTML + `<div class="input-group mb-3" id="option` + cnt + `"><div class="input-group-prepend"><img class="uplded-img-true" id="load-imag` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="35" height="35"` + $imageEdit + `><div class="remImg" onclick="remImg(this)"><span class="icon-cross"></span></div><span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span></span><input type="text" class="form-control" value="` + resultContent.json_metadata.data.poll_answers[cnt] + `" placeholder="` + document.querySelectorAll('.translate-phrases li')[32].innerHTML + `" id="input` + cnt + `" data-placement="left"  onchange="checkInput(this.id);"><div class="input-group-append"><button class="btn btn-danger remVar" type="button"><span class="icon-cross"></span></button></div><div class="invalid-feedback">` + document.querySelectorAll('.translate-phrases li')[31].innerHTML + `</div></div><div class="invalid-feedback">` + document.querySelectorAll('.translate-phrases li')[31].innerHTML + `</div></div>`;
 	}
-	let frag = document.createRange().createContextualFragment(pollHTML);
+	let frag = document.createRange().createContextualFragment(pollHTML); // create dom element
 		frag.querySelectorAll('.uplded-img-true').forEach(function (item) {
 			if (item.src != location.origin + location.pathname) {
-				console.log('item src=', item.src);
-				/*item.parentNode.querySelector('.remImg').style.display = 'block';*/
-				item.parentNode.querySelector('.remImg').setAttribute('style', 'display: block;');
-				console.log('remImg =', item.parentNode.querySelector('.remImg'));
+				item.parentNode.querySelector('.remImg').setAttribute('style', 'display: block;'); // set needed elements avalible
 			}
 		})
-	const serializer = new XMLSerializer();
-	const document_fragment_string = serializer.serializeToString(frag);
+	var serializer = new XMLSerializer(),
+	document_fragment_string = serializer.serializeToString(frag); // parse dom element back to the string
 	pollHTML = document_fragment_string;
 	auth(function () {
 		if (resultContent.json_metadata.data.title_image) {
@@ -505,7 +504,6 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 		} else {
 			$imageEdit = 'style="display: none;"';
 		}
-		console.log(resultContent.json_metadata.data.title_image);
 		swal({
 			html: `<div class="form-group-swal">
 							<label>` + document.querySelectorAll('.translate-phrases li')[23].innerHTML + `</label>
@@ -568,7 +566,7 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 		console.log('title_image:', $titleImage);
 		console.log('poll_images:', newPollImages);
 		if (!err) {
-			send_request(resultContent.permlink, document.querySelector('.title.edit').value, jsonMetadata_edit, function () {
+			send_request(resultContent.permlink, document.querySelector('.title.edit').value, jsonMetadata_edit, false, function () {
 				getHash(function (resultContent) {
 					insertHtmlPoll(resultContent);
 				});
