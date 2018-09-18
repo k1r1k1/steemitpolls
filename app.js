@@ -485,10 +485,20 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 		} else {
 			$imageEdit = 'style="display: none;"';
 		}
-		pollHTML = pollHTML + `<div class="input-group mb-3" id="option` + cnt + `">
-<div class="input-group-prepend"><img class="uplded-img-true" id="load-imag` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="35" height="35"` + $imageEdit + `><div class="remImg" onclick="remImg(this)"><span class="icon-cross"></span></div><span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span></span><input type="text" class="form-control" value="` + resultContent.json_metadata.data.poll_answers[cnt] + `" placeholder="` + document.querySelectorAll('.translate-phrases li')[32].innerHTML + `" id="input` + cnt + `" data-placement="left"  onchange="checkInput(this.id);"><div class="input-group-append"><button class="btn btn-danger remVar" type="button"><span class="icon-cross"></span></button></div><div class="invalid-feedback">` + document.querySelectorAll('.translate-phrases li')[31].innerHTML + `</div></div>
-<div class="invalid-feedback">` + document.querySelectorAll('.translate-phrases li')[31].innerHTML + `</div></div>`;
+		pollHTML = pollHTML + `<div class="input-group mb-3" id="option` + cnt + `"><div class="input-group-prepend"><img class="uplded-img-true" id="load-imag` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="35" height="35"` + $imageEdit + `><div class="remImg" onclick="remImg(this)"><span class="icon-cross"></span></div><span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span></span><input type="text" class="form-control" value="` + resultContent.json_metadata.data.poll_answers[cnt] + `" placeholder="` + document.querySelectorAll('.translate-phrases li')[32].innerHTML + `" id="input` + cnt + `" data-placement="left"  onchange="checkInput(this.id);"><div class="input-group-append"><button class="btn btn-danger remVar" type="button"><span class="icon-cross"></span></button></div><div class="invalid-feedback">` + document.querySelectorAll('.translate-phrases li')[31].innerHTML + `</div></div><div class="invalid-feedback">` + document.querySelectorAll('.translate-phrases li')[31].innerHTML + `</div></div>`;
 	}
+	let frag = document.createRange().createContextualFragment(pollHTML);
+		frag.querySelectorAll('.uplded-img-true').forEach(function (item) {
+			if (item.src != location.origin + location.pathname) {
+				console.log('item src=', item.src);
+				/*item.parentNode.querySelector('.remImg').style.display = 'block';*/
+				item.parentNode.querySelector('.remImg').setAttribute('style', 'display: block;');
+				console.log('remImg =', item.parentNode.querySelector('.remImg'));
+			}
+		})
+	const serializer = new XMLSerializer();
+	const document_fragment_string = serializer.serializeToString(frag);
+	pollHTML = document_fragment_string;
 	auth(function () {
 		if (resultContent.json_metadata.data.title_image) {
 			$imageEdit = '';
@@ -502,7 +512,7 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 							<input type="text" class="form-control title edit" value="` + resultContent.json_metadata.data.poll_title + `" placeholder="Type your text here" onchange="checkInput(this.id);">
 							<label for="exampleFormControlTextarea1">` + document.querySelectorAll('.translate-phrases li')[24].innerHTML + `</label>
 							<textarea class="form-control" id="pollDescriptionInput" rows="3" maxlength="300">` + resultContent.json_metadata.data.poll_description + `</textarea>
-							<br><img class="uplded-img-true" id="load-imag" src="` + resultContent.json_metadata.data.title_image + `" width="35" height="35" ` + $imageEdit + ` ><div class="remImg" onclick="remImg(this)"><span class="icon-cross"></span></div><span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span> Add main image</span>
+							<br><img class="uplded-img-true" id="load-imag" src="` + resultContent.json_metadata.data.title_image + `" width="35" height="35" ` + $imageEdit + ` ><div class="remImg" onclick="remImg(this)" style="display: block;"><span class="icon-cross"></span></div><span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span> Add main image</span>
 						<div id="EditPollForm">
 							<label>` + document.querySelectorAll('.translate-phrases li')[25].innerHTML + `</label>
 						</div>
@@ -564,11 +574,11 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 				});
 			});
 			console.log('newPollImages', newPollImages);
-			swal(
-				'success',
-				document.querySelectorAll('.translate-phrases li')[33].innerHTML,
-				document.querySelectorAll('.translate-phrases li')[21].innerHTML
-			);
+			swal({
+					type: 'success',
+					title: document.querySelectorAll('.translate-phrases li')[33].innerHTML,
+					text: document.querySelectorAll('.translate-phrases li')[21].innerHTML
+				});
 		}
 	})
 	document.querySelector('.cancel').addEventListener('click', () => {
