@@ -654,7 +654,6 @@ function about() {
 		width: 600,
 		padding: '1rem',
 		showCloseButton: 'true',
-		//onClose: DeleteUnsavedImages
 	}).then(function () {
 		location.hash = '';
    });
@@ -670,7 +669,9 @@ function integration() {
 		width: 600,
 		padding: '1rem',
 		showCloseButton: 'true'
-	});
+	}).then(function () {
+		location.hash = '';
+   });
 }
 
 document.querySelector('.navbar-collapse').addEventListener('click', () => { // hides mobilenavs onclick
@@ -685,11 +686,13 @@ function remImg(e) {
 	document.querySelector('#imagesSelector').remove();
 }
 
-document.getElementById('support').addEventListener('click', () => {
+function support() {
 	swal({
 		html: document.getElementById('support-body').innerHTML,
 		showCloseButton: true,
 		width: 600,
 		type: 'question'
-	})
-});
+	}).then(function () {
+		location.hash = '';
+   });
+}
