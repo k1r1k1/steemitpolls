@@ -3,5 +3,6 @@
 	"\"You may only post once every 5 minutes.\"":"你每5分钟只能发一次。",
 	"\"You may only comment once every 20 seconds.\"":"你每20秒只能评论一次。",
 	"Error: The WS connection was closed before this operation was made":"错误：在执行此操作之前，WS连接已关闭",
-	"TypeError: Failed to fetch":"IPFS-node 错误"
+	"TypeError: Failed to fetch":"IPFS-node 错误",
+	"Error: Internal error: Unable to acquire READ lock (see err.payload for the full error payload)":"接收错误（已阻止）"
 }

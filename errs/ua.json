@@ -3,5 +3,6 @@
 	"\"You may only post once every 5 minutes.\"":"Ви можете публікувати лише один раз на 5 хвилин",
 	"\"You may only comment once every 20 seconds.\"":"Ви можете коментувати лише кожні 20 секунд",
 	"Error: The WS connection was closed before this operation was made":"З'єднання з сервером втрачено",
-	"TypeError: Failed to fetch":"Помилка IPFS-node"
+	"TypeError: Failed to fetch":"Помилка IPFS-node",
+	"Error: Internal error: Unable to acquire READ lock (see err.payload for the full error payload)":"Отримання помилки (заблоковано)"
 }

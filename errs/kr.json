@@ -3,5 +3,6 @@
 	"\"You may only post once every 5 minutes.\"":"5 분마다 한 번만 게시 할 수 있습니다",
 	"\"You may only comment once every 20 seconds.\"":"20 초마다 한 번만 의견을 말할 수 있습니다",
 	"Error: The WS connection was closed before this operation was made":"오류 :이 작업을 수행하기 전에 WS 연결이 닫혔습니다",
-	"TypeError: Failed to fetch":"IPFS-node 오류"
+	"TypeError: Failed to fetch":"IPFS-node 오류",
+	"Error: Internal error: Unable to acquire READ lock (see err.payload for the full error payload)":"수신 오류 (차단됨)"
 }

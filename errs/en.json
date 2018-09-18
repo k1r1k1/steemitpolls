@@ -4,5 +4,5 @@
 	"\"You may only comment once every 20 seconds.\"":"You may only comment once every 20 seconds",
 	"Error: The WS connection was closed before this operation was made":"Server connection lost",
 	"TypeError: Failed to fetch":"IPFS-node error",
-	"Error: Internal error: Unable to acquire READ lock (see err.payload for the full error payload)":"Connection timeout"
+	"Error: Internal error: Unable to acquire READ lock (see err.payload for the full error payload)":"Receiving error (blocked)"
 }
