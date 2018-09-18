@@ -1,34 +1,16 @@
-var golosJs, momentJs, sweetAlert, gAuth, gPollsApi, bootstrapMin, gPollsStyle, gPollsWidth, gPollsLink, gPollsContainer;
-
-bootstrapJs = document.createElement('script');
-bootstrapJs.src = 'https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.23/dist/bootstrap-native-v4.min.js';
-(document.head || document.documentElement).appendChild(bootstrapJs);
-
-golosJs = document.createElement('script');
-golosJs.src = 'https://cdn.jsdelivr.net/npm/golos-js@0.7.2/dist/golos.min.js';
-(document.head || document.documentElement).appendChild(golosJs);
-
-momentJs = document.createElement('script');
-momentJs.src = 'https://cdn.jsdelivr.net/npm/moment@2.21.0/min/moment.min.js';
-(document.head || document.documentElement).appendChild(momentJs);
-
-sweetAlert = document.createElement('script');
-sweetAlert.src = 'https://cdn.jsdelivr.net/npm/sweetalert2@7.19.1/dist/sweetalert2.all.min.js';
-(document.head || document.documentElement).appendChild(sweetAlert);
-
-gAuth = document.createElement('script');
-gAuth.src = 'https://golospolls.com/auth.js';
-(document.head || document.documentElement).appendChild(gAuth);
-
-gApi = document.createElement('script');
-gApi.src = 'https://golospolls.com/api.js';
-(document.head || document.documentElement).appendChild(gApi);
-
-bootstrapMin = document.createElement('link');
-bootstrapMin.rel = 'stylesheet';
-bootstrapMin.type = 'text/css';
-bootstrapMin.href = 'https://golospolls.com/inject.css';
-(document.head || document.documentElement).appendChild(bootstrapMin);
+var allJs = `<script src="https://cdn.jsdelivr.net/npm/i18next@11.2.3/i18next.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/i18next-xhr-backend@1.5.1/i18nextXHRBackend.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.23/dist/bootstrap-native-v4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/golos-js@0.7.2/dist/golos.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.21.0/min/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.19.1/dist/sweetalert2.all.min.js"></script>
+<script src="https://golospolls.com/auth.js"></script>
+<script src="https://golospolls.com/api.js"></script>
+<link rel="stylesheet" type="text/css" href="https://golospolls.com/inject.css">
+<script src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@2.2.0/i18nextBrowserLanguageDetector.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/findandreplacedomtext@0.4.6/src/findAndReplaceDOMText.min.js"></script>`;
+allJs = document.createRange().createContextualFragment(allJs); // create dom element
+(document.head || document.documentElement).appendChild(allJs);
 
 function incertHtmlPoll(resultContent) {
 	console.log('<f> incertHtmlPoll inject');

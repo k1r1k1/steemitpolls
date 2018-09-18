@@ -25,12 +25,12 @@ window.onhashchange = function () {
 	});
 }
 
-document.onreadystatechange = function () { // loading animation switch-off
+document.onreadystatechange = function () {
 	console.log('<f> doc ready');
 	if (document.readyState === "complete") {
 		addInactiveInput();
 		addPollingInputs();
-		addPollingInputs(); // add 2nd active field in a polling form
+		addPollingInputs(); // add active field in a polling form
 		document.querySelector('.lding').style.display = 'none';
 		// temporary autofill
 		document.querySelector('.title').value = Date.now() + '- Hello world!';
@@ -79,7 +79,6 @@ function insertHtmlPoll(resultContent) {
 	}
 	if (resultContent.json_metadata.data.poll_description) $div.innerHTML = $div.innerHTML + '<br><label class="">' + resultContent.json_metadata.data.poll_description + '</label>';
 	document.querySelector('.card-body.text-dark').appendChild($div);
-
 	getVote(function () {
 		for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress 
 			var $div = document.createElement('div');

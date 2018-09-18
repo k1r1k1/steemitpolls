@@ -13,7 +13,89 @@ var resultContent = '', // global variable for content
 	currentLang,
 	tagNewPost,
 	counter, // for poll after creating a new post 
-	hash = location.hash.substring(1); // geting hash
+	hash = location.hash.substring(1), // geting hash
+	$translatePhrases = document.createElement('div'); // inserting header in poll
+	$translatePhrases.innerHTML = `<ul class="translate-phrases" style="display: none;">
+		0
+		<li>Make your choice</li>
+		1
+		<li>Created</li>
+		2
+		<li>Variants</li>
+		3
+		<li>Poll title</li>
+		4
+		<li>Voters</li>
+		5
+		<li>Leading</li>
+		6
+		<li>Type your text here</li>
+		7
+		<li>Yes, just do it!</li>
+		8
+		<li>You do not have any polls yet</li>
+		9
+		<li>Thanks for making your choice!</li>
+		10
+		<li>Link has been copied</li>
+		11
+		<li>Code has been copied</li>
+		12
+		<li>Click here to add a new one</li>
+		13
+		<li>Your polling form has been compiled</li>
+		14
+		<li>Don't forget to share it!</li>
+		15
+		<li>error</li>
+		16
+		<li>You won't be able to revert this!</li>
+		17
+		<li>no one voted</li>
+		18
+		<li>Please, enter the title and the polling fields</li>
+		19
+		<li>Are you sure?</li>
+		20
+		<li>List of your polls</li>
+		21
+		<li>Success</li>
+		22
+		<li>Remove vote</li>
+		23
+		<li>Enter the title</li>
+		24
+		<li>Enter description (not necessary)</li>
+		25
+		<li>Fill in the following fields</li>
+		26
+		<li>Please add at least two answers</li>
+		27
+		<li>You can only vote once</li><!--api.js-->
+		28
+		<li>Please wait for</li><!--api.js-->
+		29
+		<li>seconds</li><!--api.js-->
+		30
+		<li>delete the previous vote to vote again</li><!--api.js-->
+		31
+		<li>Please fill or remove empty fields</li>
+		32
+		<li>Fill in this field</li>
+		33
+		<li>Your poll has been edited</li>
+		34
+		<li>At least 2 options should stay</li>
+		35
+		<li>Apply</li>
+		36
+		<li>Cancel</li>
+		37
+		<li>Failed to find post</li>
+		38
+		<li>Your vote has been deleted</li>
+	</ul>`;
+	document.querySelector('body').appendChild($translatePhrases);
 
 function progress_click(id) { // dummy for polling
 	console.log('<f> progress_click #' + id);
