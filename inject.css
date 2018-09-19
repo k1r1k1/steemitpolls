@@ -10,7 +10,7 @@
 }
 
 .gPolls a {
-	vertical-align: bottom;
+	vertical-align: super;
 	color: #007bff;
 	text-decoration: none;
 	background-color: transparent;
@@ -73,7 +73,7 @@
 }
 
 .gPolls .badge {
-	margin: 0 .3rem;
+	margin: -.05rem .3rem;
 }
 
 /* bootstrap native */

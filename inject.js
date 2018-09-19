@@ -1,14 +1,16 @@
 var allJs = `<script src="https://cdn.jsdelivr.net/npm/i18next@11.2.3/i18next.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/i18next-xhr-backend@1.5.1/i18nextXHRBackend.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@2.2.0/i18nextBrowserLanguageDetector.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/findandreplacedomtext@0.4.6/src/findAndReplaceDOMText.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.23/dist/bootstrap-native-v4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/golos-js@0.7.2/dist/golos.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/moment@2.21.0/min/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.19.1/dist/sweetalert2.all.min.js"></script>
+<script src="https://golosimages.com/lang.js"></script>
 <script src="https://golospolls.com/auth.js"></script>
-<script src="https://golospolls.com/api.js"></script>
-<link rel="stylesheet" type="text/css" href="https://golospolls.com/inject.css">
-<script src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@2.2.0/i18nextBrowserLanguageDetector.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/findandreplacedomtext@0.4.6/src/findAndReplaceDOMText.min.js"></script>`;
+<script src="api.js"></script>
+<script src="golosErrs.js"></script>
+<link rel="stylesheet" type="text/css" href="inject.css">`;
 allJs = document.createRange().createContextualFragment(allJs); // create dom element
 (document.head || document.documentElement).appendChild(allJs);
 
@@ -47,6 +49,13 @@ function incertHtmlPoll(resultContent) {
 	});
 	document.querySelector('.card.border-primary.mb-3 a').href = 'https://golospolls.com/#' + resultContent.author + '/' + resultContent.permlink;
 	startUpdProgTimer(3500);
+}
+
+function updateProgressValues() {
+	console.log('<f> updateProgressValues');
+	getVote(function () {
+		document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">' + moment(resultContent.created).format('lll') + '</span>';
+	})
 }
 
 window.addEventListener('load', function () { // init script after page loaded

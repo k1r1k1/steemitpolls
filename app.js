@@ -7,7 +7,6 @@ golos.config.set('websocket', 'wss://ws.testnet.golos.io');*/
 
 var inputsC = 0,
 	newPostTimout; // inputs counter
-initLang('en'); // lang init = en
 if (hash != '') {
 	getHash(function (resultContent) {
 		insertHtmlPoll(resultContent);
@@ -39,27 +38,6 @@ document.onreadystatechange = function () {
 		document.querySelector('#inputOption2').value = 'Second option';
 		document.querySelector('.footer').scrollIntoView();
 		// end autofill
-		// variable in valid format moment.js
-		switch (localStorage.lang) {
-			case 'ua':
-				currentLang = 'uk';
-				break;
-			case 'by':
-				currentLang = 'be';
-				break;
-			case 'cn':
-				currentLang = 'zh-cn';
-				break;
-			case 'kr':
-				currentLang = 'ko';
-				break;
-			case 'jp':
-				currentLang = 'ja';
-				break;
-			default:
-				currentLang = localStorage.lang;
-				moment.locale(currentLang);
-		}
 	}
 }
 
@@ -111,6 +89,25 @@ function insertHtmlPoll(resultContent) {
 <a class="btn share-golos" role="button" onclick="reblogGolos();return false;"><span></span>Reblog</a>`;
 	document.querySelector('.socialButtons').innerHTML = '';
 	document.querySelector('.socialButtons').appendChild($div);
+}
+
+function updateProgressValues() {
+	console.log('<f> updateProgressValues');
+	getVote(function () {
+			document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">' + document.querySelectorAll('.translate-phrases li')[4].innerHTML + ': ' + countOfVoters + '</span><span class="badge badge-info">' + document.querySelectorAll('.translate-phrases li')[1].innerHTML + ': ' + moment(resultContent.created).format('lll') + '</span>'
+		if (document.querySelector('.rem-vote')) {
+			if (checkToVote) {
+				document.querySelector('.rem-vote').style.display = 'inline-block';
+			} else {
+				document.querySelector('.rem-vote').style.display = 'none';
+			}
+			if (countOfVoters == 0) {
+				document.querySelector('.edit-poll').style.display = 'inline-block';
+			} else {
+				document.querySelector('.edit-poll').style.display = 'none';
+			}
+		}
+	})
 }
 
 function CopyLinkToClipboard() {

@@ -5,17 +5,37 @@
 /*golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
 golos.config.set('websocket', 'wss://ws.testnet.golos.io');*/
 
+initLang('en'); // lang init = en
+// variable in valid format moment.js
+switch (localStorage.lang) {
+	case 'ua':
+		moment.locale('uk');
+		break;
+	case 'by':
+		moment.locale('be');
+		break;
+	case 'cn':
+		moment.locale('zh-cn');
+		break;
+	case 'kr':
+		moment.locale('ko');
+		break;
+	case 'jp':
+		moment.locale('ja');
+		break;
+	default:
+		moment.locale(localStorage.lang);
+}
+
 var resultContent = '', // global variable for content
 	pollData = {}, // polling answers
 	countOfVoters,
 	checkToVote = false,
 	updProgressTimer,
-	currentLang,
 	tagNewPost,
 	counter, // for poll after creating a new post 
 	hash = location.hash.substring(1), // geting hash
-	$translatePhrases = document.createElement('div'); // inserting header in poll
-	$translatePhrases.innerHTML = `<ul class="translate-phrases" style="display: none;">
+	$translatePhrases = `<ul class="translate-phrases" style="display: none;">
 		0
 		<li>Make your choice</li>
 		1
@@ -95,7 +115,8 @@ var resultContent = '', // global variable for content
 		38
 		<li>Your vote has been deleted</li>
 	</ul>`;
-	document.querySelector('body').appendChild($translatePhrases);
+$translatePhrases = document.createRange().createContextualFragment($translatePhrases); // create dom element
+(document.body || document.documentElement).appendChild($translatePhrases);
 
 function progress_click(id) { // dummy for polling
 	console.log('<f> progress_click #' + id);
@@ -258,10 +279,10 @@ function getVote(callback) { // getting poll data
 							percnt: 0
 						};
 						countOfVoters++;
-						console.log('countOfVoters', countOfVoters);
+						/*console.log('countOfVoters', countOfVoters);*/
 						pollData[item.json_metadata.data.poll_id].count++;
 					}
-					console.log('comments:', item);
+					/*console.log('comments:', item);*/
 					if (typeof wif != 'undefined') {
 						if (username == item.author) { // check if already voted
 							checkToVote = {};
@@ -274,7 +295,7 @@ function getVote(callback) { // getting poll data
 					}
 				}
 			});
-			console.log('countOfVoters', countOfVoters);
+			/*console.log('countOfVoters', countOfVoters);*/
 			Object.keys(pollData).map(function (objectKey, index) { // foreach pollData
 				pollData[objectKey].percnt = Math.round((pollData[objectKey].count * 100) / countOfVoters); // calculate percent
 			});
@@ -289,7 +310,7 @@ function getVote(callback) { // getting poll data
 							document.querySelectorAll('.progress-bar')[checkToVote.poll_id].classList.add('bg-success');
 							document.querySelectorAll('.progress-bar')[checkToVote.poll_id].innerHTML = '<span class="icon-checkmark"> ' + pollData[index].percnt + '% (' + pollData[index].count + ') - your vote' + '</span>';
 						}
-						console.log('my Comment:', username, checkToVote);
+						/*						console.log('my Comment:', username, checkToVote);*/
 					}
 				} else if (document.querySelectorAll('.progress-bar')[index]) {
 					document.querySelectorAll('.progress-bar')[index].style = 'width: 0%;';
@@ -305,29 +326,6 @@ function getVote(callback) { // getting poll data
 		}
 		if (callback) callback();
 	});
-}
-
-function updateProgressValues() {
-	getVote(function () {
-		// console.log('<f> updateProgressValues');
-		if (!document.querySelectorAll('.translate-phrases li')[4]) {
-			document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">' + moment(resultContent.created).format('lll') + '</span>';
-		} else {
-			document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">' + document.querySelectorAll('.translate-phrases li')[4].innerHTML + ': ' + countOfVoters + '</span><span class="badge badge-info">' + document.querySelectorAll('.translate-phrases li')[1].innerHTML + ': ' + moment(resultContent.created).format('lll') + '</span>'
-		}
-		if (document.querySelector('.rem-vote')) {
-			if (checkToVote) {
-				document.querySelector('.rem-vote').style.display = 'inline-block';
-			} else {
-				document.querySelector('.rem-vote').style.display = 'none';
-			}
-			if (countOfVoters == 0) {
-				document.querySelector('.edit-poll').style.display = 'inline-block';
-			} else {
-				document.querySelector('.edit-poll').style.display = 'none';
-			}
-		}
-	})
 }
 
 function startUpdProgTimer(interval) {
