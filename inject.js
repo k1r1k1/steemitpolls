@@ -84,6 +84,7 @@ window.addEventListener('load', function () { // init script after page loaded
 		default:
 			moment.locale(localStorage.lang);
 	}
+	initLang(localStorage.lang); // automatic lang switch
 	gPollsContainer = document.createElement('div');
 	gPollsContainer.className = 'card border-primary mb-3';
 	gPollsContainer.innerHTML = `
