@@ -62,6 +62,27 @@ window.addEventListener('load', function () { // init script after page loaded
 	console.log('<f> doc loaded');
 	/*	golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
 		golos.config.set('websocket', 'wss://ws.testnet.golos.io');*/
+	initLang('en'); // lang init = en
+	// variable in valid format moment.js
+	switch (localStorage.lang) {
+		case 'ua':
+			moment.locale('uk');
+			break;
+		case 'by':
+			moment.locale('be');
+			break;
+		case 'cn':
+			moment.locale('zh-cn');
+			break;
+		case 'kr':
+			moment.locale('ko');
+			break;
+		case 'jp':
+			moment.locale('ja');
+			break;
+		default:
+			moment.locale(localStorage.lang);
+	}
 	gPollsContainer = document.createElement('div');
 	gPollsContainer.className = 'card border-primary mb-3';
 	gPollsContainer.innerHTML = `
