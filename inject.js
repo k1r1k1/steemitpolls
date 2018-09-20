@@ -4,7 +4,8 @@ var allJs = `<script src="https://cdn.jsdelivr.net/npm/i18next@11.2.3/i18next.mi
 <script src="https://cdn.jsdelivr.net/npm/findandreplacedomtext@0.4.6/src/findAndReplaceDOMText.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.23/dist/bootstrap-native-v4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/golos-js@0.7.2/dist/golos.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/moment@2.21.0/min/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/locales.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.19.1/dist/sweetalert2.all.min.js"></script>
 <script src="https://golosimages.com/lang.js"></script>
 <script src="https://golospolls.com/auth.js"></script>
@@ -60,9 +61,9 @@ function updateProgressValues() {
 
 window.addEventListener('load', function () { // init script after page loaded
 	console.log('<f> doc loaded');
+	localStorage.lang = detectLang();
 	/*	golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
 		golos.config.set('websocket', 'wss://ws.testnet.golos.io');*/
-	initLang('en'); // lang init = en
 	// variable in valid format moment.js
 	switch (localStorage.lang) {
 		case 'ua':
