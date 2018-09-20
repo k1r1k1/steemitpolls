@@ -307,6 +307,7 @@ function getVote(callback) { // getting poll data
 }
 
 function startUpdProgTimer(interval) {
+	clearTimeout(updProgressTimer);
 	updProgressTimer = setInterval(updateProgressValues, interval);
 	console.log('<f> start-updTimer');
 }
