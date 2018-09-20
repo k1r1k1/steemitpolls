@@ -55,7 +55,7 @@ function incertHtmlPoll(resultContent) {
 function updateProgressValues() {
 	console.log('<f> updateProgressValues');
 	getVote(function () {
-		document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">' + moment(resultContent.created).format('lll') + '</span>';
+		/*document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">' + moment(resultContent.created).format('lll') + '</span>';*/
 	})
 }
 

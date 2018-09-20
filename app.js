@@ -91,6 +91,7 @@ function insertHtmlPoll(resultContent) {
 				document.querySelector('.card-body.text-dark').appendChild($div);
 			}
 		}
+		updateProgressValues();
 	});
 
 	document.getElementById('complete-form').style.display = 'block';
