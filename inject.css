@@ -11,6 +11,20 @@
     font-family: 'Roboto', sans-serif
 }
 
+.logo-top {
+    transform: rotate(90deg);
+}
+
+.vote-item {
+	cursor: pointer;
+}
+
+.vote-item:hover {
+	background-color: rgba(40, 167, 69, 0.25) !important;
+	transition: .5s;
+	box-shadow: 0 0 0 .25rem rgba(40, 167, 69, 0.5)
+}
+
 .gPolls {
 	padding: .1rem;
 }
@@ -21,26 +35,7 @@
     text-decoration: none;
     background-color: transparent;
     transform: translateY(-22%);
-}
-
-.gPolls a:hover {
-	color: #0056b3;
-	text-decoration: underline
-}
-
-.gPolls a:not([href]):not([tabindex]) {
-	color: inherit;
-	text-decoration: none
-}
-
-.gPolls a:not([href]):not([tabindex]):focus,
-.gPolls a:not([href]):not([tabindex]):hover {
-	color: inherit;
-	text-decoration: none
-}
-
-.gPolls a:not([href]):not([tabindex]):focus {
-	outline: 0
+	margin-left: .25rem;
 }
 
 .gPolls .progress {
@@ -55,7 +50,7 @@
 .gPolls .card-header {
 	padding-top: .2rem;
 	padding-right: 1.25rem;
-	padding-bottom: .2rem;
+	padding-bottom: 0;
 	padding-left: .3rem;
 	background: #f7f7f7;
 }
@@ -2326,15 +2321,6 @@ input[type=submit].btn-block {
 
 .text-center {
     text-align: center !important;
-}
-
-.vote-item {
-	cursor: pointer;
-}
-
-.vote-item:hover {
-	transition: .5s;
-	box-shadow: 0 0 0 .25rem rgba(0, 140, 186, .5)
 }
 
 .bg-success {
