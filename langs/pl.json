@@ -104,5 +104,6 @@
 	"Put this script tag to the <head> of your page":"Umieść ten tag skryptu na <head> swojej strony",
 	"Put this tags to the place, where the Poll block will be":"Umieść te znaczniki div i script w miejscu, w którym będzie blokada ankiety",
 	"live integration":"integracja na żywo",
-	"example":"przykład"
+	"example":"przykład",
+	"Your vote":"Twój głos"
 }

@@ -91,7 +91,9 @@ var resultContent = '', // global variable for content
 		37
 		<li>Failed to find post</li>
 		38
-		<li>Your vote has been deleted</li>
+		<li>has been deleted</li>
+		39
+		<li>Your vote</li>
 	</ul>`;
 $translatePhrases = document.createRange().createContextualFragment($translatePhrases); // create dom element
 (document.body || document.documentElement).appendChild($translatePhrases);
@@ -285,7 +287,7 @@ function getVote(callback) { // getting poll data
 						document.querySelectorAll('.progress-bar')[index].classList.remove('bg-success');
 						if (checkToVote) {
 							document.querySelectorAll('.progress-bar')[checkToVote.poll_id].classList.add('bg-success');
-							document.querySelectorAll('.progress-bar')[checkToVote.poll_id].innerHTML = '<span class="icon-checkmark"> ' + pollData[index].percnt + '% (' + pollData[index].count + ') - your vote' + '</span>';
+							document.querySelectorAll('.progress-bar')[checkToVote.poll_id].innerHTML = '<span class="icon-checkmark"> ' + pollData[index].percnt + '% (' + pollData[index].count + ') - ' + document.querySelectorAll('.translate-phrases li')[39].innerHTML + '</span>';
 						}
 						/*						console.log('my Comment:', username, checkToVote);*/
 					}

@@ -105,5 +105,6 @@
 	"Put this script tag to the <head> of your page":"Поместите этот код в блок <head> вашей страницы",
 	"Put this tags to the place, where the Poll block will be":"Поместите этот код в место, где хотите видеть виджет",
 	"live integration":"Живой",
-	"example":"пример"
+	"example":"пример",
+	"Your vote":"Ваш голос"
 }

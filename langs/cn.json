@@ -105,5 +105,6 @@
 	"Put this script tag to the <head> of your page":"将此脚本标记放在页面的<head>中",
 	"Put this tags to the place, where the Poll block will be":"将此div和脚本标记放在Poll块所在的位置",
 	"live integration":"实时整合",
-	"example":"例"
+	"example":"例",
+	"Your vote":"你的投票"
 }

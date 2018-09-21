@@ -104,5 +104,6 @@
 	"Put this script tag to the <head> of your page":"Placez cette balise de script sur <head> de votre page",
 	"Put this tags to the place, where the Poll block will be":"Placez ces balises div et script à l’endroit où le bloc Poll sera",
 	"live integration":"intégration en direct",
-	"example":"exemple"
+	"example":"exemple",
+	"Your vote":"Votre vote"
 }
