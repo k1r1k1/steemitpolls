@@ -23,25 +23,6 @@ function incertHtmlPoll(resultContent) {
 	$div.innerHTML = resultContent.json_metadata.data.poll_title;
 	document.querySelector('.card-body.text-dark').appendChild($div);
 	getVote(function () {
-		/*for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress
-			var $div = document.createElement('div');
-			$div.className = 'progress-block';
-			if (resultContent.json_metadata.data.poll_answers[cnt]) {
-				$div.innerHTML = `<label class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</label>
-				<div class="progress" id="` + cnt + `" style="cursor: pointer;">
-					<div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div>
-				</div><br>`;
-				document.querySelector('.card-body.text-dark').appendChild($div);
-				document.getElementById(cnt).onclick = progress_click; // dummy for polling 
-			} else {
-				$div.innerHTML = `<label class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</label>
-				<div class="progress" id="` + cnt + `" style="cursor: pointer;">
-					<div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div>
-				</div><br>`;
-				document.querySelector('.card-body.text-dark').appendChild($div);
-				document.getElementById(cnt).onclick = progress_click; // dummy for polling     
-			}
-		}*/
 		for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress
 			var $div = document.createElement('div');
 			$div.className = 'progress-block';
@@ -101,7 +82,7 @@ window.addEventListener('load', function () { // init script after page loaded
 	gPollsContainer = document.createElement('div');
 	gPollsContainer.className = 'card border-primary mb-3';
 	gPollsContainer.innerHTML = `
-<div class="card-header bg-transparent border-success"><img src="https://golospolls.com/graphics/logo.png" width="25" height="25" class="d-inline-block align-top" alt=""><a href="https://golospolls.com/" target="_blank">GolosPolls</a></div><div class="card-header-right"><p></p></div><div class="card-body text-dark"></div></div>`;
+<div class="card-header bg-transparent border-success"><img src="https://golospolls.com/graphics/logo.png" width="25" height="25" class="d-inline-block align-top" alt=""><a href="https://golospolls.com/" target="_blank"><img src="graphics/golospolls-animated-18.svg" class="d-inline-block align-top"></a></div><div class="card-header-right"><p></p></div><div class="card-body text-dark"></div></div>`;
 	document.querySelector('.gPolls').style.width = gPollsWidth;
 	document.querySelector('.gPolls').appendChild(gPollsContainer); // div inject
 	console.log('<f> doc ready');

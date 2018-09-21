@@ -5,15 +5,22 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
+@import url(//fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,700italic&subset=latin,latin-ext,cyrillic);
+
+.roboto {
+    font-family: 'Roboto', sans-serif
+}
+
 .gPolls {
 	padding: .1rem;
 }
 
 .gPolls a {
-	vertical-align: super;
-	color: #007bff;
-	text-decoration: none;
-	background-color: transparent;
+	display: inline-block;
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+    transform: translateY(-22%);
 }
 
 .gPolls a:hover {
@@ -2332,4 +2339,8 @@ input[type=submit].btn-block {
 
 .bg-success {
     background-color: #43ac6a !important;
+}
+
+.badge-info {
+	background-color: #ff003b;
 }
