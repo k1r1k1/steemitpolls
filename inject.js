@@ -56,6 +56,15 @@ function updateProgressValues() {
 window.addEventListener('load', function () { // init script after page loaded
 	console.log('<f> doc loaded');
 	localStorage.lang = detectLang();
+	// background
+		var i = 0;
+		bgTimer = setInterval(function() {
+			i = i + 2;
+			if (i > 360) {
+				i = 0;
+			}
+			document.querySelector('.gPolls .card-body').style = 'background-image: linear-gradient(' + i + 'deg, #ff000045, #0000ff7d);';
+		}, 100);
 	/*	golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
 		golos.config.set('websocket', 'wss://ws.testnet.golos.io');*/
 	// variable in valid format moment.js
