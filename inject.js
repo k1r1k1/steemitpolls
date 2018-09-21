@@ -23,7 +23,7 @@ function incertHtmlPoll(resultContent) {
 	$div.innerHTML = resultContent.json_metadata.data.poll_title;
 	document.querySelector('.card-body.text-dark').appendChild($div);
 	getVote(function () {
-		for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress 
+		/*for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress
 			var $div = document.createElement('div');
 			$div.className = 'progress-block';
 			if (resultContent.json_metadata.data.poll_answers[cnt]) {
@@ -40,6 +40,19 @@ function incertHtmlPoll(resultContent) {
 				</div><br>`;
 				document.querySelector('.card-body.text-dark').appendChild($div);
 				document.getElementById(cnt).onclick = progress_click; // dummy for polling     
+			}
+		}*/
+		for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress
+			var $div = document.createElement('div');
+			$div.className = 'progress-block';
+			if (resultContent.json_metadata && resultContent.json_metadata.data && resultContent.json_metadata.data.poll_answers && resultContent.json_metadata.data.poll_images && resultContent.json_metadata.data.poll_answers[cnt] && resultContent.json_metadata.data.poll_images[cnt]) {
+				$div.innerHTML = `<div class="card" id="` + cnt + `" onclick="progress_click(this.id)"><div class="card-body vote-item">
+<label class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</label>
+						<p><img src="` + resultContent.json_metadata.data.poll_images[cnt] + `" class="rounded"><div class="progress"  style="cursor: pointer;"><div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div></div></div></div><br>`;
+				document.querySelector('.card-body.text-dark').appendChild($div);
+			} else {
+				$div.innerHTML = `<div class="card" id="` + cnt + `" onclick="progress_click(this.id)"><div class="card-body vote-item"><label class="card-text">` + resultContent.json_metadata.data.poll_answers[cnt] + `</label><div class="progress" style="cursor: pointer;"><div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div></div></div></div><br>`;
+				document.querySelector('.card-body.text-dark').appendChild($div);
 			}
 		}
 		getVote(function () {

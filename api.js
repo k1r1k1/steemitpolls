@@ -236,7 +236,6 @@ function removeMyVote() {
 		document.querySelectorAll('.translate-phrases li')[38].innerHTML,
 		'success'
 	)
-	console.log(result);
 }
 
 function getVote(callback) { // getting poll data

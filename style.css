@@ -456,6 +456,10 @@ footer {
 	display: inline-block;
 }
 
+.poll-desc {
+    margin: .5rem 0 0 0;
+}
+
 @media (max-width: 991px) {
 	.navbar li {
 		margin: 0 20px 0.5rem;
