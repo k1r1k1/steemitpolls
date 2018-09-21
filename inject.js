@@ -21,6 +21,7 @@ function incertHtmlPoll(resultContent) {
 	var $div = document.createElement('h5'); // inserting header in poll
 	$div.className = 'card-title';
 	$div.innerHTML = resultContent.json_metadata.data.poll_title;
+	if (resultContent.json_metadata.data.poll_description) $div.innerHTML = $div.innerHTML + '<br><label class="poll-desc">' + resultContent.json_metadata.data.poll_description + '</label>';
 	document.querySelector('.card-body.text-dark').appendChild($div);
 	getVote(function () {
 		for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) { // inserting progress

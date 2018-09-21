@@ -25,6 +25,11 @@
 	box-shadow: 0 0 0 .25rem rgba(40, 167, 69, 0.5)
 }
 
+.poll-desc {
+    margin-top: .25rem;
+    font-size: 14px;
+}
+
 .gPolls {
 	padding: .1rem;
 }
@@ -43,14 +48,10 @@
 	font-size: 8pt;
 }
 
-.gPolls .card {
-	margin: 0.1rem;
-}
-
 .gPolls .card-header {
 	padding-top: .2rem;
 	padding-right: 1.25rem;
-	padding-bottom: 0;
+	padding-bottom: .2rem;
 	padding-left: .3rem;
 	background: #f7f7f7;
 }
@@ -61,7 +62,7 @@
 }
 
 .gPolls .card-title {
-	margin-bottom: .5rem;
+	margin-top: -.25rem;
 }
 
 .gPolls .card-header-right {

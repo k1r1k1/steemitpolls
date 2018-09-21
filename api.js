@@ -91,7 +91,7 @@ var resultContent = '', // global variable for content
 		37
 		<li>Failed to find post</li>
 		38
-		<li>has been deleted</li>
+		<li>Your vote has been deleted</li>
 		39
 		<li>Your vote</li>
 	</ul>`;
