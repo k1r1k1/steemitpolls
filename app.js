@@ -496,55 +496,131 @@ document.getElementById('complete').addEventListener('click', function () {
 }, false);
 
 document.querySelector('.edit-poll').addEventListener('click', () => {
-		var pollHTML = '',
-			$imageEdit = '';
-		for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) {
-			if (resultContent.json_metadata.data.poll_images[cnt]) {
-				$imageEdit = '';
-			} else {
-				$imageEdit = 'style="display: none;"';
-			}
-			pollHTML = pollHTML + `<div class="input-group mb-3" id="option` + cnt + `"><div class="input-group-prepend"><img class="uplded-img-true" id="load-imag` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="35" height="35"` + $imageEdit + `><div class="remImg" onclick="remImg(this)"><span class="icon-cross"></span></div><span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span></span><input type="text" class="form-control" value="` + resultContent.json_metadata.data.poll_answers[cnt] + `" placeholder="` + document.querySelectorAll('.translate-phrases li')[32].innerHTML + `" id="input` + cnt + `" data-placement="left"  onchange="checkInput(this.id);"><div class="input-group-append"><button class="btn btn-danger remVar" type="button"><span class="icon-cross"></span></button></div><div class="invalid-feedback">` + document.querySelectorAll('.translate-phrases li')[31].innerHTML + `</div></div><div class="invalid-feedback">` + document.querySelectorAll('.translate-phrases li')[31].innerHTML + `</div></div>`;
-		}
-		let frag = document.createRange().createContextualFragment(pollHTML); // create dom element
-		frag.querySelectorAll('.uplded-img-true').forEach(function (item) {
-			if (item.src != location.origin + location.pathname) {
-				item.parentNode.querySelector('.remImg').setAttribute('style', 'display: block;'); // set needed elements avalible
-			}
-		})
-		var serializer = new XMLSerializer(),
-			document_fragment_string = serializer.serializeToString(frag); // parse dom element back to the string
-		pollHTML = document_fragment_string;
-		if (resultContent.json_metadata.data.title_image) {
+	var pollHTML = '',
+		$imageEdit = '';
+	for (var cnt = 0; resultContent.json_metadata.data.poll_answers.length > cnt; cnt++) {
+		if (resultContent.json_metadata.data.poll_images[cnt]) {
 			$imageEdit = '';
 		} else {
 			$imageEdit = 'style="display: none;"';
 		}
-		auth(function () {
-
-			let editDiv = document.createElement('div');
-			editDiv.innerHTML = ` <div class="modal" tabindex="-1" role="dialog" id="modalEdit">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Choose language</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            <div class="modal-body">
-                <div class="form-group-swal"><label>` + document.querySelectorAll('.translate-phrases li')[23].innerHTML + `</label><input type="text" class="form-control title edit" value="` + resultContent.json_metadata.data.poll_title + `" placeholder="Type your text here" onchange="checkInput(this.id);"><label for="exampleFormControlTextarea1">` + document.querySelectorAll('.translate-phrases li')[24].innerHTML + `</label><textarea class="form-control" id="pollDescriptionInput" rows="3" maxlength="300">` + resultContent.json_metadata.data.poll_description + `</textarea><br><img class="uplded-img-true" id="load-imag" src="` + resultContent.json_metadata.data.title_image + `" width="35" height="35" ` + $imageEdit + ` ><div class="remImg" onclick="remImg(this)" style="display: block;"><span class="icon-cross"></span></div><span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span> Add main image</span><div id="EditPollForm"><label>` + document.querySelectorAll('.translate-phrases li')[25].innerHTML + `</label></div></div><div class="varDiv">` + pollHTML + `</div><label class="label-error">` + document.querySelectorAll('.translate-phrases li')[34].innerHTML + `</label><span class="btn btn-secondary addvar" onclick="addvar()"><span class="icon-plus"></span></span>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-success apply"><span class="icon-checkmark"></span> ` + document.querySelectorAll('.translate-phrases li')[35].innerHTML + `</button>
-				<button class="btn btn-danger cancel"><span class="icon-cross"></span> ` + document.querySelectorAll('.translate-phrases li')[36].innerHTML + `</button>
-            </div>
-            </div>
-        </div>
-    </div>`;
-			document.getElementsByTagName('body')[0].appendChild(editDiv);
-			let modalEdit = new Modal(document.getElementById('modalEdit'));
-			modalEdit.show();
+		pollHTML = pollHTML + `<div class="input-group mb-3" id="option` + cnt + `"><div class="input-group-prepend"><img class="uplded-img-true" id="load-imag` + cnt + `" src="` + resultContent.json_metadata.data.poll_images[cnt] + `" width="35" height="35"` + $imageEdit + `><div class="remImg" onclick="remImg(this)"><span class="icon-cross"></span></div><span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span></span><input type="text" class="form-control" value="` + resultContent.json_metadata.data.poll_answers[cnt] + `" placeholder="` + document.querySelectorAll('.translate-phrases li')[32].innerHTML + `" id="input` + cnt + `" data-placement="left"  onchange="checkInput(this.id);"><div class="input-group-append"><button class="btn btn-danger remVar" type="button"><span class="icon-cross"></span></button></div><div class="invalid-feedback">` + document.querySelectorAll('.translate-phrases li')[31].innerHTML + `</div></div><div class="invalid-feedback">` + document.querySelectorAll('.translate-phrases li')[31].innerHTML + `</div></div>`;
+	}
+	let frag = document.createRange().createContextualFragment(pollHTML); // create dom element
+	frag.querySelectorAll('.uplded-img-true').forEach(function (item) {
+		if (item.src != location.origin + location.pathname) {
+			item.parentNode.querySelector('.remImg').setAttribute('style', 'display: block;'); // set needed elements avalible
+		}
+	})
+	var serializer = new XMLSerializer(),
+		document_fragment_string = serializer.serializeToString(frag); // parse dom element back to the string
+	pollHTML = document_fragment_string;
+	if (resultContent.json_metadata.data.title_image) {
+		$imageEdit = '';
+	} else {
+		$imageEdit = 'style="display: none;"';
+	}
+	auth(function () {
+		let $editDiv = document.createElement('div');
+		$editDiv.innerHTML = ` <div class="modal fade" tabindex="-1" role="dialog" id="modalEdit">
+			<div class="modal-dialog" role="document" style="max-width: 600px;">
+				<div class="modal-content">
+					<div class="modal-header">
+						<label>` + document.querySelector('.edit-poll').innerHTML + `</label>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				<div class="modal-body">
+					<div class="form-group-swal"><label>` + document.querySelectorAll('.translate-phrases li')[23].innerHTML + `</label><input type="text" class="form-control title edit" value="` + resultContent.json_metadata.data.poll_title + `" placeholder="Type your text here" onchange="checkInput(this.id);"><label for="exampleFormControlTextarea1">` + document.querySelectorAll('.translate-phrases li')[24].innerHTML + `</label><textarea class="form-control" id="pollDescriptionInput" rows="3" maxlength="300">` + resultContent.json_metadata.data.poll_description + `</textarea><br><img class="uplded-img-true" id="load-imag" src="` + resultContent.json_metadata.data.title_image + `" width="35" height="35" ` + $imageEdit + ` ><div class="remImg" onclick="remImg(this)" style="display: block;"><span class="icon-cross"></span></div><span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span> Add main image</span><div id="EditPollForm"><label>` + document.querySelectorAll('.translate-phrases li')[25].innerHTML + `</label></div></div><div class="varDiv">` + pollHTML + `</div><label class="label-error">` + document.querySelectorAll('.translate-phrases li')[34].innerHTML + `</label><span class="btn btn-secondary addvar" onclick="addvar()"><span class="icon-plus"></span></span>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-success apply"><span class="icon-checkmark"></span> ` + document.querySelectorAll('.translate-phrases li')[35].innerHTML + `</button>
+					<button class="btn btn-danger cancel"><span class="icon-cross"></span> ` + document.querySelectorAll('.translate-phrases li')[36].innerHTML + `</button>
+				</div>
+				</div>
+			</div>
+		</div>`;
+		document.getElementsByTagName('body')[0].appendChild($editDiv);
+		document.getElementById('modalEdit').addEventListener('show.bs.modal', function () {
+			document.querySelector('#modalEdit .apply').addEventListener('click', () => {
+				var i = 0,
+					err,
+					answers = [];
+				document.querySelectorAll('#modalEdit .varDiv input').forEach(function (item) {
+					if (item.value == '') {
+						checkInput(item.id);
+						console.log('EMPTY ITEM:', item.id);
+						err = true;
+					}
+					answers[i] = item.value;
+					i++;
+				});
+				if (err) {
+					console.log('err');
+					return;
+				}
+				i = 0;
+				var newPollImages = [];
+				document.querySelector('#modalEdit .varDiv').querySelectorAll('.uplded-img-true').forEach(function (item) {
+					if (item.src.replace(/^.*[\\\/]/, '') == 'img.svg' || item.src.replace(/^.*[\\\/]/, '') == 'loading.gif' || item.src.replace(/^.*[\\\/]/, '') == 'err.png' || item.src.replace(/^.*[\\\/]/, '') == 'index.html' || item.src.replace(/^.*[\\\/]/, '') == '') {
+						newPollImages[i] = '';
+					} else {
+						newPollImages[i] = item.src;
+					}
+					i++;
+				});
+				var $titleImage = document.querySelector('#modalEdit img').src;
+				if ($titleImage.replace(/^.*[\\\/]/, '') == 'img.svg' || $titleImage.replace(/^.*[\\\/]/, '') == 'loading.gif' || $titleImage.replace(/^.*[\\\/]/, '') == 'err.png' || $titleImage.replace(/^.*[\\\/]/, '') == 'index.html' || $titleImage.replace(/^.*[\\\/]/, '') == '') {
+					$titleImage = '';
+				}
+				var jsonMetadata_edit = {
+					app: 'golospolls/0.1',
+					canonical: 'https://golospolls.com/#' + username + '/' + resultContent.permlink,
+					app_account: 'golosapps',
+					data: {
+						poll_title: document.querySelector('#modalEdit .title.edit').value,
+						title_image: $titleImage,
+						poll_images: newPollImages,
+						poll_answers: answers,
+						poll_description: document.querySelector('#modalEdit textarea').value
+					}
+				};
+				console.log('title_image:', $titleImage);
+				console.log('poll_images:', newPollImages);
+				if (!err) {
+					send_request(resultContent.permlink, document.querySelector('#modalEdit .title.edit').value, jsonMetadata_edit, false, function () {
+						getHash(function (resultContent) {
+							insertHtmlPoll(resultContent);
+						});
+					});
+					console.log('newPollImages', newPollImages);
+					swal({
+						type: 'success',
+						title: document.querySelectorAll('.translate-phrases li')[33].innerHTML,
+						text: document.querySelectorAll('.translate-phrases li')[21].innerHTML
+					});
+				}
+			})
+			let i = 0;
+			document.querySelectorAll('#modalEdit .remVar').forEach(function (item) {
+				document.querySelectorAll('#modalEdit .remVar')[i].addEventListener('click', () => {
+					if (document.querySelectorAll('#modalEdit .remVar').length > 2) {
+						item.parentNode.parentNode.parentNode.remove();
+					} else {
+						document.querySelectorAll('#modalEdit .remVar').forEach(function (item) {
+							item.setAttribute('title', document.querySelectorAll('.translate-phrases li')[34].innerHTML);
+						});
+						document.querySelector('#modalEdit .label-error').style.display = 'block';
+						document.querySelector('#modalEdit .addvar').style = 'margin-right: 96%; margin-top: -55px;'
+						return;
+					}
+				})
+				i++;
+			});
+		});
+		let modalEdit = new Modal(document.getElementById('modalEdit'));
+		modalEdit.show();
 		/*swal({
 			html: `<div class="form-group-swal"><label>` + document.querySelectorAll('.translate-phrases li')[23].innerHTML + `</label><input type="text" class="form-control title edit" value="` + resultContent.json_metadata.data.poll_title + `" placeholder="Type your text here" onchange="checkInput(this.id);"><label for="exampleFormControlTextarea1">` + document.querySelectorAll('.translate-phrases li')[24].innerHTML + `</label><textarea class="form-control" id="pollDescriptionInput" rows="3" maxlength="300">` + resultContent.json_metadata.data.poll_description + `</textarea><br><img class="uplded-img-true" id="load-imag" src="` + resultContent.json_metadata.data.title_image + `" width="35" height="35" ` + $imageEdit + ` ><div class="remImg" onclick="remImg(this)" style="display: block;"><span class="icon-cross"></span></div><span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span> Add main image</span><div id="EditPollForm"><label>` + document.querySelectorAll('.translate-phrases li')[25].innerHTML + `</label></div></div><div class="varDiv">` + pollHTML + `</div><label class="label-error">` + document.querySelectorAll('.translate-phrases li')[34].innerHTML + `</label><span class="btn btn-secondary addvar" onclick="addvar()"><span class="icon-plus"></span></span><button class="btn btn-success apply"><span class="icon-checkmark"></span> ` + document.querySelectorAll('.translate-phrases li')[35].innerHTML + `</button><button class="btn btn-danger cancel"><span class="icon-cross"></span> ` + document.querySelectorAll('.translate-phrases li')[36].innerHTML + `</button>`,
 			showCloseButton: true,
@@ -637,7 +713,7 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 function addvar() {
 	var $div = document.createElement('div');
 	$div.innerHTML = `<div class="input-group mb-3">
-<div class="input-group-prepend"><img class="uplded-img-true" id="load-imag` + document.querySelector('.swal2-content').querySelectorAll('.input-group').length + `" src="" width="35" height="35" style="display: none;"><div class="remImg" onclick="remImg(this)"><span class="icon-cross"></span></div><span class="btn btn-secondary" onclick="ipfsImgLoad(this)"><span class="icon-image"></span></span><input type="text" class="form-control" placeholder="` + document.querySelectorAll('.translate-phrases li')[32].innerHTML + `" id="` + Date.now() + `" data-placement="left" onchange="checkInput(this.id);"><div class="input-group-append"><button class="btn btn-danger remVar" type="button"><span class="icon-cross"></span></button></div><div class="invalid-feedback">` + document.querySelectorAll('.translate-phrases li')[31].innerHTML + `</div></div><div class="invalid-feedback">` + document.querySelectorAll('.translate-phrases li')[31].innerHTML + `</div></div>`;
+<div class="input-group-prepend"><img class="uplded-img-true" id="load-imag` + document.querySelector('#modalEdit').querySelectorAll('.input-group').length + `" src="" width="35" height="35" style="display: none;"><div class="remImg" onclick="remImg(this)"><span class="icon-cross"></span></div><span class="btn btn-secondary" onclick="ipfsImgLoad(this)"><span class="icon-image"></span></span><input type="text" class="form-control" placeholder="` + document.querySelectorAll('.translate-phrases li')[32].innerHTML + `" id="` + Date.now() + `" data-placement="left" onchange="checkInput(this.id);"><div class="input-group-append"><button class="btn btn-danger remVar" type="button"><span class="icon-cross"></span></button></div><div class="invalid-feedback">` + document.querySelectorAll('.translate-phrases li')[31].innerHTML + `</div></div><div class="invalid-feedback">` + document.querySelectorAll('.translate-phrases li')[31].innerHTML + `</div></div>`;
 	$div.querySelector('.remVar').addEventListener('click', () => {
 		if (document.querySelectorAll('.remVar').length > 2) {
 			$div.remove();
@@ -645,23 +721,23 @@ function addvar() {
 			document.querySelectorAll('.remVar').forEach(function (item) {
 				$div.setAttribute('title', document.querySelectorAll('.translate-phrases li')[34].innerHTML);
 			});
-			document.querySelector('.swal2-content .label-error').style.display = 'block';
+			document.querySelector('#modalEdit .label-error').style.display = 'block';
 			document.querySelector('.addvar').style = 'margin-right: 96%; margin-top: -55px;'
 			return;
 		}
 	}, false);
 	document.querySelector('.varDiv').appendChild($div);
-	if (document.querySelectorAll('.remVar').length > 2) {
-		document.querySelectorAll('.remVar').forEach(function (item) {
+	if (document.querySelectorAll('#modalEdit .remVar').length > 2) {
+		document.querySelectorAll('#modalEdit .remVar').forEach(function (item) {
 			item.removeAttribute('title');
 		});
-		document.querySelector('.swal2-content .label-error').style.display = 'none';
+		document.querySelector('#modalEdit .label-error').style.display = 'none';
 		document.querySelector('.addvar').style = 'margin-right: 96%; margin-top: 0;'
 	} else {
-		document.querySelectorAll('.remVar').forEach(function (item) {
+		document.querySelectorAll('#modalEdit .remVar').forEach(function (item) {
 			$div.setAttribute('title', document.querySelectorAll('.translate-phrases li')[34].innerHTML);
 		});
-		document.querySelector('.swal2-content .label-error').style.display = 'block';
+		document.querySelector('#modalEdit .label-error').style.display = 'block';
 		document.querySelector('.addvar').style = 'margin-right: 96%; margin-top: -55px;'
 		return;
 	}
