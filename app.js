@@ -536,7 +536,7 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 				</div>
 				<div class="modal-footer">
 					<button class="btn btn-success apply"><span class="icon-checkmark"></span> ` + document.querySelectorAll('.translate-phrases li')[35].innerHTML + `</button>
-					<button class="btn btn-danger cancel"><span class="icon-cross"></span> ` + document.querySelectorAll('.translate-phrases li')[36].innerHTML + `</button>
+					<button class="btn btn-danger cancel" aria-label="Close"><span class="icon-cross"></span> ` + document.querySelectorAll('.translate-phrases li')[36].innerHTML + `</button>
 				</div>
 				</div>
 			</div>
@@ -585,9 +585,9 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 						poll_answers: answers,
 						poll_description: document.querySelector('#modalEdit textarea').value
 					}
-				};
-				console.log('title_image:', $titleImage);
-				console.log('poll_images:', newPollImages);
+				}
+				/*console.log('title_image:', $titleImage);
+				console.log('poll_images:', newPollImages);*/
 				if (!err) {
 					send_request(resultContent.permlink, document.querySelector('#modalEdit .title.edit').value, jsonMetadata_edit, false, function () {
 						getHash(function (resultContent) {
@@ -601,6 +601,9 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 						text: document.querySelectorAll('.translate-phrases li')[21].innerHTML
 					});
 				}
+				/*modalEdit.hide();*/
+				document.querySelector('#modalEdit .close').click();
+				console.log('hide');
 			})
 			let i = 0;
 			document.querySelectorAll('#modalEdit .remVar').forEach(function (item) {
@@ -621,6 +624,9 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 		});
 		let modalEdit = new Modal(document.getElementById('modalEdit'));
 		modalEdit.show();
+		document.querySelector('.cancel').addEventListener('click', () => {
+					modalEdit.hide();
+				})
 		/*swal({
 			html: `<div class="form-group-swal"><label>` + document.querySelectorAll('.translate-phrases li')[23].innerHTML + `</label><input type="text" class="form-control title edit" value="` + resultContent.json_metadata.data.poll_title + `" placeholder="Type your text here" onchange="checkInput(this.id);"><label for="exampleFormControlTextarea1">` + document.querySelectorAll('.translate-phrases li')[24].innerHTML + `</label><textarea class="form-control" id="pollDescriptionInput" rows="3" maxlength="300">` + resultContent.json_metadata.data.poll_description + `</textarea><br><img class="uplded-img-true" id="load-imag" src="` + resultContent.json_metadata.data.title_image + `" width="35" height="35" ` + $imageEdit + ` ><div class="remImg" onclick="remImg(this)" style="display: block;"><span class="icon-cross"></span></div><span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span> Add main image</span><div id="EditPollForm"><label>` + document.querySelectorAll('.translate-phrases li')[25].innerHTML + `</label></div></div><div class="varDiv">` + pollHTML + `</div><label class="label-error">` + document.querySelectorAll('.translate-phrases li')[34].innerHTML + `</label><span class="btn btn-secondary addvar" onclick="addvar()"><span class="icon-plus"></span></span><button class="btn btn-success apply"><span class="icon-checkmark"></span> ` + document.querySelectorAll('.translate-phrases li')[35].innerHTML + `</button><button class="btn btn-danger cancel"><span class="icon-cross"></span> ` + document.querySelectorAll('.translate-phrases li')[36].innerHTML + `</button>`,
 			showCloseButton: true,
