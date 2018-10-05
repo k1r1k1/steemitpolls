@@ -601,9 +601,7 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 						text: document.querySelectorAll('.translate-phrases li')[21].innerHTML
 					});
 				}
-				/*modalEdit.hide();*/
 				document.querySelector('#modalEdit .close').click();
-				console.log('hide');
 			})
 			let i = 0;
 			document.querySelectorAll('#modalEdit .remVar').forEach(function (item) {
@@ -621,98 +619,15 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 				})
 				i++;
 			});
+			document.querySelector('.cancel').addEventListener('click', () => {
+				document.querySelector('#modalEdit .close').click();
+			})
 		});
+		document.getElementById('modalEdit').addEventListener('hidden.bs.modal', function () {
+			document.getElementById('modalEdit').remove();
+		})
 		let modalEdit = new Modal(document.getElementById('modalEdit'));
 		modalEdit.show();
-		document.querySelector('.cancel').addEventListener('click', () => {
-					modalEdit.hide();
-				})
-		/*swal({
-			html: `<div class="form-group-swal"><label>` + document.querySelectorAll('.translate-phrases li')[23].innerHTML + `</label><input type="text" class="form-control title edit" value="` + resultContent.json_metadata.data.poll_title + `" placeholder="Type your text here" onchange="checkInput(this.id);"><label for="exampleFormControlTextarea1">` + document.querySelectorAll('.translate-phrases li')[24].innerHTML + `</label><textarea class="form-control" id="pollDescriptionInput" rows="3" maxlength="300">` + resultContent.json_metadata.data.poll_description + `</textarea><br><img class="uplded-img-true" id="load-imag" src="` + resultContent.json_metadata.data.title_image + `" width="35" height="35" ` + $imageEdit + ` ><div class="remImg" onclick="remImg(this)" style="display: block;"><span class="icon-cross"></span></div><span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span> Add main image</span><div id="EditPollForm"><label>` + document.querySelectorAll('.translate-phrases li')[25].innerHTML + `</label></div></div><div class="varDiv">` + pollHTML + `</div><label class="label-error">` + document.querySelectorAll('.translate-phrases li')[34].innerHTML + `</label><span class="btn btn-secondary addvar" onclick="addvar()"><span class="icon-plus"></span></span><button class="btn btn-success apply"><span class="icon-checkmark"></span> ` + document.querySelectorAll('.translate-phrases li')[35].innerHTML + `</button><button class="btn btn-danger cancel"><span class="icon-cross"></span> ` + document.querySelectorAll('.translate-phrases li')[36].innerHTML + `</button>`,
-			showCloseButton: true,
-			showConfirmButton: false,
-			width: 800,
-			onOpen: () => {
-				document.querySelector('.apply').addEventListener('click', () => {
-					var i = 0,
-						err,
-						answers = [];
-					document.querySelectorAll('.varDiv input').forEach(function (item) {
-						if (item.value == '') {
-							checkInput(item.id);
-							console.log('EMPTY ITEM:', item.id);
-							err = true;
-						}
-						answers[i] = item.value;
-						i++;
-					});
-					if (err) {
-						console.log('err');
-						return;
-					}
-					i = 0;
-					var newPollImages = [];
-					document.querySelector('.varDiv').querySelectorAll('.uplded-img-true').forEach(function (item) {
-						if (item.src.replace(/^.*[\\\/]/, '') == 'img.svg' || item.src.replace(/^.*[\\\/]/, '') == 'loading.gif' || item.src.replace(/^.*[\\\/]/, '') == 'err.png' || item.src.replace(/^.*[\\\/]/, '') == 'index.html' || item.src.replace(/^.*[\\\/]/, '') == '') {
-							newPollImages[i] = '';
-						} else {
-							newPollImages[i] = item.src;
-						}
-						i++;
-					});
-					var $titleImage = document.querySelector('.form-group-swal img').src;
-					if ($titleImage.replace(/^.*[\\\/]/, '') == 'img.svg' || $titleImage.replace(/^.*[\\\/]/, '') == 'loading.gif' || $titleImage.replace(/^.*[\\\/]/, '') == 'err.png' || $titleImage.replace(/^.*[\\\/]/, '') == 'index.html' || $titleImage.replace(/^.*[\\\/]/, '') == '') {
-						$titleImage = '';
-					}
-					var jsonMetadata_edit = {
-						app: 'golospolls/0.1',
-						canonical: 'https://golospolls.com/#' + username + '/' + resultContent.permlink,
-						app_account: 'golosapps',
-						data: {
-							poll_title: document.querySelector('.title.edit').value,
-							title_image: $titleImage,
-							poll_images: newPollImages,
-							poll_answers: answers,
-							poll_description: document.querySelector('.form-group-swal textarea').value
-						}
-					};
-					console.log('title_image:', $titleImage);
-					console.log('poll_images:', newPollImages);
-					if (!err) {
-						send_request(resultContent.permlink, document.querySelector('.title.edit').value, jsonMetadata_edit, false, function () {
-							getHash(function (resultContent) {
-								insertHtmlPoll(resultContent);
-							});
-						});
-						console.log('newPollImages', newPollImages);
-						swal({
-							type: 'success',
-							title: document.querySelectorAll('.translate-phrases li')[33].innerHTML,
-							text: document.querySelectorAll('.translate-phrases li')[21].innerHTML
-						});
-					}
-				})
-				document.querySelector('.cancel').addEventListener('click', () => {
-					document.querySelector('.swal2-close').click();
-				})
-				let i = 0;
-				document.querySelectorAll('.remVar').forEach(function (item) {
-					document.querySelectorAll('.remVar')[i].addEventListener('click', () => {
-						if (document.querySelectorAll('.remVar').length > 2) {
-							item.parentNode.parentNode.parentNode.remove();
-						} else {
-							document.querySelectorAll('.remVar').forEach(function (item) {
-								item.setAttribute('title', document.querySelectorAll('.translate-phrases li')[34].innerHTML);
-							});
-							document.querySelector('.swal2-content .label-error').style.display = 'block';
-							document.querySelector('.addvar').style = 'margin-right: 96%; margin-top: -55px;'
-							return;
-						}
-					})
-					i++;
-				});
-			}
-		})*/
 	}, ['posting']);
 });
 
