@@ -531,3 +531,19 @@ footer {
 		display: none;
 	}
 }
+
+.label-error {
+	color: #f00;
+	display: none;
+	margin-bottom: 48px;
+}
+
+.invalid-feedback {
+    position: absolute;
+	margin-top: 2.25rem;
+	margin-left: 2.25rem;
+}
+
+.modal .input-group-prepend {
+	width: 100%;
+}
