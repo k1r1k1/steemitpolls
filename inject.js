@@ -9,9 +9,9 @@ var allJs = `<script src="https://cdn.jsdelivr.net/npm/i18next@11.2.3/i18next.mi
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.19.1/dist/sweetalert2.all.min.js"></script>
 <script src="https://golosimages.com/lang.js"></script>
 <script src="https://golospolls.com/auth.js"></script>
-<script src="api.js"></script>
-<script src="golosErrs.js"></script>
-<link rel="stylesheet" type="text/css" href="inject.css">`;
+<script src="https://golospolls.com/api.js"></script>
+<script src="https://golospolls.com/golosErrs.js"></script>
+<link rel="stylesheet" type="text/css" href="https://golospolls.com/inject.css">`;
 allJs = document.createRange().createContextualFragment(allJs); // create dom element
 (document.head || document.documentElement).appendChild(allJs);
 

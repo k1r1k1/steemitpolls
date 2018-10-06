@@ -195,8 +195,17 @@ function sendVote(pollId, callback) {
 			golos.broadcast.comment(wif.posting, parentAuthor, parentPermlink, username, permlink, title, body, jsonMetadata, function (err, result) {
 				if (!err) {
 					console.log('comment', result);
+					swal({
+						type: 'success',
+						title: document.querySelectorAll('.translate-phrases li')[9].innerHTML
+					})
 				} else {
 					console.error(err);
+					swal({
+						type: 'error',
+						title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
+						text: humaNize(err)
+					});
 				}
 				callback(err, result);
 			});
