@@ -205,7 +205,7 @@ function sendVote(pollId, callback) {
 						type: 'error',
 						title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
 						text: humaNize(err)
-					});
+					})
 				}
 				callback(err, result);
 			});

@@ -2,7 +2,7 @@
 
 function humaNize(errors) {
 	var request = new XMLHttpRequest();
-		request.open('GET', 'errs/' + detectLang() + '.json', false);
+		request.open('GET', 'https://golospolls.com/errs/' + detectLang() + '.json', false);
 		request.send(null);
 		var my_JSON_object = JSON.parse(request.responseText);
 	if (errors.cause) {

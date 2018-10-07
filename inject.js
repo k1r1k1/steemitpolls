@@ -58,14 +58,14 @@ window.addEventListener('load', function () { // init script after page loaded
 	console.log('<f> doc loaded');
 	localStorage.lang = detectLang();
 	// background
-		var i = 0;
-		bgTimer = setInterval(function() {
-			i = i + 2;
-			if (i > 360) {
-				i = 0;
-			}
-			document.querySelector('.gPolls .card-body').style = 'background-image: linear-gradient(' + i + 'deg, #ff000045, #0000ff7d);';
-		}, 100);
+	var i = 0;
+	bgTimer = setInterval(function () {
+		i = i + 2;
+		if (i > 360) {
+			i = 0;
+		}
+		document.querySelector('.gPolls .card-body').style = 'background-image: linear-gradient(' + i + 'deg, #ff000045, #0000ff7d);';
+	}, 100);
 	/*	golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
 		golos.config.set('websocket', 'wss://ws.testnet.golos.io');*/
 	// variable in valid format moment.js
@@ -91,8 +91,7 @@ window.addEventListener('load', function () { // init script after page loaded
 	initLang(localStorage.lang); // automatic lang switch
 	gPollsContainer = document.createElement('div');
 	gPollsContainer.className = 'card border-primary mb-3';
-	gPollsContainer.innerHTML = `
-<div class="card-header bg-transparent border-success"><img src="https://golospolls.com/graphics/logo-animated.svg" width="25" height="25" class="logo-top"><a href="https://golospolls.com/" target="_blank"><img src="https://golospolls.com/graphics/golospolls-animated-18px.svg" class="d-inline-block align-top"></a></div><div class="card-header-right"><p></p></div><div class="card-body text-dark"></div></div>`;
+	gPollsContainer.innerHTML = `<div class="card-header bg-transparent border-success"><img src="https://golospolls.com/graphics/logo-animated.svg" width="25" height="25" class="logo-top"><a href="https://golospolls.com/" target="_blank"><img src="https://golospolls.com/graphics/golospolls-animated-18px.svg" class="d-inline-block align-top"></a></div><div class="card-header-right"><p></p></div><div class="card-body text-dark"></div></div>`;
 	document.querySelector('.gPolls').style.width = gPollsWidth;
 	document.querySelector('.gPolls').appendChild(gPollsContainer); // div inject
 	console.log('<f> doc ready');
