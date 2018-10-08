@@ -40,7 +40,7 @@ function incertHtmlPoll(resultContent) {
 		getVote(function () {
 			console.log('<f> incertPollProg pollData', pollData);
 			cnt = resultContent.json_metadata.data.poll_answers.length;
-			document.querySelector('.card-header-right p').innerHTML = '</span><span class="badge badge-info">' + moment(resultContent.created).format('lll') + '</span>';
+			document.querySelector('.card-date p').innerHTML = '</span><span class="badge badge-light">' + moment(resultContent.created).format('lll') + '</span>';
 		})
 	});
 	document.querySelector('.card.border-primary.mb-3 a').href = 'https://golospolls.com/#' + resultContent.author + '/' + resultContent.permlink;
@@ -50,7 +50,7 @@ function incertHtmlPoll(resultContent) {
 function updateProgressValues() {
 	console.log('<f> updateProgressValues');
 	getVote(function () {
-		/*document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">' + moment(resultContent.created).format('lll') + '</span>';*/
+		document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">' + document.querySelectorAll('.translate-phrases li')[4].innerHTML + ': ' + countOfVoters + '</span>';
 	})
 }
 
@@ -91,7 +91,7 @@ window.addEventListener('load', function () { // init script after page loaded
 	initLang(localStorage.lang); // automatic lang switch
 	gPollsContainer = document.createElement('div');
 	gPollsContainer.className = 'card border-primary mb-3';
-	gPollsContainer.innerHTML = `<div class="card-header bg-transparent border-success"><img src="https://golospolls.com/graphics/logo-animated.svg" width="25" height="25" class="logo-top"><a href="https://golospolls.com/" target="_blank"><img src="https://golospolls.com/graphics/golospolls-animated-18px.svg" class="d-inline-block align-top"></a></div><div class="card-header-right"><p></p></div><div class="card-body text-dark"></div></div>`;
+	gPollsContainer.innerHTML = `<div class="card-header bg-transparent border-success"><img src="https://golospolls.com/graphics/logo-animated.svg" width="25" height="25" class="logo-top"><a href="https://golospolls.com/" target="_blank"><img src="https://golospolls.com/graphics/golospolls-animated-18px.svg" class="d-inline-block align-top"></a></div><div class="card-header-right"><p></p></div><div class="card-body text-dark"></div><div class="card-date"><p></p></div></div>`;
 	document.querySelector('.gPolls').style.width = gPollsWidth;
 	document.querySelector('.gPolls').appendChild(gPollsContainer); // div inject
 	console.log('<f> doc ready');

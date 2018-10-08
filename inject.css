@@ -75,6 +75,17 @@
 	right: .1rem;
 }
 
+.gPolls .card-date {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.card-date p {
+    margin-bottom: .4rem !important;
+}
+
 .gPolls .card-header-right p {
 	top: 50%;
 	transform: translate(0%, 50%);
