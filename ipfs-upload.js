@@ -41,6 +41,7 @@ function checkIt() {
 			document.getElementById($imgId).style = 'display: inline-block; margin-right: .5rem;';
 			document.getElementById($imgId).parentNode.querySelector('.remImg').style.display = 'inline-block';
 			handleFiles($inpimg.files);
+			document.querySelector('#imagesSelector').remove();
 		} else {
 			console.log('false');
 			document.getElementById($imgId).parentNode.querySelector('img').src = '';

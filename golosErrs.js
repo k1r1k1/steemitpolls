@@ -1,4 +1,4 @@
-/* This library makes standard error logs of "Steemit"/"Golos" user-friendly and in native language */
+/* This lib makes standard error logs of "Steemit"/"Golos" user-friendly and in native language */
 
 function humaNize(errors) {
 	var request = new XMLHttpRequest();
@@ -13,23 +13,4 @@ function humaNize(errors) {
 	} else {
 		return errors
 	}
-
-	/*fetch('errs/' + detectLang() + '.json')
-		.then((response) => response.json())
-		.then((responseJSON) => {
-			if (errors.cause) {
-				errors = JSON.stringify(errors.cause.payload.error.data.stack[0].data.error.stack[0].format);
-				console.log('found1:', responseJSON[errors]);
-				return responseJSON[errors]
-			} else if (responseJSON[errors] != undefined) {
-				console.log('found2:', responseJSON[errors]);
-				return responseJSON[errors]
-			} else {
-				console.log('found3:', errors);
-				return errors
-			}
-		})
-		.catch(function() {
-			// This is where you run code if the server returns any errors
-		});*/
 }
