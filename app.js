@@ -707,10 +707,12 @@ function integration() {
 		showConfirmButton: false,
 		width: 600,
 		padding: '1rem',
+		focuson: false,
 		showCloseButton: 'true'
 	}).then(function () {
 		location.hash = '';
 	});
+	document.querySelector('.swal2-content').click();
 }
 
 document.querySelector('.navbar-collapse').addEventListener('click', () => { // hides mobilenavs onclick

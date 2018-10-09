@@ -337,7 +337,7 @@ footer {
 
 .uplded-img-true {
 	display: inline-block;
-	margin: 0 .5rem;
+	margin: 0 .5rem 0 0;
 	position: static;
 }
 
@@ -544,6 +544,6 @@ footer {
 	margin-left: 2.25rem;
 }
 
-.modal .input-group-prepend {
+.varDiv .input-group-prepend {
 	width: 100%;
 }
