@@ -52,11 +52,11 @@ document.onreadystatechange = function () {
 		addPollingInputs(); // add active field in a polling form
 		document.querySelector('.lding').style.display = 'none';
 		// temporary autofill
-		document.querySelector('.title').value = Date.now() + '- Hello world!';
+		/*document.querySelector('.title').value = Date.now() + '- Hello world!';
 		document.querySelector('#pollDescriptionInput').value = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam dapibus dictum facilisis. Nunc suscipit nisi vel sapien auctor, ac sodales augue iaculis. Suspendisse vel felis in erat dignissim efficitur non eu metus. Morbi a odio sed ligula cursus sollicitudin.';
 		document.querySelector('#inputOption1').value = 'Option number one';
 		document.querySelector('#inputOption2').value = 'Second option';
-		document.querySelector('.footer').scrollIntoView();
+		document.querySelector('.footer').scrollIntoView();*/
 		// end autofill
 	}
 }
