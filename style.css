@@ -210,6 +210,7 @@
 
 body {
 	margin-bottom: 60px;
+	overflow-x: hidden;
 }
 
 html {
