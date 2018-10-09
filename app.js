@@ -47,17 +47,10 @@ window.onhashchange = function () {
 document.onreadystatechange = function () {
 	console.log('<f> doc ready');
 	if (document.readyState === "complete") {
-		addInactiveInput();
+		addInactiveInput(); // add active field in a polling form
 		addPollingInputs();
-		addPollingInputs(); // add active field in a polling form
+		addPollingInputs();
 		document.querySelector('.lding').style.display = 'none';
-		// temporary autofill
-		/*document.querySelector('.title').value = Date.now() + '- Hello world!';
-		document.querySelector('#pollDescriptionInput').value = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam dapibus dictum facilisis. Nunc suscipit nisi vel sapien auctor, ac sodales augue iaculis. Suspendisse vel felis in erat dignissim efficitur non eu metus. Morbi a odio sed ligula cursus sollicitudin.';
-		document.querySelector('#inputOption1').value = 'Option number one';
-		document.querySelector('#inputOption2').value = 'Second option';
-		document.querySelector('.footer').scrollIntoView();*/
-		// end autofill
 	}
 }
 
@@ -93,7 +86,6 @@ function insertHtmlPoll(resultContent) {
 		}
 		updateProgressValues();
 	});
-
 	document.getElementById('complete-form').style.display = 'block';
 	document.getElementById('share-form').style.display = 'block';
 	document.getElementById('PollConstructor').style.display = 'none';
@@ -101,10 +93,9 @@ function insertHtmlPoll(resultContent) {
 	document.querySelector('#cplkint').value = 'https://golospolls.com/#' + resultContent.author + '/' + resultContent.permlink;
 	document.querySelector('#cpcdint').value = `<!-- Put this script tag to the <head> of your page --> <script src="https://golospolls.com/inject.js"></script><!-- Put this div and script tags to the place, where the Poll block will be --> <div class="gPolls"></div><script type="text/javascript">var gPollsWidth = '300', gPollsLink = '` + resultContent.author + `/` + resultContent.permlink + `';</script>`;
 	startUpdProgTimer(4815);
-	// inserting social buttons
-	var $div = document.createElement('div');
+	var $div = document.createElement('div'); // inserting social buttons
 	$div.innerHTML = `<a class="btn share-fb" href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&u=https%3A%2F%2Fgolospolls.com%2F#` + resultContent.author + `%2F` + resultContent.permlink + `&display=popup&ref=plugin&src=share_button" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><span class="icon-facebook2"> Share</span></a>
-<a class="btn btn-info share-tw" href="https://twitter.com/intent/tweet?ref_src=twsrc%5Etfw&text=Attention%20friends!%20I%27m%20interested%20in%20your%20opinion%20on%20one%20issue%20-%20please%20choose%20the%20option%20that%20you%20think%20is%20correct%20http%3A%2F%2Fgolospolls.com&tw_p=tweetbutton&url=https%3A%2F%2Fgolospolls.com%2F#` + resultContent.author + `%2F` + resultContent.permlink + `" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><span class="icon-twitter"> Tweet</span></a>
+<a class="btn btn-info share-tw" href="https://twitter.com/intent/tweet?ref_src=twsrc%5Etfw&text=Attention%20friends!%20I%27m%20interested%20in%20your%20opinion%20on%20one%20issue%20-%20please%20choose%20the%20option%20that%20you%20think%20is%20correct&tw_p=tweetbutton&url=http%3A//golospolls.com/%23` + resultContent.author + `%2F` + resultContent.permlink + `" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><span class="icon-twitter"> Tweet</span></a>
 <a class="btn share-vk" href="https://vk.com/share.php?url=https%3A%2F%2Fgolospolls.com%2F#` + resultContent.author + `%2F` + resultContent.permlink + `" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><img src="graphics/vk-logo.png" width="20" height="13" class="d-inline-block align-top"><span>Поделиться</span></a>
 <a class="btn share-gp" href="https://plus.google.com/share?app=110&url=https%3A%2F%2Fgolospolls.com%2F#` + resultContent.author + `%2F` + resultContent.permlink + `" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><span class="icon-google-plus"> Share</span></a>
 <a class="btn share-golos" role="button" onclick="reblogGolos();return false;"><span></span>Reblog</a>`;
@@ -186,9 +177,7 @@ function addInactiveInput() {
 	document.getElementById('PollForm').appendChild($div);
 }
 
-function completeForm(callback) {
-	console.log('<f> completeForm');
-	// collecting data & sending 
+function completeForm(callback) { // collecting data & sending
 	var $pollInputs = document.getElementById('PollForm').getElementsByClassName('form-control'),
 		$pollImages = document.getElementById('PollForm').getElementsByTagName('img'),
 		pollDescription = document.getElementById('pollDescriptionInput').value,
@@ -218,12 +207,10 @@ function completeForm(callback) {
 		}
 	}
 	if (errTrigger) return;
-	str = urlLit(document.querySelector('.form-control.title').value, 0);
-	//str.replace(/[^\w\d]/g, '_');
-	str = str + '-' + Date.now();
+	str = urlLit(document.querySelector('.form-control.title').value, 0) + '-' + Date.now();
 	var title = document.querySelector('.form-control.title').value,
 		title_pic;
-	if (document.querySelector('#load-img0').src.replace(/^.*[\\\/]/, '') == 'img.svg' || document.querySelector('#load-img0').src.replace(/^.*[\\\/]/, '') == 'loading.gif' || document.querySelector('#load-img0').src.replace(/^.*[\\\/]/, '') == 'err.png' || document.querySelector('#load-img0').src.replace(/^.*[\\\/]/, '') == 'index.html' || document.querySelector('#load-img0').src == 'https://golospolls.com/') {
+	if (document.querySelector('#load-img0').src.replace(/^.*[\\\/]/, '') == 'img.svg' || document.querySelector('#load-img0').src.replace(/^.*[\\\/]/, '') == 'loading.gif' || document.querySelector('#load-img0').src.replace(/^.*[\\\/]/, '') == 'err.png' || document.querySelector('#load-img0').src.replace(/^.*[\\\/]/, '') == 'index.html' || document.querySelector('#load-img0').src.replace(/^.*[\\\/]/, '') == '') {
 		title_pic = '';
 	} else {
 		title_pic = document.querySelector('#load-img0').src;
@@ -244,6 +231,7 @@ function completeForm(callback) {
 	console.log('permlink : ' + str);
 	console.log('json var : ' + answers); // debug info
 	console.log('title : ' + title);
+	console.log('title_image : ' + title_pic);
 	console.log('json answerimages : ' + answerimages);
 	send_request(str, title, jsonMetadata, true);
 }
@@ -259,11 +247,10 @@ function checkInput(id) {
 }
 
 function send_request(str, title, jsonMetadata, tagNewPost, callback) {
-	console.log('<f> send_request');
 	var parentAuthor = ''; // for post creating, empty field
 	var parentPermlink = 'test'; // main tag
 	var body = 'test';
-	golos.broadcast.comment(wif.posting, parentAuthor, parentPermlink, username, str, title, body, jsonMetadata, function (err, result) {
+	golos.broadcast.comment(wif.posting, parentAuthor, parentPermlink, username, str, title, body, jsonMetadata, function (err, result) { // add post
 		if (!err) {
 			clearUpdTimer();
 			window.location.hash = username + '/' + str;
@@ -289,7 +276,7 @@ function send_request(str, title, jsonMetadata, tagNewPost, callback) {
 		}
 		document.querySelector('.lding').style.display = 'none';
 		if (callback) callback(err, result);
-	}); // add post
+	});
 }
 
 function getMyPolls(callback) {
@@ -313,8 +300,6 @@ function getMyPolls(callback) {
 		limit: 100
 	};
 	golos.api.getDiscussionsByBlog(query, function (err, result) {
-		console.log('<f>getDiscussionsByBlog ', query);
-		/*console.log(result);*/
 		if (result == '') {
 			var $div = document.createElement('tr');
 			$div.innerHTML = `<td colspan="6">` + document.querySelectorAll('.translate-phrases li')[8].innerHTML + `</td>`;
@@ -361,12 +346,7 @@ function getMyPolls(callback) {
 								i++;
 							});
 							var $div = document.createElement('tr');
-							$div.innerHTML = `<td>` + countofposts + `. <a href="#` + item.author + `/` + item.permlink + `">` + item.json_metadata.data.poll_title + `</a></td>
-                                      <td>` + moment(item.created).format('lll') + `</td>
-                                      <td>` + answerSrt + `</td>
-                                      <td>` + countofvotes + `</td>
-                                      <td>` + winner + `</td>
-                                    </tr>`;
+							$div.innerHTML = `<td>` + countofposts + `. <a href="#` + item.author + `/` + item.permlink + `">` + item.json_metadata.data.poll_title + `</a></td><td>` + moment(item.created).format('lll') + `</td><td>` + answerSrt + `</td><td>` + countofvotes + `</td><td>` + winner + `</td></tr>`;
 							document.querySelector('.myPollTab').appendChild($div);
 						}
 						document.querySelector('.lding').style.display = 'none';
@@ -385,18 +365,7 @@ function getMyPolls(callback) {
 	});
 	var $div = document.createElement('table');
 	$div.className = 'table table-striped';
-	$div.innerHTML = `<thead>
-                            <tr>
-                              <th scope="col">` + document.querySelectorAll('.translate-phrases li')[3].innerHTML + `</th>
-                              <th scope="col">` + document.querySelectorAll('.translate-phrases li')[1].innerHTML + `</th>
-                              <th scope="col">` + document.querySelectorAll('.translate-phrases li')[2].innerHTML + `</th>
-                              <th scope="col">` + document.querySelectorAll('.translate-phrases li')[4].innerHTML + `</th>
-                              <th scope="col">` + document.querySelectorAll('.translate-phrases li')[5].innerHTML + `</th>
-                            </tr>
-                          </thead>
-                          <tbody class="myPollTab">
-                          </tbody>
-                        </table>`
+	$div.innerHTML = `<thead><tr><th scope="col">` + document.querySelectorAll('.translate-phrases li')[3].innerHTML + `</th><th scope="col">` + document.querySelectorAll('.translate-phrases li')[1].innerHTML + `</th><th scope="col">` + document.querySelectorAll('.translate-phrases li')[2].innerHTML + `</th><th scope="col">` + document.querySelectorAll('.translate-phrases li')[4].innerHTML + `</th><th scope="col">` + document.querySelectorAll('.translate-phrases li')[5].innerHTML + `</th></tr></thead><tbody class="myPollTab"></tbody></table>`
 	document.querySelector('.card-body.text-dark').innerHTML = '';
 	document.querySelector('.card-body.text-dark').appendChild($div);
 }
@@ -415,7 +384,6 @@ function urlLit(w, v) { // cyrilic-to-translit-function
 }
 
 function reblogGolos() {
-	console.log('=> reblog click');
 	const json = JSON.stringify(['reblog', {
 		account: username,
 		author: resultContent.author,
@@ -445,7 +413,6 @@ function reblogGolos() {
 };
 
 function ipfsImgLoad(e) {
-	console.log('<f> ipfsImgLoad(e) ', e.id);
 	e.parentNode.querySelector('img').src = 'graphics/loading.gif';
 	uploadImageToIpfs(e.parentNode.querySelector('img').id, (err, files) => {
 		if (err) {
@@ -460,15 +427,12 @@ function ipfsImgLoad(e) {
 	});
 };
 
-// buttons events 
-
 function newPoll() {
 	document.querySelector('#PollConstructor').style.display = 'block';
 	document.querySelector('#complete-form').style.display = 'none';
 }
 
 document.getElementById('complete').addEventListener('click', function () {
-	console.log('<f> complete button');
 	if (document.querySelector('.form-control.title').value == '') {
 		swal({
 			title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
@@ -522,25 +486,7 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 	}
 	auth(function () {
 		let $editDiv = document.createElement('div');
-		$editDiv.innerHTML = ` <div class="modal fade" tabindex="-1" role="dialog" id="modalEdit">
-			<div class="modal-dialog" role="document" style="max-width: 600px;">
-				<div class="modal-content">
-					<div class="modal-header">
-						<label>` + document.querySelector('.edit-poll').innerHTML + `</label>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-				<div class="modal-body">
-					<div class="form-group-swal"><label>` + document.querySelectorAll('.translate-phrases li')[23].innerHTML + `</label><input type="text" class="form-control title edit" value="` + resultContent.json_metadata.data.poll_title + `" placeholder="Type your text here" onchange="checkInput(this.id);"><label for="exampleFormControlTextarea1">` + document.querySelectorAll('.translate-phrases li')[24].innerHTML + `</label><textarea class="form-control" id="pollDescriptionInput" rows="3" maxlength="300">` + resultContent.json_metadata.data.poll_description + `</textarea><br><img class="uplded-img-true" id="load-imag" src="` + resultContent.json_metadata.data.title_image + `" width="35" height="35" ` + $imageEdit + ` ><div class="remImg" onclick="remImg(this)" style="display: block;"><span class="icon-cross"></span></div><span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span> Add main image</span><div id="EditPollForm"><label>` + document.querySelectorAll('.translate-phrases li')[25].innerHTML + `</label></div></div><div class="varDiv">` + pollHTML + `</div><label class="label-error">` + document.querySelectorAll('.translate-phrases li')[34].innerHTML + `</label><span class="btn btn-secondary addvar" onclick="addvar()"><span class="icon-plus"></span></span>
-				</div>
-				<div class="modal-footer">
-					<button class="btn btn-success apply"><span class="icon-checkmark"></span> ` + document.querySelectorAll('.translate-phrases li')[35].innerHTML + `</button>
-					<button class="btn btn-danger cancel" aria-label="Close"><span class="icon-cross"></span> ` + document.querySelectorAll('.translate-phrases li')[36].innerHTML + `</button>
-				</div>
-				</div>
-			</div>
-		</div>`;
+		$editDiv.innerHTML = ` <div class="modal fade" tabindex="-1" role="dialog" id="modalEdit"><div class="modal-dialog" role="document" style="max-width: 600px;"><div class="modal-content"><div class="modal-header"><label>` + document.querySelector('.edit-poll').innerHTML + `</label><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><div class="form-group-swal"><label>` + document.querySelectorAll('.translate-phrases li')[23].innerHTML + `</label><input type="text" class="form-control title edit" value="` + resultContent.json_metadata.data.poll_title + `" placeholder="Type your text here" onchange="checkInput(this.id);"><label for="exampleFormControlTextarea1">` + document.querySelectorAll('.translate-phrases li')[24].innerHTML + `</label><textarea class="form-control" id="pollDescriptionInput" rows="3" maxlength="300">` + resultContent.json_metadata.data.poll_description + `</textarea><br><img class="uplded-img-true" id="load-imag" src="` + resultContent.json_metadata.data.title_image + `" width="35" height="35" ` + $imageEdit + ` ><div class="remImg" onclick="remImg(this)" style="display: block;"><span class="icon-cross"></span></div><span class="btn btn-secondary" onClick="ipfsImgLoad(this)"><span class="icon-image"></span> Add main image</span><div id="EditPollForm"><label>` + document.querySelectorAll('.translate-phrases li')[25].innerHTML + `</label></div></div><div class="varDiv">` + pollHTML + `</div><label class="label-error">` + document.querySelectorAll('.translate-phrases li')[34].innerHTML + `</label><span class="btn btn-secondary addvar" onclick="addvar()"><span class="icon-plus"></span></span></div><div class="modal-footer"><button class="btn btn-success apply"><span class="icon-checkmark"></span> ` + document.querySelectorAll('.translate-phrases li')[35].innerHTML + `</button><button class="btn btn-danger cancel" aria-label="Close"><span class="icon-cross"></span> ` + document.querySelectorAll('.translate-phrases li')[36].innerHTML + `</button></div></div></div></div>`;
 		document.getElementsByTagName('body')[0].appendChild($editDiv);
 		document.getElementById('modalEdit').addEventListener('show.bs.modal', function () {
 			document.querySelector('#modalEdit .apply').addEventListener('click', () => {
@@ -586,8 +532,6 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 						poll_description: document.querySelector('#modalEdit textarea').value
 					}
 				}
-				/*console.log('title_image:', $titleImage);
-				console.log('poll_images:', newPollImages);*/
 				if (!err) {
 					send_request(resultContent.permlink, document.querySelector('#modalEdit .title.edit').value, jsonMetadata_edit, false, function () {
 						getHash(function (resultContent) {
