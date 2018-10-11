@@ -250,7 +250,6 @@ function removeMyVote() {
 }
 
 function getVote(callback) { // getting poll data
-	// console.log('<f> getVote');
 	countOfVoters = 0;
 	checkToVote = false;
 	pollData = {};
@@ -267,10 +266,8 @@ function getVote(callback) { // getting poll data
 							percnt: 0
 						};
 						countOfVoters++;
-						/*console.log('countOfVoters', countOfVoters);*/
 						pollData[item.json_metadata.data.poll_id].count++;
 					}
-					/*console.log('comments:', item);*/
 					if (typeof wif != 'undefined') {
 						if (username == item.author) { // check if already voted
 							checkToVote = {};
@@ -283,7 +280,6 @@ function getVote(callback) { // getting poll data
 					}
 				}
 			});
-			/*console.log('countOfVoters', countOfVoters);*/
 			Object.keys(pollData).map(function (objectKey, index) { // foreach pollData
 				pollData[objectKey].percnt = Math.round((pollData[objectKey].count * 100) / countOfVoters); // calculate percent
 			});
@@ -298,7 +294,6 @@ function getVote(callback) { // getting poll data
 							document.querySelectorAll('.progress-bar')[checkToVote.poll_id].classList.add('bg-success');
 							document.querySelectorAll('.progress-bar')[checkToVote.poll_id].innerHTML = '<span class="icon-checkmark"> ' + pollData[index].percnt + '% (' + pollData[index].count + ') - ' + document.querySelectorAll('.translate-phrases li')[39].innerHTML + '</span>';
 						}
-						/*						console.log('my Comment:', username, checkToVote);*/
 					}
 				} else if (document.querySelectorAll('.progress-bar')[index]) {
 					document.querySelectorAll('.progress-bar')[index].style = 'width: 0%;';
