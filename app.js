@@ -38,7 +38,6 @@ if (hash != '') {
 
 window.onhashchange = function () {
 	hash = location.hash.substring(1);
-	console.log('hash has been changed: ', hash);
 	if (hash != '') getHash(function (resultContent) {
 		insertHtmlPoll(resultContent);
 	});
@@ -55,7 +54,6 @@ document.onreadystatechange = function () {
 }
 
 function insertHtmlPoll(resultContent) {
-	console.log('<f> insertHtmlPoll ');
 	document.querySelector('.card-body.text-dark').innerHTML = '';
 	if (username) {
 		document.querySelector('#complete-form .card-header').innerHTML = document.querySelectorAll('.translate-phrases li')[0].innerHTML + ' @' + username;
@@ -104,7 +102,6 @@ function insertHtmlPoll(resultContent) {
 }
 
 function updateProgressValues() {
-	console.log('<f> updateProgressValues');
 	getVote(function () {
 		document.querySelector('.card-header-right p').innerHTML = '<span class="badge badge-info">' + document.querySelectorAll('.translate-phrases li')[4].innerHTML + ': ' + countOfVoters + '</span><span class="badge badge-info">' + document.querySelectorAll('.translate-phrases li')[1].innerHTML + ': ' + moment(resultContent.created).format('lll') + '</span>'
 		if (document.querySelector('.rem-vote')) {
@@ -280,7 +277,6 @@ function send_request(str, title, jsonMetadata, tagNewPost, callback) {
 }
 
 function getMyPolls(callback) {
-	console.log('<f>my-polls click');
 	clearUpdTimer();
 	document.querySelector('.lding').style.display = 'block';
 	document.querySelector('.rem-vote').style.display = 'none';
@@ -643,7 +639,6 @@ function about() {
 }
 
 function integration() {
-	console.log('<f> integration click');
 	swal({
 		title: document.getElementById('integration-html-header').innerHTML,
 		html: document.getElementById('integration-html').innerHTML,
