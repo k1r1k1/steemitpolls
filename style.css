@@ -548,3 +548,7 @@ footer {
 .varDiv .input-group-prepend {
 	width: 100%;
 }
+
+.navbar {
+    padding: 0.5rem;
+}
