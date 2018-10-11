@@ -504,11 +504,12 @@ footer {
 	}
 
 	.card-header-right p {
-		margin-top: -6.4rem;
+		margin-top: -7.5rem;
+    	position: absolute;
 	}
 
 	.card-header-right .rem-buttons {
-		margin-top: -2.9rem;
+		margin-top: -5.5rem;
 		margin-right: -.5rem;
 	}
 
