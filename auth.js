@@ -151,14 +151,16 @@ localStorage && localStorage.wif ? window.wif = JSON.parse(localStorage.wif) : w
 localStorage && localStorage.username ? window.username = localStorage.username : window.username = '';
 
 localStorage.wif && localStorage.username ? logOutProcc() : '';
-
 document.getElementById('form-login-pass').addEventListener('submit', async (e) => {
     e.preventDefault();
     log = document.getElementById('logged').checked;
     let user = document.getElementById('input-user').value,
         pass = document.getElementById('input-pass').value;
     try {
-        response = await steem.api.getAccounts([user]);
+        await steem.api.getAccounts([user], function(err, result) {
+			response = result;
+			console.log('resp: ', response[0].posting.key_auths[0][0]);
+});
     } catch (e) {
         swal({
             type: 'error',
@@ -168,6 +170,8 @@ document.getElementById('form-login-pass').addEventListener('submit', async (e) 
     }
     try {
         let keys = await steem.auth.getPrivateKeys(user, pass, roles);
+		console.log('keys: ', keys.postingPubkey);
+		console.log('response key: ', response[0].posting.key_auths[0][0]);
         if (response[0].posting.key_auths[0][0] == keys.postingPubkey) {
             username = user;
             wif = keys;
