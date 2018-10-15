@@ -166,7 +166,6 @@ document.getElementById('form-login-pass').addEventListener('submit', async (e) 
             html: `${ document.getElementById('auth-swal-log-html').innerHTML }`,
         })
     }
-
     try {
         let keys = await steem.auth.getPrivateKeys(user, pass, roles);
         if (response[0].posting.key_auths[0][0] == keys.postingPubkey) {
@@ -344,6 +343,5 @@ function logOutProcc() {
         localStorage.removeItem('username');
         window.username = '';
         window.wif = '';
-        //location.reload();
     })
 }
