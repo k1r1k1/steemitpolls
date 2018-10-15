@@ -70,7 +70,7 @@ $modalAuth.innerHTML = `<div class="modal" tabindex="-1" role="dialog" id="auth"
                     <hr class="bg-light">
                     </div>
                     <div>
-                        <a class="align-self-center" target="_blank" href="https://golos.io/create_account">
+                        <a class="align-self-center" target="_blank" href="https://signup.steemit.com/">
                         <button type="button" class="btn btn-lg btn-block btn-primary" aria-label="" style="display: inline-block; background-color: #297dce;"><span class="icon-clipboard"></span> Sign Up</button>
                         </a>
                     </div>
@@ -158,7 +158,7 @@ document.getElementById('form-login-pass').addEventListener('submit', async (e) 
     let user = document.getElementById('input-user').value,
         pass = document.getElementById('input-pass').value;
     try {
-        response = await golos.api.getAccounts([user]);
+        response = await steem.api.getAccounts([user]);
     } catch (e) {
         swal({
             type: 'error',
@@ -168,7 +168,7 @@ document.getElementById('form-login-pass').addEventListener('submit', async (e) 
     }
 
     try {
-        let keys = await golos.auth.getPrivateKeys(user, pass, roles);
+        let keys = await steem.auth.getPrivateKeys(user, pass, roles);
         if (response[0].posting.key_auths[0][0] == keys.postingPubkey) {
             username = user;
             wif = keys;
@@ -204,14 +204,14 @@ document.getElementById('form-priv').addEventListener('submit', async (e) => {
     log = document.getElementById('logged-private').checked;
     let priv = document.getElementById('input-private').value;
     try {
-        let resultWifToPublic = await golos.auth.wifToPublic(priv);
+        let resultWifToPublic = await steem.auth.wifToPublic(priv);
         wif = {};
         log ? localStorage.wif = JSON.stringify({ posting: priv }) : '';
         roles.forEach(key => {
             wif[key] = '';
         });
         wif['posting'] = priv;
-        golos.api.getKeyReferences([resultWifToPublic], function(err, result) {
+        steem.api.getKeyReferences([resultWifToPublic], function(err, result) {
             if (!err) {
                 result.forEach(function(item) {
                     username = item[0];
@@ -255,8 +255,8 @@ document.getElementById('form-priv-active').addEventListener('submit', async (e)
         let priv = document.getElementById('input-private-active').value,
         resultWifToPublic;
     try {
-        resultWifToPublic = await golos.auth.wifToPublic(priv);
-        golos.api.getKeyReferences([resultWifToPublic], function(err, result) {
+        resultWifToPublic = await steem.auth.wifToPublic(priv);
+        steem.api.getKeyReferences([resultWifToPublic], function(err, result) {
             if (!err) {
                     if( log ) {
                         let obj = JSON.parse(localStorage.wif);

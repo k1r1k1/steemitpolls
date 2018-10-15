@@ -1,9 +1,11 @@
 /* ------------------------------- */
 //	extended js for main service	//
-// 		https://golospolls.com/		//
+// 		https://steemitpolls.com/	//
 /* ------------------------------- */
-/*golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
-golos.config.set('websocket', 'wss://ws.testnet.golos.io');*/
+/*var steem = require('steem')*/
+steem.config.set('websocket','wss://testnet.steem.vc');
+steem.config.set('address_prefix', 'STX');
+steem.config.set('chain_id', '79276aea5d4877d9a25892eaa01b0adf019d3e5cb12a97478df3298ccdd01673');
 initLang('en'); // lang init = en
 // variable in valid format moment.js
 switch (localStorage.lang) {
@@ -88,15 +90,15 @@ function insertHtmlPoll(resultContent) {
 	document.getElementById('share-form').style.display = 'block';
 	document.getElementById('PollConstructor').style.display = 'none';
 	document.getElementById('complete-form').scrollIntoView();
-	document.querySelector('#cplkint').value = 'https://golospolls.com/#' + resultContent.author + '/' + resultContent.permlink;
-	document.querySelector('#cpcdint').value = `<!-- Put this script tag to the <head> of your page --> <script src="https://golospolls.com/inject.js"></script><!-- Put this div and script tags to the place, where the Poll block will be --> <div class="gPolls"></div><script type="text/javascript">var gPollsWidth = '300', gPollsLink = '` + resultContent.author + `/` + resultContent.permlink + `';</script>`;
+	document.querySelector('#cplkint').value = 'https://steemitpolls.com/#' + resultContent.author + '/' + resultContent.permlink;
+	document.querySelector('#cpcdint').value = `<!-- Put this script tag to the <head> of your page --> <script src="https://steemitpolls.com/inject.js"></script><!-- Put this div and script tags to the place, where the Poll block will be --> <div class="gPolls"></div><script type="text/javascript">var gPollsWidth = '300', gPollsLink = '` + resultContent.author + `/` + resultContent.permlink + `';</script>`;
 	startUpdProgTimer(4815);
 	var $div = document.createElement('div'); // inserting social buttons
-	$div.innerHTML = `<a class="btn share-fb" href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&u=http%3A//golospolls.com/%23` + resultContent.author + `%2F` + resultContent.permlink + `&display=popup&ref=plugin&src=share_button" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><span class="icon-facebook2"> Share</span></a>
-<a class="btn btn-info share-tw" href="https://twitter.com/intent/tweet?ref_src=twsrc%5Etfw&text=Attention%20friends!%20I%27m%20interested%20in%20your%20opinion%20on%20one%20issue%20-%20please%20choose%20the%20option%20that%20you%20think%20is%20correct&tw_p=tweetbutton&url=http%3A//golospolls.com/%23` + resultContent.author + `%2F` + resultContent.permlink + `" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><span class="icon-twitter"> Tweet</span></a>
-<a class="btn share-vk" href="https://vk.com/share.php?url=http%3A//golospolls.com/%23` + resultContent.author + `%2F` + resultContent.permlink + `" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><img src="graphics/vk-logo.png" width="20" height="13" class="d-inline-block align-top"><span>Поделиться</span></a>
-<a class="btn share-gp" href="https://plus.google.com/share?app=110&url=http%3A//golospolls.com/%23` + resultContent.author + `%2F` + resultContent.permlink + `" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><span class="icon-google-plus"> Share</span></a>
-<a class="btn share-golos" role="button" onclick="reblogGolos();return false;"><span></span>Reblog</a>`;
+	$div.innerHTML = `<a class="btn share-fb" href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&u=http%3A//steemitpolls.com/%23` + resultContent.author + `%2F` + resultContent.permlink + `&display=popup&ref=plugin&src=share_button" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><span class="icon-facebook2"> Share</span></a>
+<a class="btn btn-info share-tw" href="https://twitter.com/intent/tweet?ref_src=twsrc%5Etfw&text=Attention%20friends!%20I%27m%20interested%20in%20your%20opinion%20on%20one%20issue%20-%20please%20choose%20the%20option%20that%20you%20think%20is%20correct&tw_p=tweetbutton&url=http%3A//steemitpolls.com/%23` + resultContent.author + `%2F` + resultContent.permlink + `" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><span class="icon-twitter"> Tweet</span></a>
+<a class="btn share-vk" href="https://vk.com/share.php?url=http%3A//steemitpolls.com/%23` + resultContent.author + `%2F` + resultContent.permlink + `" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><img src="graphics/vk-logo.png" width="20" height="13" class="d-inline-block align-top"><span>Поделиться</span></a>
+<a class="btn share-gp" href="https://plus.google.com/share?app=110&url=http%3A//steemitpolls.com/%23` + resultContent.author + `%2F` + resultContent.permlink + `" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><span class="icon-google-plus"> Share</span></a>
+<a class="btn share-golos" role="button" onclick="reblogSteemit();return false;"><span></span>Reblog</a>`;
 	document.querySelector('.socialButtons').innerHTML = '';
 	document.querySelector('.socialButtons').appendChild($div);
 }
@@ -196,7 +198,7 @@ function completeForm(callback) { // collecting data & sending
 		} else {
 			$pollInputs[cnt].setAttribute('class', 'form-control title');
 			answers[cnt] = $pollInputs[cnt].value;
-			if ($pollImages[cnt].src.replace(/^.*[\\\/]/, '') == 'img.svg' || $pollImages[cnt].src.replace(/^.*[\\\/]/, '') == 'loading.gif' || $pollImages[cnt].src.replace(/^.*[\\\/]/, '') == 'err.png' || $pollImages[cnt].src.replace(/^.*[\\\/]/, '') == 'index.html' || $pollImages[cnt].src == 'https://golospolls.com/') {
+			if ($pollImages[cnt].src.replace(/^.*[\\\/]/, '') == 'img.svg' || $pollImages[cnt].src.replace(/^.*[\\\/]/, '') == 'loading.gif' || $pollImages[cnt].src.replace(/^.*[\\\/]/, '') == 'err.png' || $pollImages[cnt].src.replace(/^.*[\\\/]/, '') == 'index.html' || $pollImages[cnt].src == 'https://steemitpolls.com/') {
 				answerimages[cnt] = '';
 			} else {
 				answerimages[cnt] = $pollImages[cnt].src;
@@ -213,9 +215,9 @@ function completeForm(callback) { // collecting data & sending
 		title_pic = document.querySelector('#load-img0').src;
 	}
 	var jsonMetadata = {
-		app: 'golospolls/0.1',
-		canonical: 'https://golospolls.com/#' + username + '/' + str,
-		app_account: 'golosapps',
+		app: 'steemitpolls/0.1',
+		canonical: 'https://steemitpolls.com/#' + username + '/' + str,
+		app_account: 'steemitapps',
 		data: {
 			poll_title: title,
 			title_image: title_pic,
@@ -247,7 +249,7 @@ function send_request(str, title, jsonMetadata, tagNewPost, callback) {
 	var parentAuthor = ''; // for post creating, empty field
 	var parentPermlink = 'test'; // main tag
 	var body = 'test';
-	golos.broadcast.comment(wif.posting, parentAuthor, parentPermlink, username, str, title, body, jsonMetadata, function (err, result) { // add post
+	steem.broadcast.comment(wif.posting, parentAuthor, parentPermlink, username, str, title, body, jsonMetadata, function (err, result) { // add post
 		if (!err) {
 			clearUpdTimer();
 			window.location.hash = username + '/' + str;
@@ -268,7 +270,7 @@ function send_request(str, title, jsonMetadata, tagNewPost, callback) {
 			swal({
 				type: 'error',
 				title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
-				text: humaNize(err)
+				text: err
 			});
 		}
 		document.querySelector('.lding').style.display = 'none';
@@ -295,7 +297,7 @@ function getMyPolls(callback) {
 		filter_tags: ['test'],
 		limit: 100
 	};
-	golos.api.getDiscussionsByBlog(query, function (err, result) {
+	steem.api.getDiscussionsByBlog(query, function (err, result) {
 		if (result == '') {
 			var $div = document.createElement('tr');
 			$div.innerHTML = `<td colspan="6">` + document.querySelectorAll('.translate-phrases li')[8].innerHTML + `</td>`;
@@ -305,7 +307,7 @@ function getMyPolls(callback) {
 		if (!err) {
 			document.querySelector('#complete-form .card-header').innerHTML = document.querySelectorAll('.translate-phrases li')[20].innerHTML;
 			result.forEach(function (item) {
-				golos.api.getContentReplies(item.author, item.permlink, 10000, function (err, result) {
+				steem.api.getContentReplies(item.author, item.permlink, 10000, function (err, result) {
 					if (!err) {
 						pollData = {};
 						countofvotes = 0;
@@ -353,7 +355,7 @@ function getMyPolls(callback) {
 			swal({
 				type: 'error',
 				title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
-				text: humaNize(err)
+				text: err
 			});
 			document.querySelector('.lding').style.display = 'none';
 		}
@@ -379,20 +381,20 @@ function urlLit(w, v) { // cyrilic-to-translit-function
 	return (ww.replace(/[^a-zA-Z0-9\-]/g, '-').replace(/[-]{2,}/gim, '-').replace(/^\-+/g, '').replace(/\-+$/g, ''));
 }
 
-function reblogGolos() {
+function reblogSteemit() {
 	const json = JSON.stringify(['reblog', {
 		account: username,
 		author: resultContent.author,
 		permlink: resultContent.permlink
 }]);
 	auth(function () {
-		golos.broadcast.customJson(wif.posting, [], [username], 'follow', json, (err, result) => {
+		steem.broadcast.customJson(wif.posting, [], [username], 'follow', json, (err, result) => {
 			console.log('username', username, 'author', resultContent.author, 'permlink', resultContent.permlink);
 			if (err) {
 				swal({
 					type: 'error',
 					title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
-					text: humaNize(err)
+					text: err
 				});
 			} else {
 				swal({
@@ -412,7 +414,7 @@ function ipfsImgLoad(e) {
 	e.parentNode.querySelector('img').src = 'graphics/loading.gif';
 	uploadImageToIpfs(e.parentNode.querySelector('img').id, (err, files) => {
 		if (err) {
-			alert(humaNize(err));
+			alert(err);
 			e.parentNode.querySelector('img').src = 'graphics/err.png';
 		} else {
 			console.log(files[0][0].path + files[0][0].hash);
@@ -445,7 +447,7 @@ document.getElementById('complete').addEventListener('click', function () {
 						swal({
 							type: 'error',
 							title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
-							text: humaNize(err)
+							text: err
 						});
 					}
 				});
@@ -517,9 +519,9 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 					$titleImage = '';
 				}
 				var jsonMetadata_edit = {
-					app: 'golospolls/0.1',
-					canonical: 'https://golospolls.com/#' + username + '/' + resultContent.permlink,
-					app_account: 'golosapps',
+					app: 'steemitpolls/0.1',
+					canonical: 'https://steemitpolls.com/#' + username + '/' + resultContent.permlink,
+					app_account: 'steemitapps',
 					data: {
 						poll_title: document.querySelector('#modalEdit .title.edit').value,
 						title_image: $titleImage,
@@ -615,7 +617,7 @@ function myPolls() {
 					swal({
 						type: 'error',
 						title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
-						text: humaNize(err)
+						text: err
 					});
 				}
 			});

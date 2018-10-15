@@ -1,9 +1,7 @@
 /* ------------------------------- */
-//	GolosPolls main script file		//
-// 		https://golospolls.com/		//
+//	SteemitPolls main script file		//
+// 		https://steemitpolls.com/	//
 /* ------------------------------- */
-/*golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
-golos.config.set('websocket', 'wss://ws.testnet.golos.io');*/
 
 var resultContent = '', // global variable for content
 	pollData = {}, // polling answers
@@ -107,7 +105,7 @@ function progress_click(id) { // dummy for polling
 					swal({
 						type: 'error',
 						title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
-						text: humaNize(err)
+						text: err
 					});
 				} else {
 					swal({
@@ -146,7 +144,7 @@ function getHash(callback) {
 		}
 		var username = hash.substring(targetStart + 2, slashPos); // '+ 2' removes the target symbols
 		var permlink = hash.substring(slashPos + 1); // '+ 1' removes '/'
-		golos.api.getContent(username, permlink, 10000, function (err, result) { // The console displays the data required for the post
+		steem.api.getContent(username, permlink, 10000, function (err, result) { // The console displays the data required for the post
 			if (!err && result.title != '') {
 				resultContent = result;
 				result.json_metadata = JSON.parse(result.json_metadata); //parse json to js
@@ -184,15 +182,15 @@ function sendVote(pollId, callback) {
 			var title = ''; // title - empty for add a comment
 			var body = 'I choose option # ' + pollId; // poll
 			var jsonMetadata = {
-				app: 'golospolls/0.1',
-				canonical: 'https://golospolls.com#' + username + '/' + permlink,
-				app_account: 'golosapps',
+				app: 'steempolls/0.1',
+				canonical: 'https://steemitpolls.com#' + username + '/' + permlink,
+				app_account: 'steemitapps',
 				data: {
 					poll_id: pollId
 				}
 			};
 			jsonMetadata = JSON.stringify(jsonMetadata);
-			golos.broadcast.comment(wif.posting, parentAuthor, parentPermlink, username, permlink, title, body, jsonMetadata, function (err, result) {
+			steem.broadcast.comment(wif.posting, parentAuthor, parentPermlink, username, permlink, title, body, jsonMetadata, function (err, result) {
 				if (!err) {
 					console.log('comment', result);
 					swal({
@@ -204,7 +202,7 @@ function sendVote(pollId, callback) {
 					swal({
 						type: 'error',
 						title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
-						text: humaNize(err)
+						text: err
 					})
 				}
 				callback(err, result);
@@ -231,7 +229,7 @@ function tryVoteAgain() {
 }
 
 function removeMyVote() {
-	golos.broadcast.deleteComment(wif.posting, checkToVote.author, checkToVote.permlink, function (err, result) {
+	steem.broadcast.deleteComment(wif.posting, checkToVote.author, checkToVote.permlink, function (err, result) {
 		if (err) {
 			swal(
 				'error',
@@ -254,7 +252,7 @@ function getVote(callback) { // getting poll data
 	checkToVote = false;
 	pollData = {};
 	voters = [];
-	golos.api.getContentReplies(resultContent.author, resultContent.permlink, 10000, function (err, result) {
+	steem.api.getContentReplies(resultContent.author, resultContent.permlink, 10000, function (err, result) {
 		if (!err) {
 			result.forEach(function (item) {
 				item.json_metadata = JSON.parse(item.json_metadata);
@@ -304,7 +302,7 @@ function getVote(callback) { // getting poll data
 			swal({
 				type: 'error',
 				title: 'error',
-				text: humaNize(err)
+				text: err
 			});
 		}
 		if (callback) callback();
