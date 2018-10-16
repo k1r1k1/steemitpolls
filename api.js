@@ -144,7 +144,7 @@ function getHash(callback) {
 		}
 		var username = hash.substring(targetStart + 2, slashPos); // '+ 2' removes the target symbols
 		var permlink = hash.substring(slashPos + 1); // '+ 1' removes '/'
-		steem.api.getContent(username, permlink, 10000, function (err, result) { // The console displays the data required for the post
+		steem.api.getContent(username, permlink, function (err, result) { // The console displays the data required for the post
 			if (!err && result.title != '') {
 				resultContent = result;
 				result.json_metadata = JSON.parse(result.json_metadata); //parse json to js
@@ -252,7 +252,7 @@ function getVote(callback) { // getting poll data
 	checkToVote = false;
 	pollData = {};
 	voters = [];
-	steem.api.getContentReplies(resultContent.author, resultContent.permlink, 10000, function (err, result) {
+	steem.api.getContentReplies(resultContent.author, resultContent.permlink, function (err, result) {
 		if (!err) {
 			result.forEach(function (item) {
 				item.json_metadata = JSON.parse(item.json_metadata);

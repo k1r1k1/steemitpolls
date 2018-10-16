@@ -307,7 +307,7 @@ function getMyPolls(callback) {
 		if (!err) {
 			document.querySelector('#complete-form .card-header').innerHTML = document.querySelectorAll('.translate-phrases li')[20].innerHTML;
 			result.forEach(function (item) {
-				steem.api.getContentReplies(item.author, item.permlink, 10000, function (err, result) {
+				steem.api.getContentReplies(item.author, item.permlink, function (err, result) {
 					if (!err) {
 						pollData = {};
 						countofvotes = 0;
