@@ -294,10 +294,11 @@ function getMyPolls(callback) {
 		max = 0;
 	var query = {
 		select_authors: [username],
-		filter_tags: ['test'],
-		limit: 100
+		tag: 'test',
+		limit: 10
 	};
 	steem.api.getDiscussionsByBlog(query, function (err, result) {
+		console.log(query);
 		if (result == '') {
 			var $div = document.createElement('tr');
 			$div.innerHTML = `<td colspan="6">` + document.querySelectorAll('.translate-phrases li')[8].innerHTML + `</td>`;
@@ -357,6 +358,7 @@ function getMyPolls(callback) {
 				title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
 				text: err
 			});
+			console.error(err);
 			document.querySelector('.lding').style.display = 'none';
 		}
 		if (callback) callback(err, result);
