@@ -428,6 +428,9 @@ function ipfsImgLoad(e) {
 };
 
 function newPoll() {
+	document.querySelector('#PollConstructor').querySelectorAll('.form-control').forEach(function (item) {
+		item.value = '';
+	})
 	document.querySelector('#PollConstructor').style.display = 'block';
 	document.querySelector('#complete-form').style.display = 'none';
 }
