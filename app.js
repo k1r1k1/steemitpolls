@@ -292,13 +292,16 @@ function getMyPolls(callback) {
 		countofposts = 0,
 		winner = 0,
 		max = 0;
-	var query = {
-		select_authors: [username],
-		tag: 'test',
-		limit: 10
-	};
-	steem.api.getDiscussionsByBlog(query, function (err, result) {
-		console.log(query);
+	var query = '@' + username;
+	steem.api.getState(query, function (err, result) {
+		console.log('query', query);
+		var foundPosts = [],
+			i = 0;
+		Object.keys(result.content).forEach(function (item) {
+			foundPosts[i] = (result.content[item]);
+			i++;
+		})
+		console.log('foundPosts:', foundPosts);
 		if (result == '') {
 			var $div = document.createElement('tr');
 			$div.innerHTML = `<td colspan="6">` + document.querySelectorAll('.translate-phrases li')[8].innerHTML + `</td>`;
@@ -307,8 +310,9 @@ function getMyPolls(callback) {
 		}
 		if (!err) {
 			document.querySelector('#complete-form .card-header').innerHTML = document.querySelectorAll('.translate-phrases li')[20].innerHTML;
-			result.forEach(function (item) {
+			foundPosts.forEach(function (item) {
 				steem.api.getContentReplies(item.author, item.permlink, function (err, result) {
+					console.log('result', item.permlink, result);
 					if (!err) {
 						pollData = {};
 						countofvotes = 0;
@@ -316,7 +320,7 @@ function getMyPolls(callback) {
 						max = 0;
 						winner = 0;
 						item.json_metadata = JSON.parse(item.json_metadata); //parse json to js
-						result.forEach(function (result) {
+						result.forEach(function (item) {
 							result.json_metadata = JSON.parse(result.json_metadata);
 							if (typeof result.json_metadata.data != 'undefined' && typeof result.json_metadata.data.poll_id != 'undefined') {
 								if (!~voters.indexOf('"' + result.author + '",')) {
