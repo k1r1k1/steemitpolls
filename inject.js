@@ -57,14 +57,14 @@ window.addEventListener('load', function () { // init script after page loaded
 	console.log('<f> doc loaded');
 	localStorage.lang = detectLang();
 	// background
-	var i = 0;
+/*	var i = 0;
 	bgTimer = setInterval(function () {
 		i = i + 2;
 		if (i > 360) {
 			i = 0;
 		}
 		document.querySelector('.sPolls .card-body').style = 'background-image: linear-gradient(' + i + 'deg, #ff000045, #0000ff7d);';
-	}, 100);
+	}, 100);*/
 	// variable in valid format moment.js
 	switch (localStorage.lang) {
 		case 'ua':
