@@ -294,13 +294,13 @@ function getMyPolls(callback) {
 		max = 0;
 	var query = '@' + username;
 	steem.api.getState(query, function (err, result) {
-		console.log('query', query);
 		var foundPosts = [],
 			i = 0;
 		Object.keys(result.content).forEach(function (item) {
 			foundPosts[i] = (result.content[item]);
 			i++;
 		})
+		result = foundPosts;
 		console.log('foundPosts:', foundPosts);
 		if (result == '') {
 			var $div = document.createElement('tr');
@@ -312,7 +312,7 @@ function getMyPolls(callback) {
 			document.querySelector('#complete-form .card-header').innerHTML = document.querySelectorAll('.translate-phrases li')[20].innerHTML;
 			foundPosts.forEach(function (item) {
 				steem.api.getContentReplies(item.author, item.permlink, function (err, result) {
-					console.log('result', item.permlink, result);
+					console.log('comments FROM ', item.permlink, ':', result);
 					if (!err) {
 						pollData = {};
 						countofvotes = 0;
@@ -321,6 +321,7 @@ function getMyPolls(callback) {
 						winner = 0;
 						item.json_metadata = JSON.parse(item.json_metadata); //parse json to js
 						result.forEach(function (item) {
+							console.log('foreachResult', item);
 							result.json_metadata = JSON.parse(result.json_metadata);
 							if (typeof result.json_metadata.data != 'undefined' && typeof result.json_metadata.data.poll_id != 'undefined') {
 								if (!~voters.indexOf('"' + result.author + '",')) {
