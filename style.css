@@ -175,20 +175,20 @@
 
 .share-golos {
 	border-radius: .25rem;
-	height: 1.5rem;
-	width: 80px;
-	font-size: 13px;
-	font-weight: 500;
-	background-color: #fff;
-	color: #F21616 !important;
-	border: 1px solid #dddddd;
-	padding: 0.1rem 0.5rem;
+    height: 1.5rem;
+    width: 80px;
+    font-size: 13px;
+    font-weight: 500;
+    background-color: #fff;
+    color: #666666 !important;
+    border: 1px solid #dddddd;
+    padding: 0.1rem 0.5rem;
 }
 
 .share-golos:hover {
 	color: #fff !important;
-	background-color: #2572BA;
-	border-color: #00047a
+	background-color: #4e4e4e;
+	border-color: #00d7a8
 }
 
 .share-golos.focus,
@@ -198,8 +198,9 @@
 
 .share-golos span {
 	vertical-align: text-top;
-	content: url(graphics/golos.png);
+	content: url(graphics/steemit.png);
 	width: 18px;
+	margin-right: 3px;
 }
 
 #modal-lang-form .img-thumbnail {
