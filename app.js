@@ -319,23 +319,25 @@ function getMyPolls(callback) {
 						voters = [];
 						max = 0;
 						winner = 0;
+						var postParent = item;
 						item.json_metadata = JSON.parse(item.json_metadata); //parse json to js
 						result.forEach(function (item) {
 							console.log('foreachResult', item);
-							result.json_metadata = JSON.parse(result.json_metadata);
-							if (typeof result.json_metadata.data != 'undefined' && typeof result.json_metadata.data.poll_id != 'undefined') {
-								if (!~voters.indexOf('"' + result.author + '",')) {
-									voters = voters + '"' + result.author + '",';
+							console.log('foreach-ку', result);
+							item.json_metadata = JSON.parse(item.json_metadata);
+							if (typeof item.json_metadata.data != 'undefined' && typeof item.json_metadata.data.poll_id != 'undefined') {
+								if (!~voters.indexOf('"' + item.author + '",')) {
+									voters = voters + '"' + item.author + '",';
 									countofvotes++;
 								}
 								cnt++;
-								if (!pollData[result.json_metadata.data.poll_id]) pollData[result.json_metadata.data.poll_id] = {
+								if (!pollData[item.json_metadata.data.poll_id]) pollData[item.json_metadata.data.poll_id] = {
 									count: 0,
 								};
-								pollData[result.json_metadata.data.poll_id].count++;
-								if (max < pollData[result.json_metadata.data.poll_id].count) {
-									max = pollData[result.json_metadata.data.poll_id].count;
-									winner = item.json_metadata.data.poll_answers[result.json_metadata.data.poll_id];
+								pollData[item.json_metadata.data.poll_id].count++;
+								if (max < pollData[item.json_metadata.data.poll_id].count) {
+									max = pollData[item.json_metadata.data.poll_id].count;
+									winner = postParent.json_metadata.data.poll_answers[item.json_metadata.data.poll_id];
 								}
 								if (max == 0)
 									winner = document.querySelectorAll('.translate-phrases li')[6].innerHTML;
