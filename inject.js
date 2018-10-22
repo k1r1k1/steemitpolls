@@ -3,15 +3,14 @@ var allJs = `<script src="https://cdn.jsdelivr.net/npm/i18next@11.2.3/i18next.mi
 <script src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@2.2.0/i18nextBrowserLanguageDetector.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/findandreplacedomtext@0.4.6/src/findAndReplaceDOMText.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.23/dist/bootstrap-native-v4.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/golos-js@0.7.2/dist/golos.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/steem@0.7.2/dist/steem.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/locales.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.19.1/dist/sweetalert2.all.min.js"></script>
-<script src="https://golosimages.com/lang.js"></script>
-<script src="https://golospolls.com/auth.js"></script>
-<script src="https://golospolls.com/api.js"></script>
-<script src="https://golospolls.com/golosErrs.js"></script>
-<link rel="stylesheet" type="text/css" href="https://golospolls.com/inject.css">`;
+<script src="https://steemitpolls.com/lang.js"></script>
+<script src="https://steemitpolls.com/auth.js"></script>
+<script src="https://steemitpolls.com/api.js"></script>
+<link rel="stylesheet" type="text/css" href="https://steemitpolls.com/inject.css">`;
 allJs = document.createRange().createContextualFragment(allJs); // create dom element
 (document.head || document.documentElement).appendChild(allJs);
 
@@ -43,7 +42,7 @@ function incertHtmlPoll(resultContent) {
 			document.querySelector('.card-date p').innerHTML = '</span><span class="badge badge-light">' + moment(resultContent.created).format('lll') + '</span>';
 		})
 	});
-	document.querySelector('.card.border-primary.mb-3 a').href = 'https://golospolls.com/#' + resultContent.author + '/' + resultContent.permlink;
+	document.querySelector('.card.border-primary.mb-3 a').href = 'https://steemitpolls.com/#' + resultContent.author + '/' + resultContent.permlink;
 	startUpdProgTimer(3500);
 }
 
@@ -64,10 +63,8 @@ window.addEventListener('load', function () { // init script after page loaded
 		if (i > 360) {
 			i = 0;
 		}
-		document.querySelector('.gPolls .card-body').style = 'background-image: linear-gradient(' + i + 'deg, #ff000045, #0000ff7d);';
+		document.querySelector('.sPolls .card-body').style = 'background-image: linear-gradient(' + i + 'deg, #ff000045, #0000ff7d);';
 	}, 100);
-	/*	golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
-		golos.config.set('websocket', 'wss://ws.testnet.golos.io');*/
 	// variable in valid format moment.js
 	switch (localStorage.lang) {
 		case 'ua':
@@ -89,13 +86,13 @@ window.addEventListener('load', function () { // init script after page loaded
 			moment.locale(localStorage.lang);
 	}
 	initLang(localStorage.lang); // automatic lang switch
-	gPollsContainer = document.createElement('div');
-	gPollsContainer.className = 'card border-primary mb-3';
-	gPollsContainer.innerHTML = `<div class="card-header bg-transparent border-success"><img src="https://golospolls.com/graphics/logo-animated.svg" width="25" height="25" class="logo-top"><a href="https://golospolls.com/" target="_blank"><img src="https://golospolls.com/graphics/golospolls-animated-18px.svg" class="d-inline-block align-top"></a></div><div class="card-header-right"><p></p></div><div class="card-body text-dark"></div><div class="card-date"><p></p></div></div>`;
-	document.querySelector('.gPolls').style.width = gPollsWidth;
-	document.querySelector('.gPolls').appendChild(gPollsContainer); // div inject
+	sPollsContainer = document.createElement('div');
+	sPollsContainer.className = 'card border-primary mb-3';
+	sPollsContainer.innerHTML = `<div class="card-header bg-transparent border-success"><img src="https://steemitpolls.com/graphics/logo-animated.svg" width="25" height="25" class="logo-top"><a href="https://steemitpolls.com/" target="_blank"><img src="https://steemitpolls.com/graphics/golospolls-animated-18px.svg" class="d-inline-block align-top"></a></div><div class="card-header-right"><p></p></div><div class="card-body text-dark"></div><div class="card-date"><p></p></div></div>`;
+	document.querySelector('.sPolls').style.width = sPollsWidth;
+	document.querySelector('.sPolls').appendChild(sPollsContainer); // div inject
 	console.log('<f> doc ready');
-	hash = gPollsLink;
+	hash = sPollsLink;
 	getHash(function (resultContent) {
 		incertHtmlPoll(resultContent);
 	});

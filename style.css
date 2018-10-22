@@ -173,7 +173,7 @@
 	vertical-align: text-top;
 }
 
-.share-golos {
+.share-steemit {
 	border-radius: .25rem;
     height: 1.5rem;
     width: 80px;
@@ -185,18 +185,18 @@
     padding: 0.1rem 0.5rem;
 }
 
-.share-golos:hover {
+.share-steemit:hover {
 	color: #fff !important;
 	background-color: #4e4e4e;
 	border-color: #00d7a8
 }
 
-.share-golos.focus,
-.share-golos:focus {
+.share-steemit.focus,
+.share-steemit:focus {
 	box-shadow: 0 0 0 .2rem rgba(0, 60, 173, .5)
 }
 
-.share-golos span {
+.share-steemit span {
 	vertical-align: text-top;
 	content: url(graphics/steemit.png);
 	width: 18px;

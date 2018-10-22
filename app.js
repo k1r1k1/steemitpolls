@@ -91,14 +91,14 @@ function insertHtmlPoll(resultContent) {
 	document.getElementById('PollConstructor').style.display = 'none';
 	document.getElementById('complete-form').scrollIntoView();
 	document.querySelector('#cplkint').value = 'https://steemitpolls.com/#' + resultContent.author + '/' + resultContent.permlink;
-	document.querySelector('#cpcdint').value = `<!-- Put this script tag to the <head> of your page --> <script src="https://steemitpolls.com/inject.js"></script><!-- Put this div and script tags to the place, where the Poll block will be --> <div class="gPolls"></div><script type="text/javascript">var gPollsWidth = '300', gPollsLink = '` + resultContent.author + `/` + resultContent.permlink + `';</script>`;
+	document.querySelector('#cpcdint').value = `<!-- Put this script tag to the <head> of your page --> <script src="https://steemitpolls.com/inject.js"></script><!-- Put this div and script tags to the place, where the Poll block will be --> <div class="sPolls"></div><script type="text/javascript">var sPollsWidth = '300', sPollsLink = '` + resultContent.author + `/` + resultContent.permlink + `';</script>`;
 	startUpdProgTimer(4815);
 	var $div = document.createElement('div'); // inserting social buttons
 	$div.innerHTML = `<a class="btn share-fb" href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&u=http%3A//steemitpolls.com/%23` + resultContent.author + `%2F` + resultContent.permlink + `&display=popup&ref=plugin&src=share_button" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><span class="icon-facebook2"> Share</span></a>
 <a class="btn btn-info share-tw" href="https://twitter.com/intent/tweet?ref_src=twsrc%5Etfw&text=Attention%20friends!%20I%27m%20interested%20in%20your%20opinion%20on%20one%20issue%20-%20please%20choose%20the%20option%20that%20you%20think%20is%20correct&tw_p=tweetbutton&url=http%3A//steemitpolls.com/%23` + resultContent.author + `%2F` + resultContent.permlink + `" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><span class="icon-twitter"> Tweet</span></a>
 <a class="btn share-vk" href="https://vk.com/share.php?url=http%3A//steemitpolls.com/%23` + resultContent.author + `%2F` + resultContent.permlink + `" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><img src="graphics/vk-logo.png" width="20" height="13" class="d-inline-block align-top"><span>Поделиться</span></a>
 <a class="btn share-gp" href="https://plus.google.com/share?app=110&url=http%3A//steemitpolls.com/%23` + resultContent.author + `%2F` + resultContent.permlink + `" role="button" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=600,scrollbars=1');return false;"><span class="icon-google-plus"> Share</span></a>
-<a class="btn share-golos" role="button" onclick="reblogSteemit();return false;"><span></span>Reblog</a>`;
+<a class="btn share-steemit" role="button" onclick="reblogSteemit();return false;"><span></span>Reblog</a>`;
 	document.querySelector('.socialButtons').innerHTML = '';
 	document.querySelector('.socialButtons').appendChild($div);
 }
