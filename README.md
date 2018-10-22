@@ -1,4 +1,4 @@
-<a href="https://steemitpolls.com/" target="_blank">![](https://steemitpolls.com/graphics/steemitpolls-color.svg)</a>
+<a href="https://steemitpolls.com/" target="_blank" width="640">![](https://steemitpolls.com/graphics/steemitpolls-color.svg)</a>
 ### This microservice for conducting polls on the blockchain Steem. This platform is a thin client, that works without a backend (only frontend and blockchain) directly on the GitHub Pages (through CloudFlare).
 ### Built With
 * [Steem.js](https://github.com/steemit/steem-js) - the JavaScript API for Steem blockchain;
