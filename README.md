@@ -1,6 +1,6 @@
 
 <p align="center"><a href="https://steemitpolls.com/" target="_blank" width="640"><img width="630" src="https://steemitpolls.com/graphics/steemitpolls-color.svg"></a>
-</p>"
+</p>
 
 ### This microservice for conducting polls on the blockchain Steem. This platform is a thin client, that works without a backend (only frontend and blockchain) directly on the GitHub Pages (through CloudFlare).
 ### Built With
