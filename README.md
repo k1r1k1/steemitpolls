@@ -15,7 +15,7 @@
 * [Highlight.js](https://github.com/highlightjs/highlight.js)  -  is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework, and has automatic language detection.
 
 ### Getting Started
-Just go to the main page if you already have an account in the topic, fill out the form by following the prompts and confirm the creation of the survey.
+Just go to the [main page](https://steemitpolls.com/#create) if you already have an account in Steem, fill out the form by following the prompts and confirm the creation of the survey, or sign up with [Steemit](https://steemit.com/)
 
 ![expl](https://user-images.githubusercontent.com/36364669/47428715-caacea80-d79c-11e8-8b55-e1ef67374c83.gif)
 
