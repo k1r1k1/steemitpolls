@@ -2,7 +2,7 @@
 <p align="center"><a href="https://steemitpolls.com/" target="_blank" width="640"><img width="630" src="https://steemitpolls.com/graphics/steemitpolls-color.svg"></a>
 </p>
 
-### This microservice for conducting polls on the blockchain Steem. This platform is a thin client, that works without a backend (only frontend and blockchain) directly on the GitHub Pages through CloudFlare.
+### This microservice is created for conducting polls using a blockchain Steem. A platform is a thin client, that works without backend (only frontend and blockchain) directly on the GitHub Pages through CloudFlare.
 ### Built With
 * [Steem.js](https://github.com/steemit/steem-js) - the JavaScript API for Steem blockchain;
 * [Bootstrap](https://github.com/twbs/bootstrap) - the most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web;
@@ -17,5 +17,4 @@
 ### Getting Started
 Just go to the main page if you already have an account in the topic, fill out the form by following the prompts and confirm the creation of the survey.
 
-<p align="center"><img width="630" src="https://steemitpolls.com/graphics/example.gif">
-</p>
+![example](https://user-images.githubusercontent.com/36364669/47422412-3d14cf00-d78b-11e8-92e2-b3bd0a6313ae.gif)
