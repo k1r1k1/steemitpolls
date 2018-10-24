@@ -17,4 +17,8 @@
 ### Getting Started
 Just go to the main page if you already have an account in the topic, fill out the form by following the prompts and confirm the creation of the survey.
 
+![expl](https://user-images.githubusercontent.com/36364669/47428715-caacea80-d79c-11e8-8b55-e1ef67374c83.gif)
+
+Then you can see your poll and share whith your friends or other people
+
 ![example](https://user-images.githubusercontent.com/36364669/47422412-3d14cf00-d78b-11e8-92e2-b3bd0a6313ae.gif)
