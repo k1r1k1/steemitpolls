@@ -22,3 +22,7 @@ Using SteemitPolls is quite simple: all you need is just go to the [main page](h
 In this window you can see a list of your polls.
 
 ![20181027_160920](https://user-images.githubusercontent.com/36364669/47604742-7147f400-da06-11e8-9c18-b55ea93d7c1e.gif)
+
+And here an example of how you can edit your poll
+
+![20181027_165841](https://user-images.githubusercontent.com/36364669/47605038-00a2d680-da0a-11e8-9d71-591257b239ff.gif)
