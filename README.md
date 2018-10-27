@@ -15,10 +15,10 @@
 * [Highlight.js](https://github.com/highlightjs/highlight.js)  -  is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework, and has automatic language detection.
 
 ### Getting Started
-Using SteemitPolls is quite simple: all you need is just go to the [main page](https://steemitpolls.com/#create) if you already have an account in Steem, fill out the form by following the prompts and confirm the creation of the survey, or sign up with [Steemit](https://steemit.com/)
+Using SteemitPolls is quite simple: all you need is just go to the [main page](https://steemitpolls.com/#create) if you already have an account in Steem, fill out the form by following the prompts and confirm the creation of the survey, or sign up with [Steemit](https://steemit.com/). Then you can see your poll and share with your friends or other people
 
-![expl](https://user-images.githubusercontent.com/36364669/47428715-caacea80-d79c-11e8-8b55-e1ef67374c83.gif)
+![20181027_143444](https://user-images.githubusercontent.com/36364669/47604735-67be8c00-da06-11e8-975a-5c7768781475.gif)
 
-Then you can see your poll and share with your friends or other people
+In this window you can see a list of your polls.
 
-![example](https://user-images.githubusercontent.com/36364669/47422412-3d14cf00-d78b-11e8-92e2-b3bd0a6313ae.gif)
+![20181027_160920](https://user-images.githubusercontent.com/36364669/47604742-7147f400-da06-11e8-9c18-b55ea93d7c1e.gif)
