@@ -25,4 +25,4 @@ In this window you can see a list of your polls.
 
 And here an example of how you can edit your poll
 
-![20181027_165841](https://user-images.githubusercontent.com/36364669/47605038-00a2d680-da0a-11e8-9d71-591257b239ff.gif)
+![ezgif-5-569e48a36847](https://user-images.githubusercontent.com/36364669/47619955-4a1c2000-daf5-11e8-9ed1-8ab6492e6b99.png)
