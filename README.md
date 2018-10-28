@@ -27,8 +27,7 @@ And here an example of how you can edit your poll
 
 ![ezgif-5-569e48a36847](https://user-images.githubusercontent.com/36364669/47619955-4a1c2000-daf5-11e8-9ed1-8ab6492e6b99.png)
 
-### Donate
-## You can support the developer
-
-## BTC:  3JqaMh3idt2JzrcUzJgKycm1zEtV5hKqDg
-## ETH: 0x82099cB2270D1a592867F674c7196b2429D05B6d
+## Donate
+### You can support the developer
+BTC:  3JqaMh3idt2JzrcUzJgKycm1zEtV5hKqDg
+ETH: 0x82099cB2270D1a592867F674c7196b2429D05B6d
