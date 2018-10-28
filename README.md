@@ -2,6 +2,8 @@
 <p align="center"><a href="https://steemitpolls.com/" target="_blank" width="640"><img width="630" src="https://steemitpolls.com/graphics/steemitpolls-color.svg"></a>
 </p>
 
+[![][license img]][license]
+
 ### This microservice is created for conducting polls using a blockchain Steem. A platform is a thin client, that works without backend (only frontend and blockchain) directly on the [GitHub Pages](https://pages.github.com/) through [CloudFlare](https://www.cloudflare.com/).
 ### Built With
 * [Steem.js](https://github.com/steemit/steem-js) - the JavaScript API for Steem blockchain;
