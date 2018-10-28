@@ -17,7 +17,7 @@
 ### Getting Started
 Using SteemitPolls is quite simple: all you need is just go to the [main page](https://steemitpolls.com/#create) if you already have an account in Steem, fill out the form by following the prompts and confirm the creation of the survey, or sign up with [Steemit](https://steemit.com/). Then you can see your poll and share with your friends or other people
 
-![20181027_143444](https://user-images.githubusercontent.com/36364669/47604735-67be8c00-da06-11e8-975a-5c7768781475.gif)
+![newexpl](https://user-images.githubusercontent.com/36364669/47620262-51ddc380-daf9-11e8-8735-60836e7ffcce.png)
 
 In this window you can see a list of your polls.
 
