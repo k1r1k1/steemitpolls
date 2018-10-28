@@ -29,5 +29,8 @@ And here an example of how you can edit your poll
 
 ## Donate
 ### You can support the developer
+
 BTC:  3JqaMh3idt2JzrcUzJgKycm1zEtV5hKqDg
+
 ETH: 0x82099cB2270D1a592867F674c7196b2429D05B6d
+
