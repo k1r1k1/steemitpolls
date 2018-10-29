@@ -160,8 +160,8 @@ document.getElementById('form-login-pass').addEventListener('submit', async (e) 
 			response = result;
 			try {
 				let keys = await steem.auth.getPrivateKeys(user, pass, roles);
-				console.log('keys: ', keys.postingPubkey);
-				console.log('response key: ', response[0].posting.key_auths[0][0]);
+				//console.log('keys: ', keys.postingPubkey);
+				//console.log('response key: ', response[0].posting.key_auths[0][0]);
 				console.log(response[0].posting.key_auths[0][0] == keys.postingPubkey);
 				if (response[0].posting.key_auths[0][0] == keys.postingPubkey) {
 					username = user;

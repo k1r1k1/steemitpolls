@@ -312,7 +312,7 @@ function getMyPolls(callback) {
 			document.querySelector('#complete-form .card-header').innerHTML = document.querySelectorAll('.translate-phrases li')[20].innerHTML;
 			foundPosts.forEach(function (item) {
 				steem.api.getContentReplies(item.author, item.permlink, function (err, result) {
-					console.log('comments FROM ', item.permlink, ':', result);
+					//console.log('comments FROM ', item.permlink, ':', result);
 					if (!err) {
 						pollData = {};
 						countofvotes = 0;
@@ -322,8 +322,8 @@ function getMyPolls(callback) {
 						var postParent = item;
 						item.json_metadata = JSON.parse(item.json_metadata); //parse json to js
 						result.forEach(function (item) {
-							console.log('foreachResult', item);
-							console.log('foreach-ку', result);
+							//console.log('foreachResult', item);
+							//console.log('foreach-re', result);
 							item.json_metadata = JSON.parse(item.json_metadata);
 							if (typeof item.json_metadata.data != 'undefined' && typeof item.json_metadata.data.poll_id != 'undefined') {
 								if (!~voters.indexOf('"' + item.author + '",')) {

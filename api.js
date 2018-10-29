@@ -148,7 +148,7 @@ function getHash(callback) {
 			if (!err && result.title != '') {
 				resultContent = result;
 				result.json_metadata = JSON.parse(result.json_metadata); //parse json to js
-				console.log('getHash-resultContent=', resultContent);
+				//console.log('getHash-resultContent=', resultContent);
 				callback(result);
 			} else {
 				swal({

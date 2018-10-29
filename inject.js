@@ -88,7 +88,7 @@ window.addEventListener('load', function () { // init script after page loaded
 	initLang(localStorage.lang); // automatic lang switch
 	sPollsContainer = document.createElement('div');
 	sPollsContainer.className = 'card border-primary mb-3';
-	sPollsContainer.innerHTML = `<div class="card-header bg-transparent border-success"><img src="https://steemitpolls.com/graphics/logo-animated.svg" width="25" height="25" class="logo-top"><a href="https://steemitpolls.com/" target="_blank"><img src="https://steemitpolls.com/graphics/golospolls-animated-18px.svg" class="d-inline-block align-top"></a></div><div class="card-header-right"><p></p></div><div class="card-body text-dark"></div><div class="card-date"><p></p></div></div>`;
+	sPollsContainer.innerHTML = `<div class="card-header bg-transparent border-success"><img src="https://steemitpolls.com/graphics/logo-animated.svg" width="25" height="25" class="logo-top"><a href="https://steemitpolls.com/" target="_blank"><img src="https://steemitpolls.com/graphics/steemitpolls-animated-18px.svg" class="d-inline-block align-top"></a></div><div class="card-header-right"><p></p></div><div class="card-body text-dark"></div><div class="card-date"><p></p></div></div>`;
 	document.querySelector('.sPolls').style.width = sPollsWidth;
 	document.querySelector('.sPolls').appendChild(sPollsContainer); // div inject
 	console.log('<f> doc ready');
