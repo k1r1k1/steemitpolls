@@ -39,7 +39,7 @@
     color: #007bff;
     text-decoration: none;
     background-color: transparent;
-    transform: translateY(-22%);
+    transform: translateY(-27%);
 	margin-left: .25rem;
 }
 
@@ -575,7 +575,7 @@ aside,
 }
 
 .badge-light {
-	color: #212529;
+	color: #798187;
 	background-color: #f8f9fa
 }
 
@@ -2345,5 +2345,5 @@ input[type=submit].btn-block {
 }
 
 .badge-info {
-	background-color: #ff003b;
+	background-color: #07d6a9;
 }
