@@ -158,7 +158,6 @@ document.getElementById('form-login-pass').addEventListener('submit', async (e) 
 	try {
 		await steem.api.getAccounts([user], async (err, result) => {
 			response = result;
-			console.log('resp: ', response[0].posting.key_auths[0][0]);
 			try {
 				let keys = await steem.auth.getPrivateKeys(user, pass, roles);
 				console.log('keys: ', keys.postingPubkey);
@@ -186,7 +185,6 @@ document.getElementById('form-login-pass').addEventListener('submit', async (e) 
 					cb();
 				} else throw Error();
 			} catch (e) {
-				console.log('here is the error');
 				swal({
 					type: 'error',
 					html: `${ document.getElementById('auth-masterorlogin-error').innerHTML }`
