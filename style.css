@@ -462,6 +462,12 @@ footer {
     margin: .5rem 0 0 0;
 }
 
+.icon {
+	width: 15px;
+	height: 15px;
+	vertical-align: sub;
+}
+
 @media (max-width: 991px) {
 	.navbar li {
 		margin: 0 20px 0.5rem;

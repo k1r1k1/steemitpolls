@@ -690,3 +690,14 @@ function support() {
 		location.hash = '';
 	});
 }
+
+function donate() {
+	swal({
+		html: document.getElementById('donate-body').innerHTML,
+		showCloseButton: true,
+		width: 600,
+		type: 'success'
+	}).then(function () {
+		location.hash = '';
+	});
+}

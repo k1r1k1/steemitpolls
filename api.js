@@ -131,6 +131,8 @@ function getHash(callback) {
 		about()
 	} else if (hash == 'support') {
 		support()
+	} else if (hash == 'donate') {
+		donate()
 	} else {
 		var startTarget = '/#'; // search '/#'
 		var startPos = -1;
