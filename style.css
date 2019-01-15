@@ -1,17 +1,17 @@
 @font-face {
-  font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?6lz0kz');
-  src:  url('fonts/icomoon.eot?6lz0kz#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?6lz0kz') format('truetype'),
-    url('fonts/icomoon.woff?6lz0kz') format('woff'),
-    url('fonts/icomoon.svg?6lz0kz#icomoon') format('svg');
+  font-family: 'steempolls-icomoon';
+  src:  url('fonts/steempolls-icomoon.eot?hmhsv5');
+  src:  url('fonts/steempolls-icomoon.eot?hmhsv5#iefix') format('embedded-opentype'),
+    url('fonts/steempolls-icomoon.ttf?hmhsv5') format('truetype'),
+    url('fonts/steempolls-icomoon.woff?hmhsv5') format('woff'),
+    url('fonts/steempolls-icomoon.svg?hmhsv5#steempolls-icomoon') format('svg');
   font-weight: normal;
-  font-style: normal;
+  font-style: normal
 }
 
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
+  font-family: 'steempolls-icomoon' !important;
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -21,68 +21,80 @@
 
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: grayscale
 }
 
+.icon-steem:before {
+  content: "\e902";
+  color: #4ba2f2
+}
+.icon-gitter:before {
+  content: "\e900";
+  color: #ed1965
+}
+.icon-discord:before {
+  content: "\e901";
+  color: #7289da
+}
 .icon-image:before {
-  content: "\e90d";
+  content: "\e90d"
+}
+.icon-coin-dollar:before {
+  content: "\e93b"
 }
 .icon-wrench:before {
-  content: "\e991";
+  content: "\e991"
+}
+.icon-clipboard:before {
+  content: "\e9b8"
 }
 .icon-cloud-download:before {
-  content: "\e9c2";
+  content: "\e9c2"
 }
 .icon-earth:before {
-  content: "\e9ca";
+  content: "\e9ca"
 }
 .icon-link:before {
-  content: "\e9cb";
-}
-.icon-notification:before {
-  content: "\ea08";
-}
-.icon-question:before {
-  content: "\ea09";
+  content: "\e9cb"
 }
 .icon-plus:before {
-  content: "\ea0a";
-}
-.icon-minus:before {
-  content: "\ea0b";
+  content: "\ea0a"
 }
 .icon-info:before {
-  content: "\ea0c";
+  content: "\ea0c"
 }
 .icon-cross:before {
-  content: "\ea0f";
+  content: "\ea0f"
 }
 .icon-checkmark:before {
-  content: "\ea10";
+  content: "\ea10"
 }
 .icon-enter:before {
   content: "\ea13";
 }
 .icon-exit:before {
-  content: "\ea14";
-}
-.icon-embed:before {
-  content: "\ea7f";
+  content: "\ea14"
 }
 .icon-embed2:before {
-  content: "\ea80";
-}
-.icon-share2:before {
-  content: "\ea82";
+  content: "\ea80"
 }
 .icon-google-plus:before {
-  content: "\ea8b";
+  content: "\ea8b"
 }
-.icon-facebook2:before {
-  content: "\ea91";
+.icon-facebook:before {
+  content: "\ea90"
+}
+.icon-telegram:before {
+  content: "\ea95"
 }
 .icon-twitter:before {
-  content: "\ea96";
+  content: "\ea96"
+}
+.icon-vk:before {
+  content: "\ea98"
+}
+.icon-youtube:before {
+  content: "\ea9d"
 }
 
 .share-fb {
@@ -91,7 +103,7 @@
 	background-color: #4267b2;
 	color: #fff;
 	border: 1px solid #4267b2;
-	padding: 0.1rem 0.5rem;
+	padding: 0.1rem 0.5rem
 }
 
 .share-fb:hover {
@@ -106,17 +118,17 @@
 }
 
 .share-fb span {
-	vertical-align: text-top;
+	vertical-align: text-top
 }
 
 .share-tw {
 	border-radius: .25rem;
 	height: 1.5rem;
-	padding: 0.1rem 0.5rem;
+	padding: 0.1rem 0.5rem
 }
 
 .share-tw span {
-	vertical-align: text-top;
+	vertical-align: text-top
 }
 
 .share-vk {
@@ -125,7 +137,7 @@
 	background-color: #6287ae;
 	color: #fff;
 	border: 1px solid #4267b2;
-	padding: 0.1rem 0.5rem;
+	padding: 0.1rem 0.5rem
 }
 
 .share-vk:hover {
@@ -140,13 +152,13 @@
 }
 
 .share-vk img {
-	margin: .19rem 0 0 -.2rem;
+	margin: .19rem 0 0 -.2rem
 }
 
 .share-vk span {
 	font-size: 0.8rem;
 	vertical-align: text-top;
-	margin-left: .5rem;
+	margin-left: .5rem
 }
 
 .share-gp {
@@ -155,7 +167,7 @@
 	background-color: #fff;
 	color: #cc3732;
 	border: 1px solid #dddddd;
-	padding: 0.1rem 0.5rem;
+	padding: 0.1rem 0.5rem
 }
 
 .share-gp:hover {
@@ -170,7 +182,7 @@
 }
 
 .share-gp span {
-	vertical-align: text-top;
+	vertical-align: text-top
 }
 
 .share-steemit {
@@ -182,7 +194,7 @@
     background-color: #fff;
     color: #666666 !important;
     border: 1px solid #dddddd;
-    padding: 0.1rem 0.5rem;
+    padding: 0.1rem 0.5rem
 }
 
 .share-steemit:hover {
@@ -200,64 +212,64 @@
 	vertical-align: text-top;
 	content: url(graphics/steemit.png);
 	width: 18px;
-	margin-right: 3px;
+	margin-right: 3px
 }
 
 #modal-lang-form .img-thumbnail {
 	padding: 0px;
 	height: 30px;
-	width: 40px;
+	width: 40px
 }
 
 body {
 	margin-bottom: 60px;
-	overflow-x: hidden;
+	overflow-x: hidden
 }
 
 html {
 	position: relative;
-	min-height: 100%;
+	min-height: 100%
 }
 
 .card {
-	margin-top: 20px;
+	margin-top: 20px
 }
 
 .navbar li {
-	margin: 0 10px;
+	margin: 0 10px
 }
 
 .progress-bar {
-	color: #f5f5f5;
+	color: #f5f5f5
 }
 
 .progress {
 	height: 2rem;
-	font-size: 12pt;
+	font-size: 12pt
 }
 
 .card-header-right {
 	position: absolute;
-	right: 10px;
+	right: 10px
 }
 
 .card-header-right p {
-	float: right;
+	float: right
 }
 
 .badge {
 	margin-right: .5rem;
 	margin-top: .9rem;
-	vertical-align: super;
+	vertical-align: super
 }
 
 .table {
-	margin: 0;
+	margin: 0
 }
 
 .form-group-swal {
 	text-align: left;
-	margin-top: -1rem;
+	margin-top: -1rem
 }
 
 footer {
@@ -267,23 +279,23 @@ footer {
 	height: 60px;
 	line-height: 60px;
 	background-color: #f5f5f5;
-	text-align: center;
+	text-align: center
 }
 
 .btn-outline-secondary {
-	width: 2.7rem;
+	width: 2.7rem
 }
 
 .form-check {
-	padding-bottom: 1rem;
+	padding-bottom: 1rem
 }
 
 .input-group-prepend {
-	margin: 0;
+	margin: 0
 }
 
 .mainmage {
-	height: 600px;
+	height: 600px
 }
 
 .rem-vote {
@@ -292,7 +304,7 @@ footer {
 	margin: 10px 1rem 0rem 0;
 	padding-top: 0;
 	color: #fff;
-	background-color: #ff7500;
+	background-color: #ff7500
 }
 
 .edit-poll {
@@ -301,11 +313,11 @@ footer {
 	margin: 10px 1rem 0 0;
 	padding-top: 0;
 	color: #fff;
-	background-color: #ffc800;
+	background-color: #ffc800
 }
 
 .vote-item {
-	cursor: pointer;
+	cursor: pointer
 }
 
 .vote-item:hover {
@@ -315,7 +327,7 @@ footer {
 
 .vote-item img {
     max-width: 100%;
-    max-height: 250px;
+    max-height: 250px
 }
 
 .uplded-img:hover {
@@ -334,23 +346,23 @@ footer {
 	display: inline-block;
 	opacity: 0;
 	transition: .5s ease;
-	backface-visibility: hidden;
+	backface-visibility: hidden
 }
 
 .uplded-img-true {
 	display: inline-block;
 	margin: 0 .5rem 0 0;
-	position: static;
+	position: static
 }
 
 #load-img0 {
-	margin-left: .5rem;
+	margin-left: .5rem
 }
 
 .github-corner {
 	position: absolute;
 	top: 0;
-	right: 0;
+	right: 0
 }
 
 .github-corner:hover .octo-arm {
@@ -359,7 +371,7 @@ footer {
 
 .octo-arm {
 	transform-origin: 40px;
-	position: absolute;
+	position: absolute
 }
 
 @keyframes octocat-wave {
@@ -378,24 +390,24 @@ footer {
 }
 
 .socialButtons a {
-    margin-bottom: .5rem;
+    margin-bottom: .5rem
 }
 
 .navbar-light .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(224,91,29, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(224,91,29, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E")
 }
 
 .card-body {
-    padding: .5rem;
+    padding: .5rem
 }
 
 .navbar-toggler {
-	z-index: 2;
+	z-index: 2
 }
 
 .table th,
 .table td {
-	border-top: none;
+	border-top: none
 }
 
 .remImg {
@@ -407,81 +419,95 @@ footer {
     background-color: #ff0000;
 	color: #fff;
     opacity: 0;
-	padding: 8px 0 0 10px;
+	padding: 8px 0 0 10px
 }
 
 .remImg:hover {
     opacity: 0.6;
 	transition: .5s;
-	cursor: pointer;
+	cursor: pointer
 }
 
 .input-group-prepend .remImg {
-    margin: 0;
+    margin: 0
 }
 
 .swal2-content .remImg {
 	margin: 1px 0 0 -43px;
-	padding: 7px 0 0 9px;
+	padding: 7px 0 0 9px
 }
 
 .swal2-content .input-group .remImg {
     margin: 0 0 0 8px;
-	padding: 7px 0 0 1px;
+	padding: 7px 0 0 1px
 }
 
 
 .swal2-content .input-group-prepend {
-    width: 100%;
+    width: 100%
 }
 
 .swal2-content .addvar {
-    margin-right: 96%;
+    margin-right: 96%
 }
 
 .swal2-content .label-error {
 	display: none;
     margin-left: 36vw;
     color: #f00;
-    font-weight: 800;
+    font-weight: 800
 }
 
 #support {
-    margin-right: 1rem;
+    margin-right: 1rem
 }
 
 .mobile {
-		display: none;
+		display: none
 }
 
 .desktop {
-	display: inline-block;
+	display: inline-block
 }
 
 .poll-desc {
-    margin: .5rem 0 0 0;
+    margin: .5rem 0 0 0
 }
 
 .icon {
 	width: 15px;
 	height: 15px;
-	vertical-align: sub;
+	vertical-align: sub
+}
+
+.footer .label {
+	display: none
+}
+
+@media (min-width: 1024px) {
+	.footer .social {
+		font-size: 1.25rem
+	}
+
+	.footer .label {
+		display: inline
+	}
 }
 
 @media (max-width: 991px) {
 	.navbar li {
 		margin: 0 20px 0.5rem;
-		display: contents;
+		display: contents
 	}
 	.github-corner {
-		display: none;
+		display: none
 	}
 	table {
-		font-size: 6px;
+		font-size: 6px
 	}
 	.navbar-nav {
 		text-align: center;
-    	margin-top: 1rem;
+    	margin-top: 1rem
 	}
 	.navbar-collapse .btn {
 		height: 11vh;
@@ -489,16 +515,16 @@ footer {
 		font-size: 21px;
 		font-weight: 800;
 		padding: 4vh;
-		min-height: 75px;
+		min-height: 75px
 	}
 	.table td {
-    	padding: 0.2rem;
+    	padding: 0.2rem
 	}
 }
 
 @media (max-width:767px) {
 	.card-header-right {
-    	position: initial;
+    	position: initial
 	}
 }
 
@@ -512,51 +538,51 @@ footer {
 
 	.card-header-right p {
 		margin-top: -7.5rem;
-    	position: absolute;
+    	position: absolute
 	}
 
 	.card-header-right .rem-buttons {
 		margin-top: -5.5rem;
-		margin-right: -.5rem;
+		margin-right: -.5rem
 	}
 
 	#complete-form .card-header {
-		padding-left: .5rem;
+		padding-left: .5rem
 	}
 
 	#complete-form {
-		margin-top: 4rem;
+		margin-top: 4rem
 	}
 
 	#support {
-		margin-right: 0;
+		margin-right: 0
 	}
 
 	.mobile {
-		display: block;
+		display: block
 	}
 
 	.desktop {
-		display: none;
+		display: none
 	}
 }
 
 .label-error {
 	color: #f00;
 	display: none;
-	margin-bottom: 48px;
+	margin-bottom: 48px
 }
 
 .invalid-feedback {
     position: absolute;
 	margin-top: 2.25rem;
-	margin-left: 2.25rem;
+	margin-left: 2.25rem
 }
 
 .varDiv .input-group-prepend {
-	width: 100%;
+	width: 100%
 }
 
 .navbar {
-    padding: 0.5rem;
+    padding: 0.5rem
 }
