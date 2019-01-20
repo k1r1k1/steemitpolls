@@ -186,6 +186,7 @@
 }
 
 .share-steemit {
+    display: inline-flex;
 	border-radius: .25rem;
     height: 1.5rem;
     width: 80px;
