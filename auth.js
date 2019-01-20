@@ -172,7 +172,7 @@ document.getElementById('form-login-pass').addEventListener('submit', async (e) 
 						localStorage.username = username;
 					}
 					modalAuth.hide();
-					swal({
+					Swal.fire({
 						type: 'success',
 						position: 'top-end',
 						title: 'Success',
@@ -185,14 +185,28 @@ document.getElementById('form-login-pass').addEventListener('submit', async (e) 
 					cb();
 				} else throw Error();
 			} catch (e) {
-				swal({
+				Swal.fire({
 					type: 'error',
 					html: `${ document.getElementById('auth-masterorlogin-error').innerHTML }`
 				})
 			}
+
+/*const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
+
+Toast.fire({
+  type: 'success',
+  title: 'Signed in successfully'
+})*/
+
+
 		});
 	} catch (e) {
-		swal({
+		Swal.fire({
 			type: 'error',
 			title: `${ document.getElementById('auth-swal-log-title').innerHTML }`,
 			html: `${ document.getElementById('auth-swal-log-html').innerHTML }`,
@@ -233,7 +247,7 @@ document.getElementById('form-priv').addEventListener('submit', async (e) => {
 					cb();
 					logOutProcc();
 				}
-				swal({
+				Swal.fire({
 					type: 'success',
 					position: 'top-end',
 					title: 'Success',
@@ -243,10 +257,10 @@ document.getElementById('form-priv').addEventListener('submit', async (e) => {
 					showConfirmButton: false
 				});
 
-			} else swal(err);
+			} else Swal.fire(err);
 		});
 	} catch (e) {
-		swal({
+		Swal.fire({
 			type: 'error',
 			html: document.getElementById('privKey-incorrect').innerHTML
 		})
@@ -271,7 +285,7 @@ document.getElementById('form-priv-active').addEventListener('submit', async (e)
 
 					if (wif[s] == priv) {
 						document.getElementById('input-private-active').className = 'form-control is-invalid';
-						swal({
+						Swal.fire({
 							type: 'error',
 							position: 'top-end',
 							title: 'Error',
@@ -293,7 +307,7 @@ document.getElementById('form-priv-active').addEventListener('submit', async (e)
 				} else {
 					logOutProcc();
 					cb();
-					swal({
+					Swal.fire({
 						type: 'success',
 						position: 'top-end',
 						title: 'Success',
@@ -304,10 +318,10 @@ document.getElementById('form-priv-active').addEventListener('submit', async (e)
 					});
 				}
 
-			} else swal(err);
+			} else Swal.fire(err);
 		});
 	} catch (e) {
-		swal({
+		Swal.fire({
 			type: 'error',
 			html: document.getElementById('privKey-incorrect').innerHTML
 		})
@@ -333,7 +347,7 @@ function logOutProcc() {
 	document.getElementById('navbar-right').appendChild(li);
 	document.getElementById('logout').addEventListener('click', function () {
 		document.getElementById('navbar-right').removeChild(document.getElementById('li-log'));
-		swal({
+		Swal.fire({
 			position: 'top-end',
 			type: 'success',
 			title: `${document.getElementById('logout-swal').innerHTML}`,

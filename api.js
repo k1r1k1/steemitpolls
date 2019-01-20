@@ -102,13 +102,13 @@ function progress_click(id) { // dummy for polling
 		if (wif.posting) {
 			sendVote(id, function (err, result) {
 				if (err) {
-					swal({
+					Swal.fire({
 						type: 'error',
 						title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
 						text: err
 					});
 				} else {
-					swal({
+					Swal.fire({
 						type: 'success',
 						title: document.querySelectorAll('.translate-phrases li')[9].innerHTML,
 						html: document.querySelector('.socialButtons').innerHTML
@@ -153,7 +153,7 @@ function getHash(callback) {
 				//console.log('getHash-resultContent=', resultContent);
 				callback(result);
 			} else {
-				swal({
+				Swal.fire({
 					type: 'error',
 					title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
 					text: document.querySelectorAll('.translate-phrases li')[37].innerHTML
@@ -168,7 +168,7 @@ function sendVote(pollId, callback) {
 	console.log('<f> sendVote');
 	getVote(() => {
 		if (tagNewPost) {
-			swal({
+			Swal.fire({
 				title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
 				text: document.querySelectorAll('.translate-phrases li')[28].innerHTML + ' ' + counter + ' ' + document.querySelectorAll('.translate-phrases li')[29].innerHTML,
 				type: 'error'
@@ -195,13 +195,13 @@ function sendVote(pollId, callback) {
 			steem.broadcast.comment(wif.posting, parentAuthor, parentPermlink, username, permlink, title, body, jsonMetadata, function (err, result) {
 				if (!err) {
 					console.log('comment', result);
-					swal({
+					Swal.fire({
 						type: 'success',
 						title: document.querySelectorAll('.translate-phrases li')[9].innerHTML
 					})
 				} else {
 					console.error(err);
-					swal({
+					Swal.fire({
 						type: 'error',
 						title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
 						text: err
@@ -214,7 +214,7 @@ function sendVote(pollId, callback) {
 }
 
 function tryVoteAgain() {
-	swal({
+	Swal.fire({
 		title: document.querySelectorAll('.translate-phrases li')[27].innerHTML,
 		text: document.querySelectorAll('.translate-phrases li')[30].innerHTML,
 		type: 'error',
@@ -233,7 +233,7 @@ function tryVoteAgain() {
 function removeMyVote() {
 	steem.broadcast.deleteComment(wif.posting, checkToVote.author, checkToVote.permlink, function (err, result) {
 		if (err) {
-			swal(
+			Swal.fire(
 				'error',
 				document.querySelectorAll('.translate-phrases li')[15].innerHTML,
 				err
@@ -242,7 +242,7 @@ function removeMyVote() {
 		}
 		insertHtmlPoll(resultContent);
 	});
-	swal(
+	Swal.fire(
 		document.querySelectorAll('.translate-phrases li')[21].innerHTML,
 		document.querySelectorAll('.translate-phrases li')[38].innerHTML,
 		'success'
@@ -301,7 +301,7 @@ function getVote(callback) { // getting poll data
 				}
 			}
 		} else {
-			swal({
+			Swal.fire({
 				type: 'error',
 				title: 'error',
 				text: err

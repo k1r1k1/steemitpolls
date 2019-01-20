@@ -124,7 +124,7 @@ function updateProgressValues() {
 function CopyLinkToClipboard() {
 	document.querySelector('#cplkint').select();
 	document.execCommand('copy');
-	swal({
+	Swal.fire({
 		type: 'success',
 		toast: true,
 		title: document.querySelectorAll('.translate-phrases li')[10].innerHTML,
@@ -137,7 +137,7 @@ document.querySelector('#cplkbtn').addEventListener('click', CopyLinkToClipboard
 function CopyCodeToClipboard() {
 	document.querySelector('#cpcdint').select();
 	document.execCommand('copy');
-	swal({
+	Swal.fire({
 		type: 'success',
 		toast: true,
 		title: document.querySelectorAll('.translate-phrases li')[11].innerHTML,
@@ -184,7 +184,7 @@ function completeForm(callback) { // collecting data & sending
 		answers = [],
 		answerimages = [];
 	if ($pollInputs.length < 3) {
-		swal({
+		Swal.fire({
 			type: 'error',
 			title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
 			text: document.querySelectorAll('.translate-phrases li')[26].innerHTML
@@ -267,7 +267,7 @@ function send_request(str, title, jsonMetadata, tagNewPost, callback) {
 			}
 		} else {
 			clearTimeout(newPostTimout);
-			swal({
+			Swal.fire({
 				type: 'error',
 				title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
 				text: err
@@ -360,7 +360,7 @@ function getMyPolls(callback) {
 				});
 			});
 		} else {
-			swal({
+			Swal.fire({
 				type: 'error',
 				title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
 				text: err
@@ -400,13 +400,13 @@ function reblogSteemit() {
 		steem.broadcast.customJson(wif.posting, [], [username], 'follow', json, (err, result) => {
 			console.log('username', username, 'author', resultContent.author, 'permlink', resultContent.permlink);
 			if (err) {
-				swal({
+				Swal.fire({
 					type: 'error',
 					title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
 					text: err
 				});
 			} else {
-				swal({
+				Swal.fire({
 					type: 'success',
 					toast: true,
 					title: document.querySelectorAll('.translate-phrases li')[21].innerHTML,
@@ -444,7 +444,7 @@ function newPoll() {
 
 document.getElementById('complete').addEventListener('click', function () {
 	if (document.querySelector('.form-control.title').value == '') {
-		swal({
+		Swal.fire({
 			title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
 			text: document.querySelectorAll('.translate-phrases li')[18].innerHTML,
 			type: 'error'
@@ -456,7 +456,7 @@ document.getElementById('complete').addEventListener('click', function () {
 			auth(function () {
 				completeForm(function (err, result) {
 					if (err) {
-						swal({
+						Swal.fire({
 							type: 'error',
 							title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
 							text: err
@@ -549,7 +549,7 @@ document.querySelector('.edit-poll').addEventListener('click', () => {
 						});
 					});
 					console.log('newPollImages', newPollImages);
-					swal({
+					Swal.fire({
 						type: 'success',
 						title: document.querySelectorAll('.translate-phrases li')[33].innerHTML,
 						text: document.querySelectorAll('.translate-phrases li')[21].innerHTML
@@ -626,7 +626,7 @@ function myPolls() {
 		auth(function () {
 			getMyPolls(function (err, result) {
 				if (err) {
-					swal({
+					Swal.fire({
 						type: 'error',
 						title: document.querySelectorAll('.translate-phrases li')[15].innerHTML,
 						text: err
@@ -639,7 +639,7 @@ function myPolls() {
 }
 
 function about() {
-	swal({
+	Swal.fire({
 		title: document.getElementById('about-html-title').innerHTML,
 		html: document.getElementById('about-html').innerHTML,
 		type: 'info',
@@ -653,7 +653,7 @@ function about() {
 }
 
 function integration() {
-	swal({
+	Swal.fire({
 		title: document.getElementById('integration-html-header').innerHTML,
 		html: document.getElementById('integration-html').innerHTML,
 		type: 'info',
@@ -681,7 +681,7 @@ function remImg(e) {
 }
 
 function support() {
-	swal({
+	Swal.fire({
 		html: document.getElementById('support-body').innerHTML,
 		showCloseButton: true,
 		width: 600,
@@ -692,7 +692,7 @@ function support() {
 }
 
 function donate() {
-	swal({
+	Swal.fire({
 		html: document.getElementById('donate-body').innerHTML,
 		showCloseButton: true,
 		width: 600,
